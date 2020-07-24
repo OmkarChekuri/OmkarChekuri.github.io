@@ -21133,7 +21133,7 @@ var d3 = Object.freeze({
 //need to create view box
 class ScatterplotClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentName, control, data, name, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
+    constructor(parentName, control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -21141,7 +21141,7 @@ class ScatterplotClass {
         if (printClass.printStatus)
             console.log("I am in constructor of ScatterplotClass");
         this.scatterplotControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
+        //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
         this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
@@ -21164,6 +21164,7 @@ class ScatterplotClass {
         this.showVerti = showVerti;
         this.Data = data;
         this.helper = helper;
+        //console.log(helper[0]);
         this.render(control);
     }
     makeDraggable() {
@@ -21205,7 +21206,7 @@ class ScatterplotClass {
     translateX(value) {
         var horizontal = this.horizontal;
         var newX = value[0];
-        var item = value[2];
+        var item = this.helper[0];
         var xScale = this.xScale;
         var change = value[0] - this.previousX;
         var directionHorizontal = change >= 0 ? -1 : 1;
@@ -21229,7 +21230,7 @@ class ScatterplotClass {
     translateY(value) {
         var vertical = this.vertical;
         var change = value[0] - this.previousY;
-        var item = value[2];
+        var item = this.helper[0];
         var directionVertical = change >= 0 ? 1 : -1; // 1 = +ve direction, -1 = -ve direction
         var newY = value[0];
         //extracting the yscale
@@ -21283,6 +21284,66 @@ class ScatterplotClass {
                 .attr("font-weight", "bold");
         }
     }
+    setxRange(xRange) {
+        var horizontal = this.horizontal;
+        var item = this.helper[0];
+        //console.log(item);
+        if (xRange[0] == null) {
+        }
+        else {
+            var xScale = this.xScale;
+            var Domain = [xScale.invert(xRange[0]), xScale.invert(xRange[1])];
+            console.log("x");
+            //console.log(Domain)
+            //var Range = xRange;
+            //console.log(Range)
+            xScale.domain(Domain)
+                .nice();
+            this.xScale = xScale;
+            this.xAxis.call(axisBottom(xScale));
+            //Update the scatterplot based on new zoom event
+            select(`#${this.scatterplotControlName}`)
+                .select("svg").select('g')
+                .selectAll("circle")
+                .attr('cx', function (d) { return xScale(item(d, horizontal)); });
+        }
+        //throw new Error("Method not implemented.");
+    }
+    setyRange(yRange) {
+        var vertical = this.vertical;
+        var item = this.helper[0];
+        if (yRange[0] == null) {
+        }
+        else {
+            var yScale = this.yScale;
+            var Domain = [yScale.invert(yRange[0]), yScale.invert(yRange[1])];
+            console.log("y");
+            //console.log(Domain)
+            // var Range = yRange;
+            // console.log(Range)
+            yScale.domain(Domain)
+                .nice();
+            this.yScale = yScale;
+            this.yAxis.call(axisLeft(yScale));
+            select(`#${this.scatterplotControlName}`)
+                .select("svg").select('g')
+                .selectAll("circle")
+                .attr('cy', function (d) { return yScale(item(d, vertical)); });
+        }
+        //throw new Error("Method not implemented.");
+    }
+    setZoom(arg0) {
+        //throw new Error("Method not implemented.");
+    }
+    setHoverSelection(arg0) {
+        //throw new Error("Method not implemented.");
+    }
+    setBrushY(arg0) {
+        //throw new Error("Method not implemented.");
+    }
+    setBrushX(arg0) {
+        //throw new Error("Method not implemented.");
+    }
     render(parentControl) {
         var localParentControl = parentControl;
         //create a div element to hold scatterplot
@@ -21297,7 +21358,7 @@ class ScatterplotClass {
         //this.canvasWidth = 360;
         var offset = 20;
         //parentDocument.appendChild(div1);
-        console.log(parentDocument);
+        //console.log(parentDocument);
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
         //create a closable icon
@@ -21375,7 +21436,7 @@ class ScatterplotClass {
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
-                    .attr("transform", `translate(${plotWidth * 0.5}, ${plotHeight + margin.top / 1.5}) rotate(0)`);
+                    .attr("transform", `translate(${plotWidth * 0.5}, ${plotHeight + margin.bottom}) rotate(0)`);
             }
             //create a linear yScale
             var yScale = linear$2()
@@ -21532,39 +21593,24 @@ class ScatterplotClass {
                 selectAll(".val").remove();
             }
             var shiftKey;
-            // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
-            var zoom$$1 = zoom()
-                .scaleExtent([.5, 20]) // This control how much you can unzoom (x0.5) and zoom (x20)
-                .extent([[0, 0], [plotWidth, plotHeight]])
-                .on("zoom", updateChart);
-            //This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-            var zoomRect = axisGroup.append("rect")
-                .attr("cursor", "move")
-                .attr("pointer-events", "all")
-                .attr("width", plotWidth)
-                .attr("height", plotHeight)
-                .style("fill", "white")
-                .style("opacity", 0.1)
-                .call(zoom$$1);
+            // // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
+            // var zoom = d3.zoom()
+            //   .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
+            //   .extent([[0, 0], [plotWidth, plotHeight]])
+            //   .on("zoom", updateChart);
+            // //This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
+            // var zoomRect = axisGroup.append("rect")
+            //   .attr("cursor", "move")
+            //   .attr("pointer-events", "all")
+            //   .attr("width", plotWidth)
+            //   .attr("height", plotHeight)
+            //   .style("fill", "white")
+            //   .style("opacity", 0.1)
+            //   .call(zoom);
             //var zoomRect = axisGroup
             //.attr("pointer-events", "all")
             //.call(zoom);
             // A function that updates the chart when the user zoom and thus new boundaries are available
-            function updateChart() {
-                // recover the new scale
-                var xTranslate = event$1.transform.x;
-                var yTranslate = event$1.transform.y;
-                const scale = event$1.transform.k;
-                //console.log(d3.event.transform.x);
-                var newX = event$1.transform.rescaleX(xScale);
-                var newY = event$1.transform.rescaleY(yScale);
-                //console.log(newX)
-                //console.log(newY)
-                //console.log(Math.abs(xTranslate));
-                const w = 660 - margin.left - margin.right;
-                localParentControl.getProxy().getLiveProperty("xTranslate").setValue([xTranslate]);
-                localParentControl.getProxy().getLiveProperty("yTranslate").setValue([yTranslate]);
-            }
             var myArrayTable = [];
             //brushed over the scatterplot       
             function brushed() {
@@ -21593,6 +21639,8 @@ class ScatterplotClass {
                             return null;
                         }
                     });
+                    localParentControl.getProxy().getLiveProperty("brushX").setValue([x0, x1]);
+                    localParentControl.getProxy().getLiveProperty("brushY").setValue([y0, y1]);
                 }
                 //create an array of all the selection statuses of the data
                 //console.log(data.map(d=> d.Selection));
@@ -21623,13 +21671,12 @@ class ScatterplotClass {
         this.makeDraggable();
     }
 }
-//# sourceMappingURL=scatterplot.js.map
 
 class ControlScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
+    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -21645,6 +21692,10 @@ class ControlScatterplot {
         this.CTAG_Indication = "Indication";
         this.CTAG_Data = "Data";
         this.CTAG_Zoom = "Zoom";
+        this.CTAG_xRange = "xRange";
+        this.CTAG_yRange = "yRange";
+        this.CTAG_brushX = "brushX";
+        this.CTAG_brushY = "brushY";
         this.TYPE_xTranslate = new Prototype(Array.prototype, this.CTAG_xTranslate, [null, null]);
         this.TYPE_yTranslate = new Prototype(Array.prototype, this.CTAG_yTranslate, [null, null]);
         this.TYPE_Size = new Prototype(Number.prototype, this.CTAG_Size, 0);
@@ -21653,6 +21704,10 @@ class ControlScatterplot {
         this.TYPE_Indication = new Prototype(Array.prototype, this.CTAG_Indication, [false]);
         this.TYPE_Data = new Prototype(Array.prototype, this.CTAG_Data, []);
         this.TYPE_Zoom = new Prototype(Array.prototype, this.CTAG_Zoom, [null, null]);
+        this.TYPE_xRange = new Prototype(Array.prototype, this.CTAG_xRange, [null, null]);
+        this.TYPE_yRange = new Prototype(Array.prototype, this.CTAG_yRange, [null, null]);
+        this.TYPE_brushX = new Prototype(Array.prototype, this.CTAG_brushX, [null, null]);
+        this.TYPE_brushY = new Prototype(Array.prototype, this.CTAG_brushY, [null, null]);
         if (printClass.printStatus)
             console.log("I am in constructor of ControlScatterplot");
         //Create Control Proxy
@@ -21667,9 +21722,13 @@ class ControlScatterplot {
         this.live_property_Size = this.proxy.add(this.CTAG_Size, this.TYPE_Size, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.live_property_Zoom = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
+        this.live_property_xRange = this.proxy.add(this.CTAG_xRange, this.TYPE_xRange, true);
+        this.live_property_yRange = this.proxy.add(this.CTAG_yRange, this.TYPE_yRange, true);
+        this.live_property_brushX = this.proxy.add(this.CTAG_brushX, this.TYPE_brushX, true);
+        this.live_property_brushY = this.proxy.add(this.CTAG_brushY, this.TYPE_brushY, true);
         this.ControlName = name;
         //console.log(data)
-        this.scatterplot = new ScatterplotClass(parentWindow, this, data, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
+        this.scatterplot = new ScatterplotClass(parentWindow, this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -21725,100 +21784,66 @@ class ControlScatterplot {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_xTranslate) {
             if (printClass.printStatus)
-                console.log("hurray controlScatterPlot height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed controlScatterPlot height");
             this.scatterplot.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_yTranslate) {
             if (printClass.printStatus)
-                console.log("hurray controlScatterPlot Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed controlScatterPlot Width");
             this.scatterplot.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Opacity) {
             if (printClass.printStatus)
-                console.log("hurray controlScatterPlot opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed controlScatterPlot opacity");
             this.scatterplot.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Selection");
             this.scatterplot.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Indication) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Indication");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Indication");
             this.scatterplot.setIndication(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Size) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Size");
             this.scatterplot.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Data) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Size");
             this.scatterplot.setHoverSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Zoom) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Zoom");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Zoom");
             this.scatterplot.setZoom(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        //} 
+        else if (tag == this.CTAG_xRange) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot xRange");
+            this.scatterplot.setxRange(e.getLiveProperty().getVariable().getValue());
+        }
+        else if (tag == this.CTAG_yRange) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot yRange");
+            this.scatterplot.setyRange(e.getLiveProperty().getVariable().getValue());
+        }
+        else if (tag == this.CTAG_brushX) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot brushX");
+            this.scatterplot.setBrushX(e.getLiveProperty().getVariable().getValue());
+        }
+        else if (tag == this.CTAG_brushY) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot brushY");
+            this.scatterplot.setBrushY(e.getLiveProperty().getVariable().getValue());
+        }
     }
     propertyChangeToUpdateUI(value) {
         //if(printClass.printStatus) console.log(e);
@@ -22471,13 +22496,13 @@ class ControlTable {
 //need to create view box
 class InsetScatterplotClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, xPos, yPos, symbol$$1, horizontal, vertical, inputWidth, inputHeight) {
+    constructor(control, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight) {
         this.width = 960;
         this.height = 480;
         if (printClass.printStatus)
             console.log("I am in constructor of InsetScatterplotClass");
         this.insetScatterplotControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
+        //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontal;
         this.vertical = vertical;
         this.inputWidth = inputWidth;
@@ -23376,7 +23401,7 @@ class ControlInsetScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight) {
+    constructor(name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -23413,7 +23438,7 @@ class ControlInsetScatterplot {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.InsetScatterplot = new InsetScatterplotClass(this, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight);
+        this.InsetScatterplot = new InsetScatterplotClass(this, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -24119,7 +24144,7 @@ class ControlParallelCoordinatePlot {
 //need to create view box
 class GradientClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(control, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -24127,7 +24152,7 @@ class GradientClass {
         if (printClass.printStatus)
             console.log("I am in constructor of GradientClass");
         this.gradientControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
+        //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
         this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
@@ -24743,7 +24768,7 @@ class ControlGradient {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -24779,7 +24804,7 @@ class ControlGradient {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.gradient = new GradientClass(this, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
+        this.gradient = new GradientClass(this, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -25305,7 +25330,7 @@ function reverse$2(array, start, end) {
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
 class MapClass {
-    constructor(parentWindow, control, name, data, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(parentWindow, control, name, data, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -25313,7 +25338,7 @@ class MapClass {
         if (printClass.printStatus)
             console.log("I am in constructor of MapClass");
         this.mapControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
+        //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
         this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
@@ -25703,7 +25728,7 @@ class ControlMap {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -25734,7 +25759,7 @@ class ControlMap {
         this.live_property_Indication = this.proxy.add(this.CTAG_Indication, this.TYPE_Indication, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.ControlName = name;
-        this.map = new MapClass(parentWindow, this, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
+        this.map = new MapClass(parentWindow, this, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -25859,7 +25884,7 @@ class ControlMap {
 //need to create view box
 class BubbleChartClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentWindow, control, data, name, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
+    constructor(parentWindow, control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -25867,7 +25892,7 @@ class BubbleChartClass {
         if (printClass.printStatus)
             console.log("I am in constructor of BubbleChartClass");
         this.bubblechartControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
+        //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
         this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
@@ -26242,7 +26267,7 @@ class ControlBubblechart {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
+    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -26282,7 +26307,7 @@ class ControlBubblechart {
         this.live_property_Zoom = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
         this.ControlName = name;
         //console.log(data)
-        this.bubblechart = new BubbleChartClass(parentWindow, this, data, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
+        this.bubblechart = new BubbleChartClass(parentWindow, this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -26454,7 +26479,7 @@ class ControlBubblechart {
 
 //console.info('%cThis is implementation of LiveProperties in Javascript','color:blue; font-weight:bold; font-size:15px');
 //console.warn("This may not work in all browsers!.  This is an experemental project ");
-function createControl(parentWindow, controlName, data, name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
+function createControl(parentWindow, controlName, data, name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
     if (printClass.printStatus)
         console.log("Next Step: Control Creation**************(( " + controlName + " ))**************");
     if (controlName == "slider") {
@@ -26470,23 +26495,23 @@ function createControl(parentWindow, controlName, data, name, xPos, yPos, symbol
         return canvasControl;
     }
     else if (controlName == "scatterplot") {
-        let scatterplotControl = new ControlScatterplot(parentWindow, name, data, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
+        let scatterplotControl = new ControlScatterplot(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
         return scatterplotControl;
     }
     else if (controlName == "map") {
-        let mapControl = new ControlMap(parentWindow, name, data, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
+        let mapControl = new ControlMap(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
         return mapControl;
     }
     else if (controlName == "bubblechart") {
-        let bubblechartControl = new ControlBubblechart(parentWindow, name, data, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
+        let bubblechartControl = new ControlBubblechart(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
         return bubblechartControl;
     }
     else if (controlName == "gradient") {
-        let gradientControl = new ControlGradient(name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
+        let gradientControl = new ControlGradient(name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
         return gradientControl;
     }
     else if (controlName == "insetScatterplot") {
-        let insetScatterplotControl = new ControlInsetScatterplot(name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight);
+        let insetScatterplotControl = new ControlInsetScatterplot(name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight);
         return insetScatterplotControl;
     }
     else if (controlName == "table") {
@@ -26524,15 +26549,12 @@ function bindVariable(control, property, variable) {
     //if (printClass.printStatus) console.log("Next step:*************************** Binding (( " + variable.name + " )) to (( " + control.ControlName + " ))******************");
     control.proxy.setVariable(property, variable);
 }
+//Define Control Types
 let Scatterplot_type = "scatterplot";
 //let Wordcloud_type: controlType = "wordcloud";
 let Gradient_type = "gradient";
-let InsetScatterplot_type = "insetScatterplot";
 let Table_type = "table";
 let ParallelCoordinatePlot_type = "parallelCoordinatePlot";
-//let p =0.1235
-//console.log(p.toPrecision(3));
-//Load Data
 Promise.all([
     csv$1("./data/ions.csv", ({ T, X, Y, Z }, index) => ({
         Index: +index,
@@ -26577,27 +26599,33 @@ Promise.all([
         let Translation_5 = createVariable("Translation_5", [0], Array.prototype);
         let Translation_6 = createVariable("Translation_6", [0], Array.prototype);
         let Translation_7 = createVariable("Translation_7", [0], Array.prototype);
+        let Range_1 = createVariable("Range1", [null, null], Array.prototype);
+        let Range_2 = createVariable("Range2", [null, null], Array.prototype);
+        let Range_3 = createVariable("Range3", [null, null], Array.prototype);
+        let Range_4 = createVariable("Range4", [null, null], Array.prototype);
+        let Range_5 = createVariable("Range5", [null, null], Array.prototype);
+        let Range_6 = createVariable("Range6", [null, null], Array.prototype);
         let lPW = 300;
         let lPH = 200;
         let lPL = 30;
         let lPT = 60;
         let off = 5;
         var parentName = "ionsViz";
-        let scatterplot01 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-01", lPL, lPT, circle$2, IonsVariables.T, IonsVariables.Z, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot01 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-01", lPL, lPT, IonsVariables.T, IonsVariables.Z, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot01, "xTranslate", Translation_4);
         bindVariable(scatterplot01, "yTranslate", Translation_5);
         //bindVariable(scatterplot01, "Opacity", variable2);
         bindVariable(scatterplot01, "Selection", Selection_4);
         //bindVariable(scatterplot01, "Size", variable4);
         // //x = T Y = Y
-        let scatterplot02 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-02", lPL, lPT + lPH, diamond, IonsVariables.T, IonsVariables.Y, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot02 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-02", lPL, lPT + lPH, IonsVariables.T, IonsVariables.Y, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot02, "xTranslate", Translation_4);
         bindVariable(scatterplot02, "yTranslate", Translation_6);
         //bindVariable(scatterplot02, "Opacity", variable2);
         bindVariable(scatterplot02, "Selection", Selection_4);
         //bindVariable(scatterplot02, "Size", variable4);
         // //x = T, y=X
-        let scatterplot03 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-03", lPL, lPT + 2 * lPH, diamond, IonsVariables.T, IonsVariables.X, lPW, lPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot03 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-03", lPL, lPT + 2 * lPH, IonsVariables.T, IonsVariables.X, lPW, lPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot03, "xTranslate", Translation_4);
         bindVariable(scatterplot03, "yTranslate", Translation_7);
         //bindVariable(scatterplot03, "Opacity", variable2);
@@ -26606,42 +26634,56 @@ Promise.all([
         let SPH = lPH + lPH / 2;
         let SPW = lPH + lPH / 2;
         // //x = X, y= Z
-        let scatterplot04 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-04", lPL + lPW, lPT, diamond, IonsVariables.X, IonsVariables.Z, SPW, SPH, false, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot04 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-04", lPL + lPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot04, "xTranslate", Translation_5);
         bindVariable(scatterplot04, "yTranslate", Translation_7);
         //bindVariable(scatterplot04, "Opacity", variable2);
         bindVariable(scatterplot04, "Selection", Selection_5);
+        bindVariable(scatterplot04, "brushX", Range_1);
+        bindVariable(scatterplot04, "brushY", Range_2);
         //bindVariable(scatterplot04, "Size", variable4);
         // //x = X, y= Z
-        let scatterplot05 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-05", lPL + lPW, lPT + SPH, diamond, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot05 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-05", lPL + lPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot05, "xTranslate", Translation_5);
         bindVariable(scatterplot05, "yTranslate", Translation_6);
         //bindVariable(scatterplot05, "Opacity", variable2);
         bindVariable(scatterplot05, "Selection", Selection_6);
+        bindVariable(scatterplot05, "brushX", Range_3);
+        bindVariable(scatterplot05, "brushY", Range_4);
         //bindVariable(scatterplot05, "Size", variable4);
         // //x = Z, y= Y
-        let scatterplot06 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-06", lPL + lPW + SPW, lPT + SPH, diamond, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, false, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot06 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-06", lPL + lPW + SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, false, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot06, "xTranslate", Translation_7);
         bindVariable(scatterplot06, "yTranslate", Translation_6);
         //bindVariable(scatterplot06, "Opacity", variable2);
         bindVariable(scatterplot06, "Selection", Selection_7);
+        bindVariable(scatterplot06, "brushX", Range_5);
+        bindVariable(scatterplot06, "brushY", Range_6);
         //bindVariable(scatterplot06, "Size", variable4);
-        let insetScatterplot1 = createControl(parentDiv, InsetScatterplot_type, ionsData, "ISP-1", lPL + lPW + 3 * SPW, lPT, null, IonsVariables.X, IonsVariables.Z, SPW, SPH, true, false, [IonsAxes], IonsVariables.T, null, null);
+        // //x = X, y= Z
+        let insetScatterplot1 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-1", lPL + lPW + 3 * SPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(insetScatterplot1, "Selection", Selection_5);
-        let insetScatterplot2 = createControl(parentDiv, InsetScatterplot_type, ionsData, "ISP-2", lPL + lPW + 2 * SPW, lPT + SPH, null, IonsVariables.X, IonsVariables.Y, SPW, SPH);
+        bindVariable(insetScatterplot1, "xRange", Range_1);
+        bindVariable(insetScatterplot1, "yRange", Range_2);
+        let insetScatterplot2 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-2", lPL + lPW + 2 * SPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(insetScatterplot2, "Selection", Selection_6);
-        //x = Z, y= Y
-        let insetScatterplot3 = createControl(parentDiv, InsetScatterplot_type, ionsData, "ISP-3", lPL + lPW + SPW + 2 * SPW, lPT + SPH, null, IonsVariables.Z, IonsVariables.Y, SPW, SPH);
+        bindVariable(insetScatterplot2, "xRange", Range_3);
+        bindVariable(insetScatterplot2, "yRange", Range_4);
+        // //x = Z, y= Y
+        let insetScatterplot3 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-3", lPL + lPW + SPW + 2 * SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(insetScatterplot3, "Selection", Selection_7);
+        bindVariable(insetScatterplot3, "xRange", Range_5);
+        bindVariable(insetScatterplot3, "yRange", Range_6);
         let TW = lPW + 30;
         let TH = 2 * lPH + 130;
-        let table01 = createControl(parentDiv, Table_type, [ionsData], "TableView-01", lPL + lPW + 4 * SPW, lPT, null, null, null, TW, TH, null, null, null, null, null, null);
+        let table01 = createControl(parentDiv, Table_type, [ionsData], "TableView-01", lPL + lPW + 4 * SPW, lPT, null, null, TW, TH, null, null, null, null, null, null);
         bindVariable(table01, "Selection", Selection_4);
-        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, diamond, IonsVariables.T, IonsVariables.X, lPW, 50, false, false);
+        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, IonsVariables.X, lPW, 50, false, false);
         bindVariable(gradient1, "Selection", Selection_8);
-        let parallelCoordinatePlot1 = createControl(parentDiv, ParallelCoordinatePlot_type, ionsData, "PCP-1", lPL + lPW + SPW, lPT, null, null, null, 2 * SPW, SPH, null, null, [IonsAxes], IonsVariables.T, null, null, ["T", "X", "Y", "Z"]);
+        let parallelCoordinatePlot1 = createControl(parentDiv, ParallelCoordinatePlot_type, ionsData, "PCP-1", lPL + lPW + SPW, lPT, null, null, 2 * SPW, SPH, null, null, [IonsAxes], IonsVariables.T, null, null, ["T", "X", "Y", "Z"]);
         bindVariable(parallelCoordinatePlot1, "Selection", Selection_8);
     }
-    console.log(document);
+    //console.log(document);
     ionsExample();
 });
+//# sourceMappingURL=index.js.map
