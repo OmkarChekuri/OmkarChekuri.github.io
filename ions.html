@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <!-- http://bl.ocks.org/weiglemc/6185069 -->
+  <!--20201501  Added dragable windows -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content=" This is a page to test  live properties in JavaScript"
+    />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
+    <meta name="author" content="Omkar Chekuri" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IonsViz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+   
+    
+
+    <link rel="icon" href="./media/LP.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
+    <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
+    <script src="./js/dst/ions.js" defer></script>
+    <title>button</title>
+    <!-- <script src="./wp/webpack-buncle.js"></script> -->
+  </head>
+
+  <body id="body" onbeforeprint="PrintAlert()">
+    <h1 >Ions - Example</h1>
+
+
+    <!-- <img src="media/corona.png" alt="Trulli" width="1000" height="333"> -->
+<svg height="600">
+  <rect>
+
+  </rect>
+</svg>
+
+
+<h2>Background</h2>
+
+<p>
+    The above example shows a coordination visualization in D3 using the live properties Architecture. The data for the following visualization is 
+    gathered from    <a href="https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html"  target="_blank">Ions Example</a>. For the above visualization we created a 
+    wrapper for the D3 code and modified the code to support the visualization.  
+
+
+
+</p>
+
+
+<h2>Ions Visualization Interface</h2>
+<p> 
+The visualization displays different spatial and temporal aspects of a simulated ion cloud trajectory. A highly coordinated 
+set of timeseries plots, table views and other views reveal different characteristics of
+oscillatory motion. The trajectory is displayed in a variety of ways by the views in the visualization:
+
+</p>
+
+
+<ul>
+
+
+<li>Three time series scatterplots show ion motion over time relative to each pair of trap plates (excite, detect, inject).</li>
+<li>Monoscopic stereo views show the trajectory and selected subtrajectory next to the corresponding scatterplot matrices.</li>
+<li>The parallel coordinate plots show the same trajectory.</li>
+<li>A table view shows the actual {T,X,Y,Z} positions of points along the trajectory.</li>
+<li>The Perpectiual view below the Table view shows the Time mapped to the linear gradient of the view. </li>
+
+
+
+
+</ul>
+
+<p>
+    All views map time into a translucent red-to-black color gradient that suggests (but does not map precisely to)
+     decreasing energy of the ion cloud over time.
+
+</p>
+
+<h2>Interaction </h2>
+
+<p>
+
+    Different views are coordinated in sub-groups. Selection done by brushing in any of the timeseries plot will select the data attribute in other time series
+    plots. The parallel coordinate plot and the Perpectual view are coordin 
+
+
+    
+</p>
+
+
+<h2>Downloads</h2>
+
+ <a href="data/Vis2020.pdf" download>
+    <img src="data/download.jpg" alt="ResearchPaper" width="104" height="42">
+  </a> 
+
+  <p> Research Paper </p>
+
+  </body>
+</html>

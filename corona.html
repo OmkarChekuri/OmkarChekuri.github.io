@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <!-- http://bl.ocks.org/weiglemc/6185069 -->
+  <!--20201501  Added dragable windows -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content=" This is a page to test  live properties in JavaScript"
+    />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
+    <meta name="author" content="Omkar Chekuri" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorldViz</title>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+    <link rel="icon" href="./media/LP.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
+    <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
+    <script src="./js/dst/corona.js" defer></script>
+    <title>button</title>
+    <!-- <script src="./wp/webpack-buncle.js"></script> -->
+  </head>
+
+  <body id="body" onbeforeprint="PrintAlert()">
+
+
+
+
+    <h1 >Corona - Example</h1>
+
+
+    <!-- <img src="media/corona.png" alt="Trulli" width="1000" height="333"> -->
+<svg height="600">
+  <rect>
+
+  </rect>
+</svg>
+
+
+
+<h2>Background</h2>
+
+
+<p>
+    The above example shows a coordination visualization in D3 using the live properties Architecture. The data for the following visualization is 
+    gathered from    <a href="https://www.worldometers.info/coronavirus/"  target="_blank">Corona Example</a>. For the above visualization we created a 
+    wrapper for the D3 code and modified the code to support the visualization.  
+
+
+
+</p>
+    <h2> Corona Visualization Interface</h2>
+<p>
+    The visualization shows two scatterplots, table, Choropleth map, bubble chart and a parallel coordinate plot coordinated in multiple ways.
+    
+</p>   
+
+<ul>
+    <li>The Top Left scatterplot shows <em> Tests Per Million</em> drawn on horizontal axis vs <em>Cases Per Million</em> on vertical Axis  </li>
+    <li>The Bottom Left scatterplot shows <em> Deaths Per Million</em> drawn on horizontal axis vs <em>Tests Per Million</em> on vertical Axis  </li>
+    <li>The Table view shows all the data set. THe Continent coloumn is colored based on the  categorical color legend assigned to continent.</li>
+    <li> The Choropleth Map shows a Mercator projection of the world map. Each continent is colored based on the categorical color 
+        legend assigned to continent</li>
+    <li> The Bubble chart view shows various bubbles drawn using size to represent the size of the circle </li>
+    <li> The Parallel coordinate is drawn using the same data. The color of the paths is drawn using categorical color legend assigned to 
+        attribute of the continent </li>
+</ul>
+
+<h2>Coordination and Interaction</h2>
+<p>
+    The two scatterplots are coordinated by the reange property. The Horizontal range of the top scatterplot is coordinated with the vertical range of bottom scatterplot.
+    The Top Left scatterplot and the Map are coordinated in selection. Any selection made in either of the above will reflect in other. The Bottom Left scatterplot, Table view and the Parallerl coordinate plot are coordinated in selection. Any selection made in either of the above will reflect in other.
+    The scatterplots, table view, Choropleth map and  bubble chart are coordinated in indication. Any item hovered in table view, Choropleth map and  bubble chart will be 
+    highlighted in other plots.
+</p>
+
+
+
+<p>
+     All the views use the color encoding from color brewer website to encode the color with the continent that the attribute belongs to.
+     Selection is shown in scatterplot using a black colored stroke ove the circles. Indication is shown in the scatterplot using a black colored circle with a label.
+     Selection in Table view is done using the red colored font for the row while indication is shown using teal colored background for the view.
+     Selection in choropleth map is done using the dark grey colored region for the row while indication is shown using blue colored outline for the region.
+     Selection in Bubble chart is done using the grey colored circles for the bubble while indication is shown using black colored stroke for the for the bubble.
+    Selection in Parallel coordinate plot is done by increasing the opacity of the paths to 100% while reducing the opacity of the unselected items to 50%.
+</p>
+
+
+
+<h2>Downloads</h2>
+
+ <a href="data/Vis2020.pdf" download>
+    <img src="data/download.jpg" alt="ResearchPaper" width="104" height="42">
+  </a> 
+
+
+
+
+  
+
+  </body>
+</html>
