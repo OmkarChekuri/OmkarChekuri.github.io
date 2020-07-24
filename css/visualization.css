@@ -1,0 +1,415 @@
+
+
+  #rectangle {
+    
+    stroke-width:3;
+    stroke:rgb(0,0,0);
+    font-size:300%;
+    opacity: 100%;
+        
+  }
+
+  #fontValue {
+    font-weight:bold;
+    
+    font-size:75%;
+  }
+
+
+
+
+  #text1, #text2 {
+    font-weight:bold;
+    font-size: 50px;
+  }
+
+  #pdf{
+    float:right;
+    
+  }
+
+  #date {
+
+    font: 1em sans-serif;
+
+  }
+
+#sentance1 {
+width: 250;
+height: 150;
+
+}
+
+#sentance {
+
+    font-size: medium;
+}
+
+
+.Slider,  .rectangle {
+
+  border-style: double;
+  height: 350px;
+  width: 50%;
+
+}
+
+.box1, .box2 {
+
+  border-style: double;
+  height: 245px;
+  width: 50%;
+  resize: none;
+
+}
+
+.fontvalue, .sentance {
+
+  border-style: double;
+  height: 145px;
+  
+
+}
+
+
+.parent1{
+
+  display: flex;
+ 
+}
+
+.parent2{
+
+  display: flex;
+
+}
+
+
+#Reference {
+   border-style: none;
+   position: absolute;
+   z-index: 1;
+   background-color: #f1f1f1;
+   text-align: center;
+   border: 1px solid #d3d3d3;
+   top: 800px;
+   left: 100px;
+}
+
+
+#box1{
+  position: absolute;
+  z-index: 1;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top: 450px;
+  left: 50px;
+  
+}
+
+#box2{
+  position: absolute;
+  z-index: 2;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top: 450px;
+  left: 500px; 
+}
+
+
+.fontvalue{
+  position: absolute;
+  z-index: 3;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top: 100px;
+  left: 850px
+
+}
+
+#sentance1{
+  position: absolute;
+  z-index: 4;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top:250px;
+  left: 750px;
+  
+}
+
+#rectangle{
+  position: absolute;
+  z-index: 4;
+  background-color: #afdfad;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top:80px;
+  left: 20px;
+  
+}
+
+.slider{
+  position: absolute;
+  z-index: 4;
+  width: 458px; 
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top:100px;
+  left: 250px;
+  transition: opacity .2s;
+  
+}
+
+.canvas{
+  position: absolute;
+  z-index: 4;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top: 400px;
+  left: 150px;
+  
+}
+
+.scatterplot{
+  position: absolute;
+  z-index: 4;
+  cursor: default;
+  background-color: #ffffff;
+  text-align: center;
+  border: 1px solid #777474;
+  /* top: 250px;
+   top: 400px; 
+  left: 150px; */
+  
+}
+
+.bubblechart{
+  position: absolute;
+  z-index: 4;
+  cursor: default;
+  background-color: #ffffff;
+  text-align: center;
+  border: 1px solid #000000;
+  /* top: 250px;
+   top: 400px; 
+  left: 150px; */
+  
+}
+
+
+
+.map{
+  position: absolute;
+  z-index: 4;
+  cursor: default;
+  background-color: #ffffff;
+  text-align: center;
+  
+   
+  border: 1px solid #000000;
+  /*top: 250px;
+   top: 400px; 
+  left: 150px; */
+  
+}
+
+
+.country {
+  /* fill:rgb(226, 219, 151); */
+
+  stroke:black;
+
+  stroke-opacity: 1;
+}
+
+.country:hover{
+    
+  fill-opacity:0.4; 
+  stroke: rgb(255, 255, 255);
+  stroke-width: 3;
+  
+}
+
+
+
+
+.gradient{
+  position: absolute;
+  z-index: 4;
+  cursor: default;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  /* top: 250px;
+   top: 400px; 
+  left: 150px; */
+  
+}
+
+.insetScatterplot{
+  position: absolute;
+  z-index: 4;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  top: 620px;
+  /* top: 400px; */
+  left: 150px;
+  
+}
+
+
+
+.parallelCoordinatePlot{
+  position: absolute;
+  z-index: 4;
+  background-color: #ffffff;
+  text-align: right;
+  border: 1px solid #080808;
+  /* top: 620px;
+  /* top: 400px; 
+  left: 450px; */
+  
+}
+
+.table{
+  position: absolute;
+  z-index: 4;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  /* top: 400px; */
+  top: 620px;
+  left: 100px;
+  
+}
+
+table{
+    
+  display:block;
+  overflow:auto;
+  color: rgb(0, 0, 0);
+}
+
+
+#box1header, #box2header, .fontvalueheader, #sentance1header, #Referenceheader, .bubblechartheader,
+ #rectangleheader, .sliderheader,.textAreaheader,.scatterplotheader,.tableheader, .parallelCoordinatePlotheader, .mapheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: rgb(21, 88, 143);
+  color: #fff;
+}
+
+ .insetScatterplotheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: rgb(44, 6, 25);
+  color: #fff;
+}
+
+
+#box1header, #box2header,.fontvalueheader:hover,.sliderheader:hover ,.rectangleheader:hover, .canvasheader,.bubblechartheader, .scatterplotheader,.tableheader{
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: rgb(40, 88, 107);
+  color: #fff;
+}
+
+#wrapper {
+  overflow:scroll;
+}
+
+
+
+
+#close {
+  float:right;
+  display:inline-block;
+  padding:9px 9px;
+  background:rgb(73, 209, 243);
+  border-radius: 10%; 
+  border-color: black;
+  margin-right: 3px;
+  margin-top: 1px;
+  
+  
+}
+
+#close:hover{
+  background:rgb(247, 25, 25);
+  cursor: pointer;
+}
+
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+
+
+
+.bar {
+  fill: steelblue;
+}
+
+.highlight {
+  fill: orange;
+}
+
+
+ tr{
+background-color: rgb(250, 250, 250);
+
+} 
+ th{
+background-color:rgb(168, 221, 228);
+
+} 
+
+.hovered{
+  background-color: rgb(55, 150, 179);
+}
+
+.nothovered{
+  background-color: rgb(253, 255, 253);
+}
+
+/* disable text selection */
+.table {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* #red {
+  background-color: rgb(226, 29, 29);
+} */
+
+
