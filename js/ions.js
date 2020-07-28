@@ -54,6 +54,7 @@ VariableEvent.SHARE_CHANGED = 7;
 VariableEvent.MIN_TYPE = 0;
 VariableEvent.MAX_TYPE = 7;
 //******************************************************************************
+//# sourceMappingURL=VariableEvent.js.map
 
 //******************************************************************************
 // class SharedFlag
@@ -104,8 +105,7 @@ class SharedFlag {
                 this.set.push(obj);
                 changed = true;
             }
-            else if (!this.set.indexOf(obj)) /////need to check the logic again : omkar
-             {
+            else if (!this.set.indexOf(obj)) {
                 this.set.push(obj);
             }
         }
@@ -117,10 +117,12 @@ class SharedFlag {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=SharedFlag.js.map
 
 class printClass {
 }
 printClass.printStatus = false;
+//# sourceMappingURL=printClass.js.map
 
 class LivePropertyEvent //extends EventObject
  {
@@ -167,8 +169,8 @@ class LivePropertyEvent //extends EventObject
     }
 }
 //******************************************************************************
+//# sourceMappingURL=LivePropertyEvent.js.map
 
-//import { typeOfValue } from "../index.js";
 class LiveProperty {
     //**********************************************************************
     // Constructors and Finalizer
@@ -451,8 +453,8 @@ class LiveProperty {
     }
 } */
 //******************************************************************************
+//# sourceMappingURL=LiveProperty.js.map
 
-//import { typeOfValue } from "../index.js";
 class Variable {
     //**********************************************************************
     // Constructors and Finalizer
@@ -720,11 +722,9 @@ class Variable {
  */
 Variable.ASYNC_EVENTS = true;
 Variable.STARTUP = false;
+//# sourceMappingURL=Variable.js.map
 
 //import { typeOfValue } from "../index";
-//create of type of ClassType and metntion what types it needs to have
-//Note : null not included on purpose
-//we used undefined because it is a optional parameter in constructor
 class Prototype {
     constructor(classType, name, value, constant) {
         this.myMap = new Map();
@@ -835,15 +835,10 @@ class Prototype {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=Prototype.js.map
 
 //type typeOfValue = string | number | boolean | undefined | null;
 class ControlInfo {
-    //**********************************************************************
-    // Constructors and Finalizer
-    //**********************************************************************
-    constructor(proxy) {
-        this.proxy = proxy;
-    }
     //**********************************************************************
     // Public Class Methods
     //**********************************************************************
@@ -875,6 +870,12 @@ class ControlInfo {
                 ControlInfo.transduce(src, dst, tags[i]);
             }
         }
+    }
+    //**********************************************************************
+    // Constructors and Finalizer
+    //**********************************************************************
+    constructor(proxy) {
+        this.proxy = proxy;
     }
     //**********************************************************************
     // Getters and Setters
@@ -1124,6 +1125,7 @@ class ControlInfo {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlInfo.js.map
 
 class ControlEvent {
     //**********************************************************************
@@ -1144,8 +1146,8 @@ class ControlEvent {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlEvent.js.map
 
-//type typeOfValue = string | number | boolean | undefined | null;
 class ControlProxy {
     //**********************************************************************
     // Constructors and Finalizer
@@ -1632,6 +1634,7 @@ class ControlProxy {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlProxy.js.map
 
 //Draggable class to make the html div elements draggable
 //source : https://www.w3schools.com/howto/howto_js_draggable.asp
@@ -1795,6 +1798,7 @@ bind = function(controlname, variable){
 
 }
  */
+//# sourceMappingURL=Draggable.js.map
 
 class Eventing {
     constructor() {
@@ -1819,10 +1823,9 @@ class Eventing {
         });
     }
 }
+//# sourceMappingURL=Eventing.js.map
 
 //inspired from Jslider class
-//import { typeOfValue } from "../index.js";
-//type Callback = ()=>void;
 class SliderClass extends Eventing {
     //**********************************************************************
     // Constructor
@@ -1953,11 +1956,8 @@ class SliderClass extends Eventing {
         }
     }
 }
+//# sourceMappingURL=slider.js.map
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlSlider {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2065,9 +2065,9 @@ class ControlSlider {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlSlider.js.map
 
 //inspired from Jslider class
-//import { typeOfValue } from "../index.js";
 class PixelClass {
     //static control:ControlPixel;
     //**********************************************************************
@@ -2164,10 +2164,8 @@ class PixelClass {
         }
     }
 }
+//# sourceMappingURL=pixel.js.map
 
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlPixel {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2248,6 +2246,7 @@ class ControlPixel {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlPixel.js.map
 
 //inspired from Jslider class
 class CanvasClass {
@@ -2398,11 +2397,8 @@ class CanvasClass {
         }
     }
 }
+//# sourceMappingURL=canvas.js.map
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlCanvas {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2536,6 +2532,7 @@ class ControlCanvas {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlCanvas.js.map
 
 var version = "5.16.0";
 
@@ -4367,7 +4364,6 @@ DragEvent.prototype.on = function() {
   return value === this._ ? this : value;
 };
 
-// Ignore right-click, since that should open the context menu.
 function defaultFilter$1() {
   return !event$1.ctrlKey && !event$1.button;
 }
@@ -4912,7 +4908,6 @@ function hsl2rgb(h, m1, m2) {
 var deg2rad = Math.PI / 180;
 var rad2deg = 180 / Math.PI;
 
-// https://observablehq.com/@mbostock/lab-and-rgb
 var K = 18;
 var Xn = 0.96422;
 var Yn = 1;
@@ -10755,7 +10750,6 @@ var rotation = function(rotate) {
   return forward;
 };
 
-// Generates a circle centered at [0°, 0°], with a given radius and precision.
 function circleStream(stream, radius, delta, direction, t0, t1) {
   if (!delta) return;
   var cosRadius = cos$1(radius),
@@ -12026,8 +12020,6 @@ function boundsPoint$1(x, y) {
   if (y > y1) y1 = y;
 }
 
-// TODO Enforce positive area for exterior, negative area for interior?
-
 var X0$1 = 0;
 var Y0$1 = 0;
 var Z0$1 = 0;
@@ -12722,8 +12714,6 @@ var albers = function() {
       .center([-0.6, 38.7]);
 };
 
-// The projections must have mutually exclusive clip regions on the sphere,
-// as this will avoid emitting interleaving lines and polygons.
 function multiplex(streams) {
   var n = streams.length;
   return {
@@ -20225,7 +20215,6 @@ var noevent$2 = function() {
   event$1.stopImmediatePropagation();
 };
 
-// Ignore right-click, since that should open the context menu.
 function defaultFilter$2() {
   return !event$1.ctrlKey && !event$1.button;
 }
@@ -21274,7 +21263,6 @@ class ScatterplotClass {
         else {
             select(`#${this.scatterplotControlName}`).select("svg").selectAll("circle")
                 .data(this.LocalData)
-                //.attr("fill", function (d,index) { return value[index] == true ? "black" : null;})
                 .attr("stroke", function (d, index) { return value[index] == true ? "black" : "black"; })
                 .attr("stroke-width", function (d, index) { return value[index] == true ? 3 : 0.1; });
         }
@@ -21335,7 +21323,6 @@ class ScatterplotClass {
             var yScale = this.yScale;
             var Domain = [yRange[0], yRange[1]];
             yScale.domain(Domain)
-                //.domain(d3.extent(data, function (d){ return `d.${colArray[horizontal]}`; }))
                 .range([plotHeight, 0]);
             //console.log(yScale.domain())
             //console.log(yScale.range())
@@ -21452,7 +21439,6 @@ class ScatterplotClass {
                 labelsGroup
                     .append("text")
                     .text(Label(horizontal))
-                    //.attr("fill", "black")
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
@@ -21471,7 +21457,6 @@ class ScatterplotClass {
                 labelsGroup
                     .append("text")
                     .text(Label(vertical))
-                    //.attr("fill", "black")
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
@@ -21675,11 +21660,8 @@ class ScatterplotClass {
         this.makeDraggable();
     }
 }
+//# sourceMappingURL=scatterplot.js.map
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
@@ -21870,11 +21852,11 @@ class ControlScatterplot {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlScatterplot.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //removed active cases from table- 6/6/2020
 //commented value checks in set value 06/29/2020
-//type typeOfValue = string | number | boolean | undefined | null;
 class TableClass {
     constructor(parentWindow, control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
@@ -21912,7 +21894,6 @@ class TableClass {
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document
-                //.getElementById(this.tableControlName + "header")!
                 .getElementById(this.tableControlName + "header")
                 .addEventListener("mousedown", function () {
                 D1.dragElement(document.getElementById(temp));
@@ -22009,16 +21990,6 @@ class TableClass {
             return d;
         });
         this.rows
-            // .style("font-family", function (d, index) {
-            //   // d.SelectStatus = (dataTable[index].SelectStatus);
-            //   //console.log("font changed");
-            //   if( PropData[index]==true){
-            //    return "cursive";
-            // } else {
-            //   return "serif";
-            // }
-            //   //return d.Selection == true ? "cursive" : "serif";
-            // })
             .style("color", function (d, index) {
             // d.SelectStatus = (dataTable[index].SelectStatus);
             //console.log("background changed");
@@ -22092,13 +22063,6 @@ class TableClass {
             return d;
         });
         this.rows
-            //  .style("font-weight", function (d, index) {
-            //    if( property=="Indication" && PropData[index]==true){
-            //       return 1000;
-            //    } else {
-            //      return 50;
-            //    }
-            //  })
             .attr("class", function (d, index) {
             // d.SelectStatus = (dataTable[index].SelectStatus);
             //console.log("background changed");
@@ -22314,11 +22278,8 @@ class TableClass {
         this.makeDraggable();
     }
 }
+//# sourceMappingURL=table.js.map
 
-//type typeOfValue = string | number | boolean | undefined | null;
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlTable {
     //**********************************************************************
     // Constructors and Finalizer
@@ -22519,6 +22480,7 @@ class ControlTable {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlTable.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
@@ -22905,16 +22867,12 @@ class ParallelCoordinatePlotClass {
                 .style("opacity", 1);
             // Draw the axis:
             axisGroup.selectAll("myAxis")
-                // For each dimension of the dataset I add a 'g' element:
                 .data(dimensions).enter()
                 .append("g")
-                // I translate this element to its right position on the x axis
                 .attr("transform", function (d) { return "translate(" + xScale(d) + ")"; })
-                // And I build the axis with the call function
                 .each(function (d, index) {
                 return select(this).call(axisLeft().scale(yScale[d])); //: d3.select(this).call(d3.axisRight().scale(yScale[d]))
             })
-                // Add axis title
                 .append("text")
                 .style("text-anchor", "center")
                 .attr("y", -9)
@@ -22928,11 +22886,8 @@ class ParallelCoordinatePlotClass {
         this.makeDraggable();
     }
 }
+//# sourceMappingURL=parallelCoordinatePlot.js.map
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlParallelCoordinatePlot {
     //**********************************************************************
     // Constructors and Finalizer
@@ -23079,12 +23034,13 @@ class ControlParallelCoordinatePlot {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlParallelCoordinatePlot.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
 class GradientClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, data, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper) {
+    constructor(control, name, data, xPos, yPos, horizontalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -23094,7 +23050,6 @@ class GradientClass {
         this.gradientControlName = name;
         //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
-        this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.gradientControlName = name;
@@ -23114,7 +23069,7 @@ class GradientClass {
         this.render(control);
     }
     setSelection(arg0) {
-        throw new Error("Method not implemented.");
+        //throw new Error("Method not implemented.");
     }
     makeDraggable() {
         //create instance of a Draggable class
@@ -23123,10 +23078,6 @@ class GradientClass {
         //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document.getElementById(this.gradientControlName)
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
@@ -23170,340 +23121,91 @@ class GradientClass {
         div2.textContent = div1.id;
         //make the div header a child to the div element
         //div1.appendChild(div2);
-        //console.log("I am printing D3 Object in GradientClass");
-        var d3obj = d3;
-        //console.log(d3obj);
-        var count = -1;
-        function indexnumber() {
-            count++;
-            return count;
-        }
         var data = this.Data;
         var item = this.helper[0];
-        dsv(",", "./data/ions.csv").then((data) => {
-            data.forEach(d => {
-                d.Index = indexnumber(),
-                    d.selectionStatus = false,
-                    d.T = +(d.T.replace(/,/g, "")),
-                    d.X = +(d.X.replace(/,/g, "")),
-                    d.Y = +(d.Y.replace(/,/g, "")),
-                    d.Z = +(d.Z.replace(/,/g, ""));
-            });
-            renderPlot(data);
-        });
         const renderPlot = (data) => {
             //console.log(data);
-            var colArray = ["d.Index", "d.selectionStatus", "d.T", "d.X", "d.Y", "d.Z"];
-            var horizo = colArray[this.horizontal];
-            var vertic = colArray[this.vertical];
-            //console.log(this);
-            //console.log( horizo + " " + vertic);
-            var horizontal = this.horizontal + 2;
-            var vertical = this.vertical + 2;
-            function horiz(d) {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return d.T;
-                }
-                else if (horizontal == 3) {
-                    return d.X;
-                }
-                else if (horizontal == 4) {
-                    return d.Y;
-                }
-                else if (horizontal == 5) {
-                    return d.Z;
-                }
-            }
-            function verti(d) {
-                if (vertical == 2) {
-                    return d.T;
-                }
-                else if (vertical == 3) {
-                    return d.X;
-                }
-                else if (vertical == 4) {
-                    return d.Y;
-                }
-                else if (vertical == 5) {
-                    return d.Z;
-                }
-            }
-            function horizLabel() {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return "Time(S)→";
-                }
-                else if (horizontal == 3) {
-                    return "X(Excite)→";
-                }
-                else if (horizontal == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (horizontal == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            function vertiLabel() {
-                if (vertical == 2) {
-                    return "Time(S)→";
-                }
-                else if (vertical == 3) {
-                    return "X(Excite)→";
-                }
-                else if (vertical == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (vertical == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            //console.log("IW is "+ this.inputWidth);
-            //console.log("IH is " + this.inputHeight);
+            var colArray = Object.keys(data[0]);
+            var horizontal = this.horizontal;
+            var vertical = this.vertical;
+            var item = this.helper[0];
+            var SelectionArray = new Array(data.length);
+            SelectionArray.fill(false, 0);
             this.LocalData = data;
-            var margin = { top: 0, right: 0, bottom: 0, left: 0 };
-            var plotWidth = this.inputWidth - margin.left - margin.right;
-            var plotHeight = this.inputHeight - margin.top - margin.bottom;
-            this.innerWidth = plotWidth + margin.left + margin.right;
-            this.innerHeight = plotHeight + margin.top + margin.bottom;
-            //plotWidth = plotWidth;
-            //plotHeight = plotHeight;
+            var plotWidth = this.inputWidth;
+            var plotHeight = this.inputHeight;
             // append the svg object to the body of the page
             var svg$$1 = select(div1)
                 .append("svg")
                 .attr("fill", "orange")
-                .attr("width", this.innerWidth)
-                .attr("height", this.innerHeight);
-            //create a group element for the rest of the plot
-            var axisGroup = svg$$1
-                .append("g")
-                .attr("class", "axisGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            var labelsGroup = svg$$1
-                .attr("fill", "orange")
-                .append("g")
-                .attr("class", "labelGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("width", plotWidth)
+                .attr("height", plotHeight);
             //create a linear xScale
             var xScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return horiz(d);
-            }))
-                .range([0, plotWidth])
-                .nice();
+                .domain(extent(data, function (d) { return item(d, horizontal); }))
+                .range([0, plotWidth]);
             this.xScale = xScale;
-            this.xAxis = axisGroup
+            this.xAxis = svg$$1
                 .append("g")
                 .attr("transform", "translate(0," + plotHeight + ")");
-            if (this.showHoriz) {
-                //append the xAxis to group 
-                this.xAxis.call(axisBottom(xScale));
-                labelsGroup
-                    .append("text")
-                    .text(horizLabel())
-                    .attr("fill", "black")
-                    .attr("text-anchor", "middle")
-                    .style("font-size", 15)
-                    .style("font-weight", 1000)
-                    .attr("transform", `translate(${plotWidth * 0.5}, ${plotHeight + margin.top}) rotate(0)`);
-            }
+            this.xAxis.call(axisBottom(xScale));
             var color$$1 = linear$2()
-                .domain(extent(data, (d) => (d.T)))
+                .domain(extent(data, function (d) { return item(d, horizontal); }))
                 .range(["red", "black"]);
+            //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
             var defs = svg$$1.append("defs");
-            var gradient = defs.append("linearGradient")
+            var gradient = defs
+                .append("linearGradient")
                 .attr("id", "svgGradient")
                 .attr("x1", "0%")
-                .attr("x2", "50%")
                 .attr("y1", "0%")
+                .attr("x2", "100%")
                 .attr("y2", "0%");
-            gradient.append("stop")
-                //.data(data)
-                .attr('class', 'start')
+            gradient
+                .append("stop")
+                .attr("class", "start")
                 .attr("offset", "0%")
-                //.attr("stop-color",function(d){return color(d.T)})
                 .attr("stop-color", "red")
                 .attr("stop-opacity", 1);
-            gradient.append("stop")
-                //.data(data)    
-                .attr('class', 'end')
-                .attr("offset", "30%")
-                //.attr("stop-color",function(d){return color(d.T)})
+            gradient
+                .append("stop")
+                .attr("class", "end")
+                .attr("offset", "100%")
                 .attr("stop-color", "black")
                 .attr("stop-opacity", 1);
-            axisGroup.append("rect")
-                .attr("width", innerWidth)
-                .attr("height", innerHeight)
-                .style("fill", "url(#svgGradient)");
-            //create a linear yScale
-            var yScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return verti(d);
-            }))
-                .range([plotHeight, 0])
-                .nice();
-            this.yScale = yScale;
-            this.yAxis = axisGroup.append("g");
-            if (this.showVerti) {
-                //append the yAxis to group
-                this.yAxis.call(axisLeft(yScale));
-                labelsGroup
-                    .append("text")
-                    .text(vertiLabel())
-                    .attr("fill", "black")
-                    .attr("text-anchor", "middle")
-                    .style("font-size", 15)
-                    .style("font-weight", 1000)
-                    .attr("transform", `translate(${-margin.left / 1.6}, ${plotHeight * 0.5}) rotate(-90)`);
-            }
-            // create a tooltip
-            var Tooltip = axisGroup
-                .append("div")
-                .style("opacity", 0)
-                .style("position", "absolute")
-                .style("text-align", "center")
-                .attr("class", "tooltip")
-                .style("font", "1.5em sans-serif")
-                .style("background-color", "white")
-                .style("border", "solid")
-                .style("border-width", "2px")
-                .style("border-radius", "5px")
-                .style("padding", "5px");
-            // Add a clipPath: everything out of this area won't be drawn.
-            var clip = axisGroup.append("defs").append("SVG:clipPath")
-                .attr("id", `"${this.gradientControlName}clip"`)
-                .append("SVG:rect")
+            svg$$1
+                .append("rect")
                 .attr("width", plotWidth)
                 .attr("height", plotHeight)
-                .attr("x", 0)
-                .attr("y", 0);
-            // Create the scatter variable: where both the circles and the brush take place
-            var scatter = axisGroup.append('g')
-                //.attr("cursor", "grab")
-                .attr("clip-path", `"url(#${this.gradientControlName}clip)"`);
-            const t = axisGroup.transition().duration(750);
-            scatter
-                .selectAll("circle")
-                .data(data)
-                .attr("class", "cir")
-                .join(enter => enter.append("circle")
-                .attr("fill", function (d) { return color$$1(d.T); })
-                .attr("cx", function (d) { return xScale(horiz(d)); })
-                .attr("cy", function (d) { return yScale(verti(d)); })
-                .attr("r", 0)
-                .style("opacity", 0)
-                .call(enter => enter.transition(t)
-                .attr("r", function (d) { return 2; })), update => update
-                .attr("fill", "black")
-                .style("opacity", 0.7)
-                .attr("r", function (d) { return 2; }), exit => exit
-                .attr("fill", "brown")
-                .call(exit => exit.transition(t)
-                .attr("r", 0)
-                .remove()));
-            scatter
-                .selectAll("circle")
-                .attr("pointer-events", "all")
-                .on("mouseover", onMouseOver) //Add listener for the mouseover event
-                .on("mouseout", onMouseOut);
-            //mouseover event handler function
-            function onMouseOver(d) {
-                // this keyword refers to the mouseover item
-                var circle$$1 = select(this);
-                var textOffseteHeight = 12;
-                circle$$1
-                    .raise()
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("stroke", "black")
-                    .attr("stroke-width", 1)
-                    .style("opacity", 1)
-                    .attr("r", textOffseteHeight / 1.5);
-                select(this)
-                    .append("text")
-                    .attr("text-anchor", "middle")
-                    .attr('class', 'val')
-                    .style("fill", "black")
-                    .attr('x', function () {
-                    return event$1.pageX;
-                })
-                    .attr('y', function () {
-                    return event$1.pageY;
-                })
-                    .style("font-size", 15)
-                    .style("font-weight", 1000)
-                    .text(function () {
-                    return d.Country; // Value of the text
-                });
-            }
-            function onMouseOut(data, i) {
-                select(this)
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("r", 2.5)
-                    .attr("stroke", null)
-                    .attr("stroke-width", 2)
-                    .style("opacity", 0.7);
-                selectAll(".val").remove();
-            }
-            // A function that updates the chart when the user zoom and thus new boundaries are available
-            var myArrayTable = [];
-            //brushed over the gradient       
+                .style("fill", "url(#svgGradient)");
+            //brushed over the gradient
             function brushed() {
-                myArrayTable = [];
                 const selection$$1 = event$1.selection;
-                if (selection$$1 === null) {
-                    selectAll("circle").data(data).attr("stroke", null);
-                }
-                else {
-                    //console.log( x0 + " " + x1 + " " + y0 +  " " + y1);
-                    const [x0, x1] = selection$$1;
-                    selectAll("circle")
-                        .data(data)
-                        .attr("stroke", (d) => {
-                        if (x0 <= xScale(horiz(d)) &&
-                            xScale(horiz(d)) <= x1) {
-                            // console.log(d);
-                            d.selectionStatus = true;
-                            myArrayTable.push(d.Index);
-                            return null;
-                        }
-                        else {
-                            d.selectionStatus = false;
-                            return null;
-                        }
-                    })
-                        .attr("stroke-width", 3);
-                }
-                //create an array of all the selection statuses of the data
-                //console.log(data.map(d=> d.selectionStatus));
-                if (printClass.printStatus)
-                    console.log("In gradient");
-                if (printClass.printStatus)
-                    console.log(localParentControl);
-                localParentControl.getProxy().getLiveProperty("Selection").setValue(data.map(d => d.selectionStatus));
+                const [x0, x1] = selection$$1;
+                console.log();
+                console.log(selection$$1);
+                console.log([xScale.invert(x0), xScale.invert(x1)]);
+                var SelectionArray = data.map(function (d) {
+                    return d.T >= xScale.invert(x0) && d.T <= xScale.invert(x1);
+                });
+                localParentControl.getProxy().getLiveProperty("Selection")
+                    .setValue(SelectionArray);
             }
-            var brush$$1 = brushX()
-                .on(" start brush  ", brushed);
+            var brush$$1 = brushX().on(" start brush  ", brushed);
             // Add the brushing
-            axisGroup.append("g").call(brush$$1);
+            svg$$1.append("g").call(brush$$1);
         };
+        renderPlot(data);
         document.body.appendChild(div1);
         this.makeDraggable();
     }
 }
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlGradient {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper) {
+    constructor(name, data, xPos, yPos, horizontal, inputWidth, inputHeight, showHoriz, showVerti, helper) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -23539,7 +23241,7 @@ class ControlGradient {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.gradient = new GradientClass(this, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper);
+        this.gradient = new GradientClass(this, name, data, xPos, yPos, horizontal, inputWidth, inputHeight, showHoriz, showVerti, helper);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -23603,11 +23305,6 @@ class ControlGradient {
         if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
                 console.log("hurray ControlGradient Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.gradient.setSelection(e.getLiveProperty().getVariable().getValue());
             // this.slider.setValue(90);
         }
@@ -23629,6 +23326,7 @@ class ControlGradient {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlGradient.js.map
 
 var identity$10 = function(x) {
   return x;
@@ -23879,20 +23577,6 @@ var hashPoint = function(point) {
   return hash & 0x7fffffff;
 };
 
-// Given an extracted (pre-)topology, identifies all of the junctions. These are
-// the points at which arcs (lines or rings) will need to be cut so that each
-// arc is represented uniquely.
-//
-// A junction is a point where at least one arc deviates from another arc going
-// through the same point. For example, consider the point B. If there is a arc
-// through ABC and another arc through CBA, then B is not a junction because in
-// both cases the adjacent point pairs are {A,C}. However, if there is an
-// additional arc ABD, then {A,D} != {A,C}, and thus B becomes a junction.
-//
-// For a closed ring ABCA, the first point A’s adjacent points are the second
-// and last point {B,C}. For a line, the first and last point are always
-// considered junctions, even if the line is closed; this ensures that a closed
-// line is never rotated.
 var join = function(topology) {
   var coordinates = topology.coordinates,
       lines = topology.lines,
@@ -24283,7 +23967,6 @@ class MapClass {
             g.selectAll('path').data(countries.features)
                 .enter().append('path')
                 .attr('class', 'country')
-                //.attr('d', pathGenerator)
                 .attr('d', d => pathGenerator(d))
                 .attr("fill", function (d) {
                 var cname = countryName[d.id];
@@ -24426,11 +24109,8 @@ class MapClass {
         this.makeDraggable();
     }
 }
+//# sourceMappingURL=map.js.map
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlMap {
     //**********************************************************************
     // Constructors and Finalizer
@@ -24585,6 +24265,7 @@ class ControlMap {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlMap.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
@@ -24967,11 +24648,8 @@ class BubbleChartClass {
         this.makeDraggable();
     }
 }
+//# sourceMappingURL=bubblechart.js.map
 
-//import { typeOfValue } from "../index.js";
-//******************************************************************************
-// class ControlSlider
-//******************************************************************************
 class ControlBubblechart {
     //**********************************************************************
     // Constructors and Finalizer
@@ -25184,6 +24862,7 @@ class ControlBubblechart {
     }
 }
 //******************************************************************************
+//# sourceMappingURL=ControlBubbleChart.js.map
 
 //console.info('%cThis is implementation of LiveProperties in Javascript','color:blue; font-weight:bold; font-size:15px');
 //console.warn("This may not work in all browsers!.  This is an experemental project ");
@@ -25215,14 +24894,9 @@ function createControl(parentWindow, controlName, data, name, xPos, yPos, horizo
         return bubblechartControl;
     }
     else if (controlName == "gradient") {
-        let gradientControl = new ControlGradient(name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper);
+        let gradientControl = new ControlGradient(name, data, xPos, yPos, horizontalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper);
         return gradientControl;
     }
-    // else if (controlName == "insetScatterplot")
-    // {
-    //     let insetScatterplotControl = new ControlInsetScatterplot(name, xPos, yPos,  horizontalAxes, verticalAxes, inputWidth, inputHeight);
-    //     return insetScatterplotControl;
-    // }
     else if (controlName == "table") {
         let tableControl = new ControlTable(parentWindow, name, data, xPos, yPos, inputWidth, inputHeight);
         return tableControl;
@@ -25391,7 +25065,7 @@ Promise.all([
         bindVariable(table01, "Selection", Selection_4);
         let parallelCoordinatePlot1 = createControl(parentDiv, ParallelCoordinatePlot_type, ionsData, "PCP-1", lPL + lPW + SPW, lPT, null, null, 2 * SPW, SPH, null, null, [IonsAxes], IonsVariables.T, null, null, ["T", "X", "Y", "Z"]);
         bindVariable(parallelCoordinatePlot1, "Selection", Selection_8);
-        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, IonsVariables.X, lPW, 50, false, false, [IonsAxes]);
+        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, null, lPW, 50, false, false, [IonsAxes]);
         bindVariable(gradient1, "Selection", Selection_8);
     }
     //console.log(document);
