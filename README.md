@@ -1,2 +1,2 @@
-# kroma.github.io
+# OmkarChekuri.github.io
 PersonalWebsite
