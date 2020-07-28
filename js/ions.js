@@ -54,7 +54,6 @@ VariableEvent.SHARE_CHANGED = 7;
 VariableEvent.MIN_TYPE = 0;
 VariableEvent.MAX_TYPE = 7;
 //******************************************************************************
-//# sourceMappingURL=VariableEvent.js.map
 
 //******************************************************************************
 // class SharedFlag
@@ -105,7 +104,8 @@ class SharedFlag {
                 this.set.push(obj);
                 changed = true;
             }
-            else if (!this.set.indexOf(obj)) {
+            else if (!this.set.indexOf(obj)) /////need to check the logic again : omkar
+             {
                 this.set.push(obj);
             }
         }
@@ -117,12 +117,10 @@ class SharedFlag {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=SharedFlag.js.map
 
 class printClass {
 }
 printClass.printStatus = false;
-//# sourceMappingURL=printClass.js.map
 
 class LivePropertyEvent //extends EventObject
  {
@@ -169,8 +167,8 @@ class LivePropertyEvent //extends EventObject
     }
 }
 //******************************************************************************
-//# sourceMappingURL=LivePropertyEvent.js.map
 
+//import { typeOfValue } from "../index.js";
 class LiveProperty {
     //**********************************************************************
     // Constructors and Finalizer
@@ -453,8 +451,8 @@ class LiveProperty {
     }
 } */
 //******************************************************************************
-//# sourceMappingURL=LiveProperty.js.map
 
+//import { typeOfValue } from "../index.js";
 class Variable {
     //**********************************************************************
     // Constructors and Finalizer
@@ -722,9 +720,11 @@ class Variable {
  */
 Variable.ASYNC_EVENTS = true;
 Variable.STARTUP = false;
-//# sourceMappingURL=Variable.js.map
 
 //import { typeOfValue } from "../index";
+//create of type of ClassType and metntion what types it needs to have
+//Note : null not included on purpose
+//we used undefined because it is a optional parameter in constructor
 class Prototype {
     constructor(classType, name, value, constant) {
         this.myMap = new Map();
@@ -835,10 +835,15 @@ class Prototype {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=Prototype.js.map
 
 //type typeOfValue = string | number | boolean | undefined | null;
 class ControlInfo {
+    //**********************************************************************
+    // Constructors and Finalizer
+    //**********************************************************************
+    constructor(proxy) {
+        this.proxy = proxy;
+    }
     //**********************************************************************
     // Public Class Methods
     //**********************************************************************
@@ -870,12 +875,6 @@ class ControlInfo {
                 ControlInfo.transduce(src, dst, tags[i]);
             }
         }
-    }
-    //**********************************************************************
-    // Constructors and Finalizer
-    //**********************************************************************
-    constructor(proxy) {
-        this.proxy = proxy;
     }
     //**********************************************************************
     // Getters and Setters
@@ -1125,7 +1124,6 @@ class ControlInfo {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlInfo.js.map
 
 class ControlEvent {
     //**********************************************************************
@@ -1146,8 +1144,8 @@ class ControlEvent {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlEvent.js.map
 
+//type typeOfValue = string | number | boolean | undefined | null;
 class ControlProxy {
     //**********************************************************************
     // Constructors and Finalizer
@@ -1634,7 +1632,6 @@ class ControlProxy {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlProxy.js.map
 
 //Draggable class to make the html div elements draggable
 //source : https://www.w3schools.com/howto/howto_js_draggable.asp
@@ -1798,7 +1795,6 @@ bind = function(controlname, variable){
 
 }
  */
-//# sourceMappingURL=Draggable.js.map
 
 class Eventing {
     constructor() {
@@ -1823,9 +1819,10 @@ class Eventing {
         });
     }
 }
-//# sourceMappingURL=Eventing.js.map
 
 //inspired from Jslider class
+//import { typeOfValue } from "../index.js";
+//type Callback = ()=>void;
 class SliderClass extends Eventing {
     //**********************************************************************
     // Constructor
@@ -1956,8 +1953,11 @@ class SliderClass extends Eventing {
         }
     }
 }
-//# sourceMappingURL=slider.js.map
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlSlider {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2065,9 +2065,9 @@ class ControlSlider {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlSlider.js.map
 
 //inspired from Jslider class
+//import { typeOfValue } from "../index.js";
 class PixelClass {
     //static control:ControlPixel;
     //**********************************************************************
@@ -2164,8 +2164,10 @@ class PixelClass {
         }
     }
 }
-//# sourceMappingURL=pixel.js.map
 
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlPixel {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2246,7 +2248,6 @@ class ControlPixel {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlPixel.js.map
 
 //inspired from Jslider class
 class CanvasClass {
@@ -2397,8 +2398,11 @@ class CanvasClass {
         }
     }
 }
-//# sourceMappingURL=canvas.js.map
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlCanvas {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2532,7 +2536,6 @@ class ControlCanvas {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlCanvas.js.map
 
 var version = "5.16.0";
 
@@ -4364,6 +4367,7 @@ DragEvent.prototype.on = function() {
   return value === this._ ? this : value;
 };
 
+// Ignore right-click, since that should open the context menu.
 function defaultFilter$1() {
   return !event$1.ctrlKey && !event$1.button;
 }
@@ -4908,6 +4912,7 @@ function hsl2rgb(h, m1, m2) {
 var deg2rad = Math.PI / 180;
 var rad2deg = 180 / Math.PI;
 
+// https://observablehq.com/@mbostock/lab-and-rgb
 var K = 18;
 var Xn = 0.96422;
 var Yn = 1;
@@ -10750,6 +10755,7 @@ var rotation = function(rotate) {
   return forward;
 };
 
+// Generates a circle centered at [0°, 0°], with a given radius and precision.
 function circleStream(stream, radius, delta, direction, t0, t1) {
   if (!delta) return;
   var cosRadius = cos$1(radius),
@@ -12020,6 +12026,8 @@ function boundsPoint$1(x, y) {
   if (y > y1) y1 = y;
 }
 
+// TODO Enforce positive area for exterior, negative area for interior?
+
 var X0$1 = 0;
 var Y0$1 = 0;
 var Z0$1 = 0;
@@ -12714,6 +12722,8 @@ var albers = function() {
       .center([-0.6, 38.7]);
 };
 
+// The projections must have mutually exclusive clip regions on the sphere,
+// as this will avoid emitting interleaving lines and polygons.
 function multiplex(streams) {
   var n = streams.length;
   return {
@@ -20215,6 +20225,7 @@ var noevent$2 = function() {
   event$1.stopImmediatePropagation();
 };
 
+// Ignore right-click, since that should open the context menu.
 function defaultFilter$2() {
   return !event$1.ctrlKey && !event$1.button;
 }
@@ -21263,6 +21274,7 @@ class ScatterplotClass {
         else {
             select(`#${this.scatterplotControlName}`).select("svg").selectAll("circle")
                 .data(this.LocalData)
+                //.attr("fill", function (d,index) { return value[index] == true ? "black" : null;})
                 .attr("stroke", function (d, index) { return value[index] == true ? "black" : "black"; })
                 .attr("stroke-width", function (d, index) { return value[index] == true ? 3 : 0.1; });
         }
@@ -21287,50 +21299,59 @@ class ScatterplotClass {
     setxRange(xRange) {
         var horizontal = this.horizontal;
         var item = this.helper[0];
-        //console.log(item);
-        if (xRange[0] == null) {
-        }
+        var plotWidth = this.plotWidth;
+        var plotHeight = this.plotHeight;
+        if (xRange[0] == null) { }
         else {
+            //console.log(xRange)  
             var xScale = this.xScale;
-            var Domain = [xScale.invert(xRange[0]), xScale.invert(xRange[1])];
-            console.log("x");
-            //console.log(Domain)
-            //var Range = xRange;
-            //console.log(Range)
+            var Domain = [xRange[0], xRange[1]];
             xScale.domain(Domain)
-                .nice();
+                .range([0, plotWidth]);
             this.xScale = xScale;
             this.xAxis.call(axisBottom(xScale));
             //Update the scatterplot based on new zoom event
-            select(`#${this.scatterplotControlName}`)
-                .select("svg").select('g')
+            this.axisGroup
                 .selectAll("circle")
-                .attr('cx', function (d) { return xScale(item(d, horizontal)); });
+                .attr('cx', function (d) {
+                if (item(d, horizontal) > xRange[0] && item(d, horizontal) < xRange[1]) {
+                    return xScale(item(d, horizontal));
+                }
+                else {
+                    return -plotWidth;
+                }
+            });
         }
         //throw new Error("Method not implemented.");
     }
     setyRange(yRange) {
         var vertical = this.vertical;
         var item = this.helper[0];
+        var plotHeight = this.plotHeight;
         if (yRange[0] == null) {
         }
         else {
+            //console.log(yRange)  
             var yScale = this.yScale;
-            var Domain = [yScale.invert(yRange[0]), yScale.invert(yRange[1])];
-            console.log("y");
-            //console.log(Domain)
-            // var Range = yRange;
-            // console.log(Range)
+            var Domain = [yRange[0], yRange[1]];
             yScale.domain(Domain)
-                .nice();
+                //.domain(d3.extent(data, function (d){ return `d.${colArray[horizontal]}`; }))
+                .range([plotHeight, 0]);
+            //console.log(yScale.domain())
+            //console.log(yScale.range())
             this.yScale = yScale;
             this.yAxis.call(axisLeft(yScale));
-            select(`#${this.scatterplotControlName}`)
-                .select("svg").select('g')
+            this.scatter
                 .selectAll("circle")
-                .attr('cy', function (d) { return yScale(item(d, vertical)); });
+                .attr('cy', function (d) {
+                if (item(d, vertical) > yRange[0] && item(d, vertical) < yRange[1]) {
+                    return yScale(item(d, vertical));
+                }
+                else {
+                    return -plotHeight;
+                }
+            });
         }
-        //throw new Error("Method not implemented.");
     }
     setZoom(arg0) {
         //throw new Error("Method not implemented.");
@@ -21400,29 +21421,27 @@ class ScatterplotClass {
             var margin = { top: 30, right: 15, bottom: 40, left: 50 };
             var plotWidth = this.inputWidth - margin.left - margin.right;
             var plotHeight = this.inputHeight - margin.top - margin.bottom;
-            this.innerWidth = plotWidth + margin.left + margin.right;
-            this.innerHeight = plotHeight + margin.top + margin.bottom;
-            //plotWidth = plotWidth;
-            //plotHeight = plotHeight;
-            // append the svg object to the body of the page
+            this.plotWidth = plotWidth;
+            this.plotHeight = plotHeight;
+            //append the svg object to the body of the page
             var svg$$1 = select(div1)
                 .append("svg")
-                .attr("width", this.innerWidth)
-                .attr("height", this.innerHeight);
+                .attr("width", this.inputWidth)
+                .attr("height", this.inputHeight);
             //create a group element for the rest of the plot
             var axisGroup = svg$$1
                 .append("g")
                 .attr("class", "axisGroupClass")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            var labelsGroup = svg$$1
+            this.axisGroup = axisGroup;
+            var labelsGroup = axisGroup
                 .append("g")
-                .attr("class", "labelGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("class", "labelGroupClass");
             //create a linear xScale
             var xScale = linear$2()
                 .domain(extent(data, function (d) { return item(d, horizontal); }))
-                .range([0, plotWidth])
-                .nice();
+                .range([0, plotWidth]);
+            //.nice();
             this.xScale = xScale;
             this.xAxis = axisGroup
                 .append("g")
@@ -21433,6 +21452,7 @@ class ScatterplotClass {
                 labelsGroup
                     .append("text")
                     .text(Label(horizontal))
+                    //.attr("fill", "black")
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
@@ -21451,28 +21471,22 @@ class ScatterplotClass {
                 labelsGroup
                     .append("text")
                     .text(Label(vertical))
+                    //.attr("fill", "black")
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
-                    .attr("transform", `translate(${-margin.left / 1.6}, ${plotHeight * 0.5}) rotate(-90)`);
+                    .attr("transform", `translate(${-margin.left / 2}, ${plotHeight * 0.5}) rotate(-90)`);
             }
             // create a tooltip
-            var Tooltip = axisGroup
+            var tooltip = select(div1)
                 .append("div")
-                .style("opacity", 0)
                 .style("position", "absolute")
-                .style("text-align", "center")
-                .attr("class", "tooltip")
-                .style("font", "1.5em sans-serif")
+                .style("visibility", "hidden")
                 .style("background-color", "white")
                 .style("border", "solid")
-                .style("border-width", "2px")
+                .style("border-width", "1px")
                 .style("border-radius", "5px")
-                .style("padding", "5px");
-            // 
-            //console.log(data[0])
-            //console.log(colorIndex)
-            //console.log(item(data[0],colorIndex))
+                .style("padding", "10px");
             let color$$1;
             if (item(data[0], colorIndex).__proto__ == String.prototype) {
                 color$$1 = ordinal(data.map((d) => (item(d, colorIndex))), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
@@ -21481,14 +21495,8 @@ class ScatterplotClass {
                 color$$1 = linear$2(extent(data, (d) => (item(d, colorIndex))), ["red", "black"]).unknown(null);
             }
             this.color = color$$1;
-            // console.log(data[0])
-            // console.log(circleSizeIndex)
-            // console.log(item(data[0],circleSizeIndex))
             if (circleSizeIndex == null) {
-                //var circleSize = d3.scaleLinear().range([2]);   
-                var circleSize = function circleSize(d) {
-                    return 2;
-                };
+                var circleSize = function circleSize(d) { return 2; };
             }
             else {
                 var circleSize = linear$2().domain(extent(data, (d) => item(d, circleSizeIndex))).range([5, 10]);
@@ -21528,38 +21536,34 @@ class ScatterplotClass {
                 .call(exit => exit.transition(t)
                 .attr("r", 0)
                 .remove()));
-            this.scatter
-                .append("g")
-                .attr("font-family", "sans-serif")
-                .attr("font-size", 0)
-                .selectAll("text")
-                .data(data)
-                .join("text")
-                .attr("dy", "0.35em")
-                .attr("x", function (d) { return xScale(item(d, horizontal)) + 7; })
-                .attr("y", function (d) { return yScale(item(d, vertical)); })
-                .text(d => item(d, textIndex));
+            //   this.scatter
+            //   .append("g")
+            //   .attr("font-family", "sans-serif")
+            //   .attr("font-size", 0)
+            //   .selectAll("text")
+            //   .data(data)
+            //   .join("text")
+            //   .attr("dy", "0.35em")
+            //   .attr("x", function (d) { return xScale(item(d,horizontal)) +7; })
+            //   .attr("y", function (d) { return yScale(item(d,vertical)); })
+            //   .text(d => item(d,textIndex))
             this.scatter
                 .selectAll("circle")
-                .append('title')
-                .attr("pointer-events", "none")
-                .text(function (d, i) {
-                //console.log(d);
-                var info = "";
-                for (var key in data[i]) {
-                    info = info + key + " = " + data[i][key] + "\n";
-                    //info += "<tr><td><b><i>" + key + "</i></b></td><td>" + data[i][key] + "</td></tr>"
-                }
-                return info;
-            })
                 .on("mouseover", onMouseOver) //Add listener for the mouseover event
+                .on("mousemove", onMouseMove)
                 .on("mouseout", onMouseOut);
             svg$$1.on("mouseout", function () {
                 select("rect").attr("fill-opacity", 0);
             });
+            function onMouseMove(d) {
+                tooltip
+                    .html("Time<br>" + d.T)
+                    .style("left", (mouse(this)[0] + 70) + "px")
+                    .style("top", (mouse(this)[1]) + "px");
+            }
             //mouseover event handler function
             function onMouseOver(d) {
-                console.log("mouseover");
+                tooltip.style("visibility", "visible");
                 // this keyword refers to the mouseover item
                 var circle$$1 = select(this);
                 var textOffseteHeight = 12;
@@ -21583,6 +21587,7 @@ class ScatterplotClass {
                     .text(() => item(d, textIndex));
             }
             function onMouseOut(data, i) {
+                tooltip.style("visibility", "hidden");
                 select(this)
                     .transition() // adds animation
                     .duration(100)
@@ -21639,11 +21644,8 @@ class ScatterplotClass {
                             return null;
                         }
                     });
-                    localParentControl.getProxy().getLiveProperty("brushX").setValue([x0, x1]);
-                    localParentControl.getProxy().getLiveProperty("brushY").setValue([y0, y1]);
                 }
                 //create an array of all the selection statuses of the data
-                //console.log(data.map(d=> d.Selection));
                 if (printClass.printStatus)
                     console.log("In scatterplot");
                 if (printClass.printStatus)
@@ -21660,8 +21662,10 @@ class ScatterplotClass {
                 .on("end", function () {
                 //console.log(this.querySelector(".selection"));
                 this.querySelector(".selection").setAttribute("fill-opacity", "0.2");
-                //this.querySelector(".selection").setAttribute("stroke","grey"); 
-                //console.log("brush ended");
+                const selection = event$1.selection;
+                const [[x0, y1], [x1, y0]] = selection;
+                localParentControl.getProxy().getLiveProperty("brushX").setValue([xScale.invert(x0), xScale.invert(x1)]);
+                localParentControl.getProxy().getLiveProperty("brushY").setValue([yScale.invert(y0), yScale.invert(y1)]);
             });
             // Add the brushing
             axisGroup.append("g").call(brush$$1);
@@ -21672,6 +21676,10 @@ class ScatterplotClass {
     }
 }
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
@@ -21862,11 +21870,11 @@ class ControlScatterplot {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlScatterplot.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //removed active cases from table- 6/6/2020
 //commented value checks in set value 06/29/2020
+//type typeOfValue = string | number | boolean | undefined | null;
 class TableClass {
     constructor(parentWindow, control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
@@ -21904,6 +21912,7 @@ class TableClass {
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document
+                //.getElementById(this.tableControlName + "header")!
                 .getElementById(this.tableControlName + "header")
                 .addEventListener("mousedown", function () {
                 D1.dragElement(document.getElementById(temp));
@@ -22000,6 +22009,16 @@ class TableClass {
             return d;
         });
         this.rows
+            // .style("font-family", function (d, index) {
+            //   // d.SelectStatus = (dataTable[index].SelectStatus);
+            //   //console.log("font changed");
+            //   if( PropData[index]==true){
+            //    return "cursive";
+            // } else {
+            //   return "serif";
+            // }
+            //   //return d.Selection == true ? "cursive" : "serif";
+            // })
             .style("color", function (d, index) {
             // d.SelectStatus = (dataTable[index].SelectStatus);
             //console.log("background changed");
@@ -22073,6 +22092,13 @@ class TableClass {
             return d;
         });
         this.rows
+            //  .style("font-weight", function (d, index) {
+            //    if( property=="Indication" && PropData[index]==true){
+            //       return 1000;
+            //    } else {
+            //      return 50;
+            //    }
+            //  })
             .attr("class", function (d, index) {
             // d.SelectStatus = (dataTable[index].SelectStatus);
             //console.log("background changed");
@@ -22288,8 +22314,11 @@ class TableClass {
         this.makeDraggable();
     }
 }
-//# sourceMappingURL=table.js.map
 
+//type typeOfValue = string | number | boolean | undefined | null;
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlTable {
     //**********************************************************************
     // Constructors and Finalizer
@@ -22490,1101 +22519,6 @@ class ControlTable {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlTable.js.map
-
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
-class InsetScatterplotClass {
-    //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight) {
-        this.width = 960;
-        this.height = 480;
-        if (printClass.printStatus)
-            console.log("I am in constructor of InsetScatterplotClass");
-        this.insetScatterplotControlName = name;
-        //this.glyph = symbol;// as unknown as d3.SymbolType;
-        this.horizontal = horizontal;
-        this.vertical = vertical;
-        this.inputWidth = inputWidth;
-        this.inputHeight = inputHeight;
-        this.insetScatterplotControlName = name;
-        this.parentControl = control;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.render(control);
-        this.previousX = 0;
-        this.previousY = 0;
-    }
-    makeDraggable() {
-        //create instance of a Draggable class
-        var D1 = new Draggable();
-        var temp = this.insetScatterplotControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
-        //check if the element that needs to be made draggable exist, else throw error        
-        try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.insetScatterplotControlName)
-                .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
-        }
-        catch (error) {
-            throw Error("The Element by id " + this.insetScatterplotControlName + " do not exist");
-        }
-    }
-    //************************
-    // Getters and Setters
-    //************************
-    getTranslateX() {
-        return this.height;
-    }
-    getTranslateY() {
-        return this.width;
-    }
-    setSize(value) {
-        //console.log("set Size method of Scatterplot");
-        if (printClass.printStatus)
-            console.log(value);
-        var temp = value;
-        //console.log();
-        select(`#${this.insetScatterplotControlName}`)
-            .select("svg")
-            .select("g")
-            .selectAll("circle")
-            .attr("r", temp / 10);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    translateX(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var xScale = value[2];
-        var change = value[0] - this.previousX;
-        var directionHorizontal;
-        if (change >= 0) {
-            directionHorizontal = 1;
-        }
-        else {
-            directionHorizontal = -1;
-        }
-        if (newX == 0 || newX == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionHorizontal * (xScale.invert(this.previousX)) - directionHorizontal * (xScale.invert(change));
-            xScale.domain([xScale.domain()[0] + shift, xScale.domain()[1] + shift]);
-            this.xAxis.call(axisBottom(xScale));
-            //Update the insetScatterplot based on new zoom event
-            select(`#${this.insetScatterplotControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return xScale(horiz(d)); });
-            this.previousX = value[0];
-        }
-    }
-    translateY(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        //console.log("translateY method of Scatterplot");
-        //console.log("Hurray" + this.insetScatterplotControlName);
-        var change = value[0] - this.previousY;
-        var directionVertical;
-        if (change >= 0) {
-            //console.log("positive direction");
-            directionVertical = 1;
-        }
-        else {
-            //console.log("negative direction");
-            directionVertical = -1;
-        }
-        var newY = value[0];
-        var yScale = value[3];
-        if (newY == 0 || newY == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionVertical * (yScale.invert(this.previousY)) - directionVertical * (yScale.invert(change));
-            yScale.domain([yScale.domain()[0] + shift, yScale.domain()[1] + shift]);
-            this.yAxis.call(axisLeft(yScale));
-            //Update the insetScatterplot based on new zoom event
-            select(`#${this.insetScatterplotControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cy', function (d) { return yScale(verti(d)); });
-            this.previousY = value[0];
-        }
-    }
-    setOpacity(value) {
-        //console.log("setOpacity of insetScatterplot");
-        var temp = value;
-        //console.log(temp);
-        selectAll("circle").attr("fill-opacity", `${temp / 100}`);
-    }
-    setZoom(value) {
-        //console.log("Hurray" + this.insetScatterplotControlName);
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var newY = value[1];
-        if (newX == 0 && newY == undefined) {
-        }
-        else {
-            this.xAxis.call(axisBottom(newX));
-            this.yAxis.call(axisLeft(newY));
-            //Update the insetScatterplot based on new zoom event
-            select(`#${this.insetScatterplotControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return newX(horiz(d)); })
-                .attr('cy', function (d) { return newY(verti(d)); });
-        }
-    }
-    setSelection(value) {
-        //console.log("serdddt in" + this.insetScatterplotControlName);
-        if (this.LocalData == undefined) {
-        }
-        else {
-            //console.log(this.LocalData)
-            this.LocalData.map(function (d, index) {
-                d.selectionStatus = value[index];
-            });
-            //console.log(this.insetScatterplotControlName);
-            //console.log(this.LocalData)
-            /*       d3.select(`#${this.insetScatterplotControlName}`).select("svg").selectAll("circle")
-              .data(this.LocalData)
-              .attr("stroke", function (d)
-              {
-                if (d.selectionStatus == true)
-                {
-                  //console.log(d.Country);
-                }
-                return d.selectionStatus == true ? "blue" : null;
-              })
-              .attr("stroke-width", 3); */
-            var newData = this.LocalData.filter((d) => d.selectionStatus == true);
-            // console.log(newData);
-            //this.scatter.selectAll("circle").remove();
-            const renderPlot = (data) => {
-                //console.log(data);
-                var colArray = ["d.Index", "d.selectionStatus", "d.T", "d.X", "d.Y", "d.Z"];
-                var horizo = colArray[this.horizontal];
-                var vertic = colArray[this.vertical];
-                //console.log(this);
-                //console.log( horizo + " " + vertic);
-                var horizontal = this.horizontal + 2;
-                var vertical = this.vertical + 2;
-                function horiz(d) {
-                    //console.log("hh is "+ hh);
-                    if (horizontal == 2) {
-                        return d.T;
-                    }
-                    else if (horizontal == 3) {
-                        return d.X;
-                    }
-                    else if (horizontal == 4) {
-                        return d.Y;
-                    }
-                    else if (horizontal == 5) {
-                        return d.Z;
-                    }
-                }
-                function verti(d) {
-                    if (vertical == 2) {
-                        return d.T;
-                    }
-                    else if (vertical == 3) {
-                        return d.X;
-                    }
-                    else if (vertical == 4) {
-                        return d.Y;
-                    }
-                    else if (vertical == 5) {
-                        return d.Z;
-                    }
-                }
-                //create a linear xScale
-                var xScale = linear$2()
-                    .domain(extent(data, function (d) {
-                    //console.log(d);
-                    return horiz(d);
-                }))
-                    .range([0, this.plotWidth])
-                    .nice();
-                //append the xAxis to group 
-                this.xAxis.call(axisBottom(xScale));
-                //create a linear yScale
-                var yScale = linear$2()
-                    .domain(extent(data, function (d) {
-                    //console.log(d);
-                    return verti(d);
-                }))
-                    .range([this.plotHeight, 0])
-                    .nice();
-                //append the yAxis to group
-                this.yAxis.call(axisLeft(yScale));
-                var color$$1 = linear$2()
-                    .domain(extent(data, (d) => (d.T)))
-                    .range(["red", "black"]);
-                //console.log("Hello")
-                // // Add a clipPath: everything out of this area won't be drawn.
-                // var clip = this.axisGroup.append("defs").append("SVG:clipPath")
-                // .attr("id", "clip")
-                // .append("SVG:rect")
-                // .attr("width", this.plotWidth)
-                // .attr("height", this.plotHeight)
-                // .attr("x", 0)
-                // .attr("y", 0);
-                // // Create the scatter variable: where both the circles and the brush take place
-                // var scatter = this.axisGroup.append('g')
-                // .attr("cursor", "grab")
-                // .attr("clip-path", "url(#clip)")
-                const t = this.axisGroup.transition().duration(750);
-                this.scatter.selectAll("circle").remove();
-                this.scatter
-                    .selectAll("circle")
-                    .data(data)
-                    .attr("class", "cir")
-                    .join(enter => enter.append("circle")
-                    .attr("fill", function (d) { return color$$1(d.T); })
-                    .attr("cx", function (d) { return xScale(horiz(d)); })
-                    .attr("cy", function (d) { return yScale(verti(d)); })
-                    .attr("r", 0)
-                    .style("opacity", 0.7)
-                    .call(enter => enter.transition(t)
-                    .attr("r", function (d) { return 2; })), update => update
-                    .attr("fill", "black")
-                    .style("opacity", 0.7)
-                    .attr("r", function (d) { return 2; }), exit => exit
-                    .attr("fill", "brown")
-                    .call(exit => exit.transition(t)
-                    .attr("r", 0)
-                    .remove()))
-                    .attr("pointer-events", "all");
-                //.on("mouseover", onMouseOver) //Add listener for the mouseover event
-                //.on("mouseout", onMouseOut);
-                /*
-                //mouseover event handler function
-                function onMouseOver(d: any)
-                {
-                // this keyword refers to the mouseover item
-                var circle =  d3.select(this);
-                var textOffseteHeight = 12;
-                circle
-                .raise()
-                .transition() // adds animation
-                .duration(100)
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .style("opacity", 1)
-                .attr("r", textOffseteHeight/1.5);
-                
-                this.axisGroup
-                .append("text")
-                .attr("text-anchor", "middle")
-                .attr('class', 'val')
-                .style("fill", "black")
-                .attr('x', function () {
-                     return parseInt(circle.attr("cx")); })
-                .attr('y', function () {
-                     return parseInt(circle.attr("cy")) - textOffseteHeight; })
-                .style("font-size", 15)
-                .style("font-weight", 1000)
-                .text(function ()
-                {
-                return d.Country;  // Value of the text
-                });
-                }
-                
-                function onMouseOut(data: any, i: any)
-                {
-                d3.select(this)
-                .transition() // adds animation
-                .duration(100)
-                .attr("r", 2.5)
-                .attr("stroke", null)
-                .attr("stroke-width", 2)
-                .style("opacity", 0.7);
-                
-                d3.selectAll(".val").remove();
-                }
-                
-                var shiftKey: any;
-                
-                
-                
-                
-                // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
-                var zoom = d3.zoom()
-                .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-                .extent([[0, 0], [this.plotWidth, this.plotHeight]])
-                .on("zoom", updateChart);
-                
-                // This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-                var zoomRect = this.axisGroup.append("rect")
-                .attr("cursor", "grab")
-                .attr("pointer-events", "all")
-                .attr("width", this.plotWidth)
-                .attr("height", this.plotHeight)
-                .style("fill", "grey")
-                .style("opacity",0.1)
-                .call(zoom);
-                
-                
-                
-                
-                // A function that updates the chart when the user zoom and thus new boundaries are available
-                function updateChart()
-                {
-                // recover the new scale
-                var xTranslate = d3.event.transform.x;
-                var yTranslate = d3.event.transform.y;
-                const scale = d3.event.transform.k;
-                //console.log(d3.event.transform.x);
-                //var newX = d3.event.transform.rescaleX(xScale);
-                //var newY = d3.event.transform.rescaleY(yScale);
-                //localParentControl.getProxy().getLiveProperty("Zoom").setValue([newX, newY]);
-                console.log(Math.abs(xTranslate));
-                const w =  660 - margin.left - margin.right;
-                
-                
-                localParentControl.getProxy().getLiveProperty("xTranslate").setValue([xTranslate,scale,xScale,yScale]);
-                
-                
-                
-                localParentControl.getProxy().getLiveProperty("yTranslate").setValue([yTranslate,scale,xScale,yScale]);
-                
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                var myArrayTable: any[] = [];
-                
-                
-                //brushed over the insetScatterplot
-                function brushed()
-                {
-                myArrayTable = [];
-                const selection = d3.event.selection;
-                
-                if (selection === null)
-                {
-                d3.selectAll("circle").data(data).attr("stroke", null);
-                } else
-                {
-                //console.log( x0 + " " + x1 + " " + y0 +  " " + y1);
-                const [[x0, y0], [x1, y1]] = selection;
-                d3.selectAll("circle")
-                .data(data)
-                .attr("stroke", (d) =>
-                {
-                if (
-                x0 <= xScale(horiz(d)) &&
-                xScale(horiz(d)) <= x1 &&
-                y0 <= yScale(verti(d)) &&
-                yScale(verti(d)) <= y1
-                )
-                {
-                // console.log(d);
-                d.selectionStatus = true;
-                myArrayTable.push(d.Index);
-                return "blue";
-                } else
-                {
-                d.selectionStatus = false;
-                return null;
-                }
-                })
-                .attr("stroke-width", 3)
-                
-                
-                }
-                
-                
-                
-                //create an array of all the selection statuses of the data
-                //console.log(data.map(d=> d.selectionStatus));
-                if (printClass.printStatus) console.log("In insetScatterplot");
-                if (printClass.printStatus) console.log(localParentControl);
-                localParentControl.getProxy().getLiveProperty("Selection").setValue(data.map(d => d.selectionStatus));
-                
-                }
-                
-                
-                
-                var brush = d3
-                .brush()
-                .extent([
-                [-margin.left / 2, -margin.top / 2],
-                [this.plotWidth + margin.right / 2, this.plotHeight + margin.bottom / 2],
-                ])
-                .on(" start brush  ", brushed);
-                
-                // Add the brushing
-                this.axisGroup.append("g").call(brush);
-                 */
-            };
-            renderPlot(newData);
-        }
-    }
-    render(parentControl) {
-        var localParentControl = parentControl;
-        //create a div element to hold insetScatterplot
-        this.div1 = document.createElement("div");
-        this.div1.id = this.insetScatterplotControlName;
-        this.div1.className = "insetScatterplot";
-        var numberPattern = /\d+/g;
-        //this.canvasWidth = 360;
-        var offset = 20;
-        //this.div1.style.left = (parseInt(this.insetScatterplotControlName.match(numberPattern).toString()) -1) *( this.inputWidth + offset) +offset + "px";
-        //div1.style.left = Math.random()*2000 + "px";
-        this.div1.style.left = this.xPos + "px";
-        this.div1.style.top = this.yPos + "px";
-        //create a closable icon
-        var div0 = document.createElement("button");
-        div0.id = "close";
-        div0.innerHTML = "X";
-        div0.title = "close";
-        div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        //this.div1.appendChild(div0);
-        //create a div header for the insetScatterplot
-        var div2 = document.createElement("div");
-        div2.id = this.div1.id + "header";
-        div2.className = "insetScatterplotheader";
-        div2.textContent = this.div1.id;
-        //make the div header a child to the div element
-        //this.div1.appendChild(div2);
-        //console.log("I am printing D3 Object in InsetScatterplotClass");
-        var d3obj = d3;
-        //console.log(d3obj);
-        var count = -1;
-        function indexnumber() {
-            count++;
-            return count;
-        }
-        dsv(",", "./data/ions.csv").then((data) => {
-            data.forEach(d => {
-                d.Index = indexnumber(),
-                    d.selectionStatus = false,
-                    d.T = +(d.T.replace(/,/g, "")),
-                    d.X = +(d.X.replace(/,/g, "")),
-                    d.Y = +(d.Y.replace(/,/g, "")),
-                    d.Z = +(d.Z.replace(/,/g, ""));
-            });
-            renderPlot(data);
-        });
-        const renderPlot = (data) => {
-            //console.log(data);
-            var colArray = ["d.Index", "d.selectionStatus", "d.T", "d.X", "d.Y", "d.Z"];
-            var horizo = colArray[this.horizontal];
-            var vertic = colArray[this.vertical];
-            //console.log(this);
-            //console.log( horizo + " " + vertic);
-            var horizontal = this.horizontal + 2;
-            var vertical = this.vertical + 2;
-            function horiz(d) {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return d.T;
-                }
-                else if (horizontal == 3) {
-                    return d.X;
-                }
-                else if (horizontal == 4) {
-                    return d.Y;
-                }
-                else if (horizontal == 5) {
-                    return d.Z;
-                }
-            }
-            function verti(d) {
-                if (vertical == 2) {
-                    return d.T;
-                }
-                else if (vertical == 3) {
-                    return d.X;
-                }
-                else if (vertical == 4) {
-                    return d.Y;
-                }
-                else if (vertical == 5) {
-                    return d.Z;
-                }
-            }
-            //console.log("IW is "+ this.inputWidth);
-            //console.log("IH is " + this.inputHeight);
-            this.LocalData = data;
-            var margin = { top: 30, right: 15, bottom: 30, left: 60 };
-            this.plotWidth = this.inputWidth - margin.left - margin.right;
-            this.plotHeight = this.inputHeight - margin.top - margin.bottom;
-            this.innerWidth = this.plotWidth + margin.left + margin.right;
-            this.innerHeight = this.plotHeight + margin.top + margin.bottom;
-            //this.plotWidth = this.plotWidth;
-            //this.plotHeight = this.plotHeight;
-            // append the svg object to the body of the page
-            this.svg = select(this.div1)
-                .append("svg")
-                .attr("width", this.innerWidth)
-                .attr("height", this.innerHeight);
-            //create a group element for the rest of the plot
-            this.axisGroup = this.svg
-                .attr("fill", "orange")
-                .append("g")
-                .attr("class", "axisGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            //create a linear xScale
-            var xScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return horiz(d);
-            }))
-                .range([0, this.plotWidth])
-                .nice();
-            //append the xAxis to group 
-            this.xAxis = this.axisGroup
-                .append("g")
-                .attr("transform", "translate(0," + this.plotHeight + ")")
-                .call(axisBottom(xScale));
-            //create a linear yScale
-            var yScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return verti(d);
-            }))
-                .range([this.plotHeight, 0])
-                .nice();
-            //append the yAxis to group
-            this.yAxis = this.axisGroup.append("g")
-                .call(axisLeft(yScale));
-            //create a group element for the labels
-            var labelsGroup = this.svg
-                .attr("fill", "orange")
-                .append("g")
-                .attr("class", "labelGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            function horizLabel() {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return "Time(S)→";
-                }
-                else if (horizontal == 3) {
-                    return "X(Excite)→";
-                }
-                else if (horizontal == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (horizontal == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            function vertiLabel() {
-                if (vertical == 2) {
-                    return "Time(S)→";
-                }
-                else if (vertical == 3) {
-                    return "X(Excite)→";
-                }
-                else if (vertical == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (vertical == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            labelsGroup
-                .append("text")
-                .text(horizLabel())
-                .attr("fill", "black")
-                .attr("text-anchor", "middle")
-                .style("font-size", 15)
-                .style("font-weight", 1000)
-                .attr("transform", `translate(${this.plotWidth * 0.5}, ${this.plotHeight + margin.top}) rotate(0)`);
-            labelsGroup
-                .append("text")
-                .text(vertiLabel())
-                .attr("fill", "black")
-                .attr("text-anchor", "middle")
-                .style("font-size", 15)
-                .style("font-weight", 1000)
-                .attr("transform", `translate(${-margin.left / 1.6}, ${this.plotHeight * 0.5}) rotate(-90)`);
-            /* labelsGroup
-            .append("text")
-            .text("Z vs T")             //(Size ∝ Cases per Million)
-            .attr("fill", "black")
-            .attr("text-anchor", "middle")
-            .style("font-size", 20)
-            .style("font-weight", 1000)
-            .attr(
-              "transform",
-              `translate(${this.plotWidth * 0.5}, ${-margin.top / 2}) rotate(0)`
-            ); */
-            var color$$1 = linear$2()
-                .domain(extent(data, (d) => (d.T)))
-                .range(["red", "black"]);
-            // Add a clipPath: everything out of this area won't be drawn.
-            var clip = this.axisGroup.append("defs").append("SVG:clipPath")
-                .attr("id", "clip")
-                .append("SVG:rect")
-                .attr("width", this.plotWidth)
-                .attr("height", this.plotHeight)
-                .attr("x", 0)
-                .attr("y", 0);
-            // Create the scatter variable: where both the circles and the brush take place
-            this.scatter = this.axisGroup.append('g')
-                .attr("clip-path", "url(#clip)");
-            const t = this.axisGroup.transition().duration(750);
-            this.scatter
-                .selectAll("circle")
-                .data(data)
-                .attr("class", "cir")
-                .join(enter => enter.append("circle")
-                .attr("fill", function (d) { return color$$1(d.T); })
-                .attr("cx", function (d) { return xScale(horiz(d)); })
-                .attr("cy", function (d) { return yScale(verti(d)); })
-                .attr("r", 0)
-                .style("opacity", 0.7)
-                .call(enter => enter.transition(t)
-                .attr("r", function (d) { return 2; })), update => update
-                .attr("fill", "black")
-                .style("opacity", 0.7)
-                .attr("r", function (d) { return 2; }), exit => exit
-                .attr("fill", "brown")
-                .call(exit => exit.transition(t)
-                .attr("r", 0)
-                .remove()))
-                .attr("pointer-events", "all")
-                .on("mouseover", onMouseOver) //Add listener for the mouseover event
-                .on("mouseout", onMouseOut);
-            //mouseover event handler function
-            function onMouseOver(d) {
-                // this keyword refers to the mouseover item
-                var circle$$1 = select(this);
-                var textOffseteHeight = 12;
-                //d3.selectAll("circle")
-                //.style("opacity", 0.25)
-                circle$$1
-                    .raise()
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("stroke", "green")
-                    .attr("stroke-width", 3)
-                    .style("opacity", 1)
-                    .attr("r", textOffseteHeight);
-                //console.log(this.parentNode.parentNode);
-                /*     this.parentNode.parentNode
-                           .append("text")
-                           .attr("text-anchor", "middle")
-                           .attr('class', 'val')
-                           .style("fill", "black")
-                           .attr('x', function () {
-                                        return parseInt(circle.attr("cx")); })
-                           .attr('y', function () {
-                                        return parseInt(circle.attr("cy")) - textOffseteHeight; })
-                           .style("font-size", 15)
-                           .style("font-weight", 1000)
-                           .text(function ()
-                           {
-                              return d.T;  // Value of the text
-                           }); */
-            }
-            function onMouseOut(data, i) {
-                //d3.selectAll("circle")
-                //.attr("opacity", 1)
-                select(this)
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("r", 2.5)
-                    .attr("stroke", null)
-                    .attr("stroke-width", 2)
-                    .style("opacity", 0.7);
-                //d3.selectAll(".val").remove();
-            }
-            var shiftKey;
-            /* d3.select(window).on("keydown", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                
-                zoomRect.attr("pointer-events", "all");
-              }
-            });
-            d3.select(window).on("keyup", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "all");
-              }
-            }); */
-            /*  // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
-            var zoom = d3.zoom()
-             .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-             .extent([[0, 0], [this.plotWidth, this.plotHeight]])
-             .on("zoom", updateChart);
-      
-           // This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-           var zoomRect = this.axisGroup.append("rect")
-           .attr("cursor", "grab")
-             .attr("pointer-events", "all")
-             .attr("width", this.plotWidth)
-             .attr("height", this.plotHeight)
-             .style("fill", "grey")
-             .style("opacity",0.1)
-             .call(zoom);
-              
-            
-        
-      
-            // A function that updates the chart when the user zoom and thus new boundaries are available
-            function updateChart()
-            {
-              // recover the new scale
-              var xTranslate = d3.event.transform.x;
-              var yTranslate = d3.event.transform.y;
-              const scale = d3.event.transform.k;
-              //console.log(d3.event.transform.x);
-              //var newX = d3.event.transform.rescaleX(xScale);
-              //var newY = d3.event.transform.rescaleY(yScale);
-              //localParentControl.getProxy().getLiveProperty("Zoom").setValue([newX, newY]);
-              console.log(Math.abs(xTranslate));
-              const w =  660 - margin.left - margin.right;
-      
-              
-              localParentControl.getProxy().getLiveProperty("xTranslate").setValue([xTranslate,scale,xScale,yScale]);
-              
-              
-              
-              localParentControl.getProxy().getLiveProperty("yTranslate").setValue([yTranslate,scale,xScale,yScale]);
-              
-            }
-      
-           
-              
-      
-      
-       */
-            var myArrayTable = [];
-            // //brushed over the insetScatterplot       
-            // function brushed()
-            // {
-            //   myArrayTable = [];
-            //   const selection = d3.event.selection;
-            //   if (selection === null)
-            //   {
-            //     d3.selectAll("circle").data(data).attr("stroke", null);
-            //   } else
-            //   {
-            //     //console.log( x0 + " " + x1 + " " + y0 +  " " + y1);
-            //     const [[x0, y0], [x1, y1]] = selection;
-            //     d3.selectAll("circle")
-            //       .data(data)
-            //       .attr("stroke", (d) =>
-            //       {
-            //         if (
-            //           x0 <= xScale(horiz(d)) &&
-            //           xScale(horiz(d)) <= x1 &&
-            //           y0 <= yScale(verti(d)) &&
-            //           yScale(verti(d)) <= y1
-            //         )
-            //         {
-            //           // console.log(d);
-            //           d.selectionStatus = true;
-            //           myArrayTable.push(d.Index);
-            //           return "blue";
-            //         } else
-            //         {
-            //           d.selectionStatus = false;
-            //           return null;
-            //         }
-            //       })
-            //       .attr("stroke-width", 3)
-            //   }
-            //   //create an array of all the selection statuses of the data
-            //   //console.log(data.map(d=> d.selectionStatus));
-            //   if (printClass.printStatus) console.log("In insetScatterplot");
-            //   if (printClass.printStatus) console.log(localParentControl);
-            //   localParentControl.getProxy().getLiveProperty("Selection").setValue(data.map(d => d.selectionStatus));
-            // }
-            // var brush = d3
-            //   .brush()
-            //   .extent([
-            //     [-margin.left / 2, -margin.top / 2],
-            //     [this.plotWidth + margin.right / 2, this.plotHeight + margin.bottom / 2],
-            //   ])
-            //   .on(" start brush  ", brushed);
-            // // Add the brushing
-            // this.axisGroup.append("g").call(brush);
-        };
-        document.body.appendChild(this.div1);
-        this.makeDraggable();
-    }
-}
-//# sourceMappingURL=insetScatterplot.js.map
-
-class ControlInsetScatterplot {
-    //**********************************************************************
-    // Constructors and Finalizer
-    //**********************************************************************
-    constructor(name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
-        //**********************************************************************
-        // Public Class Members (Properties)
-        //**********************************************************************
-        this.CTAG_xTranslate = "xTranslate";
-        this.CTAG_yTranslate = "yTranslate";
-        this.CTAG_Size = "Size";
-        this.CTAG_Opacity = "Opacity";
-        this.CTAG_Selection = "Selection";
-        this.CTAG_Zoom = "Zoom";
-        this.TYPE_xTranslate = new Prototype(Array.prototype, this.CTAG_xTranslate, [null, null]);
-        this.TYPE_yTranslate = new Prototype(Array.prototype, this.CTAG_yTranslate, [null, null]);
-        this.TYPE_Size = new Prototype(Number.prototype, this.CTAG_Size, 0);
-        this.TYPE_Opacity = new Prototype(Number.prototype, this.CTAG_Opacity, 0);
-        this.TYPE_Selection = new Prototype(Array.prototype, this.CTAG_Selection, [false]);
-        this.TYPE_Zoom = new Prototype(Array.prototype, this.CTAG_Zoom, [null, null]);
-        if (printClass.printStatus)
-            console.log("I am in constructor of ControlInsetScatterplot");
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
-        this.proxy = new ControlProxy(this);
-        //create live property
-        this.live_property1 = this.proxy.add(this.CTAG_xTranslate, this.TYPE_xTranslate, true);
-        this.live_property2 = this.proxy.add(this.CTAG_yTranslate, this.TYPE_yTranslate, true);
-        this.live_property3 = this.proxy.add(this.CTAG_Opacity, this.TYPE_Opacity, true);
-        this.live_property4 = this.proxy.add(this.CTAG_Selection, this.TYPE_Selection, true);
-        this.live_property5 = this.proxy.add(this.CTAG_Size, this.TYPE_Size, true);
-        this.live_property6 = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
-        if (printClass.printStatus)
-            console.log(this.live_property1);
-        if (printClass.printStatus)
-            console.log(this.live_property2);
-        this.ControlName = name;
-        this.InsetScatterplot = new InsetScatterplotClass(this, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight);
-        if (printClass.printStatus)
-            console.log(name);
-    }
-    //**********************************************************************
-    // Public Methods (Properties)
-    //**********************************************************************
-    getTranslateX() {
-        return this.proxy.getValue(this.CTAG_xTranslate);
-    }
-    setTranslateX(value) {
-        console.log("setTranslateX method of ControlInsetScatterplot");
-        this.proxy.setValue(this.CTAG_xTranslate, value);
-        //this.canvas.setValue(value);
-    }
-    getColor() {
-        return this.proxy.getValue(this.CTAG_Opacity);
-    }
-    getProxy() {
-        return this.proxy;
-    }
-    setColor(value) {
-        if (printClass.printStatus)
-            console.log("setColor method of ControlInsetScatterplot");
-        this.proxy.setValue(this.CTAG_Opacity, value);
-        //this.canvas.setValue(value);
-    }
-    getTranslateY() {
-        return this.proxy.getValue(this.CTAG_yTranslate);
-    }
-    setTranslateY(value) {
-        console.log("setTranslateY method of ControlInsetScatterplot");
-        this.proxy.setValue(this.CTAG_yTranslate, value);
-        //this.canvas.setValue(value);
-    }
-    //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
-    // Override Methods (LivePropertyListener)
-    //**********************************************************************
-    propertyChanged(e) {
-        if (printClass.printStatus)
-            console.log("propertyChanged method of controlScatterPlot");
-        if (printClass.printStatus)
-            console.log(e);
-        var tag = e.getLiveProperty().getTag();
-        if (printClass.printStatus)
-            console.log(tag);
-        var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
-        if (tag == this.CTAG_xTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_yTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Opacity) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Selection) {
-            if (printClass.printStatus)
-                console.log("hurray ControlInsetScatterplot Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Size) {
-            if (printClass.printStatus)
-                console.log("hurray ControlInsetScatterplot Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Zoom) {
-            if (printClass.printStatus)
-                console.log("hurray ControlInsetScatterplot Zoom");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setZoom(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        if (printClass.printStatus)
-            console.log(value);
-    }
-    //**********************************************************************
-    // Private Methods (Graphics)
-    //**********************************************************************
-    describe() {
-        throw new Error("Method not implemented.");
-    }
-    dispose() {
-        throw new Error("Method not implemented.");
-    }
-}
-//******************************************************************************
-//# sourceMappingURL=ControlInsetScatterplot.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
@@ -23971,12 +22905,16 @@ class ParallelCoordinatePlotClass {
                 .style("opacity", 1);
             // Draw the axis:
             axisGroup.selectAll("myAxis")
+                // For each dimension of the dataset I add a 'g' element:
                 .data(dimensions).enter()
                 .append("g")
+                // I translate this element to its right position on the x axis
                 .attr("transform", function (d) { return "translate(" + xScale(d) + ")"; })
+                // And I build the axis with the call function
                 .each(function (d, index) {
                 return select(this).call(axisLeft().scale(yScale[d])); //: d3.select(this).call(d3.axisRight().scale(yScale[d]))
             })
+                // Add axis title
                 .append("text")
                 .style("text-anchor", "center")
                 .attr("y", -9)
@@ -23990,8 +22928,11 @@ class ParallelCoordinatePlotClass {
         this.makeDraggable();
     }
 }
-//# sourceMappingURL=parallelCoordinatePlot.js.map
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlParallelCoordinatePlot {
     //**********************************************************************
     // Constructors and Finalizer
@@ -24138,13 +23079,12 @@ class ControlParallelCoordinatePlot {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlParallelCoordinatePlot.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
 class GradientClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(control, name, data, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -24159,6 +23099,8 @@ class GradientClass {
         this.inputHeight = inputHeight;
         this.gradientControlName = name;
         this.parentControl = control;
+        this.helper = helper;
+        this.Data = data;
         if (printClass.printStatus)
             console.log("let's see");
         if (printClass.printStatus)
@@ -24170,6 +23112,9 @@ class GradientClass {
         this.showHoriz = showHoriz;
         this.showVerti = showVerti;
         this.render(control);
+    }
+    setSelection(arg0) {
+        throw new Error("Method not implemented.");
     }
     makeDraggable() {
         //create instance of a Draggable class
@@ -24197,193 +23142,6 @@ class GradientClass {
     }
     getTranslateY() {
         return this.width;
-    }
-    setSize(value) {
-        //console.log("set Size method of Gradient");
-        if (printClass.printStatus)
-            console.log(value);
-        var temp = value;
-        //console.log();
-        select(`#${this.gradientControlName}`)
-            .select("svg")
-            .select("g")
-            .selectAll("circle")
-            .attr("r", temp / 10);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    translateX(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var xScale = this.xScale;
-        var change = value[0] - this.previousX;
-        var directionHorizontal;
-        if (change >= 0) {
-            directionHorizontal = -1;
-        }
-        else {
-            directionHorizontal = 1;
-        }
-        if (newX == 0 || newX == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionHorizontal * (xScale.invert(this.previousX)) - directionHorizontal * (xScale.invert(change));
-            xScale.domain([xScale.domain()[0] + shift, xScale.domain()[1] + shift]);
-            this.xAxis.call(axisBottom(xScale));
-            //Update the gradient based on new zoom event
-            select(`#${this.gradientControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return xScale(horiz(d)); });
-            this.previousX = value[0];
-        }
-        //updating the class variable again
-        this.xScale = xScale;
-    }
-    translateY(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        //console.log("translateY method of Gradient");
-        //console.log("Hurray" + this.gradientControlName);
-        var change = value[0] - this.previousY;
-        var directionVertical;
-        if (change >= 0) {
-            //console.log("positive direction");
-            directionVertical = 1;
-        }
-        else {
-            //console.log("negative direction");
-            directionVertical = -1;
-        }
-        var newY = value[0];
-        //extracting the yscale
-        var yScale = this.yScale;
-        if (newY == 0 || newY == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionVertical * (yScale.invert(this.previousY)) - directionVertical * (yScale.invert(change));
-            yScale.domain([yScale.domain()[0] + shift, yScale.domain()[1] + shift]);
-            this.yAxis.call(axisLeft(yScale));
-            //Update the gradient based on new zoom event
-            select(`#${this.gradientControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cy', function (d) { return yScale(verti(d)); });
-            this.previousY = value[0];
-        }
-        //updating the class variable again
-        this.yScale = yScale;
-    }
-    setOpacity(value) {
-        //console.log("setOpacity of gradient");
-        var temp = value;
-        //console.log(temp);
-        selectAll("circle").attr("fill-opacity", `${temp / 100}`);
-    }
-    setSelection(value) {
-        //console.log("serdddt in" + this.gradientControlName);
-        if (this.LocalData == undefined) {
-        }
-        else {
-            //console.log(this.LocalData)
-            this.LocalData.map(function (d, index) {
-                d.selectionStatus = value[index];
-            });
-            //console.log(this.gradientControlName);
-            //console.log(this.LocalData)
-            select(`#${this.gradientControlName}`).select("svg").selectAll("circle")
-                .data(this.LocalData)
-                .attr("stroke", function (d) {
-                if (d.selectionStatus == true) {
-                    //console.log(d.Country);
-                }
-                return d.selectionStatus == true ? "blue" : null;
-            })
-                .attr("stroke-width", 3);
-        }
-    }
-    setZoom(value) {
-        //console.log("Hurray" + this.gradientControlName);
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var newY = value[1];
-        if (newX == 0 && newY == undefined) {
-        }
-        else {
-            this.xAxis.call(axisBottom(newX));
-            this.yAxis.call(axisLeft(newY));
-            //Update the gradient based on new zoom event
-            select(`#${this.gradientControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return newX(horiz(d)); })
-                .attr('cy', function (d) { return newY(verti(d)); });
-        }
     }
     render(parentControl) {
         var localParentControl = parentControl;
@@ -24420,6 +23178,8 @@ class GradientClass {
             count++;
             return count;
         }
+        var data = this.Data;
+        var item = this.helper[0];
         dsv(",", "./data/ions.csv").then((data) => {
             data.forEach(d => {
                 d.Index = indexnumber(),
@@ -24559,13 +23319,17 @@ class GradientClass {
                 .attr("y1", "0%")
                 .attr("y2", "0%");
             gradient.append("stop")
+                //.data(data)
                 .attr('class', 'start')
                 .attr("offset", "0%")
+                //.attr("stop-color",function(d){return color(d.T)})
                 .attr("stop-color", "red")
                 .attr("stop-opacity", 1);
             gradient.append("stop")
+                //.data(data)    
                 .attr('class', 'end')
                 .attr("offset", "30%")
+                //.attr("stop-color",function(d){return color(d.T)})
                 .attr("stop-color", "black")
                 .attr("stop-opacity", 1);
             axisGroup.append("rect")
@@ -24585,14 +23349,6 @@ class GradientClass {
             if (this.showVerti) {
                 //append the yAxis to group
                 this.yAxis.call(axisLeft(yScale));
-                // var labelsGroup = svg
-                // .attr("fill", "orange")
-                // .append("g")
-                // .attr("class", "labelGroupClass")
-                // .attr(
-                //   "transform",
-                //   "translate(" + margin.left + "," + margin.top + ")"
-                // );
                 labelsGroup
                     .append("text")
                     .text(vertiLabel())
@@ -24615,9 +23371,6 @@ class GradientClass {
                 .style("border-width", "2px")
                 .style("border-radius", "5px")
                 .style("padding", "5px");
-            /* var circleSize = d3.scaleLinear()
-            .domain(d3.extent(data, (d) => (d.CasesPerMil)))
-            .range([3, 8]); */
             // Add a clipPath: everything out of this area won't be drawn.
             var clip = axisGroup.append("defs").append("SVG:clipPath")
                 .attr("id", `"${this.gradientControlName}clip"`)
@@ -24628,6 +23381,7 @@ class GradientClass {
                 .attr("y", 0);
             // Create the scatter variable: where both the circles and the brush take place
             var scatter = axisGroup.append('g')
+                //.attr("cursor", "grab")
                 .attr("clip-path", `"url(#${this.gradientControlName}clip)"`);
             const t = axisGroup.transition().duration(750);
             scatter
@@ -24694,27 +23448,6 @@ class GradientClass {
                     .style("opacity", 0.7);
                 selectAll(".val").remove();
             }
-            var shiftKey;
-            /* d3.select(window).on("keydown", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                
-                zoomRect.attr("pointer-events", "all");
-              }
-            });
-            d3.select(window).on("keyup", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "all");
-              }
-            }); */
             // A function that updates the chart when the user zoom and thus new boundaries are available
             var myArrayTable = [];
             //brushed over the gradient       
@@ -24735,7 +23468,7 @@ class GradientClass {
                             // console.log(d);
                             d.selectionStatus = true;
                             myArrayTable.push(d.Index);
-                            return "blue";
+                            return null;
                         }
                         else {
                             d.selectionStatus = false;
@@ -24756,19 +23489,21 @@ class GradientClass {
                 .on(" start brush  ", brushed);
             // Add the brushing
             axisGroup.append("g").call(brush$$1);
-            //.call(brush.move, [ [innerWidth*0.3 , this.inputHeight ] ,[0, 0]]);;
         };
         document.body.appendChild(div1);
         this.makeDraggable();
     }
 }
-//# sourceMappingURL=gradient.js.map
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlGradient {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -24804,7 +23539,7 @@ class ControlGradient {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.gradient = new GradientClass(this, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
+        this.gradient = new GradientClass(this, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -24865,40 +23600,7 @@ class ControlGradient {
         //console.log(VariableEvent.VALUE_CHANGED);
         //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
         //{
-        if (tag == this.CTAG_xTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_yTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Opacity) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Selection) {
+        if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
                 console.log("hurray ControlGradient Selection");
             //console.log(e.getLiveProperty().variable.getPrototype().value)    
@@ -24909,18 +23611,6 @@ class ControlGradient {
             this.gradient.setSelection(e.getLiveProperty().getVariable().getValue());
             // this.slider.setValue(90);
         }
-        else if (tag == this.CTAG_Size) {
-            if (printClass.printStatus)
-                console.log("hurray ControlGradient Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        //} 
     }
     propertyChangeToUpdateUI(value) {
         //if(printClass.printStatus) console.log(e);
@@ -24939,7 +23629,6 @@ class ControlGradient {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlGradient.js.map
 
 var identity$10 = function(x) {
   return x;
@@ -25190,6 +23879,20 @@ var hashPoint = function(point) {
   return hash & 0x7fffffff;
 };
 
+// Given an extracted (pre-)topology, identifies all of the junctions. These are
+// the points at which arcs (lines or rings) will need to be cut so that each
+// arc is represented uniquely.
+//
+// A junction is a point where at least one arc deviates from another arc going
+// through the same point. For example, consider the point B. If there is a arc
+// through ABC and another arc through CBA, then B is not a junction because in
+// both cases the adjacent point pairs are {A,C}. However, if there is an
+// additional arc ABD, then {A,D} != {A,C}, and thus B becomes a junction.
+//
+// For a closed ring ABCA, the first point A’s adjacent points are the second
+// and last point {B,C}. For a line, the first and last point are always
+// considered junctions, even if the line is closed; this ensures that a closed
+// line is never rotated.
 var join = function(topology) {
   var coordinates = topology.coordinates,
       lines = topology.lines,
@@ -25580,6 +24283,7 @@ class MapClass {
             g.selectAll('path').data(countries.features)
                 .enter().append('path')
                 .attr('class', 'country')
+                //.attr('d', pathGenerator)
                 .attr('d', d => pathGenerator(d))
                 .attr("fill", function (d) {
                 var cname = countryName[d.id];
@@ -25722,8 +24426,11 @@ class MapClass {
         this.makeDraggable();
     }
 }
-//# sourceMappingURL=map.js.map
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlMap {
     //**********************************************************************
     // Constructors and Finalizer
@@ -25878,7 +24585,6 @@ class ControlMap {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlMap.js.map
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
@@ -26261,8 +24967,11 @@ class BubbleChartClass {
         this.makeDraggable();
     }
 }
-//# sourceMappingURL=bubblechart.js.map
 
+//import { typeOfValue } from "../index.js";
+//******************************************************************************
+// class ControlSlider
+//******************************************************************************
 class ControlBubblechart {
     //**********************************************************************
     // Constructors and Finalizer
@@ -26475,7 +25184,6 @@ class ControlBubblechart {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlBubbleChart.js.map
 
 //console.info('%cThis is implementation of LiveProperties in Javascript','color:blue; font-weight:bold; font-size:15px');
 //console.warn("This may not work in all browsers!.  This is an experemental project ");
@@ -26507,13 +25215,14 @@ function createControl(parentWindow, controlName, data, name, xPos, yPos, horizo
         return bubblechartControl;
     }
     else if (controlName == "gradient") {
-        let gradientControl = new ControlGradient(name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
+        let gradientControl = new ControlGradient(name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper);
         return gradientControl;
     }
-    else if (controlName == "insetScatterplot") {
-        let insetScatterplotControl = new ControlInsetScatterplot(name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight);
-        return insetScatterplotControl;
-    }
+    // else if (controlName == "insetScatterplot")
+    // {
+    //     let insetScatterplotControl = new ControlInsetScatterplot(name, xPos, yPos,  horizontalAxes, verticalAxes, inputWidth, inputHeight);
+    //     return insetScatterplotControl;
+    // }
     else if (controlName == "table") {
         let tableControl = new ControlTable(parentWindow, name, data, xPos, yPos, inputWidth, inputHeight);
         return tableControl;
@@ -26549,12 +25258,14 @@ function bindVariable(control, property, variable) {
     //if (printClass.printStatus) console.log("Next step:*************************** Binding (( " + variable.name + " )) to (( " + control.ControlName + " ))******************");
     control.proxy.setVariable(property, variable);
 }
-//Define Control Types
 let Scatterplot_type = "scatterplot";
 //let Wordcloud_type: controlType = "wordcloud";
 let Gradient_type = "gradient";
 let Table_type = "table";
 let ParallelCoordinatePlot_type = "parallelCoordinatePlot";
+//let p =0.1235
+//console.log(p.toPrecision(3));
+//Load Data
 Promise.all([
     csv$1("./data/ions.csv", ({ T, X, Y, Z }, index) => ({
         Index: +index,
@@ -26638,7 +25349,7 @@ Promise.all([
         bindVariable(scatterplot04, "xTranslate", Translation_5);
         bindVariable(scatterplot04, "yTranslate", Translation_7);
         //bindVariable(scatterplot04, "Opacity", variable2);
-        bindVariable(scatterplot04, "Selection", Selection_5);
+        //bindVariable(scatterplot04, "Selection", Selection_5);
         bindVariable(scatterplot04, "brushX", Range_1);
         bindVariable(scatterplot04, "brushY", Range_2);
         //bindVariable(scatterplot04, "Size", variable4);
@@ -26647,7 +25358,7 @@ Promise.all([
         bindVariable(scatterplot05, "xTranslate", Translation_5);
         bindVariable(scatterplot05, "yTranslate", Translation_6);
         //bindVariable(scatterplot05, "Opacity", variable2);
-        bindVariable(scatterplot05, "Selection", Selection_6);
+        //bindVariable(scatterplot05, "Selection", Selection_6);
         bindVariable(scatterplot05, "brushX", Range_3);
         bindVariable(scatterplot05, "brushY", Range_4);
         //bindVariable(scatterplot05, "Size", variable4);
@@ -26656,34 +25367,33 @@ Promise.all([
         bindVariable(scatterplot06, "xTranslate", Translation_7);
         bindVariable(scatterplot06, "yTranslate", Translation_6);
         //bindVariable(scatterplot06, "Opacity", variable2);
-        bindVariable(scatterplot06, "Selection", Selection_7);
+        //bindVariable(scatterplot06, "Selection", Selection_7);
         bindVariable(scatterplot06, "brushX", Range_5);
         bindVariable(scatterplot06, "brushY", Range_6);
         //bindVariable(scatterplot06, "Size", variable4);
         // //x = X, y= Z
         let insetScatterplot1 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-1", lPL + lPW + 3 * SPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
-        bindVariable(insetScatterplot1, "Selection", Selection_5);
+        //bindVariable(insetScatterplot1, "Selection", Selection_5);
         bindVariable(insetScatterplot1, "xRange", Range_1);
         bindVariable(insetScatterplot1, "yRange", Range_2);
         let insetScatterplot2 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-2", lPL + lPW + 2 * SPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
-        bindVariable(insetScatterplot2, "Selection", Selection_6);
+        //bindVariable(insetScatterplot2, "Selection", Selection_6);
         bindVariable(insetScatterplot2, "xRange", Range_3);
         bindVariable(insetScatterplot2, "yRange", Range_4);
         // //x = Z, y= Y
         let insetScatterplot3 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-3", lPL + lPW + SPW + 2 * SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
-        bindVariable(insetScatterplot3, "Selection", Selection_7);
+        //bindVariable(insetScatterplot3, "Selection", Selection_7);
         bindVariable(insetScatterplot3, "xRange", Range_5);
         bindVariable(insetScatterplot3, "yRange", Range_6);
         let TW = lPW + 30;
         let TH = 2 * lPH + 130;
         let table01 = createControl(parentDiv, Table_type, [ionsData], "TableView-01", lPL + lPW + 4 * SPW, lPT, null, null, TW, TH, null, null, null, null, null, null);
         bindVariable(table01, "Selection", Selection_4);
-        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, IonsVariables.X, lPW, 50, false, false);
-        bindVariable(gradient1, "Selection", Selection_8);
         let parallelCoordinatePlot1 = createControl(parentDiv, ParallelCoordinatePlot_type, ionsData, "PCP-1", lPL + lPW + SPW, lPT, null, null, 2 * SPW, SPH, null, null, [IonsAxes], IonsVariables.T, null, null, ["T", "X", "Y", "Z"]);
         bindVariable(parallelCoordinatePlot1, "Selection", Selection_8);
+        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, IonsVariables.X, lPW, 50, false, false, [IonsAxes]);
+        bindVariable(gradient1, "Selection", Selection_8);
     }
     //console.log(document);
     ionsExample();
 });
-//# sourceMappingURL=index.js.map
