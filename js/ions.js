@@ -23200,6 +23200,7 @@ class GradientClass {
         this.makeDraggable();
     }
 }
+//# sourceMappingURL=gradient.js.map
 
 class ControlGradient {
     //**********************************************************************
@@ -24993,7 +24994,7 @@ Promise.all([
         let lPW = 300;
         let lPH = 200;
         let lPL = 30;
-        let lPT = 60;
+        let lPT = 160;
         let off = 5;
         var parentName = "ionsViz";
         let scatterplot01 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-01", lPL, lPT, IonsVariables.T, IonsVariables.Z, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);

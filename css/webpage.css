@@ -1,7 +1,17 @@
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(199, 238, 236);
+      
+    text-align: left;
+    max-width: 1100px;
+    min-width: 720px;
+    margin: 0 auto;
+    margin-left: 100px;
+    padding: 0 20px;
+
+    border: #333;
   }
-  
+
+
   h1 {
     color: rgb(2, 2, 2);
     text-align: center;
@@ -10,21 +20,37 @@ body {
   p {
     font-family: "Times New Roman", Times, serif;;
     font-size: 16px;
+    
   }
+
 
 
 .textExample
 {
   background-color: #afdfad;
   text-align: center;
-
   width: 1000px;
 
+}
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(240, 242, 243);
+  color: black;
+  text-align: center;
 }
 
 .navbar {
   overflow: hidden;
   background-color: #333;
+  width: 100%;
+  margin: 0 auto;
+  
+  padding: 0 20px;
 }
 
 .navbar a {
@@ -32,6 +58,7 @@ body {
   font-size: 16px;
   color: white;
   text-align: center;
+  margin-right: 0;
   padding: 14px 16px;
   text-decoration: none;
 }
@@ -53,7 +80,7 @@ body {
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: rgb(84, 92, 91);
 }
 
 .dropdown-content {
@@ -81,3 +108,11 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+
+#selected{
+  background-color: rgb(197, 40, 40);
+}
+
+
+

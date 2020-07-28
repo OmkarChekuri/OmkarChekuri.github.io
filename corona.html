@@ -24,27 +24,29 @@
 
   <body id="body" onbeforeprint="PrintAlert()">
 
-<div class="navbar">
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <div class="dropdown">
-    <button class="dropbtn">Examples 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="./corona.html">Corona Visualization</a>
-      <a href="./ions.html">Ions Visualization</a>
-      
-    </div>
-  </div> 
-</div>
-
-
-    <h1  >Corona - Visualization</h1>
+    <body id="body" onbeforeprint="PrintAlert()">
+      <div class="navbar">
+        <a href="./index.html">Home</a>
+        <div class="dropdown">
+          <button id="selected" class="dropbtn">
+            Examples
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="./corona.html">Corona Visualization</a>
+            <a href="./ions.html">Ions Visualization</a>
+          </div>
+        </div>
+        <a href="./people.html">People</a>
+        
+      </div>
+  
+  
+  <h1  >Corona - Visualization</h1>
 
 
     <!-- <img src="media/corona.png" alt="Trulli" width="1000" height="333"> -->
-<svg height="700">
+<svg height="550">
   <rect>
 
   </rect>
@@ -53,60 +55,119 @@
 
 
 <h2>Background</h2>
-
-
 <p>
     The above example shows a coordination visualization in D3 using the live properties Architecture. The data for the following visualization is 
-    gathered from    <a href="https://www.worldometers.info/coronavirus/"  target="_blank">Corona Example</a>. For the above visualization we created a 
-    wrapper for the D3 code and modified the code to support the visualization.  
-
-
-
+    gathered from    <a href="https://www.worldometers.info/coronavirus/"  target="_blank">Corona Example</a>. 
 </p>
-    <h2> Corona Visualization Interface</h2>
-<p>
-    The visualization shows two scatterplots, table, Choropleth map, bubble chart and a parallel coordinate plot coordinated in multiple ways.
-    
-</p>   
+
+
+
+
+<h2> Interface</h2>
+ 
+<p> Different views are organized column wise</p>
 
 <ul>
-    <li>The Top Left scatterplot shows <em> Tests Per Million</em> drawn on horizontal axis vs <em>Cases Per Million</em> on vertical Axis  </li>
-    <li>The Bottom Left scatterplot shows <em> Deaths Per Million</em> drawn on horizontal axis vs <em>Tests Per Million</em> on vertical Axis  </li>
-    <li>The Table view shows all the data set. THe Continent coloumn is colored based on the  categorical color legend assigned to continent.</li>
-    <li> The Choropleth Map shows a Mercator projection of the world map. Each continent is colored based on the categorical color 
+    <li> The first column from left  consists of two scatterplot views.The Top Left scatterplot shows <em> Tests Per Million</em>
+       drawn on horizontal axis vs <em>Cases Per Million</em> on vertical Axis. The Bottom Left scatterplot shows <em>
+          Deaths Per Million</em> drawn on horizontal axis vs <em>Tests Per Million</em> on vertical Axis  </li>
+
+    <li> The second column from left shows a Table view that  shows all the data set. THe Continent coloumn is colored based on
+       the  categorical color legend assigned to continent.</li>
+    <li> The third column from left  shows a Choropleth Map shows a Mercator projection of the world map. Each continent is colored based on the categorical color 
         legend assigned to continent</li>
-    <li> The Bubble chart view shows various bubbles drawn using size to represent the size of the circle </li>
-    <li> The Parallel coordinate is drawn using the same data. The color of the paths is drawn using categorical color legend assigned to 
+    <li>The fourth column from left shows a Bubble chart view shows various bubbles drawn using size to represent the size of the circle </li>
+    <li>The fifth column from left  shows a Parallel coordinate plot that is drawn using the same data. The color of the paths is drawn using categorical color legend assigned to 
         attribute of the continent </li>
 </ul>
+<p> All the views use the color encoding from  <a href = "https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3" target= "_blank"> color brewer 2.0 </a>
+   website to encode the color with the continent that the attribute belongs to.</p>
 
-<h2>Coordination and Interaction</h2>
+<h2>Coordination</h2>
 <p>
-    The two scatterplots are coordinated by the reange property. The Horizontal range of the top scatterplot is coordinated with the vertical range of bottom scatterplot.
-    The Top Left scatterplot and the Map are coordinated in selection. Any selection made in either of the above will reflect in other. The Bottom Left scatterplot, Table view and the Parallerl coordinate plot are coordinated in selection. Any selection made in either of the above will reflect in other.
-    The scatterplots, table view, Choropleth map and  bubble chart are coordinated in indication. Any item hovered in table view, Choropleth map and  bubble chart will be 
-    highlighted in other plots.
+
+  <ul>
+    <li>
+      The two scatterplots on the first column from the left are coordinated by the range property.  The Horizontal range of the top 
+      scatterplot is coordinated with the vertical range of bottom scatterplot.
+    </li>
+     <li> The top scatterplot in the first column and the choropleth Map are coordinated in selection. Any selection made in either of the above will reflect in other.</li>
+    <li>
+      The bottom scatterplot in the first column, table view and the Parallerl coordinate plot are coordinated in selection. Any selection made in the scatterplot view 
+      or table view will show the selected items in the three coordinated plots.
+    </li>
+    <li>
+      The scatterplots, table view, Choropleth map and  bubble chart are coordinated in indication. Any item hovered in table view, Choropleth map and  bubble chart will be 
+      highlighted in other plots.
+    </li>
+  </ul>
+</p>
+
+<h2>Interaction</h2>
+
+<h3>Scatter Plot</h3>
+<p>
+    The current implementation supports either Zoom or brush on the scatterplot at a time. we decided to implement brush property instead.
+    Brushing can be done in the scatterplot view by clicking the mouse anywhere on the scatterplot followed by drag and release to select 
+    a brushed region. Brusing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region 
+    are selected. Selected items are shown in the  scatterplot using a black colored stroke.
+</p>   
+
+<h3>Table View</h3>
+<p>
+   selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row and drag the mouse 
+   to the top or bottom based ont the direction in which the selection is to be made. There are performance issues associated with multiple row selection in case 
+   of table view in the current implementation which will be addressed soon which causes the multiple selection to not perform consistently always. The selected
+   rows have a red colored text font. Indication is done in table view by hovering the mouse over the row. The indicated row is shown using a "teal" background color. 
+
+</p>
+ 
+
+<h3>Choropleth Map</h3>
+Selection is done on the choropleth map by clicking twice on a country with a small time gap between clicks otherwise the interaction will also 
+trigger zoom along with selection. Selected regions are filled with grey color. Indication is done by hovering the mouse over the country. Indicated regions 
+will be highlighted with a blue border and a reduced opacity.
+<p>
+
+</p>
+
+<h3>Bubble Chart</h3>
+<p>
+  Selection is done on the bubble chart by clicking twice on a bubble. Selected items are filled with grey color. Indication is done by hovering the 
+  mouse over the bubble. Indicated items will be highlighted with a white border and a reduced opacity.
+</p>
+<h3>Parallel Coordinate Plot</h3>
+<p>
+   The above parallel coordinate plot does not allow selectioon or hovering. It will only display selected items when selected in a corresponding coordinated view. 
 </p>
 
 
 
-<p>
-     All the views use the color encoding from color brewer website to encode the color with the continent that the attribute belongs to.
-     Selection is shown in scatterplot using a black colored stroke ove the circles. Indication is shown in the scatterplot using a black colored circle with a label.
-     Selection in Table view is done using the red colored font for the row while indication is shown using teal colored background for the view.
-     Selection in choropleth map is done using the dark grey colored region for the row while indication is shown using blue colored outline for the region.
-     Selection in Bubble chart is done using the grey colored circles for the bubble while indication is shown using black colored stroke for the for the bubble.
-    Selection in Parallel coordinate plot is done by increasing the opacity of the paths to 100% while reducing the opacity of the unselected items to 50%.
-</p>
+<h2>Research</h2>
+<div>
+ <a href="data/Vis2020.pdf" > <img src="data/download.jpg" alt="ResearchPaper" width="104" height="42"> 
+   </a> <br>Document Submitted for Conference</br>
+
+   <svg height="100">
+    <rect>
+  
+    </rect>
+  </svg>
+</div>
 
 
 
-<h2>Downloads</h2>
-
- <a href="data/Vis2020.pdf" download>
-    <img src="data/download.jpg" alt="ResearchPaper" width="104" height="42">
-  </a> 
-
+  <div class="footer">
+    <div class="footer_item">
+     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+       
+       <img alt="Creative Commons License" style="border-width:0" src="/media/creativecommons.png">
+     </a><br>
+   
+     Except where otherwise noted, content on this site is licensed under a<br>
+     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+     </div>
+ </div>
 
 
 
