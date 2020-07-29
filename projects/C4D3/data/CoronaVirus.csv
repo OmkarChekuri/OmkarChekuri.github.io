@@ -1,0 +1,92 @@
+Country,TotalCases,TotalDeaths,ActiveCases,CasesPerMil,DeathsPerMil,SelectionStatus,HoverStatus
+China,82926,4633,104,58,3,false,false
+India,78055,2551,49104,57,2,false,false
+Peru,76306,2169,49813,2314,66,false,false
+Canada,72278,5302,31812,1915,140,false,false
+Belgium,53981,8843,31201,4658,763,false,false
+Saudi Arabia,44830,273,26935,1288,8,false,false
+Netherlands,43211,5562,37399,2522,325,false,false
+Mexico,38324,3926,8463,297,30,false,false
+Pakistan,35298,761,25638,160,3,false,false
+Chile,34381,346,19170,1799,18,false,false
+Ecuador,30486,2334,24719,1728,132,false,false
+Switzerland,30413,1870,1443,3514,216,false,false
+Portugal,28132,1175,23775,2759,115,false,false
+Sweden,27909,3460,19478,2763,343,false,false
+Qatar,26539,14,23382,9212,5,false,false
+Belarus,25825,146,17968,2733,15,false,false
+Singapore,25346,21,20516,4332,4,false,false
+Ireland,23401,1497,2434,4739,303,false,false
+UAE,20386,206,13657,2061,21,false,false
+Bangladesh,17822,269,14192,108,2,false,false
+Poland,17204,861,9933,455,23,false,false
+Israel,16548,264,4052,1912,31,false,false
+Ukraine,16425,439,12270,376,10,false,false
+Japan,16049,678,6451,127,5,false,false
+Romania,16002,1036,7005,832,54,false,false
+Austria,15997,624,1069,1776,69,false,false
+Indonesia,15438,1028,11123,56,4,false,false
+Colombia,12930,509,9288,254,10,false,false
+South Africa,12074,219,7110,204,4,false,false
+Philippines,11618,772,8595,106,7,false,false
+Dominican Republic,11196,409,7566,1032,38,false,false
+Kuwait,11028,82,7683,2582,19,false,false
+S. Korea,10962,259,1008,214,5,false,false
+Denmark,10667,533,1471,1842,92,false,false
+Egypt,10431,556,7389,102,5,false,false
+Serbia,10295,222,6249,1178,25,false,false
+Panama,8783,252,2510,2036,58,false,false
+Czechia,8269,290,2932,772,27,false,false
+Norway,8175,229,7914,1508,42,false,false
+Australia,6980,98,611,274,4,false,false
+Argentina,6879,329,4284,152,7,false,false
+Malaysia,6779,111,1387,209,3,false,false
+Morocco,6512,188,3193,176,5,false,false
+Algeria,6253,522,2673,143,12,false,false
+Finland,6054,284,1470,1093,51,false,false
+Bahrain,5816,10,3601,3418,6,false,false
+Kazakhstan,5417,32,2977,288,2,false,false
+Ghana,5408,24,4870,174,1,false,false
+Moldova,5406,185,3045,1340,46,false,false
+Afghanistan,5226,132,4446,134,3,false,false
+Nigeria,4971,164,3737,24,1,false,false
+Oman,4019,17,2713,787,3,false,false
+Luxembourg,3904,103,172,6237,165,false,false
+Armenia,3718,48,2170,1255,16,false,false
+Hungary,3341,430,1809,346,45,false,false
+Iraq,3032,115,951,75,3,false,false
+Thailand,3017,56,117,43,1,false,false
+Bolivia,2964,128,2523,254,11,false,false
+Cameroon,2800,136,1121,105,5,false,false
+Greece,2760,155,1231,265,15,false,false
+Azerbaijan,2758,35,934,272,3,false,false
+Uzbekistan,2612,11,525,78,0,false,false
+Guinea,2374,14,1504,181,1,false,false
+Croatia,2213,94,285,539,23,false,false
+Bosnia and Herzegovina,2181,120,833,665,37,false,false
+Senegal,2105,21,1302,126,1,false,false
+Honduras,2080,121,1748,210,12,false,false
+Bulgaria,2069,96,1474,298,14,false,false
+Ivory Coast,1912,24,986,72,1,false,false
+Sudan,1818,90,1530,41,2,false,false
+Cuba,1810,79,405,160,7,false,false
+Iceland,1802,10,12,5281,29,false,false
+Estonia,1751,61,913,1320,46,false,false
+North Macedonia,1694,95,370,813,46,false,false
+Lithuania,1505,54,543,553,20,false,false
+New Zealand,1497,21,74,310,4,false,false
+Slovakia,1469,27,382,269,5,false,false
+Slovenia,1463,103,1100,704,50,false,false
+Djibouti,1268,3,365,1283,3,false,false
+Somalia,1219,52,1037,77,3,false,false
+Guatemala,1199,27,1052,67,2,false,false
+DRC,1169,50,971,13,1,false,false
+Mayotte,1143,14,502,4190,51,false,false
+Hong Kong,1051,4,39,140,1,false,false
+Kyrgyzstan,1044,12,306,160,2,false,false
+El Salvador,1037,20,643,160,3,false,false
+Tunisia,1032,45,228,87,4,false,false
+Gabon,1004,9,843,451,4,false,false
+Maldives,955,4,911,1767,7,false,false
+Latvia,951,19,305,504,10,false,false
+Cyprus,905,17,439,750,14,false,false
