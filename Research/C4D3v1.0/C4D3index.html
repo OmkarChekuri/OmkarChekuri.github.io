@@ -21,13 +21,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C4D3</title>
+    <link rel="icon" href="./media/Logo-transperant.png" type="image/x-icon" />
     <meta name="description" content="CODL is a visualization framework for creating coordinated multiple views using D3 and LiveProperties Architecture.">
     <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
+    <link rel="stylesheet" type="text/css" href="./css/slideshow.css" />
 </head>
 
 <body>
     <div class="navbar">
-        <a id="selected" href="./index.html">Home</a>
+        <a id="selected" href="/Research/C4D3v1.0/C4D3index.html ">Home</a>
         <a href="/Research/C4D3v1.0/covid19.html">Covid19-Viz</a>
         <a href="/Research/C4D3v1.0/ions.html">Ions-Viz</a>
         <a href="#chrisWebsite">Research</a>
@@ -35,39 +37,177 @@
       </div>
 
 
-      <h1> Coordinated visualization for D3 (C4D3)  </h1>
+  <svg style="height: 25;">
 
-      <p>
-      
-        C4D3 is a view level abstraction for D3 using Live Properties. The Library consists of wrappers for most common D3
-        Views and the live properties architecture required to coordinate these views.
+  </svg>    
 
-        This website consists of two example visualizations drawn using the above library.
-      </p>
-      
-      <div>
+<div class = "header">
+      <img alt="Logo" width="20" height="20" src="media/logo4.png">
+      <h1 style="font-size: 54px;" > Coordination for Data Driven Documents </h1>
+    </div>
+
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+        <div class="numbertext">1/2</div>
         <a href="/Research/C4D3v1.0/covid19.html">
-          
-          <img  src="media/corona.png" width="100%" height="345" alt = "corona Example"> </a><br>
+          <img  src="media/corona.png" width="100%" height="345" alt = "covid19 Example"> </a><br>
+        <div class="text">Covid19-Viz</div>
+      </div>
       
+      <div class="mySlides fade">
+        <div class="numbertext">2/2</div>
         <a href="/Research/C4D3v1.0/ions.html">
-          
           <img  src="media/ions.png" width="100%" height="345" alt = "ions Example" > </a><br>
+        <div class="text">Ions-Viz</div>
+      </div>
       
       
+      
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      
+      </div>
+      <br>
+      
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        
       </div>
 
 
+      <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+          function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 5000); // Change image every 2 seconds
+          }
+        </script>
+
+           
 
 
-      <svg height="100">
-        <rect>
+<p>
+   <b>C4D3</b> is a framework that provides view level abstraction and coordination architecture for developing coordinated  multiple 
+   views in using <b>D3.js</b> library. The journey to developing the C4D3 framework began when we discovered the potential and need of a coordination architecture 
+   for building coordinated multiple views(CMV) for the visualizations built in browser environment. We chose to adopt LiveProperties 
+   architecture for this purpose after understanding its potential and generalizability. 
+   
+   
+   <ol>
+     <li> Planning and Understanding phase.</li>
+     <li> Design and Analysis phase</li>
+     <li> Developing the  <b>coordination </b> architecture and <b>view abstractions</b>.</li>
+     <li> Developing initial version of <b>C4D3</b> framework. </li>
+     <li> Testing the coordination  for <b>HTML</b> and <b>SVG</b> views using <b>C4D3</b>. </li>
+     <li> Extending the coordination architecture and view abstraction for <b>D3.js</b> library. </li>
+     <li> Building <b>examples</b> of complex coordinated visualizations using <b>C4D3</b> framework.</li>
+   </ol>
+</p>
+
+
+<h3> Planning and Understanding phase.</h3>
+<p>
+  We started the plan the capabilities we intended to provide the visualization system. We started to understand the 
+
+
+</p>
+
+
+<h3> Design and Analysis phase.</h3>
+<p>
+    We started to design the sketch of the framework and analysed how different aspects of the need to be implemented. We chose 
+    Live properties architecture of the Improvise visualization system which is the coordination architecture for improvise 
+    to be the coordination architecture for the C3D4.
+
+</p>
+
+<h3> Developing the coordination architecture and view abstractions.</h3>
+<p>
+  We started conversion of the Live Properties package which is written in Java into javascript. Soon we encountered many
+  difficulties associated with the conversion as javascript is not object oriented. We also faced difficulties due to its limited 
+  features like lack of strict typing, support of optional parameters, support during compilation. We moved our code to typescript 
+  as it provides the advantages needed for clean one on one conversion of Java Code to Typescript code.
+  We carefully implemented all the functionality supported by Typescript library and found alternative solutions for the cases where
+  typescript do not provide the exact functionality that Java provides.   
+  
+  We  created View Level abstractions for Html and SVG widgets (Sliders, text boxes, numerical input, rectangles) to make them work
+  with the coordination architecture.
+
+
+</p>
+
+<h3> Developing initial version of C4D3 framework.</h3>
+   
+<p>
+    We combined the coordination architecture and view level abstractions to build the initial version of C4D3.
+</p>
+<h3> Testing the coordination for HTML and SVG views using C4D3.</h3>
+
+<p>
+    We created multiple coordinated views using the HTML and SVG widgets to test the working of C4D3 framework.
+
+</p>
+
+
+<h3> Extending the coordination architecture and view abstraction for D3.js library</h3>
+<p>
+      Once the framework is in place we started to develop view level abstractions for D3 visualizations like 
+      scatterplots, Table view, Parallel coordinate plot, Choropleth Map Bubble chart and Bargraph.We started 
+      developing abstracting the appearence and behaviour of the visualizations to support basic selection  
+      and navigation patterns.
+</p>
+<h3> Building examples of Coordinated visualizations using C4D3.</h3>
+
+<p>
+  We created two examples of complex coordinated visualization using the C4D3 framework. One of the them 
+  being partial reimplementation of the Ions visualization created using Improvise and the other one being a
+  novel implementation of Covid19 visualization from the Covid19 Dataset.  
+
+</p>
       
-        </rect>
-      </svg>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <svg height="100">
+       <rect></rect>
+    </svg>
   <div class="footer">
     <div class="footer_item">
      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
