@@ -1,0 +1,73 @@
+
+
+/*  C4D3 is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This file is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>. */
+
+.card {
+    box-shadow: 0 4px 8px 0 rgb(255, 254, 254);
+    max-width: 300px;
+    float: right;
+    margin: 1em;
+    text-align: center;
+    font-family: arial;
+    display: block;
+    border-style: solid;
+    border-color: white;
+    outline-style: groove;
+    border-width: 5px 20px; /* 5px top and bottom, 20px on the sides */
+    background-color: white;
+    
+  }
+
+  .flex-container {
+    display: flex;
+}
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: rgb(0, 0, 0);
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+  /* #card1{
+    flex: 0em;
+    border: 1px solid yellow;
+  }
+
+  #card2{
+    margin-right: 2px;
+    margin-left: 2px;
+
+  } */

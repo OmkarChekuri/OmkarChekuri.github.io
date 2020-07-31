@@ -1,0 +1,88 @@
+
+<!--  C4D3 is free software: you can redistribute it and/or modify it under
+ the terms of the GNU Affero General Public License as published by the Free
+ Software Foundation, either version 3 of the License, or (at your option) any
+ later version.
+
+ This file is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content=" This is a page to test  live properties in JavaScript">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="Omkar Chekuri">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C4D3-Planning</title>
+  <link rel="icon" href="media/Logo-transperant.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/planning.css">
+</head>
+
+
+
+<body onbeforeprint="PrintAlert()">
+  
+
+  <!-- <h1>LiveProperties in JavaScript</h1> -->
+
+  <!-- The Slider -->
+  <div>
+    <h2>Font size based on the slider </h2>
+    <input type="range" id="myRange" value="100" list="tickmarks"   onchange="fontValue.value = myRange.value">
+    <datalist id="tickmarks">
+      <option value="0" label="0%"></option>
+
+      <option value="50" label="50%"></option>
+
+      <option value="100" label="100%"></option>
+    </datalist>
+  </div>
+
+  <!-- Text Area that contains the text -->
+  <div>
+    <textarea id="text" name="message" rows="1"   >Font size</textarea>
+  </div>
+
+
+  <!-- Text area for the slider value -->
+  
+  <h2>Font size in pixels</h2>
+
+  <input id="fontValue" type="number"  value="100" min="0" max="100"  onchange="myRange.value=fontValue.value" >px</input>
+  
+  <!-- SVG to define the Rectangle -->
+
+  <div>
+    <h2>Opacity of the Rectangle based on slider</h2>
+    <svg  width="400" height="110" >
+    <g>
+      <rect id="rect" width="300" height="100" style="fill:green;"> </rect>/>
+      <text id = "opValue" text x="0" y="50" font-family="Verdana" font-size="35" fill="Black"> Opacity:1 </text>
+    
+      Sorry, your browser does not support inline SVG.
+    </svg>
+  </div>
+
+  <!-- Text area to define the truncated text based on slider -->
+  <p id="sentance">The sentence will be truncated based on the slider. 1234567890 1234567890 1234567890 ................  </p>
+
+  <h2>Radio Button</h2>
+
+  <form name= "myform">
+    <input class = "color" type="radio" name="colour" value="yellow" onclick="handleClick(this)"> Yellow</br>
+    <input class = "color" type="radio" name="colour" value="red" onclick="handleClick(this)"> Red
+  </form> 
+  
+
+  <script src="js/planning.js" async></script>
+</body>
+
+</html>
