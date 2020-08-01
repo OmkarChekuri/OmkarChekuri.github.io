@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>C4D3-Ions</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
-  <link rel="icon" href="./media/Logo-transperant.png" type="image/x-icon" />
+  <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
   <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
   <script src="./js/ions.js" defer></script>
@@ -33,12 +33,19 @@
 <body id="body" onbeforeprint="PrintAlert()">
 
   <div class="navbar">
-    <a href="./C4D3index.html">Home</a>
-    <a href="./covid19.html">Covid19-Viz</a>
-    <a id= "selected" href="./ions.html">Ions-Viz</a>
-    <a href="./people.html">People</a>
+    <a href="/Research/C4D3v1.0/C4D3index.html ">Home</a>
     <a href="https://www.cs.ou.edu/~weaver/nsf-career/index.html" target = "_black">Research</a>
-    
+    <div class="dropdown">
+      <button id="selected" class="dropbtn">Examples 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/Research/C4D3v1.0/covid19.html">Covid19-Viz</a>
+        <a href="/Research/C4D3v1.0/ions.html">Ions-Viz</a>
+      </div>
+    </div> 
+    <a href="./contact.html">Contact</a>
+    <a href="./download.html">Downloads</a>
   </div>
 
   <h1>Ions - Visualization</h1>

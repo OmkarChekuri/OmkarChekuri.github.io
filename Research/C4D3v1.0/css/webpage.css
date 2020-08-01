@@ -21,6 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 }
 
+
+#title{
+  margin-left: 2%;
+}
+
 .header img {
   margin-top: 0;
   float: left;
