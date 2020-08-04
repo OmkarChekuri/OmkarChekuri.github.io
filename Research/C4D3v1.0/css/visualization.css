@@ -312,37 +312,30 @@ table{
 }
 
 
-#box1header, #box2header, .fontvalueheader, #sentance1header, #Referenceheader, .bubblechartheader,
- #rectangleheader, .sliderheader,.textAreaheader,.scatterplotheader,.tableheader, .parallelCoordinatePlotheader, .mapheader {
-  padding: 10px;
-  cursor: move;
-  z-index: 10;
-  background-color: rgb(21, 88, 143);
-  color: #fff;
-}
-
- .insetScatterplotheader {
-  padding: 10px;
-  cursor: move;
-  z-index: 10;
-  background-color: rgb(44, 6, 25);
-  color: #fff;
-}
-
-
-#box1header, #box2header,.fontvalueheader:hover,.sliderheader:hover ,.rectangleheader:hover, .canvasheader,.bubblechartheader, .scatterplotheader,.tableheader{
-  padding: 10px;
+#box1header, #box2header,.fontvalueheader:hover,.sliderheader:hover ,.rectangleheader:hover, .canvasheader,
+.bubblechartheader, .scatterplotheader,.tableheader,.mapheader, .parallelCoordinatePlotheader {
+  padding: 1px;
   cursor: move;
   z-index: 10;
   background-color: rgb(40, 88, 107);
   color: #fff;
 }
 
+.tableheader{
+  padding: 0.5px;
+  cursor: move;
+  z-index: 10;
+  background-color: rgb(40, 88, 107);
+  color: #fff;
+}
 #wrapper {
   overflow:scroll;
 }
 
-
+.dropdown-content
+{
+  z-index: 1;
+}
 
 
 #close {
@@ -427,3 +420,7 @@ background-color:rgb(168, 221, 228);
 } */
 
 
+
+.vertical{
+  display: block;
+}

@@ -1,17 +1,15 @@
-
-// C4D3 is free software: you can redistribute it and/or modify it under
+//   C4D3 is free software: you can redistribute it and/or modify it under
 // the terms of the GNU Affero General Public License as published by the Free
 // Software Foundation, either version 3 of the License, or (at your option) any
 // later version.
-//
+
 // This file is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
 // details.
-//
+
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
-
 
 class VariableEvent {
     //**********************************************************************
@@ -2081,473 +2079,6 @@ class ControlSlider {
 }
 //******************************************************************************
 //# sourceMappingURL=ControlSlider.js.map
-
-//inspired from Jslider class
-class PixelClass {
-    //static control:ControlPixel;
-    //**********************************************************************
-    // Constructor
-    //**********************************************************************
-    constructor(name) {
-        this.events = {};
-        this.name = "pixel";
-        //PixelClass.control = control;
-        this.pixelvalue = 0;
-        this.pixelControlName = name;
-        this.updateUI();
-        if (printClass.printStatus)
-            console.log("Third:" + this.name + " object created");
-        //if(printClass.printStatus) console.log(this);
-    }
-    getValue() {
-        return this.pixelvalue;
-    }
-    setValue(value) {
-        //if(value>=this.min && value <=this.min){
-        this.pixelvalue = value;
-        //**************************need to implement fire property changed method**********************************
-        //this.updateUI();
-        const element = document.getElementById("myValue" + this.pixelControlName);
-        element.value = this.pixelvalue;
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        return;
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    getName() {
-        return this.name;
-    }
-    set setName(name) {
-        this.name = name;
-    }
-    updateUI() {
-        /*        if(this.pixels.indexOf(newname)>-1){
-                   throw Error("Name Already Exists");
-               }
-               else{
-                   this.name = newname;
-                   this.pixels.push(newname);
-               }
-                */
-        var div1 = document.createElement("div");
-        div1.id = this.pixelControlName;
-        div1.className = "fontvalue";
-        var numberPattern = /\d+/g;
-        div1.style.left = parseInt(this.pixelControlName.match(numberPattern).toString()) * 200 + "px";
-        //console.log(this.pixelControlName.match(numberPattern));
-        //create a closable icon
-        var div0 = document.createElement("button");
-        div0.id = "close";
-        div0.title = "close";
-        div0.innerHTML = "X";
-        div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        div1.appendChild(div0);
-        var div2 = document.createElement("div");
-        div2.id = div1.id + "header";
-        div2.className = "fontvalueheader";
-        div2.textContent = div1.id;
-        div1.appendChild(div2);
-        var h = document.createElement("h2");
-        h.textContent = "Font size in Pixels";
-        div1.appendChild(h);
-        if (printClass.printStatus)
-            console.log(this.name);
-        var fontControl = document.createElement('input');
-        fontControl.id = "myValue" + this.pixelControlName;
-        fontControl.type = 'number';
-        fontControl.min = "0";
-        fontControl.max = "100";
-        fontControl.value = "50";
-        //document.body.appendChild(fontControl); 
-        div1.appendChild(fontControl);
-        document.body.appendChild(div1);
-        this.makeDraggable();
-        return this;
-    }
-    makeDraggable() {
-        var D1 = new Draggable();
-        //var D1 = new Draggable();
-        var temp = this.pixelControlName;
-        try {
-            document.getElementById(this.pixelControlName + "header")
-                .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
-        }
-        catch (error) {
-            throw Error("The Element by id " + this.pixelControlName + " do not exist");
-        }
-    }
-}
-//# sourceMappingURL=pixel.js.map
-
-class ControlPixel {
-    //**********************************************************************
-    // Constructors and Finalizer
-    //**********************************************************************
-    constructor(name) {
-        //**********************************************************************
-        // Public Class Members (Properties)
-        //**********************************************************************
-        //events:{[key:string]:Callback[]} ={};
-        this.CTAG_VALUE = "Value";
-        this.TYPE_VALUE = new Prototype(Number.prototype, this.CTAG_VALUE, 0);
-        this.proxy = new ControlProxy(this);
-        this.live_property = this.proxy.add(this.CTAG_VALUE, this.TYPE_VALUE, true);
-        this.ControlName = name;
-        this.Pixel = new PixelClass(name);
-        //create the variables pproxy and ttag to be used in add event listener as we cannot use this 
-        //keyword to access the current class i.e control slider inside the add event listener method.
-        var pproxy = this.proxy;
-        var ttag = this.CTAG_VALUE;
-        document.getElementById("myValue" + name).addEventListener("input", function () { pproxy.getLiveProperty(ttag).setValue(parseInt(this.value)); });
-    }
-    //**********************************************************************
-    // Public Methods (Properties)
-    //**********************************************************************
-    getValue() {
-        return this.proxy.getValue(this.CTAG_VALUE);
-    }
-    setValue(value) {
-        this.proxy.setValue(this.CTAG_VALUE, value);
-        this.Pixel.setValue(value);
-    }
-    //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    stateChanged(e) {
-        var value = this.Pixel.getValue();
-        if (value != this.getValue())
-            this.setValue(value);
-    }
-    //**********************************************************************
-    // Override Methods (LivePropertyListener)
-    //**********************************************************************
-    propertyChanged(e) {
-        if (printClass.printStatus)
-            console.log("I am in property changed method of control Pixel");
-        if (printClass.printStatus)
-            console.log(e);
-        var tag = e.getLiveProperty().getTag();
-        if (printClass.printStatus)
-            console.log(tag);
-        var ve = e.getVariableEvent();
-        if (printClass.printStatus)
-            console.log(ve);
-        //if ((ve == null) || (ve.getType == VariableEvent.VALUE_CHANGED))
-        //{
-        if (tag == this.CTAG_VALUE) {
-            if (printClass.printStatus)
-                console.log("hurray");
-            if (printClass.printStatus)
-                console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //if(printClass.printStatus) console.log(e.getLiveProperty().getVariable().getValue());
-            this.Pixel.setValue(e.getLiveProperty().getVariable().getValue());
-            //this.Pixel.setValue(e.getLiveProperty().getVariable().getValue());
-        }
-        //}
-    }
-    //**********************************************************************
-    // Private Methods (Graphics)
-    //**********************************************************************
-    describe() {
-        throw new Error("Method not implemented.");
-    }
-    dispose() {
-        throw new Error("Method not implemented.");
-    }
-}
-//******************************************************************************
-//# sourceMappingURL=ControlPixel.js.map
-
-//inspired from Jslider class
-class CanvasClass {
-    //**********************************************************************
-    // Constructor
-    //**********************************************************************
-    constructor(name) {
-        //events:{[key:string]:Callback[]} ={};
-        //**********************************************************************
-        // Private Class Members
-        //**********************************************************************
-        this.name = "canvas";
-        this.height = 400;
-        this.width = 400;
-        this.canvasControlName = name;
-        this.updateUI();
-        if (printClass.printStatus)
-            console.log("rectangle object created");
-        //if(printClass.printStatus) console.log(this);
-    }
-    //************************
-    // Getters and Setters
-    //************************
-    getHeight() {
-        return this.height;
-    }
-    getWidth() {
-        return this.width;
-    }
-    setHeight(value) {
-        if (printClass.printStatus)
-            console.log("set Height method of Canvas");
-        if (printClass.printStatus)
-            console.log(value);
-        //if(value>=this.min && value <=this.min){
-        this.height = value;
-        //**************************need to implement fire property changed method**********************************
-        //this.updateUI();
-        if (printClass.printStatus)
-            console.log(this.canvasControlName);
-        const IPelement = document.getElementById("myCanvas" + this.canvasControlName);
-        //IPelement.height = this.height*4;
-        var temp = this.height;
-        IPelement.height = temp * 4;
-        IPelement.getContext("2d").fillRect(0, 0, temp * 4, temp * 4);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    setWidth(value) {
-        if (printClass.printStatus)
-            console.log("set width method of Canvas");
-        if (printClass.printStatus)
-            console.log(value);
-        //if(value>=this.min && value <=this.min){
-        this.width = value;
-        //**************************need to implement fire property changed method**********************************
-        //this.updateUI();
-        if (printClass.printStatus)
-            console.log(this.canvasControlName);
-        const IPelement = document.getElementById("myCanvas" + this.canvasControlName);
-        var temp = this.width;
-        IPelement.width = temp * 4;
-        IPelement.getContext("2d").fillRect(0, 0, temp * 4, temp * 4);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    getName() {
-        return this.name;
-    }
-    setName(name) {
-        this.name = name;
-    }
-    //******************
-    //public Methods
-    //*****************
-    updateUI() {
-        //create a div element to hold slider
-        var div1 = document.createElement("div");
-        div1.id = this.canvasControlName;
-        div1.className = "canvas";
-        var numberPattern = /\d+/g;
-        div1.style.left = (parseInt(this.canvasControlName.match(numberPattern).toString()) - 1) * 400 + "px";
-        //div1.style.left = Math.random()*2000 + "px";
-        //create a closable icon
-        var div0 = document.createElement("button");
-        div0.id = "close";
-        div0.innerHTML = "X";
-        div0.title = "close";
-        div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        div1.appendChild(div0);
-        //create a div header for the slider
-        var div2 = document.createElement("div");
-        div2.id = div1.id + "header";
-        div2.className = "canvasheader";
-        div2.textContent = div1.id;
-        //make the div element a child to the header
-        div1.appendChild(div2);
-        //Add additional information to the control and append it
-        var h = document.createElement("h2");
-        //h.textContent = "Rectangle size based on the slider";
-        div1.appendChild(h);
-        //if(printClass.printStatus)     console.log(this.canvasControlName);
-        //create a slider inside the div element and make it a child
-        var canvas_ = document.createElement('canvas');
-        canvas_.id = "myCanvas" + this.canvasControlName;
-        //slider.type = 'ca';
-        canvas_.height = 400;
-        canvas_.width = 400;
-        //var ccanvas = document.g 
-        //var ctx = 
-        canvas_.getContext("2d").fillStyle = "green";
-        canvas_.getContext("2d").fillRect(0, 0, canvas_.height, canvas_.width);
-        div1.appendChild(canvas_);
-        //add the div element to the document body
-        document.body.appendChild(div1);
-        //call the make draggable function
-        this.makeDraggable();
-        //this.attachEventListener(slider.id);
-        //if(printClass.printStatus) console.log(this.value);
-        return this;
-    }
-    getSUpport() {
-        if (printClass.printStatus)
-            console.log("support Recieved");
-    }
-    makeDraggable() {
-        //create instance of a Draggable class
-        var D1 = new Draggable();
-        var temp = this.canvasControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
-        //check if the element that needs to be made draggable exist, else throw error        
-        try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.canvasControlName + "header")
-                .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
-        }
-        catch (error) {
-            throw Error("The Element by id " + this.canvasControlName + " do not exist");
-        }
-    }
-}
-//# sourceMappingURL=canvas.js.map
-
-class ControlCanvas {
-    //**********************************************************************
-    // Constructors and Finalizer
-    //**********************************************************************
-    constructor(name) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
-        //**********************************************************************
-        // Public Class Members (Properties)
-        //**********************************************************************
-        this.CTAG_Height = "Height";
-        this.CTAG_Width = "Width";
-        this.TYPE_Height = new Prototype(Number.prototype, this.CTAG_Height, 0);
-        this.TYPE_Width = new Prototype(Number.prototype, this.CTAG_Width, 0);
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
-        this.proxy = new ControlProxy(this);
-        //create live property
-        this.live_property1 = this.proxy.add(this.CTAG_Height, this.TYPE_Height, true);
-        this.live_property2 = this.proxy.add(this.CTAG_Width, this.TYPE_Width, true);
-        if (printClass.printStatus)
-            console.log(this.live_property1);
-        if (printClass.printStatus)
-            console.log(this.live_property2);
-        this.ControlName = name;
-        this.canvas = new CanvasClass(name);
-        if (printClass.printStatus)
-            console.log(name);
-        //create the variables pproxy and ttag to be used in add event listener as we cannot use this 
-        //keyword to access the current class i.e control slider inside the add event listener method.
-        var pproxy = this.proxy;
-        var ttagH = this.CTAG_Height;
-        var ttagW = this.CTAG_Width;
-        // document.getElementById("myCanvas" + name).addEventListener("click", function(event)
-        // {
-        //     pproxy.getLiveProperty(ttagH).setValue(event.screenX);
-        //     if(printClass.printStatus) console.log(event.clientX);
-        //     pproxy.getLiveProperty(ttagW).setValue(event.screenY);
-        //     if(printClass.printStatus) console.log(event.clientY);
-        // } );
-    }
-    //**********************************************************************
-    // Public Methods (Properties)
-    //**********************************************************************
-    getHeight() {
-        return (this.proxy.getValue(this.CTAG_Height));
-    }
-    setHeight(value) {
-        this.proxy.setValue(this.CTAG_Height, value);
-        //this.canvas.setValue(value);
-    }
-    getWidth() {
-        return (this.proxy.getValue(this.CTAG_Width));
-    }
-    setWidth(value) {
-        this.proxy.setValue(this.CTAG_Width, value);
-        //this.canvas.setValue(value);
-    }
-    //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
-    // Override Methods (LivePropertyListener)
-    //**********************************************************************
-    propertyChanged(e) {
-        if (printClass.printStatus)
-            console.log("propertyChanged method of controlSlider");
-        if (printClass.printStatus)
-            console.log(e);
-        var tag = e.getLiveProperty().getTag();
-        if (printClass.printStatus)
-            console.log(tag);
-        var ve = e.getVariableEvent();
-        if (printClass.printStatus)
-            console.log(ve); //this value should not be null
-        if (printClass.printStatus)
-            console.log(ve.getType());
-        if (printClass.printStatus)
-            console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
-        if (tag == this.CTAG_Height) {
-            if (printClass.printStatus)
-                console.log("hurray ControlCanvas height");
-            if (printClass.printStatus)
-                console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            if (printClass.printStatus)
-                console.log(e.getLiveProperty().getVariable().getValue());
-            this.canvas.setHeight(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Width) {
-            if (printClass.printStatus)
-                console.log("hurray ControlCanvas Width");
-            if (printClass.printStatus)
-                console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            if (printClass.printStatus)
-                console.log(e.getLiveProperty().getVariable().getValue());
-            this.canvas.setWidth(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        console.log(value);
-    }
-    //**********************************************************************
-    // Private Methods (Graphics)
-    //**********************************************************************
-    describe() {
-        throw new Error("Method not implemented.");
-    }
-    dispose() {
-        throw new Error("Method not implemented.");
-    }
-}
-//******************************************************************************
-//# sourceMappingURL=ControlCanvas.js.map
 
 var version = "5.16.0";
 
@@ -21148,7 +20679,7 @@ var d3 = Object.freeze({
 //need to create view box
 class ScatterplotClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentName, control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
+    constructor(control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -21165,7 +20696,6 @@ class ScatterplotClass {
         this.colorIndex = color$$1;
         this.circleSizeIndex = size;
         this.textIndex = text$$1;
-        this.parentDocument = parentName;
         this.parentControl = control;
         if (printClass.printStatus)
             console.log("let's see");
@@ -21187,7 +20717,7 @@ class ScatterplotClass {
         var D1 = new Draggable();
         var temp = this.scatterplotControlName;
         try {
-            document.getElementById(this.scatterplotControlName)
+            document.getElementById(this.scatterplotControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -21278,8 +20808,8 @@ class ScatterplotClass {
         else {
             select(`#${this.scatterplotControlName}`).select("svg").selectAll("circle")
                 .data(this.LocalData)
-                .attr("stroke", function (d, index) { return value[index] == true ? "black" : "black"; })
-                .attr("stroke-width", function (d, index) { return value[index] == true ? 3 : 0.1; });
+                .attr("stroke", function (d, index) { return value[index] == true ? "orange" : "black"; })
+                .attr("stroke-width", function (d, index) { return value[index] == true ? 1 : 0.1; });
         }
     }
     setIndication(value) {
@@ -21312,7 +20842,12 @@ class ScatterplotClass {
             xScale.domain(Domain)
                 .range([0, plotWidth]);
             this.xScale = xScale;
-            this.xAxis.call(axisBottom(xScale));
+            this.xAxis.call(axisBottom(xScale))
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", "rotate(-45)");
             //Update the scatterplot based on new zoom event
             this.axisGroup
                 .selectAll("circle")
@@ -21369,10 +20904,6 @@ class ScatterplotClass {
     }
     render(parentControl) {
         var localParentControl = parentControl;
-        //create a div element to hold scatterplot
-        var parentDocument = this.parentDocument;
-        //console.log(parentDocument.document)
-        //parentDocument.alert("Hi"); 
         // var parent: HTMLElement = document.getElementById(parentId)
         var div1 = document.createElement("div");
         div1.id = this.scatterplotControlName;
@@ -21380,24 +20911,15 @@ class ScatterplotClass {
         var numberPattern = /\d+/g;
         //this.canvasWidth = 360;
         var offset = 20;
-        //parentDocument.appendChild(div1);
-        //console.log(parentDocument);
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
-        //create a closable icon
-        //var div0: HTMLButtonElement = document.createElement("button");
-        //div0.id = "close";
-        //div0.innerHTML = "X";
-        //div0.title = "close";
-        //div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        //div1.appendChild(div0);
         //create a div header for the scatterplot
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "scatterplotheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         var data = this.Data;
         const renderPlot = (data) => {
             //console.log(data);
@@ -21413,14 +20935,11 @@ class ScatterplotClass {
             var colorIndex = this.colorIndex;
             var circleSizeIndex = this.circleSizeIndex;
             var textIndex = this.textIndex;
-            // console.log("horizontal is " + horizontal);
-            // console.log("vertical is " + vertical);
-            //console.log(colArray[horizontal]);
             var item = this.helper[0];
             //console.log(item);
             function Label(index) { return colArray[index] + "→"; }
             this.LocalData = data;
-            var margin = { top: 30, right: 15, bottom: 40, left: 50 };
+            var margin = { top: 20, right: 15, bottom: 40, left: 50 };
             var plotWidth = this.inputWidth - margin.left - margin.right;
             var plotHeight = this.inputHeight - margin.top - margin.bottom;
             this.plotWidth = plotWidth;
@@ -21450,7 +20969,12 @@ class ScatterplotClass {
                 .attr("transform", "translate(0," + plotHeight + ")");
             if (this.showHoriz) {
                 //append the xAxis to group 
-                this.xAxis.call(axisBottom(xScale));
+                this.xAxis.call(axisBottom(xScale))
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".15em")
+                    .attr("transform", "rotate(-45)");
                 labelsGroup
                     .append("text")
                     .text(Label(horizontal))
@@ -21536,17 +21060,6 @@ class ScatterplotClass {
                 .call(exit => exit.transition(t)
                 .attr("r", 0)
                 .remove()));
-            //   this.scatter
-            //   .append("g")
-            //   .attr("font-family", "sans-serif")
-            //   .attr("font-size", 0)
-            //   .selectAll("text")
-            //   .data(data)
-            //   .join("text")
-            //   .attr("dy", "0.35em")
-            //   .attr("x", function (d) { return xScale(item(d,horizontal)) +7; })
-            //   .attr("y", function (d) { return yScale(item(d,vertical)); })
-            //   .text(d => item(d,textIndex))
             this.scatter
                 .selectAll("circle")
                 .on("mouseover", onMouseOver) //Add listener for the mouseover event
@@ -21598,23 +21111,6 @@ class ScatterplotClass {
                 selectAll(".val").remove();
             }
             var shiftKey;
-            // // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
-            // var zoom = d3.zoom()
-            //   .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-            //   .extent([[0, 0], [plotWidth, plotHeight]])
-            //   .on("zoom", updateChart);
-            // //This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-            // var zoomRect = axisGroup.append("rect")
-            //   .attr("cursor", "move")
-            //   .attr("pointer-events", "all")
-            //   .attr("width", plotWidth)
-            //   .attr("height", plotHeight)
-            //   .style("fill", "white")
-            //   .style("opacity", 0.1)
-            //   .call(zoom);
-            //var zoomRect = axisGroup
-            //.attr("pointer-events", "all")
-            //.call(zoom);
             // A function that updates the chart when the user zoom and thus new boundaries are available
             var myArrayTable = [];
             //brushed over the scatterplot       
@@ -21681,7 +21177,7 @@ class ControlScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
+    constructor(name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -21733,7 +21229,7 @@ class ControlScatterplot {
         this.live_property_brushY = this.proxy.add(this.CTAG_brushY, this.TYPE_brushY, true);
         this.ControlName = name;
         //console.log(data)
-        this.scatterplot = new ScatterplotClass(parentWindow, this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
+        this.scatterplot = new ScatterplotClass(this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -21873,7 +21369,7 @@ class ControlScatterplot {
 //removed active cases from table- 6/6/2020
 //commented value checks in set value 06/29/2020
 class TableClass {
-    constructor(parentWindow, control, name, data, xPos, yPos, inputWidth, inputHeight) {
+    constructor(control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
         this.height = 480;
         if (printClass.printStatus)
@@ -21894,20 +21390,13 @@ class TableClass {
         //console.log(this.SelectionArray)
         this.IndicationArray = new Array(data[0].length);
         this.IndicationArray.fill(false, 0);
-        this.parentWindow = parentWindow;
         this.render(control, data);
     }
     makeDraggable() {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.tableControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
-        //check if the element that needs to be made draggable exist, else throw error
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document
                 .getElementById(this.tableControlName + "header")
                 .addEventListener("mousedown", function () {
@@ -21989,8 +21478,6 @@ class TableClass {
         }
     }
     updateTable_Selection(dataTable, PropData, property) {
-        //var tablebody = d3.select("#table1");
-        //console.log(dataTable);
         var tablebody = select(`#${this.tableControlName}`)
             .select("table")
             .select("tbody");
@@ -22006,8 +21493,6 @@ class TableClass {
         });
         this.rows
             .style("color", function (d, index) {
-            // d.SelectStatus = (dataTable[index].SelectStatus);
-            //console.log("background changed");
             if (PropData[index] == true) {
                 //console.log(this)
                 return "red";
@@ -22057,9 +21542,6 @@ class TableClass {
         });
     }
     setHoverSelection(data) {
-        //console.log("tree");
-        //console.log(data[0]);
-        //this.updateTable(data);
     }
     updateTable(dataTable, PropData, property) {
         //var tablebody = d3.select("#table1");
@@ -22113,28 +21595,13 @@ class TableClass {
     }
     render(parentControl, Data) {
         var localParentControl = parentControl;
-        var parentWindow = this.parentWindow;
         //create a div element to hold table
         var div1 = document.createElement("div");
         div1.id = this.tableControlName;
         //console.log(div1.id);
         div1.className = "table";
-        var offset = 20;
-        var numberPattern = /\d+/g;
-        //div1.style.left = (parseInt(this.tableControlName.match(numberPattern).toString())) * offset + "px";
-        //div1.style.left = Math.random()*2000 + "px";
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
-        //create a closable icon
-        //var div0: HTMLButtonElement = parentWindow.document.createElement("button");
-        //div0.id = "close";
-        //div0.innerHTML = "X";
-        //div0.title = "close";
-        //div0.onclick = function () {
-        //               div0.parentNode.parentNode.removeChild(div0.parentNode);
-        //  return false;
-        //};
-        //div1.appendChild(div0);
         //create a div header for the table
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
@@ -22165,11 +21632,11 @@ class TableClass {
             var table = select(div1)
                 .append("table")
                 .style("border-collapse", "collapse")
-                .style("border", "2px solid black")
+                .style("border", "0.5px solid black")
                 .attr("width", plotWidth + margin.left)
                 .attr("height", plotHeight + margin.top + margin.bottom)
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-                .attr("border", 2);
+                .attr("border", 1);
             var header = table.append("thead").append("tr");
             //console.log(Object.keys(data));
             header
@@ -22179,26 +21646,17 @@ class TableClass {
                 .append("th")
                 .text(function (d) {
                 return d;
-            });
+            })
+                .style("font-size", "14px");
             var tablebody = table.append("tbody");
             this.rows = tablebody
                 .selectAll("tr")
                 .data(data)
                 .enter()
                 .append("tr")
-                .style("font-family", "serif");
-            //var color = d3.scaleOrdinal(data.map(d => d.Continent), d3.schemeSet1)
-            //var color = d3.scaleOrdinal(data.map(d => d.Continent), d3.schemeSet3).unknown("black")
+                .style("font-family", "serif")
+                .style("font-size", "13px");
             var color$$1 = ordinal(data.map((d) => (d.Continent)), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
-            //console.log(data)
-            // let color: any;
-            // if(item(data[0],colorIndex).__proto__ == String.prototype)
-            // {
-            //    color = d3.scaleOrdinal(data.map((d: any) => (item(d,colorIndex))), ["#8dd3c7","#bebada", "#fb8072","#80b1d3","#ffffb3","#fdb462","#b3de69" ]).unknown(null)
-            // }else if(item(data[0],colorIndex).__proto__ == Number.prototype)
-            // {
-            //    color = d3.scaleLinear<string>(d3.extent(data, (d) => (item(d,colorIndex))), ["red", "black"]).unknown(null)
-            // }
             var cells = this.rows
                 .selectAll("td") // each row has data associated; we get it and enter it for the cells.
                 .data(function (d) {
@@ -22211,24 +21669,13 @@ class TableClass {
                 return d;
             })
                 .style("background", function (d, index) {
-                //console.log("Hell");
-                //console.log(index);
-                //console.log(d);
                 if (index == 2) {
                     //console.log( d + " " +color(d));
                     return color$$1(d);
                 }
                 else {
                     return null;
-                } // if(d == "Asia")
-                // {
-                //   //console.log(d )
-                //   console.log(this)
-                //   return "red"
-                // }
-                // else{
-                //   return null
-                // }
+                }
             });
             
             var mouseoverstatus = false;
@@ -22268,22 +21715,14 @@ class TableClass {
             }
             function updateDrag(d, index) {
                 if (mousedownstatus == true && mouseoverstatus == true) {
-                    //console.log("before before");
-                    // console.log(SelectionArray);
-                    //console.log(d);
                     SelectionArray = localParentControl.getProxy().getLiveProperty("Selection").getValue();
-                    //console.log("before");
-                    //console.log(SelectionArray);
                     if (SelectionArray[index] == false) {
                         SelectionArray[index] = true;
                     }
                     else {
                         SelectionArray[index] = false;
                     }
-                    //console.log("after");
-                    //console.log(SelectionArray);
                     localParentControl.getProxy().getLiveProperty("Selection").setValue(SelectionArray);
-                    //localParentControl.getProxy().getLiveProperty("Data").setValue(data);
                 }
             }
         };
@@ -22299,7 +21738,7 @@ class ControlTable {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, inputWidth, inputHeight) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -22332,7 +21771,7 @@ class ControlTable {
         this.live_property_Indication = this.proxy.add(this.CTAG_Indication, this.TYPE_Indication, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.ControlName = name;
-        this.table = new TableClass(parentWindow, this, name, data, xPos, yPos, inputWidth, inputHeight);
+        this.table = new TableClass(this, name, data, xPos, yPos, inputWidth, inputHeight);
         if (printClass.printStatus)
             console.log(name);
         //create the variables pproxy and ttag to be used in add event listener as we cannot use this 
@@ -22501,7 +21940,7 @@ class ControlTable {
 //need to create view box
 class ParallelCoordinatePlotClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentWindow, control, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color$$1, dims) {
+    constructor(control, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color$$1, dims) {
         this.width = 960;
         this.height = 480;
         if (printClass.printStatus)
@@ -22515,14 +21954,9 @@ class ParallelCoordinatePlotClass {
         this.inputHeight = inputHeight;
         this.parallelCoordinatePlotName = name;
         this.parentControl = control;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
         this.Data = data;
         this.helper = helper;
         this.colorIndex = color$$1;
-        this.parentWindow = parentWindow;
         this.dims = dims;
         this.render(control);
         this.previousX = 0;
@@ -22539,7 +21973,7 @@ class ParallelCoordinatePlotClass {
             //event listener on , otherwise this keyword refers to the sliderClass object
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.parallelCoordinatePlotName)
+            document.getElementById(this.parallelCoordinatePlotName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -22571,95 +22005,6 @@ class ParallelCoordinatePlotClass {
         /*  else{
              throw Error("Value not in bounds")
          } */
-    }
-    translateX(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var xScale = value[2];
-        var change = value[0] - this.previousX;
-        var directionHorizontal;
-        if (change >= 0) {
-            directionHorizontal = 1;
-        }
-        else {
-            directionHorizontal = -1;
-        }
-        if (newX == 0 || newX == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionHorizontal * (xScale.invert(this.previousX)) - directionHorizontal * (xScale.invert(change));
-            xScale.domain([xScale.domain()[0] + shift, xScale.domain()[1] + shift]);
-            this.xAxis.call(axisBottom(xScale));
-            //Update the ParallelCoordinatePlot based on new zoom event
-            select(`#${this.parallelCoordinatePlotName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return xScale(horiz(d)); });
-            this.previousX = value[0];
-        }
-    }
-    translateY(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        //console.log("translateY method of parallelCoordinatePlot");
-        //console.log("Hurray" + this.parallelCoordinatePlotName);
-        var change = value[0] - this.previousY;
-        var directionVertical;
-        if (change >= 0) {
-            //console.log("positive direction");
-            directionVertical = 1;
-        }
-        else {
-            //console.log("negative direction");
-            directionVertical = -1;
-        }
-        var newY = value[0];
-        var yScale = value[3];
-        if (newY == 0 || newY == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionVertical * (yScale.invert(this.previousY)) - directionVertical * (yScale.invert(change));
-            yScale.domain([yScale.domain()[0] + shift, yScale.domain()[1] + shift]);
-            this.yAxis.call(axisLeft(yScale));
-            //Update the ParallelCoordinatePlot based on new zoom event
-            select(`#${this.parallelCoordinatePlotName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cy', function (d) { return yScale(verti(d)); });
-            this.previousY = value[0];
-        }
     }
     setOpacity(value) {
         //console.log("setOpacity of ParallelCoordinatePlot");
@@ -22700,54 +22045,6 @@ class ParallelCoordinatePlotClass {
             });
         }
     }
-    setZoom(value) {
-        //console.log("Hurray" + this.parallelCoordinatePlotName);
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var newY = value[1];
-        if (newX == 0 && newY == undefined) {
-        }
-        else {
-            this.xAxis.call(axisBottom(newX));
-            this.yAxis.call(axisLeft(newY));
-            //Update the ParallelCoordinatePlot based on new zoom event
-            select(`#${this.parallelCoordinatePlotName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return newX(horiz(d)); })
-                .attr('cy', function (d) { return newY(verti(d)); });
-        }
-    }
     render(parentControl) {
         var localParentControl = parentControl;
         var parentWindow = this.parentWindow;
@@ -22773,9 +22070,9 @@ class ParallelCoordinatePlotClass {
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "parallelCoordinatePlotheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         //console.log("I am printing D3 Object in ParallelCoordinatePlotClass");
         var d3obj = d3;
         //console.log(d3obj);
@@ -22907,7 +22204,7 @@ class ControlParallelCoordinatePlot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color, dims) {
+    constructor(name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color, dims) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -22944,7 +22241,7 @@ class ControlParallelCoordinatePlot {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.parallelCoordinatePlot = new ParallelCoordinatePlotClass(parentWindow, this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color, dims);
+        this.parallelCoordinatePlot = new ParallelCoordinatePlotClass(this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color, dims);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -23093,7 +22390,7 @@ class GradientClass {
         //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error        
         try {
-            document.getElementById(this.gradientControlName)
+            document.getElementById(this.gradientControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -23133,9 +22430,9 @@ class GradientClass {
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "gradientheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         var data = this.Data;
         var item = this.helper[0];
         const renderPlot = (data) => {
@@ -23733,32 +23030,20 @@ function reverse$2(array, start, end) {
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
 class MapClass {
-    constructor(parentWindow, control, name, data, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
         this.height = 480;
-        this.showHoriz = true;
-        this.showVerti = true;
         if (printClass.printStatus)
             console.log("I am in constructor of MapClass");
         this.mapControlName = name;
-        //this.glyph = symbol;// as unknown as d3.SymbolType;
-        this.horizontal = horizontalAxisIndex;
-        this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.mapControlName = name;
         this.parentControl = control;
-        this.parentDocument = parentWindow;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
         this.previousX = 0;
         this.previousY = 0;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.showHoriz = showHoriz;
-        this.showVerti = showVerti;
         this.Data = data;
         //console.log(data[2]);
         this.SelectionArray = new Array(data[2].length);
@@ -23778,7 +23063,7 @@ class MapClass {
             //event listener on , otherwise this keyword refers to the sliderClass object
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.mapControlName)
+            document.getElementById(this.mapControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -23910,26 +23195,16 @@ class MapClass {
         div1.id = this.mapControlName;
         div1.className = "map";
         var numberPattern = /\d+/g;
-        //this.canvasWidth = 360;
         var offset = 20;
-        //div1.style.left = (parseInt(this.mapControlName.match(numberPattern).toString()) -1) *( this.inputWidth + offset) +offset + "px";
-        //div1.style.left = Math.random()*2000 + "px";
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
-        //create a closable icon
-        //var div0: HTMLButtonElement = parentDocument.document.createElement("button");
-        //div0.id = "close";
-        //div0.innerHTML = "X";
-        //div0.title = "close";
-        //div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        //div1.appendChild(div0);
         //create a div header for the map
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "mapheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         //console.log("I am printing D3 Object in MapClass");
         var d3obj = d3;
         //console.log(d3obj);
@@ -23991,19 +23266,6 @@ class MapClass {
             })
                 .append('title')
                 .text(d => countryName[d.id]);
-            //cannot add labels to the map because the original data do not contain coordinates or countries
-            // g
-            // .append("g")
-            // .attr("font-family", "sans-serif")
-            // .attr("font-size", 10)
-            // .selectAll("text")
-            // .data(countries.features)
-            // .join("text")
-            // .attr("dy", "0.35em")
-            // .attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
-            // //.attr("x", function (d) { return xScale(item(d,horizontal)) +7; })
-            // //.attr("y", function (d) { return yScale(item(d,vertical)); })
-            // .text(d => countryName[d.id])
             g.selectAll("path")
                 .on("mouseover", onMouseOver) //Add listener for the mouseover event
                 .on("mouseout", onMouseOut) //Add listener for the mouseover event
@@ -24016,33 +23278,6 @@ class MapClass {
             var mouseoverstatus = false;
             var mousedownstatus = false;
             function onMouseOver(d) {
-                //console.log(this);
-                /*        var s = this as SVGClipPathElement;
-                       //console.log(s.attributes);
-                       var tag = s.attributes[0].ownerElement.innerHTML.replace("<title>","").replace("</title>","");
-                       // console.log(tit )
-                       //console.log(this)
-                       //.getAttribute("title"))
-                       //console.log(this.getAttribute("d").substr(0, this.getAttribute("d").indexOf('L')) );
-                       var coord = this.getAttribute("d").split('L')[0].replace("M","").split(",");
-                       //console.log(coord);
-                       //console.log(coord[0] + "   " + coord[1] );
-                
-                      
-                
-                      g.append("g")
-                      .selectAll("text")
-                      .join("text")
-                      .attr("class", "place-label")
-                      .attr("transform", function(d) {
-                        console.log(tag)
-                        return "translate(" + coord[0] + "," + coord[1] + ")"; })
-                      //.attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
-                      .attr("dy", ".35em")
-                      .style("text-anchor",  "start")
-                      .text(function() {
-                        console.log(tag)
-                        return tag }); */
                 mouseoverstatus = true;
                 var idx = mapHover2.get(d.properties.name);
                 //console.log(idx);
@@ -24112,7 +23347,7 @@ class MapClass {
                     .attr('x', textOffset);
             }
             svg$$1.append('g')
-                .attr('transform', `translate(20,200)`)
+                .attr('transform', `translate(20,150)`)
                 .call(colorLegend, {
                 color: color$$1,
                 circleRadius: 10,
@@ -24131,7 +23366,7 @@ class ControlMap {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -24162,7 +23397,7 @@ class ControlMap {
         this.live_property_Indication = this.proxy.add(this.CTAG_Indication, this.TYPE_Indication, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.ControlName = name;
-        this.map = new MapClass(parentWindow, this, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
+        this.map = new MapClass(this, name, data, xPos, yPos, inputWidth, inputHeight);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -24287,7 +23522,7 @@ class ControlMap {
 //need to create view box
 class BubbleChartClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentWindow, control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
+    constructor(control, data, name, xPos, yPos, inputWidth, inputHeight, helper, color$$1, size, text$$1) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -24295,31 +23530,21 @@ class BubbleChartClass {
         if (printClass.printStatus)
             console.log("I am in constructor of BubbleChartClass");
         this.bubblechartControlName = name;
-        //this.glyph = symbol;// as unknown as d3.SymbolType;
-        this.horizontal = horizontalAxisIndex;
-        this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.bubblechartControlName = name;
         this.colorIndex = color$$1;
         this.circleSizeIndex = size;
         this.textIndex = text$$1;
-        this.parentWindow = parentWindow;
         this.SelectionArray = new Array(data.length);
         this.SelectionArray.fill(false, 0);
         this.IndicationArray = new Array(data.length);
         this.IndicationArray.fill(false, 0);
         this.parentControl = control;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
         this.previousX = 0;
         this.previousY = 0;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.showHoriz = showHoriz;
-        this.showVerti = showVerti;
         this.Data = data;
         this.helper = helper;
         this.render(control);
@@ -24335,7 +23560,7 @@ class BubbleChartClass {
             //event listener on , otherwise this keyword refers to the sliderClass object
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.bubblechartControlName)
+            document.getElementById(this.bubblechartControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -24452,15 +23677,15 @@ class BubbleChartClass {
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "bubblechartheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         var data = this.Data;
         const renderPlot = (data) => {
             //console.log(data);
             var colArray = Object.keys(data[0]);
             //console.log("BubbleChart Render Method");
-            console.log(colArray);
+            //console.log(colArray);
             var horizontal = this.horizontal;
             var vertical = this.vertical;
             var colorIndex = this.colorIndex;
@@ -24485,56 +23710,52 @@ class BubbleChartClass {
             // append the svg object to the body of the page
             var svg$$1 = select(div1)
                 .append("svg")
+                .attr("class", "vertical")
                 .attr("width", this.innerWidth)
                 .attr("height", this.innerHeight);
-            var defs = svg$$1.append("defs");
-            var readialGradient = defs.append("radialGradient")
-                .attr("id", "circleGradient");
-            readialGradient.append("stop")
-                .attr("offset", 0)
-                .attr("stop-color", " aqua ")
-                .attr("stop-setOpacity", 1);
-            readialGradient.append("stop")
-                .attr("offset", 100)
-                .attr("stop-color", " pink ")
-                .attr("stop-setOpacity", 1);
-            var linearGradient = defs.append("linearGradient")
-                .attr("id", "neonGradient");
-            linearGradient.append("stop")
-                .attr("offset", 0)
-                .attr("stop-color", " yellow ")
-                .attr("stop-setOpacity", 1);
-            linearGradient.append("stop")
-                .attr("offset", 100)
-                .attr("stop-color", " orange ")
-                .attr("stop-setOpacity", 1);
-            var pattern = defs.append("pattern")
-                .attr("id", "figure")
-                .attr("height", "100%")
-                .attr("width", "100%")
-                .attr("patternContentUnits", "objectBoundingBox")
-                .append("image")
-                .attr("height", 1)
-                .attr("width", 1)
-                .attr("preserveAspectRatio", "none")
-                .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
-                .attr("xlink:href", "./media/image.jpg");
-            var group = svg$$1.append("g")
-                .attr("transform", "translate(" + plotWidth / 2 + "," + plotHeight / 2 + ")");
+            var dropdown = select(div1)
+                .insert("select", "svg")
+                .attr("id", "sizeSelector")
+                .attr('transform', `translate(120,30)`)
+                .on("change", changed);
+            var dropDownArrar = [{ variable: "Radius:CasesPerMillion", Index: "8" }, { variable: " Radius:DeathsPerMillion", Index: "9" }];
+            dropdown
+                .selectAll("option")
+                .data(dropDownArrar)
+                .enter().append("option")
+                .text(function (d) { return d.variable; })
+                .attr("value", function (d) { return d.Index; });
+            function changed(d) {
+                // console.log("changed");
+                console.log(select(this).property("value"));
+                var index = select(this).property("value");
+                var circleSize1 = sqrt$1()
+                    .domain(extent(data, function (d) { return (item(d, index)); }))
+                    .range([0, 30]);
+                svg$$1.selectAll("circle")
+                    .data(data)
+                    .attr("r", function (d) {
+                    return circleSize1(item(d, index));
+                });
+                var simulation1 = simulation()
+                    .force("x", x$2(width / 2).strength(0.1))
+                    .force("y", y$2(height / 1.7).strength(0.1))
+                    .force("collide", collide(function (d) {
+                    return circleSize1(item(d, index)) + 1;
+                }));
+                simulation1.nodes(data)
+                    .on('tick', ticked);
+            }
             var circleSize = sqrt$1()
-                .domain(extent(data, (d) => (d.CasesPerMillion)))
-                .range([0, 40]);
-            //https://github.com/d3/d3-scale-chromatic
-            //var color = d3.scaleOrdinal(data.map((d: { Continent: any; }) => d.Continent), d3.schemeSet1)
-            //var color = d3.scaleOrdinal(data.map((d: any) => (d.Continent)), d3.schemeSet3).unknown("black")
-            var color$$1 = ordinal(data.map((d) => (d.Continent)), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
+                .domain(extent(data, function (d) { return (item(d, circleSizeIndex)); }))
+                .range([0, 30]);
+            var color$$1 = ordinal(data.map(function (d) { return (d.Continent); }), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
             this.colorscheme = color$$1;
-            // source:https://www.youtube.com/watch?v=lPr60pexvEM
             var simulation$$1 = simulation()
                 .force("x", x$2(width / 2).strength(0.1))
                 .force("y", y$2(height / 1.7).strength(0.1))
                 .force("collide", collide(function (d) {
-                return circleSize(d.CasesPerMillion) + 1;
+                return circleSize(item(d, circleSizeIndex)) + 1;
             }));
             var circles = svg$$1.selectAll(".country")
                 .data(data)
@@ -24542,10 +23763,10 @@ class BubbleChartClass {
                 .enter().append("circle")
                 .attr("class", "country")
                 .attr("r", function (d) {
-                return circleSize(d.CasesPerMillion);
+                return circleSize(item(d, circleSizeIndex));
             })
                 .attr("fill", function (d) {
-                return color$$1(d.Continent);
+                return color$$1(item(d, colorIndex));
             })
                 .on("mouseover", function (d, index) {
                 onMouseOver(d, index);
@@ -24556,18 +23777,6 @@ class BubbleChartClass {
                 .on("mousedown", function (d, index) {
                 onMouseDown(d, index);
             });
-            //     circles.append("clipPath")
-            //     .attr("id", `"${this.bubblechartControlName}clip"`)
-            //     .append("use")
-            //     .attr("xlink:href", `"${this.bubblechartControlName}clip"`.href);
-            // circles.append("text")
-            //     .attr("clip-path", `"${this.bubblechartControlName}leaf"`)
-            //   .selectAll("tspan")
-            //   .data(data)
-            //   .join("tspan")
-            //     .attr("x", 0)
-            //     .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`)
-            //     .text(d => d.CountryOfInterest);
             var mouseoverstatus = false;
             var mousedownstatus = false;
             function onMouseOver(d, index) {
@@ -24633,25 +23842,13 @@ class BubbleChartClass {
                     .attr('x', textOffset);
             }
             svg$$1.append('g')
-                .attr('transform', `translate(10,30)`)
+                .attr('transform', `translate(10,10)`)
                 .call(colorLegend, {
                 color: color$$1,
                 side: 15,
                 spacing: [20, 20, 20, 20, 20, 20, 20],
                 textOffset: 20
             });
-            svg$$1.append('g')
-                .attr('transform', `translate(100,30)`)
-                .append("select")
-                .attr("id", "selectButton");
-            // add the options to the button
-            select("#selectButton")
-                .selectAll('myOptions')
-                .data(colArray)
-                .enter()
-                .append('option')
-                .text(function (d) { return d; }) // text showed in the menu
-                .attr("value", function (d) { return d; }); // corresponding value returned by the button
             select("#selectButton").on("change", function (d) {
                 // recover the option that has been chosen
                 var selectedOption = select(this).property("value");
@@ -24670,7 +23867,7 @@ class ControlBubblechart {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight, helper, color, size, text) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -24710,7 +23907,7 @@ class ControlBubblechart {
         this.live_property_Zoom = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
         this.ControlName = name;
         //console.log(data)
-        this.bubblechart = new BubbleChartClass(parentWindow, this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
+        this.bubblechart = new BubbleChartClass(this, data, name, xPos, yPos, inputWidth, inputHeight, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -24882,31 +24079,23 @@ class ControlBubblechart {
 
 //console.info('%cThis is implementation of LiveProperties in Javascript','color:blue; font-weight:bold; font-size:15px');
 //console.warn("This may not work in all browsers!.  This is an experemental project ");
-function createControl(parentWindow, controlName, data, name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
+function createControl(controlName, data, name, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
     if (printClass.printStatus)
         console.log("Next Step: Control Creation**************(( " + controlName + " ))**************");
     if (controlName == "slider") {
         let sliderControl = new ControlSlider(name, xPos, yPos);
         return sliderControl;
     }
-    else if (controlName == "pixel") {
-        let pixelControl = new ControlPixel(name);
-        return pixelControl;
-    }
-    else if (controlName == "canvas") {
-        let canvasControl = new ControlCanvas(name);
-        return canvasControl;
-    }
     else if (controlName == "scatterplot") {
-        let scatterplotControl = new ControlScatterplot(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
+        let scatterplotControl = new ControlScatterplot(name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
         return scatterplotControl;
     }
     else if (controlName == "map") {
-        let mapControl = new ControlMap(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
+        let mapControl = new ControlMap(name, data, xPos, yPos, inputWidth, inputHeight);
         return mapControl;
     }
     else if (controlName == "bubblechart") {
-        let bubblechartControl = new ControlBubblechart(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
+        let bubblechartControl = new ControlBubblechart(name, data, xPos, yPos, inputWidth, inputHeight, helper, color$$1, size, text$$1);
         return bubblechartControl;
     }
     else if (controlName == "gradient") {
@@ -24914,11 +24103,11 @@ function createControl(parentWindow, controlName, data, name, xPos, yPos, horizo
         return gradientControl;
     }
     else if (controlName == "table") {
-        let tableControl = new ControlTable(parentWindow, name, data, xPos, yPos, inputWidth, inputHeight);
+        let tableControl = new ControlTable(name, data, xPos, yPos, inputWidth, inputHeight);
         return tableControl;
     }
     else if (controlName == "parallelCoordinatePlot") {
-        let parallelCoordinatePlotControl = new ControlParallelCoordinatePlot(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, helper, color$$1, dims);
+        let parallelCoordinatePlotControl = new ControlParallelCoordinatePlot(name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, helper, color$$1, dims);
         return parallelCoordinatePlotControl;
     }
     else {
@@ -24984,8 +24173,6 @@ Promise.all([
             return d.Z;
         }
     }
-    var parentDiv = document.createElement("div");
-    parentDiv.id = "Corona";
     function ionsExample() {
         // let variable1 = createVariable("variable1", 50, Number.prototype);
         let Selection_4 = createVariable("Selection_4", [], Array.prototype);
@@ -25006,27 +24193,27 @@ Promise.all([
         let Range_4 = createVariable("Range4", [null, null], Array.prototype);
         let Range_5 = createVariable("Range5", [null, null], Array.prototype);
         let Range_6 = createVariable("Range6", [null, null], Array.prototype);
-        let lPW = 300;
-        let lPH = 200;
-        let lPL = 30;
-        let lPT = 160;
+        let lPW = 280;
+        let lPH = 180;
+        let lPL = 50;
+        let lPT = 150;
         let off = 5;
         var parentName = "ionsViz";
-        let scatterplot01 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-01", lPL, lPT, IonsVariables.T, IonsVariables.Z, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot01 = createControl(Scatterplot_type, ionsData, "SP-01", lPL, lPT, IonsVariables.T, IonsVariables.Z, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot01, "xTranslate", Translation_4);
         bindVariable(scatterplot01, "yTranslate", Translation_5);
         //bindVariable(scatterplot01, "Opacity", variable2);
         bindVariable(scatterplot01, "Selection", Selection_4);
         //bindVariable(scatterplot01, "Size", variable4);
         // //x = T Y = Y
-        let scatterplot02 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-02", lPL, lPT + lPH, IonsVariables.T, IonsVariables.Y, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot02 = createControl(Scatterplot_type, ionsData, "SP-02", lPL, lPT + lPH, IonsVariables.T, IonsVariables.Y, lPW, lPH, false, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot02, "xTranslate", Translation_4);
         bindVariable(scatterplot02, "yTranslate", Translation_6);
         //bindVariable(scatterplot02, "Opacity", variable2);
         bindVariable(scatterplot02, "Selection", Selection_4);
         //bindVariable(scatterplot02, "Size", variable4);
         // //x = T, y=X
-        let scatterplot03 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-03", lPL, lPT + 2 * lPH, IonsVariables.T, IonsVariables.X, lPW, lPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot03 = createControl(Scatterplot_type, ionsData, "SP-03", lPL, lPT + 2 * lPH, IonsVariables.T, IonsVariables.X, lPW, lPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot03, "xTranslate", Translation_4);
         bindVariable(scatterplot03, "yTranslate", Translation_7);
         //bindVariable(scatterplot03, "Opacity", variable2);
@@ -25035,7 +24222,7 @@ Promise.all([
         let SPH = lPH + lPH / 2;
         let SPW = lPH + lPH / 2;
         // //x = X, y= Z
-        let scatterplot04 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-04", lPL + lPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot04 = createControl(Scatterplot_type, ionsData, "SP-04", lPL + lPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH - 5, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot04, "xTranslate", Translation_5);
         bindVariable(scatterplot04, "yTranslate", Translation_7);
         //bindVariable(scatterplot04, "Opacity", variable2);
@@ -25044,7 +24231,7 @@ Promise.all([
         bindVariable(scatterplot04, "brushY", Range_2);
         //bindVariable(scatterplot04, "Size", variable4);
         // //x = X, y= Z
-        let scatterplot05 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-05", lPL + lPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot05 = createControl(Scatterplot_type, ionsData, "SP-05", lPL + lPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot05, "xTranslate", Translation_5);
         bindVariable(scatterplot05, "yTranslate", Translation_6);
         //bindVariable(scatterplot05, "Opacity", variable2);
@@ -25053,7 +24240,7 @@ Promise.all([
         bindVariable(scatterplot05, "brushY", Range_4);
         //bindVariable(scatterplot05, "Size", variable4);
         // //x = Z, y= Y
-        let scatterplot06 = createControl(parentDiv, Scatterplot_type, ionsData, "SP-06", lPL + lPW + SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, false, [IonsAxes], IonsVariables.T, null, null);
+        let scatterplot06 = createControl(Scatterplot_type, ionsData, "SP-06", lPL + lPW + SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, false, [IonsAxes], IonsVariables.T, null, null);
         bindVariable(scatterplot06, "xTranslate", Translation_7);
         bindVariable(scatterplot06, "yTranslate", Translation_6);
         //bindVariable(scatterplot06, "Opacity", variable2);
@@ -25062,26 +24249,26 @@ Promise.all([
         bindVariable(scatterplot06, "brushY", Range_6);
         //bindVariable(scatterplot06, "Size", variable4);
         // //x = X, y= Z
-        let insetScatterplot1 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-1", lPL + lPW + 3 * SPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let insetScatterplot1 = createControl(Scatterplot_type, ionsData, "ISP-1", lPL + lPW + 3 * SPW, lPT, IonsVariables.X, IonsVariables.Z, SPW, SPH - 5, true, true, [IonsAxes], IonsVariables.T, null, null);
         //bindVariable(insetScatterplot1, "Selection", Selection_5);
         bindVariable(insetScatterplot1, "xRange", Range_1);
         bindVariable(insetScatterplot1, "yRange", Range_2);
-        let insetScatterplot2 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-2", lPL + lPW + 2 * SPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let insetScatterplot2 = createControl(Scatterplot_type, ionsData, "ISP-2", lPL + lPW + 2 * SPW, lPT + SPH, IonsVariables.X, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         //bindVariable(insetScatterplot2, "Selection", Selection_6);
         bindVariable(insetScatterplot2, "xRange", Range_3);
         bindVariable(insetScatterplot2, "yRange", Range_4);
         // //x = Z, y= Y
-        let insetScatterplot3 = createControl(parentDiv, Scatterplot_type, ionsData, "ISP-3", lPL + lPW + SPW + 2 * SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
+        let insetScatterplot3 = createControl(Scatterplot_type, ionsData, "ISP-3", lPL + lPW + SPW + 2 * SPW, lPT + SPH, IonsVariables.Z, IonsVariables.Y, SPW, SPH, true, true, [IonsAxes], IonsVariables.T, null, null);
         //bindVariable(insetScatterplot3, "Selection", Selection_7);
         bindVariable(insetScatterplot3, "xRange", Range_5);
         bindVariable(insetScatterplot3, "yRange", Range_6);
-        let TW = lPW + 30;
-        let TH = 2 * lPH + 130;
-        let table01 = createControl(parentDiv, Table_type, [ionsData], "TableView-01", lPL + lPW + 4 * SPW, lPT, null, null, TW, TH, null, null, null, null, null, null);
+        let TW = lPW + 20;
+        let TH = 3 * lPH - 50;
+        let table01 = createControl(Table_type, [ionsData], "TableView-01", lPL + lPW + 4 * SPW, lPT, null, null, TW, TH, null, null, null, null, null, null);
         bindVariable(table01, "Selection", Selection_4);
-        let parallelCoordinatePlot1 = createControl(parentDiv, ParallelCoordinatePlot_type, ionsData, "PCP-1", lPL + lPW + SPW, lPT, null, null, 2 * SPW, SPH, null, null, [IonsAxes], IonsVariables.T, null, null, ["T", "X", "Y", "Z"]);
+        let parallelCoordinatePlot1 = createControl(ParallelCoordinatePlot_type, ionsData, "PCP-1", lPL + lPW + SPW, lPT, null, null, 2 * SPW, SPH - 7, null, null, [IonsAxes], IonsVariables.T, null, null, ["T", "X", "Y", "Z"]);
         bindVariable(parallelCoordinatePlot1, "Selection", Selection_8);
-        let gradient1 = createControl(parentDiv, Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, null, lPW, 50, false, false, [IonsAxes]);
+        let gradient1 = createControl(Gradient_type, ionsData, "Gradient1", lPL + lPW + 4 * SPW, lPT + 3 * lPH - 50, IonsVariables.T, null, lPW - 10, 50, false, false, [IonsAxes]);
         bindVariable(gradient1, "Selection", Selection_8);
     }
     //console.log(document);

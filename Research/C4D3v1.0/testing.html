@@ -34,5 +34,20 @@
   <body id="body" onbeforeprint="PrintAlert()">
     <p id="demo"></p>
     <h1>Testing of C4D3 framework</h1>
+
+<svg  height ="800px"></svg>
+
+<p>
+  The above example visualization is used to test the coordination architecture of the initial version of C4D3 using the view abstractions built for the SVG and Html elements.
+  In the above example, the code for the sliders, rectangles and numerical input elements is modularized such that these views can be instantiated any number of times.   
+</p>
+<p>
+  In the above example, the different sliders, numerical input elements and rectangles are coordinated in many combinations. 
+  The numerical input from widget named pixel1 is coordinated in width and height of the rectangles in canvas1 and canvas3, slider input of widget named slider1.
+  The numerical input from widget named pixel2 is coordinated in width and height of the rectangles in canvas2 , slider input of widget named slider2.
+  The numerical input from widget named pixel3 is coordinated with numerical input from widget named pixel4, in width  of the rectangles in canvas3 , slider inputs of widgets named slider3 and slider4.
+
+</p>
+
   </body>
 </html>

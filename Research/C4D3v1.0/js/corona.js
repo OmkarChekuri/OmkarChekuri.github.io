@@ -1,19 +1,16 @@
 
-
-// C4D3 is free software: you can redistribute it and/or modify it under
+//   C4D3 is free software: you can redistribute it and/or modify it under
 // the terms of the GNU Affero General Public License as published by the Free
 // Software Foundation, either version 3 of the License, or (at your option) any
 // later version.
-//
+
 // This file is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
 // details.
-//
+
 // You should have received a copy of the GNU Affero General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 
 
 class VariableEvent {
@@ -21150,8 +21147,7 @@ var d3 = Object.freeze({
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
 class ScatterplotClass {
-    //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentName, control, data, name, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
+    constructor(control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -21159,7 +21155,6 @@ class ScatterplotClass {
         if (printClass.printStatus)
             console.log("I am in constructor of ScatterplotClass");
         this.scatterplotControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
         this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
@@ -21168,7 +21163,6 @@ class ScatterplotClass {
         this.colorIndex = color$$1;
         this.circleSizeIndex = size;
         this.textIndex = text$$1;
-        this.parentDocument = parentName;
         this.parentControl = control;
         if (printClass.printStatus)
             console.log("let's see");
@@ -21189,7 +21183,7 @@ class ScatterplotClass {
         var D1 = new Draggable();
         var temp = this.scatterplotControlName;
         try {
-            document.getElementById(this.scatterplotControlName)
+            document.getElementById(this.scatterplotControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -21301,37 +21295,95 @@ class ScatterplotClass {
                 .attr("font-weight", "bold");
         }
     }
+    setBrushY(arg0) {
+        throw new Error("Method not implemented.");
+    }
+    setBrushX(arg0) {
+        throw new Error("Method not implemented.");
+    }
+    setyRange(yRange) {
+        var vertical = this.vertical;
+        var item = this.helper[0];
+        var plotHeight = this.plotHeight;
+        if (yRange[0] == null) {
+        }
+        else {
+            //console.log(yRange)  
+            var yScale = this.yScale;
+            var Domain = [yRange[0], yRange[1]];
+            yScale.domain(Domain)
+                .range([plotHeight, 0]);
+            //console.log(yScale.domain())
+            //console.log(yScale.range())
+            this.yScale = yScale;
+            this.yAxis.call(axisLeft(yScale));
+            this.scatter
+                .selectAll("circle")
+                .attr('cy', function (d) {
+                if (item(d, vertical) > yRange[0] && item(d, vertical) < yRange[1]) {
+                    return yScale(item(d, vertical));
+                }
+                else {
+                    return -plotHeight;
+                }
+            });
+        }
+    }
+    setxRange(xRange) {
+        var horizontal = this.horizontal;
+        var item = this.helper[0];
+        var plotWidth = this.plotWidth;
+        var plotHeight = this.plotHeight;
+        if (xRange[0] == null) { }
+        else {
+            //console.log(xRange)  
+            var xScale = this.xScale;
+            var Domain = [xRange[0], xRange[1]];
+            xScale.domain(Domain)
+                .range([0, plotWidth]);
+            this.xScale = xScale;
+            this.xAxis.call(axisBottom(xScale))
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", "rotate(-45)");
+            //Update the scatterplot based on new zoom event
+            this.axisGroup
+                .selectAll("circle")
+                .attr('cx', function (d) {
+                if (item(d, horizontal) > xRange[0] && item(d, horizontal) < xRange[1]) {
+                    return xScale(item(d, horizontal));
+                }
+                else {
+                    return -plotWidth;
+                }
+            });
+        }
+    }
+    setZoom(arg0) {
+        throw new Error("Method not implemented.");
+    }
+    setHoverSelection(arg0) {
+        throw new Error("Method not implemented.");
+    }
     render(parentControl) {
         var localParentControl = parentControl;
-        //create a div element to hold scatterplot
-        var parentDocument = this.parentDocument;
-        //console.log(parentDocument.document)
-        //parentDocument.alert("Hi"); 
-        // var parent: HTMLElement = document.getElementById(parentId)
         var div1 = document.createElement("div");
         div1.id = this.scatterplotControlName;
         div1.className = "scatterplot";
         var numberPattern = /\d+/g;
         //this.canvasWidth = 360;
         var offset = 20;
-        //parentDocument.appendChild(div1);
-        console.log(parentDocument);
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
-        //create a closable icon
-        //var div0: HTMLButtonElement = document.createElement("button");
-        //div0.id = "close";
-        //div0.innerHTML = "X";
-        //div0.title = "close";
-        //div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        //div1.appendChild(div0);
         //create a div header for the scatterplot
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "scatterplotheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         var data = this.Data;
         const renderPlot = (data) => {
             //console.log(data);
@@ -21347,20 +21399,17 @@ class ScatterplotClass {
             var colorIndex = this.colorIndex;
             var circleSizeIndex = this.circleSizeIndex;
             var textIndex = this.textIndex;
-            // console.log("horizontal is " + horizontal);
-            // console.log("vertical is " + vertical);
-            //console.log(colArray[horizontal]);
             var item = this.helper[0];
             //console.log(item);
             function Label(index) { return colArray[index] + "→"; }
             this.LocalData = data;
-            var margin = { top: 50, right: 15, bottom: 60, left: 80 };
+            var margin = { top: 20, right: 15, bottom: 60, left: 60 };
             var plotWidth = this.inputWidth - margin.left - margin.right;
             var plotHeight = this.inputHeight - margin.top - margin.bottom;
             this.innerWidth = plotWidth + margin.left + margin.right;
             this.innerHeight = plotHeight + margin.top + margin.bottom;
-            //plotWidth = plotWidth;
-            //plotHeight = plotHeight;
+            this.plotWidth = plotWidth;
+            this.plotHeight = plotHeight;
             // append the svg object to the body of the page
             var svg$$1 = select(div1)
                 .append("svg")
@@ -21386,14 +21435,19 @@ class ScatterplotClass {
                 .attr("transform", "translate(0," + plotHeight + ")");
             if (this.showHoriz) {
                 //append the xAxis to group 
-                this.xAxis.call(axisBottom(xScale));
+                this.xAxis.call(axisBottom(xScale))
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".15em")
+                    .attr("transform", "rotate(-45)");
                 labelsGroup
                     .append("text")
                     .text(Label(horizontal))
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
-                    .attr("transform", `translate(${plotWidth * 0.5}, ${plotHeight + margin.top / 1.5}) rotate(0)`);
+                    .attr("transform", `translate(${plotWidth * 0.5}, ${plotHeight + margin.top + margin.bottom / 2}) rotate(0)`);
             }
             //create a linear yScale
             var yScale = linear$2()
@@ -21411,7 +21465,7 @@ class ScatterplotClass {
                     .attr("text-anchor", "middle")
                     .style("font-size", 15)
                     .style("font-weight", 1000)
-                    .attr("transform", `translate(${-margin.left / 1.6}, ${plotHeight * 0.5}) rotate(-90)`);
+                    .attr("transform", `translate(${-margin.left / 1.3}, ${plotHeight * 0.5}) rotate(-90)`);
             }
             // create a tooltip
             var Tooltip = axisGroup
@@ -21647,7 +21701,7 @@ class ControlScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
+    constructor(name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -21663,6 +21717,14 @@ class ControlScatterplot {
         this.CTAG_Indication = "Indication";
         this.CTAG_Data = "Data";
         this.CTAG_Zoom = "Zoom";
+        this.CTAG_xRange = "xRange";
+        this.CTAG_yRange = "yRange";
+        this.CTAG_brushX = "brushX";
+        this.CTAG_brushY = "brushY";
+        this.TYPE_xRange = new Prototype(Array.prototype, this.CTAG_xRange, [null, null]);
+        this.TYPE_yRange = new Prototype(Array.prototype, this.CTAG_yRange, [null, null]);
+        this.TYPE_brushX = new Prototype(Array.prototype, this.CTAG_brushX, [null, null]);
+        this.TYPE_brushY = new Prototype(Array.prototype, this.CTAG_brushY, [null, null]);
         this.TYPE_xTranslate = new Prototype(Array.prototype, this.CTAG_xTranslate, [null, null]);
         this.TYPE_yTranslate = new Prototype(Array.prototype, this.CTAG_yTranslate, [null, null]);
         this.TYPE_Size = new Prototype(Number.prototype, this.CTAG_Size, 0);
@@ -21685,9 +21747,13 @@ class ControlScatterplot {
         this.live_property_Size = this.proxy.add(this.CTAG_Size, this.TYPE_Size, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.live_property_Zoom = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
+        this.live_property_xRange = this.proxy.add(this.CTAG_xRange, this.TYPE_xRange, true);
+        this.live_property_yRange = this.proxy.add(this.CTAG_yRange, this.TYPE_yRange, true);
+        this.live_property_brushX = this.proxy.add(this.CTAG_brushX, this.TYPE_brushX, true);
+        this.live_property_brushY = this.proxy.add(this.CTAG_brushY, this.TYPE_brushY, true);
         this.ControlName = name;
         //console.log(data)
-        this.scatterplot = new ScatterplotClass(parentWindow, this, data, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
+        this.scatterplot = new ScatterplotClass(this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -21750,93 +21816,64 @@ class ControlScatterplot {
         //{
         if (tag == this.CTAG_xTranslate) {
             if (printClass.printStatus)
-                console.log("hurray controlScatterPlot height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed controlScatterPlot height");
             this.scatterplot.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_yTranslate) {
             if (printClass.printStatus)
-                console.log("hurray controlScatterPlot Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed controlScatterPlot Width");
             this.scatterplot.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Opacity) {
             if (printClass.printStatus)
-                console.log("hurray controlScatterPlot opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed controlScatterPlot opacity");
             this.scatterplot.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Selection");
             this.scatterplot.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Indication) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Indication");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Indication");
             this.scatterplot.setIndication(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Size) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Size");
             this.scatterplot.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Data) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Size");
             this.scatterplot.setHoverSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Zoom) {
             if (printClass.printStatus)
-                console.log("hurray ControlScatterplot Zoom");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Property Changed ControlScatterplot Zoom");
             this.scatterplot.setZoom(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        //} 
+        else if (tag == this.CTAG_xRange) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot xRange");
+            this.scatterplot.setxRange(e.getLiveProperty().getVariable().getValue());
+        }
+        else if (tag == this.CTAG_yRange) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot yRange");
+            this.scatterplot.setyRange(e.getLiveProperty().getVariable().getValue());
+        }
+        else if (tag == this.CTAG_brushX) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot brushX");
+            this.scatterplot.setBrushX(e.getLiveProperty().getVariable().getValue());
+        }
+        else if (tag == this.CTAG_brushY) {
+            if (printClass.printStatus)
+                console.log("Property Changed ControlScatterplot brushY");
+            this.scatterplot.setBrushY(e.getLiveProperty().getVariable().getValue());
+        }
     }
     propertyChangeToUpdateUI(value) {
         //if(printClass.printStatus) console.log(e);
@@ -21861,7 +21898,7 @@ class ControlScatterplot {
 //removed active cases from table- 6/6/2020
 //commented value checks in set value 06/29/2020
 class TableClass {
-    constructor(parentWindow, control, name, data, xPos, yPos, inputWidth, inputHeight) {
+    constructor(control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
         this.height = 480;
         if (printClass.printStatus)
@@ -21882,7 +21919,6 @@ class TableClass {
         //console.log(this.SelectionArray)
         this.IndicationArray = new Array(data[0].length);
         this.IndicationArray.fill(false, 0);
-        this.parentWindow = parentWindow;
         this.render(control, data);
     }
     makeDraggable() {
@@ -22153,11 +22189,11 @@ class TableClass {
             var table = select(div1)
                 .append("table")
                 .style("border-collapse", "collapse")
-                .style("border", "2px solid black")
+                .style("border", "0.5px solid black")
                 .attr("width", plotWidth + margin.left)
                 .attr("height", plotHeight + margin.top + margin.bottom)
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-                .attr("border", 2);
+                .attr("border", 1);
             var header = table.append("thead").append("tr");
             //console.log(Object.keys(data));
             header
@@ -22167,14 +22203,16 @@ class TableClass {
                 .append("th")
                 .text(function (d) {
                 return d;
-            });
+            })
+                .style("font-size", "14px");
             var tablebody = table.append("tbody");
             this.rows = tablebody
                 .selectAll("tr")
                 .data(data)
                 .enter()
                 .append("tr")
-                .style("font-family", "serif");
+                .style("font-family", "serif")
+                .style("font-size", "13px");
             //var color = d3.scaleOrdinal(data.map(d => d.Continent), d3.schemeSet1)
             //var color = d3.scaleOrdinal(data.map(d => d.Continent), d3.schemeSet3).unknown("black")
             var color$$1 = ordinal(data.map((d) => (d.Continent)), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
@@ -22287,7 +22325,7 @@ class ControlTable {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, inputWidth, inputHeight) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -22320,7 +22358,7 @@ class ControlTable {
         this.live_property_Indication = this.proxy.add(this.CTAG_Indication, this.TYPE_Indication, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.ControlName = name;
-        this.table = new TableClass(parentWindow, this, name, data, xPos, yPos, inputWidth, inputHeight);
+        this.table = new TableClass(this, name, data, xPos, yPos, inputWidth, inputHeight);
         if (printClass.printStatus)
             console.log(name);
         //create the variables pproxy and ttag to be used in add event listener as we cannot use this 
@@ -22487,1103 +22525,9 @@ class ControlTable {
 
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
-class InsetScatterplotClass {
-    //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, xPos, yPos, symbol$$1, horizontal, vertical, inputWidth, inputHeight) {
-        this.width = 960;
-        this.height = 480;
-        if (printClass.printStatus)
-            console.log("I am in constructor of InsetScatterplotClass");
-        this.insetScatterplotControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
-        this.horizontal = horizontal;
-        this.vertical = vertical;
-        this.inputWidth = inputWidth;
-        this.inputHeight = inputHeight;
-        this.insetScatterplotControlName = name;
-        this.parentControl = control;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.render(control);
-        this.previousX = 0;
-        this.previousY = 0;
-    }
-    makeDraggable() {
-        //create instance of a Draggable class
-        var D1 = new Draggable();
-        var temp = this.insetScatterplotControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
-        //check if the element that needs to be made draggable exist, else throw error        
-        try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.insetScatterplotControlName)
-                .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
-        }
-        catch (error) {
-            throw Error("The Element by id " + this.insetScatterplotControlName + " do not exist");
-        }
-    }
-    //************************
-    // Getters and Setters
-    //************************
-    getTranslateX() {
-        return this.height;
-    }
-    getTranslateY() {
-        return this.width;
-    }
-    setSize(value) {
-        //console.log("set Size method of Scatterplot");
-        if (printClass.printStatus)
-            console.log(value);
-        var temp = value;
-        //console.log();
-        select(`#${this.insetScatterplotControlName}`)
-            .select("svg")
-            .select("g")
-            .selectAll("circle")
-            .attr("r", temp / 10);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    translateX(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var xScale = value[2];
-        var change = value[0] - this.previousX;
-        var directionHorizontal;
-        if (change >= 0) {
-            directionHorizontal = 1;
-        }
-        else {
-            directionHorizontal = -1;
-        }
-        if (newX == 0 || newX == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionHorizontal * (xScale.invert(this.previousX)) - directionHorizontal * (xScale.invert(change));
-            xScale.domain([xScale.domain()[0] + shift, xScale.domain()[1] + shift]);
-            this.xAxis.call(axisBottom(xScale));
-            //Update the insetScatterplot based on new zoom event
-            select(`#${this.insetScatterplotControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return xScale(horiz(d)); });
-            this.previousX = value[0];
-        }
-    }
-    translateY(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        //console.log("translateY method of Scatterplot");
-        //console.log("Hurray" + this.insetScatterplotControlName);
-        var change = value[0] - this.previousY;
-        var directionVertical;
-        if (change >= 0) {
-            //console.log("positive direction");
-            directionVertical = 1;
-        }
-        else {
-            //console.log("negative direction");
-            directionVertical = -1;
-        }
-        var newY = value[0];
-        var yScale = value[3];
-        if (newY == 0 || newY == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionVertical * (yScale.invert(this.previousY)) - directionVertical * (yScale.invert(change));
-            yScale.domain([yScale.domain()[0] + shift, yScale.domain()[1] + shift]);
-            this.yAxis.call(axisLeft(yScale));
-            //Update the insetScatterplot based on new zoom event
-            select(`#${this.insetScatterplotControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cy', function (d) { return yScale(verti(d)); });
-            this.previousY = value[0];
-        }
-    }
-    setOpacity(value) {
-        //console.log("setOpacity of insetScatterplot");
-        var temp = value;
-        //console.log(temp);
-        selectAll("circle").attr("fill-opacity", `${temp / 100}`);
-    }
-    setZoom(value) {
-        //console.log("Hurray" + this.insetScatterplotControlName);
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var newY = value[1];
-        if (newX == 0 && newY == undefined) {
-        }
-        else {
-            this.xAxis.call(axisBottom(newX));
-            this.yAxis.call(axisLeft(newY));
-            //Update the insetScatterplot based on new zoom event
-            select(`#${this.insetScatterplotControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return newX(horiz(d)); })
-                .attr('cy', function (d) { return newY(verti(d)); });
-        }
-    }
-    setSelection(value) {
-        //console.log("serdddt in" + this.insetScatterplotControlName);
-        if (this.LocalData == undefined) {
-        }
-        else {
-            //console.log(this.LocalData)
-            this.LocalData.map(function (d, index) {
-                d.selectionStatus = value[index];
-            });
-            //console.log(this.insetScatterplotControlName);
-            //console.log(this.LocalData)
-            /*       d3.select(`#${this.insetScatterplotControlName}`).select("svg").selectAll("circle")
-              .data(this.LocalData)
-              .attr("stroke", function (d)
-              {
-                if (d.selectionStatus == true)
-                {
-                  //console.log(d.Country);
-                }
-                return d.selectionStatus == true ? "blue" : null;
-              })
-              .attr("stroke-width", 3); */
-            var newData = this.LocalData.filter((d) => d.selectionStatus == true);
-            // console.log(newData);
-            //this.scatter.selectAll("circle").remove();
-            const renderPlot = (data) => {
-                //console.log(data);
-                var colArray = ["d.Index", "d.selectionStatus", "d.T", "d.X", "d.Y", "d.Z"];
-                var horizo = colArray[this.horizontal];
-                var vertic = colArray[this.vertical];
-                //console.log(this);
-                //console.log( horizo + " " + vertic);
-                var horizontal = this.horizontal + 2;
-                var vertical = this.vertical + 2;
-                function horiz(d) {
-                    //console.log("hh is "+ hh);
-                    if (horizontal == 2) {
-                        return d.T;
-                    }
-                    else if (horizontal == 3) {
-                        return d.X;
-                    }
-                    else if (horizontal == 4) {
-                        return d.Y;
-                    }
-                    else if (horizontal == 5) {
-                        return d.Z;
-                    }
-                }
-                function verti(d) {
-                    if (vertical == 2) {
-                        return d.T;
-                    }
-                    else if (vertical == 3) {
-                        return d.X;
-                    }
-                    else if (vertical == 4) {
-                        return d.Y;
-                    }
-                    else if (vertical == 5) {
-                        return d.Z;
-                    }
-                }
-                //create a linear xScale
-                var xScale = linear$2()
-                    .domain(extent(data, function (d) {
-                    //console.log(d);
-                    return horiz(d);
-                }))
-                    .range([0, this.plotWidth])
-                    .nice();
-                //append the xAxis to group 
-                this.xAxis.call(axisBottom(xScale));
-                //create a linear yScale
-                var yScale = linear$2()
-                    .domain(extent(data, function (d) {
-                    //console.log(d);
-                    return verti(d);
-                }))
-                    .range([this.plotHeight, 0])
-                    .nice();
-                //append the yAxis to group
-                this.yAxis.call(axisLeft(yScale));
-                var color$$1 = linear$2()
-                    .domain(extent(data, (d) => (d.T)))
-                    .range(["red", "black"]);
-                //console.log("Hello")
-                // // Add a clipPath: everything out of this area won't be drawn.
-                // var clip = this.axisGroup.append("defs").append("SVG:clipPath")
-                // .attr("id", "clip")
-                // .append("SVG:rect")
-                // .attr("width", this.plotWidth)
-                // .attr("height", this.plotHeight)
-                // .attr("x", 0)
-                // .attr("y", 0);
-                // // Create the scatter variable: where both the circles and the brush take place
-                // var scatter = this.axisGroup.append('g')
-                // .attr("cursor", "grab")
-                // .attr("clip-path", "url(#clip)")
-                const t = this.axisGroup.transition().duration(750);
-                this.scatter.selectAll("circle").remove();
-                this.scatter
-                    .selectAll("circle")
-                    .data(data)
-                    .attr("class", "cir")
-                    .join(enter => enter.append("circle")
-                    .attr("fill", function (d) { return color$$1(d.T); })
-                    .attr("cx", function (d) { return xScale(horiz(d)); })
-                    .attr("cy", function (d) { return yScale(verti(d)); })
-                    .attr("r", 0)
-                    .style("opacity", 0.7)
-                    .call(enter => enter.transition(t)
-                    .attr("r", function (d) { return 2; })), update => update
-                    .attr("fill", "black")
-                    .style("opacity", 0.7)
-                    .attr("r", function (d) { return 2; }), exit => exit
-                    .attr("fill", "brown")
-                    .call(exit => exit.transition(t)
-                    .attr("r", 0)
-                    .remove()))
-                    .attr("pointer-events", "all");
-                //.on("mouseover", onMouseOver) //Add listener for the mouseover event
-                //.on("mouseout", onMouseOut);
-                /*
-                //mouseover event handler function
-                function onMouseOver(d: any)
-                {
-                // this keyword refers to the mouseover item
-                var circle =  d3.select(this);
-                var textOffseteHeight = 12;
-                circle
-                .raise()
-                .transition() // adds animation
-                .duration(100)
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .style("opacity", 1)
-                .attr("r", textOffseteHeight/1.5);
-                
-                this.axisGroup
-                .append("text")
-                .attr("text-anchor", "middle")
-                .attr('class', 'val')
-                .style("fill", "black")
-                .attr('x', function () {
-                     return parseInt(circle.attr("cx")); })
-                .attr('y', function () {
-                     return parseInt(circle.attr("cy")) - textOffseteHeight; })
-                .style("font-size", 15)
-                .style("font-weight", 1000)
-                .text(function ()
-                {
-                return d.Country;  // Value of the text
-                });
-                }
-                
-                function onMouseOut(data: any, i: any)
-                {
-                d3.select(this)
-                .transition() // adds animation
-                .duration(100)
-                .attr("r", 2.5)
-                .attr("stroke", null)
-                .attr("stroke-width", 2)
-                .style("opacity", 0.7);
-                
-                d3.selectAll(".val").remove();
-                }
-                
-                var shiftKey: any;
-                
-                
-                
-                
-                // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
-                var zoom = d3.zoom()
-                .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-                .extent([[0, 0], [this.plotWidth, this.plotHeight]])
-                .on("zoom", updateChart);
-                
-                // This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-                var zoomRect = this.axisGroup.append("rect")
-                .attr("cursor", "grab")
-                .attr("pointer-events", "all")
-                .attr("width", this.plotWidth)
-                .attr("height", this.plotHeight)
-                .style("fill", "grey")
-                .style("opacity",0.1)
-                .call(zoom);
-                
-                
-                
-                
-                // A function that updates the chart when the user zoom and thus new boundaries are available
-                function updateChart()
-                {
-                // recover the new scale
-                var xTranslate = d3.event.transform.x;
-                var yTranslate = d3.event.transform.y;
-                const scale = d3.event.transform.k;
-                //console.log(d3.event.transform.x);
-                //var newX = d3.event.transform.rescaleX(xScale);
-                //var newY = d3.event.transform.rescaleY(yScale);
-                //localParentControl.getProxy().getLiveProperty("Zoom").setValue([newX, newY]);
-                console.log(Math.abs(xTranslate));
-                const w =  660 - margin.left - margin.right;
-                
-                
-                localParentControl.getProxy().getLiveProperty("xTranslate").setValue([xTranslate,scale,xScale,yScale]);
-                
-                
-                
-                localParentControl.getProxy().getLiveProperty("yTranslate").setValue([yTranslate,scale,xScale,yScale]);
-                
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                var myArrayTable: any[] = [];
-                
-                
-                //brushed over the insetScatterplot
-                function brushed()
-                {
-                myArrayTable = [];
-                const selection = d3.event.selection;
-                
-                if (selection === null)
-                {
-                d3.selectAll("circle").data(data).attr("stroke", null);
-                } else
-                {
-                //console.log( x0 + " " + x1 + " " + y0 +  " " + y1);
-                const [[x0, y0], [x1, y1]] = selection;
-                d3.selectAll("circle")
-                .data(data)
-                .attr("stroke", (d) =>
-                {
-                if (
-                x0 <= xScale(horiz(d)) &&
-                xScale(horiz(d)) <= x1 &&
-                y0 <= yScale(verti(d)) &&
-                yScale(verti(d)) <= y1
-                )
-                {
-                // console.log(d);
-                d.selectionStatus = true;
-                myArrayTable.push(d.Index);
-                return "blue";
-                } else
-                {
-                d.selectionStatus = false;
-                return null;
-                }
-                })
-                .attr("stroke-width", 3)
-                
-                
-                }
-                
-                
-                
-                //create an array of all the selection statuses of the data
-                //console.log(data.map(d=> d.selectionStatus));
-                if (printClass.printStatus) console.log("In insetScatterplot");
-                if (printClass.printStatus) console.log(localParentControl);
-                localParentControl.getProxy().getLiveProperty("Selection").setValue(data.map(d => d.selectionStatus));
-                
-                }
-                
-                
-                
-                var brush = d3
-                .brush()
-                .extent([
-                [-margin.left / 2, -margin.top / 2],
-                [this.plotWidth + margin.right / 2, this.plotHeight + margin.bottom / 2],
-                ])
-                .on(" start brush  ", brushed);
-                
-                // Add the brushing
-                this.axisGroup.append("g").call(brush);
-                 */
-            };
-            renderPlot(newData);
-        }
-    }
-    render(parentControl) {
-        var localParentControl = parentControl;
-        //create a div element to hold insetScatterplot
-        this.div1 = document.createElement("div");
-        this.div1.id = this.insetScatterplotControlName;
-        this.div1.className = "insetScatterplot";
-        var numberPattern = /\d+/g;
-        //this.canvasWidth = 360;
-        var offset = 20;
-        //this.div1.style.left = (parseInt(this.insetScatterplotControlName.match(numberPattern).toString()) -1) *( this.inputWidth + offset) +offset + "px";
-        //div1.style.left = Math.random()*2000 + "px";
-        this.div1.style.left = this.xPos + "px";
-        this.div1.style.top = this.yPos + "px";
-        //create a closable icon
-        var div0 = document.createElement("button");
-        div0.id = "close";
-        div0.innerHTML = "X";
-        div0.title = "close";
-        div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        //this.div1.appendChild(div0);
-        //create a div header for the insetScatterplot
-        var div2 = document.createElement("div");
-        div2.id = this.div1.id + "header";
-        div2.className = "insetScatterplotheader";
-        div2.textContent = this.div1.id;
-        //make the div header a child to the div element
-        //this.div1.appendChild(div2);
-        //console.log("I am printing D3 Object in InsetScatterplotClass");
-        var d3obj = d3;
-        //console.log(d3obj);
-        var count = -1;
-        function indexnumber() {
-            count++;
-            return count;
-        }
-        dsv(",", "./data/ions.csv").then((data) => {
-            data.forEach(d => {
-                d.Index = indexnumber(),
-                    d.selectionStatus = false,
-                    d.T = +(d.T.replace(/,/g, "")),
-                    d.X = +(d.X.replace(/,/g, "")),
-                    d.Y = +(d.Y.replace(/,/g, "")),
-                    d.Z = +(d.Z.replace(/,/g, ""));
-            });
-            renderPlot(data);
-        });
-        const renderPlot = (data) => {
-            //console.log(data);
-            var colArray = ["d.Index", "d.selectionStatus", "d.T", "d.X", "d.Y", "d.Z"];
-            var horizo = colArray[this.horizontal];
-            var vertic = colArray[this.vertical];
-            //console.log(this);
-            //console.log( horizo + " " + vertic);
-            var horizontal = this.horizontal + 2;
-            var vertical = this.vertical + 2;
-            function horiz(d) {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return d.T;
-                }
-                else if (horizontal == 3) {
-                    return d.X;
-                }
-                else if (horizontal == 4) {
-                    return d.Y;
-                }
-                else if (horizontal == 5) {
-                    return d.Z;
-                }
-            }
-            function verti(d) {
-                if (vertical == 2) {
-                    return d.T;
-                }
-                else if (vertical == 3) {
-                    return d.X;
-                }
-                else if (vertical == 4) {
-                    return d.Y;
-                }
-                else if (vertical == 5) {
-                    return d.Z;
-                }
-            }
-            //console.log("IW is "+ this.inputWidth);
-            //console.log("IH is " + this.inputHeight);
-            this.LocalData = data;
-            var margin = { top: 30, right: 15, bottom: 30, left: 60 };
-            this.plotWidth = this.inputWidth - margin.left - margin.right;
-            this.plotHeight = this.inputHeight - margin.top - margin.bottom;
-            this.innerWidth = this.plotWidth + margin.left + margin.right;
-            this.innerHeight = this.plotHeight + margin.top + margin.bottom;
-            //this.plotWidth = this.plotWidth;
-            //this.plotHeight = this.plotHeight;
-            // append the svg object to the body of the page
-            this.svg = select(this.div1)
-                .append("svg")
-                .attr("width", this.innerWidth)
-                .attr("height", this.innerHeight);
-            //create a group element for the rest of the plot
-            this.axisGroup = this.svg
-                .attr("fill", "orange")
-                .append("g")
-                .attr("class", "axisGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            //create a linear xScale
-            var xScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return horiz(d);
-            }))
-                .range([0, this.plotWidth])
-                .nice();
-            //append the xAxis to group 
-            this.xAxis = this.axisGroup
-                .append("g")
-                .attr("transform", "translate(0," + this.plotHeight + ")")
-                .call(axisBottom(xScale));
-            //create a linear yScale
-            var yScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return verti(d);
-            }))
-                .range([this.plotHeight, 0])
-                .nice();
-            //append the yAxis to group
-            this.yAxis = this.axisGroup.append("g")
-                .call(axisLeft(yScale));
-            //create a group element for the labels
-            var labelsGroup = this.svg
-                .attr("fill", "orange")
-                .append("g")
-                .attr("class", "labelGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            function horizLabel() {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return "Time(S)→";
-                }
-                else if (horizontal == 3) {
-                    return "X(Excite)→";
-                }
-                else if (horizontal == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (horizontal == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            function vertiLabel() {
-                if (vertical == 2) {
-                    return "Time(S)→";
-                }
-                else if (vertical == 3) {
-                    return "X(Excite)→";
-                }
-                else if (vertical == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (vertical == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            labelsGroup
-                .append("text")
-                .text(horizLabel())
-                .attr("fill", "black")
-                .attr("text-anchor", "middle")
-                .style("font-size", 15)
-                .style("font-weight", 1000)
-                .attr("transform", `translate(${this.plotWidth * 0.5}, ${this.plotHeight + margin.top}) rotate(0)`);
-            labelsGroup
-                .append("text")
-                .text(vertiLabel())
-                .attr("fill", "black")
-                .attr("text-anchor", "middle")
-                .style("font-size", 15)
-                .style("font-weight", 1000)
-                .attr("transform", `translate(${-margin.left / 1.6}, ${this.plotHeight * 0.5}) rotate(-90)`);
-            /* labelsGroup
-            .append("text")
-            .text("Z vs T")             //(Size ∝ Cases per Million)
-            .attr("fill", "black")
-            .attr("text-anchor", "middle")
-            .style("font-size", 20)
-            .style("font-weight", 1000)
-            .attr(
-              "transform",
-              `translate(${this.plotWidth * 0.5}, ${-margin.top / 2}) rotate(0)`
-            ); */
-            var color$$1 = linear$2()
-                .domain(extent(data, (d) => (d.T)))
-                .range(["red", "black"]);
-            // Add a clipPath: everything out of this area won't be drawn.
-            var clip = this.axisGroup.append("defs").append("SVG:clipPath")
-                .attr("id", "clip")
-                .append("SVG:rect")
-                .attr("width", this.plotWidth)
-                .attr("height", this.plotHeight)
-                .attr("x", 0)
-                .attr("y", 0);
-            // Create the scatter variable: where both the circles and the brush take place
-            this.scatter = this.axisGroup.append('g')
-                .attr("clip-path", "url(#clip)");
-            const t = this.axisGroup.transition().duration(750);
-            this.scatter
-                .selectAll("circle")
-                .data(data)
-                .attr("class", "cir")
-                .join(enter => enter.append("circle")
-                .attr("fill", function (d) { return color$$1(d.T); })
-                .attr("cx", function (d) { return xScale(horiz(d)); })
-                .attr("cy", function (d) { return yScale(verti(d)); })
-                .attr("r", 0)
-                .style("opacity", 0.7)
-                .call(enter => enter.transition(t)
-                .attr("r", function (d) { return 2; })), update => update
-                .attr("fill", "black")
-                .style("opacity", 0.7)
-                .attr("r", function (d) { return 2; }), exit => exit
-                .attr("fill", "brown")
-                .call(exit => exit.transition(t)
-                .attr("r", 0)
-                .remove()))
-                .attr("pointer-events", "all")
-                .on("mouseover", onMouseOver) //Add listener for the mouseover event
-                .on("mouseout", onMouseOut);
-            //mouseover event handler function
-            function onMouseOver(d) {
-                // this keyword refers to the mouseover item
-                var circle$$1 = select(this);
-                var textOffseteHeight = 12;
-                //d3.selectAll("circle")
-                //.style("opacity", 0.25)
-                circle$$1
-                    .raise()
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("stroke", "green")
-                    .attr("stroke-width", 3)
-                    .style("opacity", 1)
-                    .attr("r", textOffseteHeight);
-                //console.log(this.parentNode.parentNode);
-                /*     this.parentNode.parentNode
-                           .append("text")
-                           .attr("text-anchor", "middle")
-                           .attr('class', 'val')
-                           .style("fill", "black")
-                           .attr('x', function () {
-                                        return parseInt(circle.attr("cx")); })
-                           .attr('y', function () {
-                                        return parseInt(circle.attr("cy")) - textOffseteHeight; })
-                           .style("font-size", 15)
-                           .style("font-weight", 1000)
-                           .text(function ()
-                           {
-                              return d.T;  // Value of the text
-                           }); */
-            }
-            function onMouseOut(data, i) {
-                //d3.selectAll("circle")
-                //.attr("opacity", 1)
-                select(this)
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("r", 2.5)
-                    .attr("stroke", null)
-                    .attr("stroke-width", 2)
-                    .style("opacity", 0.7);
-                //d3.selectAll(".val").remove();
-            }
-            var shiftKey;
-            /* d3.select(window).on("keydown", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                
-                zoomRect.attr("pointer-events", "all");
-              }
-            });
-            d3.select(window).on("keyup", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "all");
-              }
-            }); */
-            /*  // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
-            var zoom = d3.zoom()
-             .scaleExtent([.5, 20])  // This control how much you can unzoom (x0.5) and zoom (x20)
-             .extent([[0, 0], [this.plotWidth, this.plotHeight]])
-             .on("zoom", updateChart);
-      
-           // This add an invisible rect on top of the chart area. This rect can recover pointer events: necessary to understand when the user zoom
-           var zoomRect = this.axisGroup.append("rect")
-           .attr("cursor", "grab")
-             .attr("pointer-events", "all")
-             .attr("width", this.plotWidth)
-             .attr("height", this.plotHeight)
-             .style("fill", "grey")
-             .style("opacity",0.1)
-             .call(zoom);
-              
-            
-        
-      
-            // A function that updates the chart when the user zoom and thus new boundaries are available
-            function updateChart()
-            {
-              // recover the new scale
-              var xTranslate = d3.event.transform.x;
-              var yTranslate = d3.event.transform.y;
-              const scale = d3.event.transform.k;
-              //console.log(d3.event.transform.x);
-              //var newX = d3.event.transform.rescaleX(xScale);
-              //var newY = d3.event.transform.rescaleY(yScale);
-              //localParentControl.getProxy().getLiveProperty("Zoom").setValue([newX, newY]);
-              console.log(Math.abs(xTranslate));
-              const w =  660 - margin.left - margin.right;
-      
-              
-              localParentControl.getProxy().getLiveProperty("xTranslate").setValue([xTranslate,scale,xScale,yScale]);
-              
-              
-              
-              localParentControl.getProxy().getLiveProperty("yTranslate").setValue([yTranslate,scale,xScale,yScale]);
-              
-            }
-      
-           
-              
-      
-      
-       */
-            var myArrayTable = [];
-            // //brushed over the insetScatterplot       
-            // function brushed()
-            // {
-            //   myArrayTable = [];
-            //   const selection = d3.event.selection;
-            //   if (selection === null)
-            //   {
-            //     d3.selectAll("circle").data(data).attr("stroke", null);
-            //   } else
-            //   {
-            //     //console.log( x0 + " " + x1 + " " + y0 +  " " + y1);
-            //     const [[x0, y0], [x1, y1]] = selection;
-            //     d3.selectAll("circle")
-            //       .data(data)
-            //       .attr("stroke", (d) =>
-            //       {
-            //         if (
-            //           x0 <= xScale(horiz(d)) &&
-            //           xScale(horiz(d)) <= x1 &&
-            //           y0 <= yScale(verti(d)) &&
-            //           yScale(verti(d)) <= y1
-            //         )
-            //         {
-            //           // console.log(d);
-            //           d.selectionStatus = true;
-            //           myArrayTable.push(d.Index);
-            //           return "blue";
-            //         } else
-            //         {
-            //           d.selectionStatus = false;
-            //           return null;
-            //         }
-            //       })
-            //       .attr("stroke-width", 3)
-            //   }
-            //   //create an array of all the selection statuses of the data
-            //   //console.log(data.map(d=> d.selectionStatus));
-            //   if (printClass.printStatus) console.log("In insetScatterplot");
-            //   if (printClass.printStatus) console.log(localParentControl);
-            //   localParentControl.getProxy().getLiveProperty("Selection").setValue(data.map(d => d.selectionStatus));
-            // }
-            // var brush = d3
-            //   .brush()
-            //   .extent([
-            //     [-margin.left / 2, -margin.top / 2],
-            //     [this.plotWidth + margin.right / 2, this.plotHeight + margin.bottom / 2],
-            //   ])
-            //   .on(" start brush  ", brushed);
-            // // Add the brushing
-            // this.axisGroup.append("g").call(brush);
-        };
-        document.body.appendChild(this.div1);
-        this.makeDraggable();
-    }
-}
-//# sourceMappingURL=insetScatterplot.js.map
-
-class ControlInsetScatterplot {
-    //**********************************************************************
-    // Constructors and Finalizer
-    //**********************************************************************
-    constructor(name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
-        //**********************************************************************
-        // Public Class Members (Properties)
-        //**********************************************************************
-        this.CTAG_xTranslate = "xTranslate";
-        this.CTAG_yTranslate = "yTranslate";
-        this.CTAG_Size = "Size";
-        this.CTAG_Opacity = "Opacity";
-        this.CTAG_Selection = "Selection";
-        this.CTAG_Zoom = "Zoom";
-        this.TYPE_xTranslate = new Prototype(Array.prototype, this.CTAG_xTranslate, [null, null]);
-        this.TYPE_yTranslate = new Prototype(Array.prototype, this.CTAG_yTranslate, [null, null]);
-        this.TYPE_Size = new Prototype(Number.prototype, this.CTAG_Size, 0);
-        this.TYPE_Opacity = new Prototype(Number.prototype, this.CTAG_Opacity, 0);
-        this.TYPE_Selection = new Prototype(Array.prototype, this.CTAG_Selection, [false]);
-        this.TYPE_Zoom = new Prototype(Array.prototype, this.CTAG_Zoom, [null, null]);
-        if (printClass.printStatus)
-            console.log("I am in constructor of ControlInsetScatterplot");
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
-        this.proxy = new ControlProxy(this);
-        //create live property
-        this.live_property1 = this.proxy.add(this.CTAG_xTranslate, this.TYPE_xTranslate, true);
-        this.live_property2 = this.proxy.add(this.CTAG_yTranslate, this.TYPE_yTranslate, true);
-        this.live_property3 = this.proxy.add(this.CTAG_Opacity, this.TYPE_Opacity, true);
-        this.live_property4 = this.proxy.add(this.CTAG_Selection, this.TYPE_Selection, true);
-        this.live_property5 = this.proxy.add(this.CTAG_Size, this.TYPE_Size, true);
-        this.live_property6 = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
-        if (printClass.printStatus)
-            console.log(this.live_property1);
-        if (printClass.printStatus)
-            console.log(this.live_property2);
-        this.ControlName = name;
-        this.InsetScatterplot = new InsetScatterplotClass(this, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight);
-        if (printClass.printStatus)
-            console.log(name);
-    }
-    //**********************************************************************
-    // Public Methods (Properties)
-    //**********************************************************************
-    getTranslateX() {
-        return this.proxy.getValue(this.CTAG_xTranslate);
-    }
-    setTranslateX(value) {
-        console.log("setTranslateX method of ControlInsetScatterplot");
-        this.proxy.setValue(this.CTAG_xTranslate, value);
-        //this.canvas.setValue(value);
-    }
-    getColor() {
-        return this.proxy.getValue(this.CTAG_Opacity);
-    }
-    getProxy() {
-        return this.proxy;
-    }
-    setColor(value) {
-        if (printClass.printStatus)
-            console.log("setColor method of ControlInsetScatterplot");
-        this.proxy.setValue(this.CTAG_Opacity, value);
-        //this.canvas.setValue(value);
-    }
-    getTranslateY() {
-        return this.proxy.getValue(this.CTAG_yTranslate);
-    }
-    setTranslateY(value) {
-        console.log("setTranslateY method of ControlInsetScatterplot");
-        this.proxy.setValue(this.CTAG_yTranslate, value);
-        //this.canvas.setValue(value);
-    }
-    //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
-    // Override Methods (LivePropertyListener)
-    //**********************************************************************
-    propertyChanged(e) {
-        if (printClass.printStatus)
-            console.log("propertyChanged method of controlScatterPlot");
-        if (printClass.printStatus)
-            console.log(e);
-        var tag = e.getLiveProperty().getTag();
-        if (printClass.printStatus)
-            console.log(tag);
-        var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
-        if (tag == this.CTAG_xTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_yTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Opacity) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Selection) {
-            if (printClass.printStatus)
-                console.log("hurray ControlInsetScatterplot Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Size) {
-            if (printClass.printStatus)
-                console.log("hurray ControlInsetScatterplot Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Zoom) {
-            if (printClass.printStatus)
-                console.log("hurray ControlInsetScatterplot Zoom");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.InsetScatterplot.setZoom(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        if (printClass.printStatus)
-            console.log(value);
-    }
-    //**********************************************************************
-    // Private Methods (Graphics)
-    //**********************************************************************
-    describe() {
-        throw new Error("Method not implemented.");
-    }
-    dispose() {
-        throw new Error("Method not implemented.");
-    }
-}
-//******************************************************************************
-//# sourceMappingURL=ControlInsetScatterplot.js.map
-
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
 class ParallelCoordinatePlotClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentWindow, control, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color$$1, dims) {
+    constructor(control, data, name, xPos, yPos, inputWidth, inputHeight, helper, color$$1, dims) {
         this.width = 960;
         this.height = 480;
         if (printClass.printStatus)
@@ -23591,8 +22535,6 @@ class ParallelCoordinatePlotClass {
         this.parallelCoordinatePlotName = name;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.horizontal = horizontal;
-        this.vertical = vertical;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.parallelCoordinatePlotName = name;
@@ -23604,7 +22546,6 @@ class ParallelCoordinatePlotClass {
         this.Data = data;
         this.helper = helper;
         this.colorIndex = color$$1;
-        this.parentWindow = parentWindow;
         this.dims = dims;
         this.render(control);
         this.previousX = 0;
@@ -23621,7 +22562,7 @@ class ParallelCoordinatePlotClass {
             //event listener on , otherwise this keyword refers to the sliderClass object
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.parallelCoordinatePlotName)
+            document.getElementById(this.parallelCoordinatePlotName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -23855,9 +22796,9 @@ class ParallelCoordinatePlotClass {
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "parallelCoordinatePlotheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         //console.log("I am printing D3 Object in ParallelCoordinatePlotClass");
         var d3obj = d3;
         //console.log(d3obj);
@@ -23873,7 +22814,7 @@ class ParallelCoordinatePlotClass {
             //var colArray = ["d.Index","d.selectionStatus","d.T","d.X","d.Y","d.Z"];
             //console.log(colArray);
             this.LocalData = data;
-            var margin = { top: 50, right: 30, bottom: 30, left: 60 };
+            var margin = { top: 50, right: 10, bottom: 30, left: 60 };
             this.plotWidth = this.inputWidth - margin.left - margin.right;
             this.plotHeight = this.inputHeight - margin.top - margin.bottom;
             this.innerWidth = this.plotWidth + margin.left + margin.right;
@@ -23975,7 +22916,7 @@ class ParallelCoordinatePlotClass {
                 .attr("y", -9)
                 .text(function (d) { return d; })
                 .style("fill", "black")
-                .style("font-size", 15)
+                .style("font-size", 13)
                 .style("font-weight", 100);
         };
         renderplot(data);
@@ -23989,7 +22930,7 @@ class ControlParallelCoordinatePlot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color, dims) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight, helper, color, dims) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -24026,7 +22967,7 @@ class ControlParallelCoordinatePlot {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.parallelCoordinatePlot = new ParallelCoordinatePlotClass(parentWindow, this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, helper, color, dims);
+        this.parallelCoordinatePlot = new ParallelCoordinatePlotClass(this, data, name, xPos, yPos, inputWidth, inputHeight, helper, color, dims);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -24137,7 +23078,7 @@ class ControlParallelCoordinatePlot {
 //need to create view box
 class GradientClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(control, name, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(control, name, data, xPos, yPos, horizontalAxisIndex, inputWidth, inputHeight, helper) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -24145,13 +23086,14 @@ class GradientClass {
         if (printClass.printStatus)
             console.log("I am in constructor of GradientClass");
         this.gradientControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
+        //this.glyph = symbol;// as unknown as d3.SymbolType;
         this.horizontal = horizontalAxisIndex;
-        this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.gradientControlName = name;
         this.parentControl = control;
+        this.helper = helper;
+        this.Data = data;
         if (printClass.printStatus)
             console.log("let's see");
         if (printClass.printStatus)
@@ -24160,9 +23102,10 @@ class GradientClass {
         this.previousY = 0;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.showHoriz = showHoriz;
-        this.showVerti = showVerti;
         this.render(control);
+    }
+    setSelection(arg0) {
+        //throw new Error("Method not implemented.");
     }
     makeDraggable() {
         //create instance of a Draggable class
@@ -24171,11 +23114,7 @@ class GradientClass {
         //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.gradientControlName)
+            document.getElementById(this.gradientControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -24190,193 +23129,6 @@ class GradientClass {
     }
     getTranslateY() {
         return this.width;
-    }
-    setSize(value) {
-        //console.log("set Size method of Gradient");
-        if (printClass.printStatus)
-            console.log(value);
-        var temp = value;
-        //console.log();
-        select(`#${this.gradientControlName}`)
-            .select("svg")
-            .select("g")
-            .selectAll("circle")
-            .attr("r", temp / 10);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
-    translateX(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var xScale = this.xScale;
-        var change = value[0] - this.previousX;
-        var directionHorizontal;
-        if (change >= 0) {
-            directionHorizontal = -1;
-        }
-        else {
-            directionHorizontal = 1;
-        }
-        if (newX == 0 || newX == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionHorizontal * (xScale.invert(this.previousX)) - directionHorizontal * (xScale.invert(change));
-            xScale.domain([xScale.domain()[0] + shift, xScale.domain()[1] + shift]);
-            this.xAxis.call(axisBottom(xScale));
-            //Update the gradient based on new zoom event
-            select(`#${this.gradientControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return xScale(horiz(d)); });
-            this.previousX = value[0];
-        }
-        //updating the class variable again
-        this.xScale = xScale;
-    }
-    translateY(value) {
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        //console.log("translateY method of Gradient");
-        //console.log("Hurray" + this.gradientControlName);
-        var change = value[0] - this.previousY;
-        var directionVertical;
-        if (change >= 0) {
-            //console.log("positive direction");
-            directionVertical = 1;
-        }
-        else {
-            //console.log("negative direction");
-            directionVertical = -1;
-        }
-        var newY = value[0];
-        //extracting the yscale
-        var yScale = this.yScale;
-        if (newY == 0 || newY == undefined) {
-            //console.log("undefined");
-        }
-        else {
-            var shift = directionVertical * (yScale.invert(this.previousY)) - directionVertical * (yScale.invert(change));
-            yScale.domain([yScale.domain()[0] + shift, yScale.domain()[1] + shift]);
-            this.yAxis.call(axisLeft(yScale));
-            //Update the gradient based on new zoom event
-            select(`#${this.gradientControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cy', function (d) { return yScale(verti(d)); });
-            this.previousY = value[0];
-        }
-        //updating the class variable again
-        this.yScale = yScale;
-    }
-    setOpacity(value) {
-        //console.log("setOpacity of gradient");
-        var temp = value;
-        //console.log(temp);
-        selectAll("circle").attr("fill-opacity", `${temp / 100}`);
-    }
-    setSelection(value) {
-        //console.log("serdddt in" + this.gradientControlName);
-        if (this.LocalData == undefined) {
-        }
-        else {
-            //console.log(this.LocalData)
-            this.LocalData.map(function (d, index) {
-                d.selectionStatus = value[index];
-            });
-            //console.log(this.gradientControlName);
-            //console.log(this.LocalData)
-            select(`#${this.gradientControlName}`).select("svg").selectAll("circle")
-                .data(this.LocalData)
-                .attr("stroke", function (d) {
-                if (d.selectionStatus == true) {
-                    //console.log(d.Country);
-                }
-                return d.selectionStatus == true ? "blue" : null;
-            })
-                .attr("stroke-width", 3);
-        }
-    }
-    setZoom(value) {
-        //console.log("Hurray" + this.gradientControlName);
-        var horizontal = this.horizontal + 2;
-        var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
-        var newX = value[0];
-        var newY = value[1];
-        if (newX == 0 && newY == undefined) {
-        }
-        else {
-            this.xAxis.call(axisBottom(newX));
-            this.yAxis.call(axisLeft(newY));
-            //Update the gradient based on new zoom event
-            select(`#${this.gradientControlName}`)
-                .select("svg").select('g')
-                .selectAll("circle")
-                .attr('cx', function (d) { return newX(horiz(d)); })
-                .attr('cy', function (d) { return newY(verti(d)); });
-        }
     }
     render(parentControl) {
         var localParentControl = parentControl;
@@ -24402,355 +23154,84 @@ class GradientClass {
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "gradientheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
-        //console.log("I am printing D3 Object in GradientClass");
-        var d3obj = d3;
-        //console.log(d3obj);
-        var count = -1;
-        function indexnumber() {
-            count++;
-            return count;
-        }
-        dsv(",", "./data/ions.csv").then((data) => {
-            data.forEach(d => {
-                d.Index = indexnumber(),
-                    d.selectionStatus = false,
-                    d.T = +(d.T.replace(/,/g, "")),
-                    d.X = +(d.X.replace(/,/g, "")),
-                    d.Y = +(d.Y.replace(/,/g, "")),
-                    d.Z = +(d.Z.replace(/,/g, ""));
-            });
-            renderPlot(data);
-        });
+        div1.appendChild(div2);
+        var data = this.Data;
+        var item = this.helper[0];
         const renderPlot = (data) => {
             //console.log(data);
-            var colArray = ["d.Index", "d.selectionStatus", "d.T", "d.X", "d.Y", "d.Z"];
-            var horizo = colArray[this.horizontal];
-            var vertic = colArray[this.vertical];
-            //console.log(this);
-            //console.log( horizo + " " + vertic);
-            var horizontal = this.horizontal + 2;
-            var vertical = this.vertical + 2;
-            function horiz(d) {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return d.T;
-                }
-                else if (horizontal == 3) {
-                    return d.X;
-                }
-                else if (horizontal == 4) {
-                    return d.Y;
-                }
-                else if (horizontal == 5) {
-                    return d.Z;
-                }
-            }
-            function verti(d) {
-                if (vertical == 2) {
-                    return d.T;
-                }
-                else if (vertical == 3) {
-                    return d.X;
-                }
-                else if (vertical == 4) {
-                    return d.Y;
-                }
-                else if (vertical == 5) {
-                    return d.Z;
-                }
-            }
-            function horizLabel() {
-                //console.log("hh is "+ hh);
-                if (horizontal == 2) {
-                    return "Time(S)→";
-                }
-                else if (horizontal == 3) {
-                    return "X(Excite)→";
-                }
-                else if (horizontal == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (horizontal == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            function vertiLabel() {
-                if (vertical == 2) {
-                    return "Time(S)→";
-                }
-                else if (vertical == 3) {
-                    return "X(Excite)→";
-                }
-                else if (vertical == 4) {
-                    return "Y(Detect)→";
-                }
-                else if (vertical == 5) {
-                    return "Z(Inject)→";
-                }
-            }
-            //console.log("IW is "+ this.inputWidth);
-            //console.log("IH is " + this.inputHeight);
+            var colArray = Object.keys(data[0]);
+            var horizontal = this.horizontal;
+            var vertical = this.vertical;
+            var item = this.helper[0];
+            var SelectionArray = new Array(data.length);
+            SelectionArray.fill(false, 0);
             this.LocalData = data;
-            var margin = { top: 0, right: 0, bottom: 0, left: 0 };
-            var plotWidth = this.inputWidth - margin.left - margin.right;
-            var plotHeight = this.inputHeight - margin.top - margin.bottom;
-            this.innerWidth = plotWidth + margin.left + margin.right;
-            this.innerHeight = plotHeight + margin.top + margin.bottom;
-            //plotWidth = plotWidth;
-            //plotHeight = plotHeight;
+            var plotWidth = this.inputWidth;
+            var plotHeight = this.inputHeight;
             // append the svg object to the body of the page
             var svg$$1 = select(div1)
                 .append("svg")
                 .attr("fill", "orange")
-                .attr("width", this.innerWidth)
-                .attr("height", this.innerHeight);
-            //create a group element for the rest of the plot
-            var axisGroup = svg$$1
-                .append("g")
-                .attr("class", "axisGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            var labelsGroup = svg$$1
-                .attr("fill", "orange")
-                .append("g")
-                .attr("class", "labelGroupClass")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("width", plotWidth)
+                .attr("height", plotHeight);
             //create a linear xScale
             var xScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return horiz(d);
-            }))
-                .range([0, plotWidth])
-                .nice();
+                .domain(extent(data, function (d) { return item(d, horizontal); }))
+                .range([0, plotWidth]);
             this.xScale = xScale;
-            this.xAxis = axisGroup
+            this.xAxis = svg$$1
                 .append("g")
                 .attr("transform", "translate(0," + plotHeight + ")");
-            if (this.showHoriz) {
-                //append the xAxis to group 
-                this.xAxis.call(axisBottom(xScale));
-                labelsGroup
-                    .append("text")
-                    .text(horizLabel())
-                    .attr("fill", "black")
-                    .attr("text-anchor", "middle")
-                    .style("font-size", 15)
-                    .style("font-weight", 1000)
-                    .attr("transform", `translate(${plotWidth * 0.5}, ${plotHeight + margin.top}) rotate(0)`);
-            }
+            this.xAxis.call(axisBottom(xScale));
+            var color$$1 = linear$2()
+                .domain(extent(data, function (d) { return item(d, horizontal); }))
+                .range(["red", "black"]);
+            //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
             var defs = svg$$1.append("defs");
-            var gradient = defs.append("linearGradient")
+            var gradient = defs
+                .append("linearGradient")
                 .attr("id", "svgGradient")
                 .attr("x1", "0%")
-                .attr("x2", "50%")
                 .attr("y1", "0%")
+                .attr("x2", "100%")
                 .attr("y2", "0%");
-            gradient.append("stop")
-                .attr('class', 'start')
+            gradient
+                .append("stop")
+                .attr("class", "start")
                 .attr("offset", "0%")
                 .attr("stop-color", "red")
                 .attr("stop-opacity", 1);
-            gradient.append("stop")
-                .attr('class', 'end')
-                .attr("offset", "50%")
+            gradient
+                .append("stop")
+                .attr("class", "end")
+                .attr("offset", "100%")
                 .attr("stop-color", "black")
                 .attr("stop-opacity", 1);
-            axisGroup.append("rect")
-                .attr("width", innerWidth)
-                .attr("height", innerHeight)
-                .style("fill", "url(#svgGradient)");
-            //create a linear yScale
-            var yScale = linear$2()
-                .domain(extent(data, function (d) {
-                //console.log(d);
-                return verti(d);
-            }))
-                .range([plotHeight, 0])
-                .nice();
-            this.yScale = yScale;
-            this.yAxis = axisGroup.append("g");
-            if (this.showVerti) {
-                //append the yAxis to group
-                this.yAxis.call(axisLeft(yScale));
-                // var labelsGroup = svg
-                // .attr("fill", "orange")
-                // .append("g")
-                // .attr("class", "labelGroupClass")
-                // .attr(
-                //   "transform",
-                //   "translate(" + margin.left + "," + margin.top + ")"
-                // );
-                labelsGroup
-                    .append("text")
-                    .text(vertiLabel())
-                    .attr("fill", "black")
-                    .attr("text-anchor", "middle")
-                    .style("font-size", 15)
-                    .style("font-weight", 1000)
-                    .attr("transform", `translate(${-margin.left / 1.6}, ${plotHeight * 0.5}) rotate(-90)`);
-            }
-            // create a tooltip
-            var Tooltip = axisGroup
-                .append("div")
-                .style("opacity", 0)
-                .style("position", "absolute")
-                .style("text-align", "center")
-                .attr("class", "tooltip")
-                .style("font", "1.5em sans-serif")
-                .style("background-color", "white")
-                .style("border", "solid")
-                .style("border-width", "2px")
-                .style("border-radius", "5px")
-                .style("padding", "5px");
-            /* var circleSize = d3.scaleLinear()
-            .domain(d3.extent(data, (d) => (d.CasesPerMil)))
-            .range([3, 8]); */
-            var color$$1 = linear$2()
-                .domain(extent(data, (d) => (d.T)))
-                .range(["red", "black"]);
-            // Add a clipPath: everything out of this area won't be drawn.
-            var clip = axisGroup.append("defs").append("SVG:clipPath")
-                .attr("id", `"${this.gradientControlName}clip"`)
-                .append("SVG:rect")
+            svg$$1
+                .append("rect")
                 .attr("width", plotWidth)
                 .attr("height", plotHeight)
-                .attr("x", 0)
-                .attr("y", 0);
-            // Create the scatter variable: where both the circles and the brush take place
-            var scatter = axisGroup.append('g')
-                .attr("clip-path", `"url(#${this.gradientControlName}clip)"`);
-            const t = axisGroup.transition().duration(750);
-            scatter
-                .selectAll("circle")
-                .data(data)
-                .attr("class", "cir")
-                .join(enter => enter.append("circle")
-                .attr("fill", function (d) { return color$$1(d.T); })
-                .attr("cx", function (d) { return xScale(horiz(d)); })
-                .attr("cy", function (d) { return yScale(verti(d)); })
-                .attr("r", 0)
-                .style("opacity", 0)
-                .call(enter => enter.transition(t)
-                .attr("r", function (d) { return 2; })), update => update
-                .attr("fill", "black")
-                .style("opacity", 0.7)
-                .attr("r", function (d) { return 2; }), exit => exit
-                .attr("fill", "brown")
-                .call(exit => exit.transition(t)
-                .attr("r", 0)
-                .remove()));
-            scatter
-                .selectAll("circle")
-                .attr("pointer-events", "all")
-                .on("mouseover", onMouseOver) //Add listener for the mouseover event
-                .on("mouseout", onMouseOut);
-            //mouseover event handler function
-            function onMouseOver(d) {
-                // this keyword refers to the mouseover item
-                var circle$$1 = select(this);
-                var textOffseteHeight = 12;
-                circle$$1
-                    .raise()
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("stroke", "black")
-                    .attr("stroke-width", 1)
-                    .style("opacity", 1)
-                    .attr("r", textOffseteHeight / 1.5);
-                select(this)
-                    .append("text")
-                    .attr("text-anchor", "middle")
-                    .attr('class', 'val')
-                    .style("fill", "black")
-                    .attr('x', function () {
-                    return event$1.pageX;
-                })
-                    .attr('y', function () {
-                    return event$1.pageY;
-                })
-                    .style("font-size", 15)
-                    .style("font-weight", 1000)
-                    .text(function () {
-                    return d.Country; // Value of the text
-                });
-            }
-            function onMouseOut(data, i) {
-                select(this)
-                    .transition() // adds animation
-                    .duration(100)
-                    .attr("r", 2.5)
-                    .attr("stroke", null)
-                    .attr("stroke-width", 2)
-                    .style("opacity", 0.7);
-                selectAll(".val").remove();
-            }
-            var shiftKey;
-            /* d3.select(window).on("keydown", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                
-                zoomRect.attr("pointer-events", "all");
-              }
-            });
-            d3.select(window).on("keyup", function() {
-              shiftKey = d3.event.shiftKey;
-              if (shiftKey) {
-                
-                zoomRect.attr("pointer-events", "none");
-              } else {
-                console.log(shiftKey);
-                zoomRect.attr("pointer-events", "all");
-              }
-            }); */
-            // A function that updates the chart when the user zoom and thus new boundaries are available
-            var myArrayTable = [];
-            //brushed over the gradient       
+                .style("fill", "url(#svgGradient)");
+            //brushed over the gradient
             function brushed() {
-                myArrayTable = [];
                 const selection$$1 = event$1.selection;
-                if (selection$$1 === null) {
-                    selectAll("circle").data(data).attr("stroke", null);
-                }
-                else {
-                    //console.log( x0 + " " + x1 + " " + y0 +  " " + y1);
-                    const [x0, x1] = selection$$1;
-                    selectAll("circle")
-                        .data(data)
-                        .attr("stroke", (d) => {
-                        if (x0 <= xScale(horiz(d)) &&
-                            xScale(horiz(d)) <= x1) {
-                            // console.log(d);
-                            d.selectionStatus = true;
-                            myArrayTable.push(d.Index);
-                            return "blue";
-                        }
-                        else {
-                            d.selectionStatus = false;
-                            return null;
-                        }
-                    })
-                        .attr("stroke-width", 3);
-                }
-                //create an array of all the selection statuses of the data
-                //console.log(data.map(d=> d.selectionStatus));
-                if (printClass.printStatus)
-                    console.log("In gradient");
-                if (printClass.printStatus)
-                    console.log(localParentControl);
-                localParentControl.getProxy().getLiveProperty("Selection").setValue(data.map(d => d.selectionStatus));
+                const [x0, x1] = selection$$1;
+                console.log();
+                console.log(selection$$1);
+                console.log([xScale.invert(x0), xScale.invert(x1)]);
+                var SelectionArray = data.map(function (d) {
+                    return d.T >= xScale.invert(x0) && d.T <= xScale.invert(x1);
+                });
+                localParentControl.getProxy().getLiveProperty("Selection")
+                    .setValue(SelectionArray);
             }
-            var brush$$1 = brushX()
-                .on(" start brush  ", brushed);
+            var brush$$1 = brushX().on(" start brush  ", brushed);
             // Add the brushing
-            axisGroup.append("g").call(brush$$1);
-            //.call(brush.move, [ [innerWidth*0.3 , this.inputHeight ] ,[0, 0]]);;
+            svg$$1.append("g").call(brush$$1);
         };
+        renderPlot(data);
         document.body.appendChild(div1);
         this.makeDraggable();
     }
@@ -24761,7 +23242,7 @@ class ControlGradient {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(name, data, xPos, yPos, horizontal, inputWidth, inputHeight, helper) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -24797,7 +23278,7 @@ class ControlGradient {
         if (printClass.printStatus)
             console.log(this.live_property2);
         this.ControlName = name;
-        this.gradient = new GradientClass(this, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
+        this.gradient = new GradientClass(this, name, data, xPos, yPos, horizontal, inputWidth, inputHeight, helper);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -24858,62 +23339,12 @@ class ControlGradient {
         //console.log(VariableEvent.VALUE_CHANGED);
         //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
         //{
-        if (tag == this.CTAG_xTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_yTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Opacity) {
-            if (printClass.printStatus)
-                console.log("hurray controlScatterPlot opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Selection) {
+        if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
                 console.log("hurray ControlGradient Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.gradient.setSelection(e.getLiveProperty().getVariable().getValue());
             // this.slider.setValue(90);
         }
-        else if (tag == this.CTAG_Size) {
-            if (printClass.printStatus)
-                console.log("hurray ControlGradient Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.gradient.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        //} 
     }
     propertyChangeToUpdateUI(value) {
         //if(printClass.printStatus) console.log(e);
@@ -25323,32 +23754,20 @@ function reverse$2(array, start, end) {
 //https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
 //need to create view box
 class MapClass {
-    constructor(parentWindow, control, name, data, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
         this.height = 480;
-        this.showHoriz = true;
-        this.showVerti = true;
         if (printClass.printStatus)
             console.log("I am in constructor of MapClass");
         this.mapControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
-        this.horizontal = horizontalAxisIndex;
-        this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.mapControlName = name;
         this.parentControl = control;
-        this.parentDocument = parentWindow;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
         this.previousX = 0;
         this.previousY = 0;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.showHoriz = showHoriz;
-        this.showVerti = showVerti;
         this.Data = data;
         //console.log(data[2]);
         this.SelectionArray = new Array(data[2].length);
@@ -25368,7 +23787,7 @@ class MapClass {
             //event listener on , otherwise this keyword refers to the sliderClass object
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.mapControlName)
+            document.getElementById(this.mapControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -25500,26 +23919,16 @@ class MapClass {
         div1.id = this.mapControlName;
         div1.className = "map";
         var numberPattern = /\d+/g;
-        //this.canvasWidth = 360;
         var offset = 20;
-        //div1.style.left = (parseInt(this.mapControlName.match(numberPattern).toString()) -1) *( this.inputWidth + offset) +offset + "px";
-        //div1.style.left = Math.random()*2000 + "px";
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
-        //create a closable icon
-        //var div0: HTMLButtonElement = parentDocument.document.createElement("button");
-        //div0.id = "close";
-        //div0.innerHTML = "X";
-        //div0.title = "close";
-        //div0.onclick = function () { div0.parentNode.parentNode.removeChild(div0.parentNode); return false; };
-        //div1.appendChild(div0);
         //create a div header for the map
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "mapheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         //console.log("I am printing D3 Object in MapClass");
         var d3obj = d3;
         //console.log(d3obj);
@@ -25550,19 +23959,18 @@ class MapClass {
                 accumulator[d.iso_n3] = d.name;
                 return accumulator;
             }, {});
-            /*
-            const countryName = {};
-            tsvData.forEach(d => {
-              countryName[d.iso_n3] = d.name;
-            });
-            */
             svg$$1.call(zoom().on("zoom", () => {
                 g.attr("transform", event$1.transform);
             }));
-            //var color = d3.scaleOrdinal(coronaData.map(d => d.Continent), d3.schemeSet1)
-            //var color = d3.scaleOrdinal(coronaData.map(d => d.Continent), d3.schemeSet3).unknown(null)
             var color$$1 = ordinal(coronaData.map(d => d.Continent), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
-            //[Asia,Europe,,,,,,,,,,,,,,]
+            var tooltip = g
+                .append("div")
+                .style("opacity", 0)
+                .attr("class", "tooltip")
+                .style("background-color", "white")
+                .style("border", "solid")
+                .style("border-width", "2px")
+                .style("border-radius", "5px");
             const countries = feature(worldMapTopoJson, worldMapTopoJson.objects.countries);
             //console.log(coronaData);
             let mapColorSelection = new Map();
@@ -25576,24 +23984,10 @@ class MapClass {
                 .attr('d', d => pathGenerator(d))
                 .attr("fill", function (d) {
                 var cname = countryName[d.id];
-                //console.log(cname + " " + color(mapColorSelection.get(cname))) ;
                 return color$$1(mapColorSelection.get(cname));
             })
                 .append('title')
                 .text(d => countryName[d.id]);
-            //cannot add labels to the map because the original data do not contain coordinates or countries
-            // g
-            // .append("g")
-            // .attr("font-family", "sans-serif")
-            // .attr("font-size", 10)
-            // .selectAll("text")
-            // .data(countries.features)
-            // .join("text")
-            // .attr("dy", "0.35em")
-            // .attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
-            // //.attr("x", function (d) { return xScale(item(d,horizontal)) +7; })
-            // //.attr("y", function (d) { return yScale(item(d,vertical)); })
-            // .text(d => countryName[d.id])
             g.selectAll("path")
                 .on("mouseover", onMouseOver) //Add listener for the mouseover event
                 .on("mouseout", onMouseOut) //Add listener for the mouseover event
@@ -25606,33 +24000,11 @@ class MapClass {
             var mouseoverstatus = false;
             var mousedownstatus = false;
             function onMouseOver(d) {
-                //console.log(this);
-                /*        var s = this as SVGClipPathElement;
-                       //console.log(s.attributes);
-                       var tag = s.attributes[0].ownerElement.innerHTML.replace("<title>","").replace("</title>","");
-                       // console.log(tit )
-                       //console.log(this)
-                       //.getAttribute("title"))
-                       //console.log(this.getAttribute("d").substr(0, this.getAttribute("d").indexOf('L')) );
-                       var coord = this.getAttribute("d").split('L')[0].replace("M","").split(",");
-                       //console.log(coord);
-                       //console.log(coord[0] + "   " + coord[1] );
-                
-                      
-                
-                      g.append("g")
-                      .selectAll("text")
-                      .join("text")
-                      .attr("class", "place-label")
-                      .attr("transform", function(d) {
-                        console.log(tag)
-                        return "translate(" + coord[0] + "," + coord[1] + ")"; })
-                      //.attr("x", function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; })
-                      .attr("dy", ".35em")
-                      .style("text-anchor",  "start")
-                      .text(function() {
-                        console.log(tag)
-                        return tag }); */
+                //   console.log(d.properties.name)
+                //   //console.log(this);
+                select("title")
+                    .style("left", (event$1.pageX) + 10 + "px")
+                    .style("top", (event$1.pageY) + "px");
                 mouseoverstatus = true;
                 var idx = mapHover2.get(d.properties.name);
                 //console.log(idx);
@@ -25702,7 +24074,7 @@ class MapClass {
                     .attr('x', textOffset);
             }
             svg$$1.append('g')
-                .attr('transform', `translate(20,200)`)
+                .attr('transform', `translate(20,150)`)
                 .call(colorLegend, {
                 color: color$$1,
                 circleRadius: 10,
@@ -25721,7 +24093,7 @@ class ControlMap {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -25752,7 +24124,7 @@ class ControlMap {
         this.live_property_Indication = this.proxy.add(this.CTAG_Indication, this.TYPE_Indication, true);
         this.live_property_Data = this.proxy.add(this.CTAG_Data, this.TYPE_Data, true);
         this.ControlName = name;
-        this.map = new MapClass(parentWindow, this, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti);
+        this.map = new MapClass(this, name, data, xPos, yPos, inputWidth, inputHeight);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -25877,7 +24249,7 @@ class ControlMap {
 //need to create view box
 class BubbleChartClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
-    constructor(parentWindow, control, data, name, xPos, yPos, symbol$$1, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
+    constructor(control, data, name, xPos, yPos, inputWidth, inputHeight, helper, color$$1, size, text$$1) {
         this.width = 960;
         this.height = 480;
         this.showHoriz = true;
@@ -25885,31 +24257,21 @@ class BubbleChartClass {
         if (printClass.printStatus)
             console.log("I am in constructor of BubbleChartClass");
         this.bubblechartControlName = name;
-        this.glyph = symbol$$1; // as unknown as d3.SymbolType;
-        this.horizontal = horizontalAxisIndex;
-        this.vertical = verticalAxisIndex;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
         this.bubblechartControlName = name;
         this.colorIndex = color$$1;
         this.circleSizeIndex = size;
         this.textIndex = text$$1;
-        this.parentWindow = parentWindow;
         this.SelectionArray = new Array(data.length);
         this.SelectionArray.fill(false, 0);
         this.IndicationArray = new Array(data.length);
         this.IndicationArray.fill(false, 0);
         this.parentControl = control;
-        if (printClass.printStatus)
-            console.log("let's see");
-        if (printClass.printStatus)
-            console.log(control);
         this.previousX = 0;
         this.previousY = 0;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.showHoriz = showHoriz;
-        this.showVerti = showVerti;
         this.Data = data;
         this.helper = helper;
         this.render(control);
@@ -25925,7 +24287,7 @@ class BubbleChartClass {
             //event listener on , otherwise this keyword refers to the sliderClass object
             //document.getElementById( SliderClass.sliderControlName + "header")!
             //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
-            document.getElementById(this.bubblechartControlName)
+            document.getElementById(this.bubblechartControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
         catch (error) {
@@ -26042,15 +24404,15 @@ class BubbleChartClass {
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
         div2.className = "bubblechartheader";
-        div2.textContent = div1.id;
+        //div2.textContent = div1.id;
         //make the div header a child to the div element
-        //div1.appendChild(div2);
+        div1.appendChild(div2);
         var data = this.Data;
         const renderPlot = (data) => {
             //console.log(data);
             var colArray = Object.keys(data[0]);
             //console.log("BubbleChart Render Method");
-            console.log(colArray);
+            //console.log(colArray);
             var horizontal = this.horizontal;
             var vertical = this.vertical;
             var colorIndex = this.colorIndex;
@@ -26075,56 +24437,54 @@ class BubbleChartClass {
             // append the svg object to the body of the page
             var svg$$1 = select(div1)
                 .append("svg")
+                .attr("class", "vertical")
                 .attr("width", this.innerWidth)
                 .attr("height", this.innerHeight);
-            var defs = svg$$1.append("defs");
-            var readialGradient = defs.append("radialGradient")
-                .attr("id", "circleGradient");
-            readialGradient.append("stop")
-                .attr("offset", 0)
-                .attr("stop-color", " aqua ")
-                .attr("stop-setOpacity", 1);
-            readialGradient.append("stop")
-                .attr("offset", 100)
-                .attr("stop-color", " pink ")
-                .attr("stop-setOpacity", 1);
-            var linearGradient = defs.append("linearGradient")
-                .attr("id", "neonGradient");
-            linearGradient.append("stop")
-                .attr("offset", 0)
-                .attr("stop-color", " yellow ")
-                .attr("stop-setOpacity", 1);
-            linearGradient.append("stop")
-                .attr("offset", 100)
-                .attr("stop-color", " orange ")
-                .attr("stop-setOpacity", 1);
-            var pattern = defs.append("pattern")
-                .attr("id", "figure")
-                .attr("height", "100%")
-                .attr("width", "100%")
-                .attr("patternContentUnits", "objectBoundingBox")
-                .append("image")
-                .attr("height", 1)
-                .attr("width", 1)
-                .attr("preserveAspectRatio", "none")
-                .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
-                .attr("xlink:href", "./media/image.jpg");
-            var group = svg$$1.append("g")
-                .attr("transform", "translate(" + plotWidth / 2 + "," + plotHeight / 2 + ")");
+            var dropdown = select(div1)
+                .insert("select", "svg")
+                .attr("id", "sizeSelector")
+                .attr('transform', `translate(120,30)`)
+                .on("change", changed);
+            var dropDownArrar = [{ variable: "Radius:CasesPerMillion", Index: "8" },
+                { variable: " Radius:DeathsPerMillion", Index: "9" },
+                { variable: " Radius:TestsPerMillion", Index: "6" }];
+            dropdown
+                .selectAll("option")
+                .data(dropDownArrar)
+                .enter().append("option")
+                .text(function (d) { return d.variable; })
+                .attr("value", function (d) { return d.Index; });
+            function changed(d) {
+                // console.log("changed");
+                console.log(select(this).property("value"));
+                var index = select(this).property("value");
+                var circleSize1 = sqrt$1()
+                    .domain(extent(data, function (d) { return (item(d, index)); }))
+                    .range([0, 30]);
+                svg$$1.selectAll("circle")
+                    .data(data)
+                    .attr("r", function (d) {
+                    return circleSize1(item(d, index));
+                });
+                var simulation1 = simulation()
+                    .force("x", x$2(width / 2).strength(0.1))
+                    .force("y", y$2(height / 1.7).strength(0.1))
+                    .force("collide", collide(function (d) {
+                    return circleSize1(item(d, index)) + 1;
+                }));
+                simulation1.nodes(data)
+                    .on('tick', ticked);
+            }
             var circleSize = sqrt$1()
-                .domain(extent(data, (d) => (d.CasesPerMillion)))
-                .range([0, 40]);
-            //https://github.com/d3/d3-scale-chromatic
-            //var color = d3.scaleOrdinal(data.map((d: { Continent: any; }) => d.Continent), d3.schemeSet1)
-            //var color = d3.scaleOrdinal(data.map((d: any) => (d.Continent)), d3.schemeSet3).unknown("black")
-            var color$$1 = ordinal(data.map((d) => (d.Continent)), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
+                .domain(extent(data, function (d) { return (item(d, circleSizeIndex)); }))
+                .range([0, 30]);
+            var color$$1 = ordinal(data.map(function (d) { return (d.Continent); }), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
             this.colorscheme = color$$1;
-            // source:https://www.youtube.com/watch?v=lPr60pexvEM
             var simulation$$1 = simulation()
                 .force("x", x$2(width / 2).strength(0.1))
                 .force("y", y$2(height / 1.7).strength(0.1))
                 .force("collide", collide(function (d) {
-                return circleSize(d.CasesPerMillion) + 1;
+                return circleSize(item(d, circleSizeIndex)) + 1;
             }));
             var circles = svg$$1.selectAll(".country")
                 .data(data)
@@ -26132,10 +24492,10 @@ class BubbleChartClass {
                 .enter().append("circle")
                 .attr("class", "country")
                 .attr("r", function (d) {
-                return circleSize(d.CasesPerMillion);
+                return circleSize(item(d, circleSizeIndex));
             })
                 .attr("fill", function (d) {
-                return color$$1(d.Continent);
+                return color$$1(item(d, colorIndex));
             })
                 .on("mouseover", function (d, index) {
                 onMouseOver(d, index);
@@ -26146,18 +24506,6 @@ class BubbleChartClass {
                 .on("mousedown", function (d, index) {
                 onMouseDown(d, index);
             });
-            //     circles.append("clipPath")
-            //     .attr("id", `"${this.bubblechartControlName}clip"`)
-            //     .append("use")
-            //     .attr("xlink:href", `"${this.bubblechartControlName}clip"`.href);
-            // circles.append("text")
-            //     .attr("clip-path", `"${this.bubblechartControlName}leaf"`)
-            //   .selectAll("tspan")
-            //   .data(data)
-            //   .join("tspan")
-            //     .attr("x", 0)
-            //     .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`)
-            //     .text(d => d.CountryOfInterest);
             var mouseoverstatus = false;
             var mousedownstatus = false;
             function onMouseOver(d, index) {
@@ -26223,25 +24571,13 @@ class BubbleChartClass {
                     .attr('x', textOffset);
             }
             svg$$1.append('g')
-                .attr('transform', `translate(10,30)`)
+                .attr('transform', `translate(10,10)`)
                 .call(colorLegend, {
                 color: color$$1,
                 side: 15,
                 spacing: [20, 20, 20, 20, 20, 20, 20],
                 textOffset: 20
             });
-            svg$$1.append('g')
-                .attr('transform', `translate(100,30)`)
-                .append("select")
-                .attr("id", "selectButton");
-            // add the options to the button
-            select("#selectButton")
-                .selectAll('myOptions')
-                .data(colArray)
-                .enter()
-                .append('option')
-                .text(function (d) { return d; }) // text showed in the menu
-                .attr("value", function (d) { return d; }); // corresponding value returned by the button
             select("#selectButton").on("change", function (d) {
                 // recover the option that has been chosen
                 var selectedOption = select(this).property("value");
@@ -26260,7 +24596,7 @@ class ControlBubblechart {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
-    constructor(parentWindow, name, data, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
+    constructor(name, data, xPos, yPos, inputWidth, inputHeight, helper, color, size, text) {
         // test(evt: Event): void
         // {
         //     throw new Error("Method not implemented.");
@@ -26300,7 +24636,7 @@ class ControlBubblechart {
         this.live_property_Zoom = this.proxy.add(this.CTAG_Zoom, this.TYPE_Zoom, true);
         this.ControlName = name;
         //console.log(data)
-        this.bubblechart = new BubbleChartClass(parentWindow, this, data, name, xPos, yPos, symbol, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
+        this.bubblechart = new BubbleChartClass(this, data, name, xPos, yPos, inputWidth, inputHeight, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
     }
@@ -26472,7 +24808,7 @@ class ControlBubblechart {
 
 //console.info('%cThis is implementation of LiveProperties in Javascript','color:blue; font-weight:bold; font-size:15px');
 //console.warn("This may not work in all browsers!.  This is an experemental project ");
-function createControl(parentWindow, controlName, data, name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
+function createControl(controlName, data, name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
     if (printClass.printStatus)
         console.log("Next Step: Control Creation**************(( " + controlName + " ))**************");
     if (controlName == "slider") {
@@ -26488,31 +24824,27 @@ function createControl(parentWindow, controlName, data, name, xPos, yPos, symbol
         return canvasControl;
     }
     else if (controlName == "scatterplot") {
-        let scatterplotControl = new ControlScatterplot(parentWindow, name, data, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
+        let scatterplotControl = new ControlScatterplot(name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
         return scatterplotControl;
     }
     else if (controlName == "map") {
-        let mapControl = new ControlMap(parentWindow, name, data, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
+        let mapControl = new ControlMap(name, data, xPos, yPos, inputWidth, inputHeight);
         return mapControl;
     }
     else if (controlName == "bubblechart") {
-        let bubblechartControl = new ControlBubblechart(parentWindow, name, data, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1);
+        let bubblechartControl = new ControlBubblechart(name, data, xPos, yPos, inputWidth, inputHeight, helper, color$$1, size, text$$1);
         return bubblechartControl;
     }
     else if (controlName == "gradient") {
-        let gradientControl = new ControlGradient(name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti);
+        let gradientControl = new ControlGradient(name, data, xPos, yPos, horizontalAxes, inputWidth, inputHeight, helper);
         return gradientControl;
     }
-    else if (controlName == "insetScatterplot") {
-        let insetScatterplotControl = new ControlInsetScatterplot(name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight);
-        return insetScatterplotControl;
-    }
     else if (controlName == "table") {
-        let tableControl = new ControlTable(parentWindow, name, data, xPos, yPos, inputWidth, inputHeight);
+        let tableControl = new ControlTable(name, data, xPos, yPos, inputWidth, inputHeight);
         return tableControl;
     }
     else if (controlName == "parallelCoordinatePlot") {
-        let parallelCoordinatePlotControl = new ControlParallelCoordinatePlot(parentWindow, name, data, xPos, yPos, horizontalAxes, verticalAxes, inputWidth, inputHeight, helper, color$$1, dims);
+        let parallelCoordinatePlotControl = new ControlParallelCoordinatePlot(name, data, xPos, yPos, inputWidth, inputHeight, helper, color$$1, dims);
         return parallelCoordinatePlotControl;
     }
     else {
@@ -26556,12 +24888,8 @@ Promise.all([tsv$1("./data/110m.tsv"),
         Index: +index,
         CountryOfInterest: CountryOfInterest,
         Continent: Continent,
-        X_Value: +(RandomX.replace(/,/g, "")),
-        Y_Value: +(RandomY.replace(/,/g, "")),
         TotalCases: +(TotalCases.replace(/,/g, "")),
         TotalDeaths: +(TotalDeaths.replace(/,/g, "")),
-        TestsPerPopulation: ((+(TotalCases.replace(/,/g, "")) - +(TotalDeaths.replace(/,/g, "")))),
-        //TestsPerPopulation: ((+(TotalCases.replace(/,/g, "")) - +(TotalDeaths.replace(/,/g, "")))*1000).toPrecision(4),     
         TotalTests: +(TotalTests.replace(/,/g, "")),
         TestsPerMil: +(TestsPerMil.replace(/,/g, "")),
         Population: +(Population.replace(/,/g, "")),
@@ -26572,16 +24900,13 @@ Promise.all([tsv$1("./data/110m.tsv"),
     let CoronaVariables = { Index: 0,
         CountryOfInterest: 1,
         Continent: 2,
-        X_Value: 3,
-        Y_Value: 4,
-        TotalCases: 5,
-        TotalDeaths: 6,
-        TestsPerPopulation: 7,
-        TotalTests: 8,
-        TestsPerMil: 9,
-        Population: 10,
-        CasesPerMil: 11,
-        DeathsPerMil: 12,
+        TotalCases: 3,
+        TotalDeaths: 4,
+        TotalTests: 5,
+        TestsPerMil: 6,
+        Population: 7,
+        CasesPerMil: 8,
+        DeathsPerMil: 9,
     };
     let IonsVariables = { Index: 0, T: 1, X: 2, Y: 3, Z: 4 };
     //lookup for items
@@ -26596,33 +24921,24 @@ Promise.all([tsv$1("./data/110m.tsv"),
             return d.Continent;
         }
         else if (idx == 3) {
-            return d.X_Value;
-        }
-        else if (idx == 4) {
-            return d.Y_Value;
-        }
-        else if (idx == 5) {
             return d.TotalCases;
         }
-        else if (idx == 6) {
+        else if (idx == 4) {
             return d.TotalDeaths;
         }
-        else if (idx == 7) {
-            return d.TestsPerPopulation;
-        }
-        else if (idx == 8) {
+        else if (idx == 5) {
             return d.TotalTests;
         }
-        else if (idx == 9) {
+        else if (idx == 6) {
             return d.TestsPerMil;
         }
-        else if (idx == 10) {
+        else if (idx == 7) {
             return d.Population;
         }
-        else if (idx == 11) {
+        else if (idx == 8) {
             return d.CasesPerMillion;
         }
-        else if (idx == 12) {
+        else if (idx == 9) {
             return d.DeathsPerMillion;
         }
     }
@@ -26630,13 +24946,13 @@ Promise.all([tsv$1("./data/110m.tsv"),
     parentDiv.id = "Corona";
     //Corona Example
     function coronaExample() {
-        let Top = 145;
+        let Top = 150;
         let Left = 30;
         let ScatterWidth = 300;
         let ScatterHeight = 250;
         let TableWidth = 325;
-        let TableHeight = 2 * ScatterHeight;
-        let MapWidth = 1.6 * ScatterWidth;
+        let TableHeight = 2 * ScatterHeight + 5;
+        let MapWidth = 2 * ScatterWidth;
         var parentName = "coronaViz";
         let Selection_1 = createVariable("Selection_1", [], Array.prototype);
         let Selection_2 = createVariable("Selection_2", [], Array.prototype);
@@ -26647,31 +24963,30 @@ Promise.all([tsv$1("./data/110m.tsv"),
         let Translation_1 = createVariable("Translation_1", [0], Array.prototype);
         let Translation_2 = createVariable("Translation_2", [0], Array.prototype);
         let Translation_3 = createVariable("Translation_3", [0], Array.prototype);
-        let scatterplot1 = createControl(parentDiv, Scatterplot_type, coronaData, "SP-1", Left, Top, circle$2, CoronaVariables.TestsPerMil, CoronaVariables.CasesPerMil, ScatterWidth, ScatterHeight, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
+        let scatterplot1 = createControl(Scatterplot_type, coronaData, "SP-1", Left, Top, null, CoronaVariables.TestsPerMil, CoronaVariables.CasesPerMil, ScatterWidth, ScatterHeight, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
         bindVariable(scatterplot1, "xTranslate", Translation_1);
         bindVariable(scatterplot1, "yTranslate", Translation_3);
         bindVariable(scatterplot1, "Selection", Selection_1);
         bindVariable(scatterplot1, "Indication", Indication_1);
         //bindVariable(scatterplot1, "Zoom", variable9);
-        let scatterplot2 = createControl(parentDiv, Scatterplot_type, coronaData, "SP-2", Left, Top + ScatterHeight, circle$2, CoronaVariables.DeathsPerMil, CoronaVariables.TestsPerMil, ScatterWidth, ScatterHeight, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
+        let scatterplot2 = createControl(Scatterplot_type, coronaData, "SP-2", Left, Top + ScatterHeight, null, CoronaVariables.DeathsPerMil, CoronaVariables.TestsPerMil, ScatterWidth, ScatterHeight, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
         bindVariable(scatterplot2, "xTranslate", Translation_2);
         bindVariable(scatterplot2, "yTranslate", Translation_1);
         bindVariable(scatterplot2, "Indication", Indication_1);
         bindVariable(scatterplot2, "Selection", Selection_2);
-        let table10 = createControl(parentDiv, Table_type, [coronaData], "TableView", Left + ScatterWidth + 2, Top, null, null, null, TableWidth, TableHeight - 15, null, null, null, null, null, null);
+        let table10 = createControl(Table_type, [coronaData], "TableView", Left + ScatterWidth + 2, Top, null, null, null, TableWidth, TableHeight, null, null, null, null, null, null);
         bindVariable(table10, "Selection", Selection_2);
         bindVariable(table10, "Indication", Indication_1);
-        let Map1 = createControl(parentDiv, Map_type, [tsvData, worldMapTopoJson, coronaData], "Map", Left + ScatterWidth + TableWidth - 25, Top, diamond, IonsVariables.Z, IonsVariables.Y, MapWidth, 2 * ScatterHeight + 3, false, false, null, null, null, null);
+        let Map1 = createControl(Map_type, [tsvData, worldMapTopoJson, coronaData], "Map", Left + ScatterWidth + TableWidth - 26, Top, diamond, IonsVariables.Z, IonsVariables.Y, MapWidth, 2 * ScatterHeight, false, false, null, null, null, null);
         bindVariable(Map1, "Data", Data_1);
         bindVariable(Map1, "Selection", Selection_1);
         bindVariable(Map1, "Indication", Indication_1);
-        let bubblechart1 = createControl(parentDiv, Bubblechart_type, coronaData, "BC-1", ScatterWidth + TableWidth + MapWidth, Top, null, null, null, MapWidth / 1.2, 2 * ScatterHeight + 3, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
+        let bubblechart1 = createControl(Bubblechart_type, coronaData, "BC-1", Left + ScatterWidth + TableWidth + MapWidth - 25, Top, null, null, null, ScatterWidth * 1.2, TableHeight - 20, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.CasesPerMil, CoronaVariables.CountryOfInterest);
         bindVariable(bubblechart1, "Selection", Selection_3);
         bindVariable(bubblechart1, "Indication", Indication_1);
-        let parallelCoordinatePlot1 = createControl(parentDiv, ParallelCoordinatePlot_type, coronaData, "PCP-1", ScatterWidth + TableWidth + 1.8 * MapWidth, Top, null, null, null, 1.2 * TableWidth, 2 * ScatterHeight + 3, null, null, [CoronaAxes], CoronaVariables.Continent, null, null, ["Continent", "DeathsPerMillion", "CasesPerMillion"]);
+        let parallelCoordinatePlot1 = createControl(ParallelCoordinatePlot_type, coronaData, "PCP-1", ScatterWidth + TableWidth + 1.6 * MapWidth, Top, null, null, null, TableWidth, 2 * ScatterHeight, null, null, [CoronaAxes], CoronaVariables.Continent, null, null, ["Continent", "DeathsPerMillion", "CasesPerMillion"]);
         bindVariable(parallelCoordinatePlot1, "Selection", Selection_2);
         bindVariable(parallelCoordinatePlot1, "Indication", Indication_1);
     }
-    console.log(document);
     coronaExample();
 });
