@@ -169,4 +169,7 @@ body {
 }
 
 
-
+#buttons{
+  float: left;
+display: block;
+}

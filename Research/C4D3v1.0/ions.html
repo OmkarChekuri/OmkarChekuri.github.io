@@ -49,7 +49,26 @@
   </div>
 
   <h1>Ions - Visualization</h1>
+  <div id = "buttons">
+    <button id = "hide" onclick="hidetext()">Hide Text </button>
+    <button  id = "show" onclick="showtext()">Display Text </button>
+    </div>
 
+    <script>
+      function hidetext(){
+       document.getElementById("documentText").style.display = "none"
+       document.getElementById("hide").style.background = "red"
+       document.getElementById("show").style.background = "none"
+      }
+      function showtext(){
+       document.getElementById("documentText").style.display = "block"
+       document.getElementById("hide").style.background = "none"
+       document.getElementById("show").style.background = "red"
+      }
+    
+    
+    
+    </script>
 
   <!-- <img src="media/corona.png" alt="Trulli" width="1000" height="333"> -->
   <svg height="650">
@@ -58,13 +77,13 @@
     </rect>
   </svg>
 
-
+<div id = "documentText"> 
   <h2>Background</h2>
 
   <p>
-    The above example shows a coordination visualization in D3 using the live properties Architecture. The data for the
-    following visualization is
-    gathered from <a href="https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" target="_blank">Ions Example</a>.
+    The above example shows a coordination visualization in D3 using the <b>Live properties</b> architectureof 
+    <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> software. The data for the
+    following visualization is gathered from <a href="https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" target="_blank">Ions Example</a>.
 
   </p>
 
@@ -72,7 +91,11 @@
 
   <p>The visualization displays different spatial and temporal aspects of a simulated ion cloud trajectory organized
     column wise. A highly coordinated set of timeseries plots, table views and other views reveal different characteristics of
-    oscillatory motion. The trajectory is displayed in a variety of ways by the views in the visualization:
+    oscillatory motion. The trajectory is displayed in a variety of ways by the views in the visualization. Each view is 
+    embedded in a rectanglular region with a <b>thick border</b> on the top. Each view can be independently
+    moved and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.
+    There are two buttons on the top of the visualization that lets you toggle the visibility of the the detailed explanation of the example to provide
+    space for organizing the views. </p>
 
   </p>
 
@@ -80,8 +103,8 @@
     <li>The first column from left consists of three time series scatterplots that show ion motion over time relative to X, Y and Z axis.</li>
     <li>The second, third, fourth and fifth columns consists of scatterplots drawn in a combination of different axis.</li>
     <li> The third column and fourth column consists of a parallel coordinate plot  thet shows the data in all the dimensions.   </li>
-     <li>The sixth column from the left shows a table view with the actual {T,X,Y,Z} positions of points along the trajectory.</li>
-    <li> The sixth column from the left below the table view shows a Perpectiual view with time mapped as a color gradient. </li>
+     <li>The sixth column from the left shows a table view with the actual (T,X,Y,Z) positions of points along the trajectory.</li>
+    <li> The sixth column from the left below the table view shows a Perpectiual view with a color gradient mapped on to a rectangular region. </li>
   </ul>
 
   <p>
@@ -95,7 +118,7 @@
   <li> The three scatter plots in the first column  and the table view are coordinated in selection. </li>
   <li> The three scatter plots in the first column are  connected in range along horizontal axis.</li>
   <li> The scatterplots in the second  and third column from left consists of overview scatterplots for the detailed views in the scatterplot in 
-    fourth and fifth columns. The Top scatterplot in the second column and the top scatterplot in the fith column are overview-Detail pairs.
+    fourth and fifth columns. The Top scatterplot in the second column and the top scatterplot in the fith column are overview-detail pairs.
      The bottom scatterplot in the second column and the bottom scatterplot  in the fourth column are overview and detail pairs.The bottom 
      scatterplot in the third column and the bottom scatterplot  in the fifth column are overview and detail pairs.</li>
     <li> The parallel coordinate plot and the perpectual slider are coordinated in selection.</li>
@@ -119,32 +142,35 @@
 
   <h3> Parallel Coordinate Plot </h3>
   <p>
-    The above parallel coordinate plot does not allow selectioon or hovering. It will only display selected items from a corresponding corresponding
-    coordinated view. The selected items are drawn using thick lines.
+    The above parallel coordinate plot does not allow selectioon or hovering. It will only display selected items from a corresponding coordinated view. 
+    The selected items are drawn using thick lines.
   </p>
 
 
   <h3> Table View </h3>
   <p>
-    selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row 
+    Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row 
     and drag the mouse to the top or bottom based ont the direction in which the selection is to be made. There are performance issues associated 
-    with multiple row selection in case of table view in the current implementation which will be addressed soon which causes the multiple selection
-    to not perform consistently always. The selected rows have a red colored text font. The table view and the scatter in the first column 
+    with multi row selection in case of table view in the current implementation which will be addressed later which causes the multiple selection
+    to not perform consistently . The selected rows have a red colored text font. The table view and the scatterplots in the first column 
     are coordinated in selection. 
   </p>
 
   <h3> Perpectual Slider </h3>
 <p>
   The perpectual slider and the parallel coordinate plot are coordinated in selection. Selection is performed in the perpectual slider by brushing. 
-  The slider is filled with a color gradient corresponding to the data. any selection performed in the slider will select the corresponding datapoints in the
-  linked parallel coordinate plot. 
+  The slider is filled with a color gradient approximately corresponding to increasing time scale in the data. Any selection performed in the slider
+  will select the corresponding data points in the linked parallel coordinate plot. 
 
 
 </p>
-<h2>Download Source Code</h2>
+
+
+</div>
+<!-- <h2>Download Source Code</h2>
 <div>
  <a href="" > <img src="media/download-button.png" alt="SourceCode" width="104" height="42"> 
-   </a> <br></br>
+   </a> <br></br> -->
 
    <svg height="100">
     <rect>

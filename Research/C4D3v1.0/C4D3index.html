@@ -70,8 +70,8 @@
         <div class="text">Ions-Viz</div>
       </div>
       
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
       
       </div>
       <br>
@@ -82,14 +82,14 @@
       <script src = "./js/slideshow.js"></script>
 <p>
    <b>C4D3</b> is a framework that provides view level abstraction and coordination architecture for developing coordinated  multiple 
-   views in using <b>D3.js</b> library. The journey to developing the C4D3 framework began when we discovered the potential and need of a coordination architecture 
-   for building coordinated multiple views(CMV) for the visualizations built in browser environment. We chose to adopt LiveProperties 
-   architecture for this purpose after understanding its potential and generalizability. 
+   views using <b>D3.js</b> library. The journey to developing the C4D3 framework began when we discovered the potential and need of a coordination architecture 
+   for building coordinated multiple views(CMV) for the visualizations built in browser environment. We chose to adopt Live properties 
+   architecture for this purpose after understanding its potential and generalizability. The whole process can be roughly categorized into following steps. 
    
    
    <ol>
-     <li> Planning and Understanding phase.</li>
-     <li> Design and Analysis phase</li>
+     <li> Planning and understanding phase.</li>
+     <li> Design and analysis phase</li>
      <li> Developing the  <b>coordination </b> architecture and <b>view abstractions</b>.</li>
      <li> Developing and testing of initial version of <b>C4D3</b> framework. </li>
      <li> Extending the coordination architecture and view abstraction for <b>D3.js</b> library. </li>
@@ -105,49 +105,49 @@
   might work like , design of the user interface of the visualization and how  a visualization designer might use the library to build visualizations using 
   D3.js library.
   
-  To Understand how a coordinated visualization works with HTML and SVG widgets, we created simple HTML and SVG widgets and started coordinating them in a 
-  variaties of ways. For example we used sliders to manipulate the DOM and vaious properties of SVG objects as a process we gained better 
-  understanding of how the codes gets complex with more number of coordination between the widgets.
+  To understand how a coordinated visualization works with Html and SVG widgets, we created simple HTML and SVG widgets and started coordinating them in a 
+  variaty of ways. For example we used sliders to manipulate the DOM and various properties of SVG objects. As a process we gained better 
+  understanding of how the program gets complex with increasing number of coordinations between the widgets.
   Check the <b><em><a style="color: red;" href="./planning.html" target="_blank" > Planning Playground </a></em></b> link  to view the examples. 
 <h3></h3>
 </p>
 
 <h3> Design and Analysis phase.</h3>
 <p>
-  The design and analysis started with discussions about the level of abstraction provided for the user. We started to design the sketch of the framework
-  and analysed how different aspects of the need to be implemented. We chose live properties architecture of the Improvise visualization system 
-  which is the coordination architecture for improvise to be the coordination architecture for the C3D4.
+  The design and analysis started with discussions about the level of abstraction provided for the user. We started to design and sketch  the framework
+  and analysed how different aspects need to be implemented. We chose Live properties coordination architecture of the
+  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> visualization system to be the coordination architecture for  C3D4.
 
 </p>
 
 <h3> Developing the coordination architecture and view abstractions.</h3>
 <p>
-  We started conversion of the Live Properties package which is written in Java into javascript. Soon we encountered many
-  difficulties associated with the conversion as javascript is not object oriented. We also faced difficulties due to its limited 
+  We started conversion of the Live Properties package which is written in Java into Javascript. Soon we encountered many
+  difficulties associated with the conversion as Javascript is not object oriented. We also faced difficulties due to its limited 
   features like lack of strict typing, support of optional parameters, support during compilation. We moved our code to typescript 
   as it provides the advantages needed for clean one on one conversion of Java Code to Typescript code. We carefully implemented 
   essential functionality of coordination architecture supported by Typescript library.   
   
-  We  created View Level abstractions for Html and SVG widgets (Sliders, text boxes, numerical input, rectangles) to make them work
+  We created view level abstractions for Html and SVG widgets (slider, text box, numerical input, rectangle) to make them work
   with the coordination architecture.
 
 
 </p>
 
-<h3> Developing and Testing of initial version of C4D3 framework.</h3>
+<h3> Developing and testing of initial version of C4D3 framework.</h3>
    
 <p>
     We combined the coordination architecture and view level abstractions to build the initial version of C4D3. The framework was combined 
-    in such a way that the user will be able to create the variables, instantiate the views using view abstractions and parameters ,define the
-    coordinations between various views in a central location.This gives the user the ability and abstraction required to define the coordinations
-    between different views in a clean and centralized manner. This also gives the user the much needed control to change the coordinations between views 
+    in such a way that the user will be able to create the variables, instantiate the views using view abstractions and parameters, define the
+    coordinations between various views in a central location. This gives the user the ability and abstraction required to define the coordinations
+    between different views in a clean and centralized manner. This also gives the user the much needed control to change the coordination between views 
     without the need to change the D3 code that builds the visualization. Our limited experience in building browser based visualization systems cost us
     most of our time in the development of the initial version of framework. Our main challenges here include setting up the softwoare environment 
     for the testing and debugging of the framework for iterative development of the framework.
 </p>
 
 <p>
-    We created multiple coordinated views using the HTML and SVG widgets to test the working of C4D3 framework.
+    We created multiple coordinated views using the Html and SVG widgets to test the working of C4D3 framework.
     Check the <b><em><a style="color: red;" href="./testing.html" target="_blank" > Testing Playground </a></em></b> link  to view the examples. 
 
 
@@ -156,19 +156,19 @@
 
 <h3> Extending the coordination architecture and view abstraction for D3.js library</h3>
 <p>
-      Once the framework is in place we started to develop view level abstractions for D3 visualizations like scatterplots, Table view,
-     Parallel coordinate plot, Choropleth Map Bubble chart and Bargraph.We started abstracting the appearence and behaviour of the visualizations 
-     to support basic selection and navigation patterns. The D3 typings for typescript are essential for building extending the architecture to
+     Once the framework is in place we started to develop view level abstractions for D3 visualizations like scatterplot, table view,
+     parallel coordinate plot, choropleth map, bubble chart and bargraph. We started abstracting the appearence and behaviour of the visualizations 
+     to support basic selection and navigation patterns. The D3 typings for typescript are essential for building and extending the architecture to
      D3.js library. Lack of typescript typings for other available libraries limited out testing and experimenting on extending the architecture 
-     to support other visualization libraries or D3 visualizations that are built using other libraries. Some of the challenges faced in this step include
-     making changes to the view abstractions for updating views in an efficient manner without impacting the performance of the browser although the 
-     initial visualization loading takes a while.  
+     to support other visualization libraries. Some of the challenges faced in this step include making changes to the view abstractions for updating the
+     views in an efficient manner without impacting the performance of the browser although some performance issues may be noticed.  
 </p>
 
 <h3> Building examples of Coordinated visualizations using C4D3.</h3>
 <p>
-  Once the required view types in D3 are ready, we created two examples of complex coordinated visualization using the C4D3 framework. One of the them 
-  being partial reimplementation of the <b>Ions visualization</b>  originally created using Improvise  and the other one being a novel implementation of
+  Once the required view types in D3 are ready, we created two examples of complex coordinated visualizations using the C4D3 framework. One of the them 
+  being partial reimplementation of the <b><a href = "https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" > Ions visualization    </a> </b>
+  originally created using  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> and the other one being a novel implementation of
   <b>Covid19 visualization</b> from the Covid19 Dataset. The <b>links</b> to the above <b>examples</b> are provided in the navigation bar. As and when 
   required to support different interaction behaviour for the visualization examples, we extended the functionality of the view abstractions for the views 
   to support complex coordinated visualizations. We parameterised essential behaviour and appearence of the D3 views to give the designer ability to 
