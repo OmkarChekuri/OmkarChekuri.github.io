@@ -13,6 +13,31 @@ details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(240, 242, 243);
+  color: black;
+  text-align: center;
+}
+
+
+
+body {
+  background-color: lightblue;
+  text-align: left;
+  max-width: 1100px;
+  min-width: 720px;
+  margin: 0 auto;
+  
+}
+
+h1 {
+  color: rgb(2, 2, 2);
+  text-align: center;
+}
 
   #rectangle {
     
@@ -313,8 +338,8 @@ table{
 
 
 #box1header, #box2header,.fontvalueheader:hover,.sliderheader:hover ,.rectangleheader:hover, .canvasheader,
-.bubblechartheader, .scatterplotheader,.tableheader,.mapheader, .parallelCoordinatePlotheader {
-  padding: 1px;
+.bubblechartheader, .scatterplotheader,.tableheader,.mapheader, .parallelCoordinatePlotheader, .gradientheader{
+  padding: 4px;
   cursor: move;
   z-index: 10;
   background-color: rgb(40, 88, 107);
@@ -322,7 +347,7 @@ table{
 }
 
 .tableheader{
-  padding: 0.5px;
+  padding: 4px;
   cursor: move;
   z-index: 10;
   background-color: rgb(40, 88, 107);

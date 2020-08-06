@@ -1,18 +1,7 @@
-
 //   C4D3 is free software: you can redistribute it and/or modify it under
 // the terms of the GNU Affero General Public License as published by the Free
 // Software Foundation, either version 3 of the License, or (at your option) any
 // later version.
-
-// This file is distributed in the hope that it will be useful, but WITHOUT
-// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
-// details.
-
-// You should have received a copy of the GNU Affero General Public License
-// along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 class VariableEvent {
     //**********************************************************************
     // Constructors and Finalizer
@@ -71,6 +60,16 @@ VariableEvent.MAX_TYPE = 7;
 //******************************************************************************
 //# sourceMappingURL=VariableEvent.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //******************************************************************************
 // class SharedFlag
 //******************************************************************************
@@ -134,11 +133,25 @@ class SharedFlag {
 //******************************************************************************
 //# sourceMappingURL=SharedFlag.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class printClass {
 }
 printClass.printStatus = false;
 //# sourceMappingURL=printClass.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
 class LivePropertyEvent //extends EventObject
  {
     //**********************************************************************
@@ -152,10 +165,6 @@ class LivePropertyEvent //extends EventObject
     constructor(property, e) {
         if (printClass.printStatus)
             console.log("Constructor of liveProperty Event");
-        //if(printClass.printStatus) console.log(property.getVariable().prototype.value);
-        //if(printClass.printStatus) console.log(e);
-        //if(printClass.printStatus) console.log(property);
-        //if(printClass.printStatus) console.log(property.getControl());
         //super(property)
         this.property = property;
         if (property && e) {
@@ -186,6 +195,11 @@ class LivePropertyEvent //extends EventObject
 //******************************************************************************
 //# sourceMappingURL=LivePropertyEvent.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+//import { typeOfValue } from "../index.js";
 class LiveProperty {
     //**********************************************************************
     // Constructors and Finalizer
@@ -234,10 +248,6 @@ class LiveProperty {
             console.log(variable);
         if (this.variable == variable)
             return;
-        // var x  =variable!.getPrototype();
-        // var y = this.prototype;
-        // if(printClass.printStatus) console.log(x.value.__proto__);
-        // if(printClass.printStatus) console.log( y.value.__proto__);
         if (printClass.printStatus)
             console.log("LiveProperty: Did i reach here on setVariable");
         if (printClass.printStatus)
@@ -257,18 +267,7 @@ class LiveProperty {
                 this.variable.setEditing(false, this);
             this.variable.removeVariableListener(this);
         }
-        //if(printClass.printStatus) console.log("Hi");
-        // This is where the magic happens  ***********************For Binding************************
-        //if(printClass.printStatus) console.log(this.control.);
-        //if(printClass.printStatus) console.log("Before setting variable");
-        //if(printClass.printStatus) console.log(this.variable);
-        //console.log("LiveProperty: Did i reach here on setVariable");
         this.variable = variable;
-        //this.prototype1 = variable.getPrototype();
-        //if(printClass.printStatus) console.log("After Setting Variable");
-        //if(printClass.printStatus) console.log(this.variable);
-        //if(printClass.printStatus) console.log(this);
-        //this.control.propertyChanged(new LivePropertyEvent(this,null));
         if (printClass.printStatus)
             console.log(variable);
         //*********************************************************************************************
@@ -398,11 +397,6 @@ class LiveProperty {
     variableChanged(e) {
         if (printClass.printStatus)
             console.log(" variableChanged method of liveProperty ");
-        //if(printClass.printStatus) console.log(e.getType());
-        //if(printClass.printStatus) console.log(VariableEvent.DISPOSING);
-        //if (e.getType == VariableEvent.DISPOSING)
-        //	this.setVariable(null);
-        //else
         this.fireEvent(new LivePropertyEvent(this, e));
     }
     //**********************************************************************
@@ -413,12 +407,7 @@ class LiveProperty {
             var ve = e.getVariableEvent();
             if (ve != null)
                 return;
-            //LiveProperty	property = e.getLiveProperty();
-            //System.out.println(property.control + "." + property.tag);
         }
-        /* if (Variable.ASYNC_EVENTS)
-            SystemEventUtilities.invokeLater(new AsyncFireEvent(e));
-        else */
         this.firePropertyChanged(e);
     }
     firePropertyChanged(e) {
@@ -438,38 +427,18 @@ class LiveProperty {
         for (i = 0; i < n; i++) {
             if (printClass.printStatus)
                 console.log("Listener :" + i);
-            //if(printClass.printStatus) console.log(this.variable?.getPrototype().value);    //90
-            //if(printClass.printStatus) console.log("hi")
             if (printClass.printStatus)
                 console.log(this.listeners[i]); //not working
-            //if(printClass.printStatus) console.log(this.listeners[i].propertyChanged(e));
             this.listeners[i].propertyChanged(e);
-            // if(printClass.printStatus) console.log(this.control.propertyChanged);
-            // if(printClass.printStatus) console.log(this.;
-            //if(printClass.printStatus) console.log(this.getPrototype());
-            // this.(this.variable?.getPrototype().value)
-            //this.control.
         }
     }
 }
-/* export class AsyncFireEvent
-{
-    private  e: LivePropertyEvent;
 
-    constructor(e: LivePropertyEvent)
-    {
-        
-        this.e = e;
-    }
-
-    run(): void
-    {
-        this.firePropertyChanged(this.e);
-    }
-} */
-//******************************************************************************
-//# sourceMappingURL=LiveProperty.js.map
-
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+//import { typeOfValue } from "../index.js";
 class Variable {
     //**********************************************************************
     // Constructors and Finalizer
@@ -536,20 +505,9 @@ class Variable {
         //	 console.log("single check")
         if ((value == null) && (this.value == null))
             return;
-        //if ((value != null) && (value==(this.value)))
-        //	 return;
-        //if (this.value == value)
-        //	return;
-        //if(printClass.printStatus) console.log(this);
-        //if(printClass.printStatus) console.log( "Value before updating Variable: " +this.value);
-        //if(printClass.printStatus) console.log("Value of prototype before updating Variable: " +this.prototype.value);
         this.value = value;
         //console.log(value==(this.value));
         this.prototype.value = value; //This Step Solved a Major Problem
-        //console.log(value[0]);
-        //if(printClass.printStatus) console.log("Value after updating Variable: " +this.value);
-        //if(printClass.printStatus) console.log("Value of prototype after updating Variable: " +this.prototype.value);
-        //if(printClass.printStatus) console.log(VariableEvent.VALUE_CHANGED)
         var varEvent = new VariableEvent(this, VariableEvent.VALUE_CHANGED, "dummy", value);
         if (printClass.printStatus)
             console.log(varEvent);
@@ -683,24 +641,9 @@ class Variable {
         this.fireEvent(new VariableEvent(this, VariableEvent.DISPOSING));
     }
     //**********************************************************************
-    // Override Methods (Object)
-    //**********************************************************************
-    // toString(): String
-    // {
-    // 	return (Variable.prototype.getName +
-    // 		"[" + Variable.prototype + ", \"" + this.name + "\", " + this.value + "]");
-    // }
-    //**********************************************************************
     // Private Methods (Events)
     //**********************************************************************
     fireEvent(e) {
-        //if(printClass.printStatus) 
-        //console.log("fireEvent in variable class");
-        //if(printClass.printStatus) 
-        //console.log(e);
-        // if (Variable.ASYNC_EVENTS)
-        // 	setTimeout(this.fireVariableChanged, 0,e); 
-        // else
         this.fireVariableChanged(e);
     }
     fireVariableChanged(e) {
@@ -710,8 +653,6 @@ class Variable {
             console.log("Number of Listeners " + n);
         var i = 0;
         for (i = 0; i < n; i++) {
-            //if(printClass.printStatus) console.log(this.listeners[i]);
-            //if(printClass.printStatus) console.log(this.listeners[i].getControl());
             if (printClass.printStatus)
                 console.log("Listener " + i + " : " + this.listeners[i].getControl().ControlName);
         }
@@ -737,8 +678,17 @@ class Variable {
  */
 Variable.ASYNC_EVENTS = true;
 Variable.STARTUP = false;
-//# sourceMappingURL=Variable.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //import { typeOfValue } from "../index";
 class Prototype {
     constructor(classType, name, value, constant) {
@@ -852,6 +802,10 @@ class Prototype {
 //******************************************************************************
 //# sourceMappingURL=Prototype.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
 //type typeOfValue = string | number | boolean | undefined | null;
 class ControlInfo {
     //**********************************************************************
@@ -990,139 +944,6 @@ class ControlInfo {
         return this.proxy.isLocked();
     }
     //**********************************************************************
-    // Public Methods (Properties, Focus)
-    //**********************************************************************
-    /* public 	isFocusing( tag?:string):boolean
-    {
-        if(tag){
-            return this.proxy.isFocusing(tag);
-        }
-        else{
-            return this.proxy.isFocusing();
-        }
-        
-    }
-
-    public setFocusing(b:boolean, tag:string):void
-    {
-        this.proxy.setFocusing(b, tag);
-    }
-
-    public setActiveFocusing(b:boolean, type?:string):void
-    {
-        if(b&& type){
-        this.proxy.setActiveFocusing(b, type);
-        }
-        else{
-            this.proxy.setActiveFocusing(b,undefined);
-        }
-    }
-
-    
-
-    //**********************************************************************
-    // Public Methods (Properties, Editing)
-    //**********************************************************************
-
-    
-    public 	isEditing(tag?:string):boolean
-    {
-        if(tag){
-            return this.proxy.isEditing(tag);
-        }
-        else{
-            return this.proxy.isEditing();
-        }
-        
-
-
-        
-    }
-
-    public setEditing(b:boolean, tag:string):void
-    {
-        this.proxy.setEditing(b, tag);
-    }
-
-    public setActiveEditing(b:boolean, type:string):void
-    {
-        if(b&& type){
-            this.proxy.setActiveEditing(b, type);
-            }
-            else{
-                this.proxy.setActiveEditing(b,undefined);
-            }
-
-
-        
-    }
-
-    
-
-    //**********************************************************************
-    // Public Methods (Metastate)
-    //**********************************************************************
-
-    public 	isMetaFocusing():boolean
-    {
-        return this.proxy.isMetaFocusing();
-    }
-
-    public setMetaFocusing(b:boolean, object:object):void
-    {
-        this.proxy.setMetaFocusing(b, object);
-    }
-
-    public 	isMetaEditing():boolean
-    {
-        return this.proxy.isMetaEditing();
-    }
-
-    public setMetaEditing(b:boolean, object:object):void
-    {
-        this.proxy.setMetaEditing(b, object);
-    }
-
-    public 	isInteracting():boolean
-    {
-        return this.proxy.isInteracting();
-    }
-
-    public setInteracting( b:boolean):void
-    {
-        this.proxy.setInteracting(b);
-    }
-
-    public 	getLastInteractionTime():number
-    {
-        return this.proxy.getLastInteractionTime();
-    }
-
-    public setLastInteractionTime( lastInteractionTime:number):void
-    {
-        this.proxy.setLastInteractionTime(lastInteractionTime);
-    }
-
-    public touchInteraction():void
-    {
-        this.proxy.touchInteraction();
-    }
-
-    public getLastUpdateTime():number
-    {
-        return this.proxy.getLastUpdateTime();
-    }
-
-    public setLastUpdateTime(lastUpdateTime:number):void
-    {
-        this.proxy.setLastUpdateTime(lastUpdateTime);
-    }
-
-    public touchUpdate():void
-    {
-        this.proxy.touchUpdate();
-    } */
-    //**********************************************************************
     // Public Methods (Events)
     //**********************************************************************
     /**
@@ -1140,8 +961,11 @@ class ControlInfo {
     }
 }
 //******************************************************************************
-//# sourceMappingURL=ControlInfo.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
 class ControlEvent {
     //**********************************************************************
     // Constructors and Finalizer
@@ -1163,6 +987,10 @@ class ControlEvent {
 //******************************************************************************
 //# sourceMappingURL=ControlEvent.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
 class ControlProxy {
     //**********************************************************************
     // Constructors and Finalizer
@@ -1298,9 +1126,6 @@ class ControlProxy {
             if (this.map.has(tag))
                 throw new Error("Duplicate tag: " + tag);
             var property = new LiveProperty(this.control, tag, prototype, interactive);
-            //if(printClass.printStatus) console.log("I came back from live property to control proxy ");
-            //if(printClass.printStatus) console.log(tag);
-            //if(printClass.printStatus) console.log(property);
             this.tags.push(tag);
             //if(printClass.printStatus) console.log("I am in here ");
             this.map.set(tag, property);
@@ -1322,38 +1147,10 @@ class ControlProxy {
             return property;
         }
     }
-    /* public add(tagPrefix: String, variant: Variant): void
-    {
-        var variables: string[] = new Array();
-
-        variant.collectVariables(variables);
-
-        var n: number = variables.length;
-        var i: number;
-        for (i = 0; i < n; i++)
-        {
-            var tag: string = tagPrefix + i.toString();
-            var variable: Variable = variables[i];
-
-            this.add(tag, variable.getPrototype());
-            this.setVariable(tag, variable);
-        }
-    } */
     remove(tag) {
         var property = this.map.get(tag);
         if (property == null)
             throw new Error("Unknown tag: " + tag);
-        //		if (!property.getInteractive() &&
-        //			!Lexical.class.isAssignableFrom(property.getType()))
-        //		{
-        //			String			mtag = tag + ".Mutator";
-        //			LiveProperty	mproperty = (LiveProperty)map.get(mtag);
-        //			mproperty.removeLivePropertyListener(control);
-        //			map.remove(mtag);
-        //			tags.remove(mtag);
-        //			firePropertyRemoved(new ControlEvent(control, mproperty));
-        //			mproperty.dispose();
-        //		}
         property.removeLivePropertyListener(this.control);
         this.map.delete(tag);
         this.tags.splice(this.tags.indexOf(tag), 1);
@@ -1371,9 +1168,6 @@ class ControlProxy {
         return this.getLiveProperty(tag).getVariable();
     }
     setVariable(tag, variable) {
-        //if(printClass.printStatus) console.log(this.control);
-        //if(printClass.printStatus) 		console.log("calling the variable:"+variable.name+" of liveproperty:"+this.getLiveProperty(tag).getName()+" of this:"+ ControlProxy.name +" object");
-        //if(printClass.printStatus)console.log(tag);
         if (printClass.printStatus)
             console.log("setVariable Method of ControlProxy");
         if (printClass.printStatus)
@@ -1412,181 +1206,6 @@ class ControlProxy {
         return true;
     }
     //**********************************************************************
-    // Public Methods (Properties, Focusing)
-    //**********************************************************************
-    /*
-        public isFocusing(): boolean
-        {
-            for (e: Enumeration = this.map.values(); e.hasMoreElements();) {
-                if (((LiveProperty)e.nextElement()).this.isFocusing())
-                return true;
-    
-                return false;
-            }
-    
-        }
-    
-        public isFocusing(tag: string): boolean
-        {
-            return this.getLiveProperty(tag).isFocusing();
-        }
-    
-        public setFocusing(b: boolean, tag: string): void
-        {
-            this.getLiveProperty(tag).setFocusing(b);
-        }
-    
-        public setActiveFocusing(b: boolean, type: Class): void
-        {
-            var n: number = this.tags.length;
-            var i: number;
-            for (i = 0; i < n; i++)
-            {
-                var tag: string = this.tags[i].toString();
-                var property: LiveProperty = this.map.get(tag);
-    
-                if (property.getInteractive() &&
-                    ((type == null) || type.isAssignableFrom(property.getType())))
-                    property.setFocusing(b);
-            }
-        }
-    
-        public setActiveFocusing(b: boolean): void
-        {
-            this.setActiveFocusing(b, null);
-        }
-    
-        //**********************************************************************
-        // Public Methods (Properties, Editing)
-        //**********************************************************************
-    
-        public isEditing(): boolean
-        {
-            for (Enumeration e = this.map.values(); e.hasMoreElements();) {
-                if ((e.nextElement()).this.isEditing())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-    
-            }
-    
-        }
-    
-        public isEditing(tag: string): boolean
-        {
-            return this.getLiveProperty(tag).isEditing();
-        }
-    
-        public setEditing(b: boolean, tag: string): void
-        {
-            this.getLiveProperty(tag).setEditing(b);
-        }
-    
-        public setActiveEditing(b: boolean, type: Class): void
-        {
-            var n: number = this.tags.length;
-            var i: number;
-            for (i = 0; i < n; i++)
-            {
-                var tag: string = this.tags[i].toString();
-                var property: LiveProperty = this.map.get(tag);
-    
-                if (property.getInteractive() &&
-                    ((type == null) || type.isAssignableFrom(property.getType())))
-                    property.setEditing(b);
-            }
-        }
-    
-        public setActiveEditing(b: boolean): void
-        {
-            this.setActiveEditing(b, null);
-        }
-    
-        //**********************************************************************
-        // Public Methods (Metastate)
-        //**********************************************************************
-    
-        public isMetaFocusing(): boolean
-        {
-            return this.metaFocusingFlag.getState();
-        }
-    
-        public setMetaFocusing(b: boolean, object: Object): void
-        {
-            if (this.metaFocusingFlag.setState(b, object))
-                this.fireStateChanged();
-        }
-    
-        public isMetaEditing(): boolean
-        {
-            return this.metaEditingFlag.getState();
-        }
-    
-        public setMetaEditing(b: boolean, object: Object): void
-        {
-            if (this.metaEditingFlag.setState(b, object))
-                this.fireStateChanged();
-        }
-    
-        public isInteracting(): boolean
-        {
-            return this.interacting;
-        }
-    
-        public setInteracting(interacting: boolean): void
-        {
-            if (this.interacting == interacting)
-                return;
-    
-            this.interacting = interacting;
-    
-            this.fireStateChanged();
-        }
-    
-        public getLastInteractionTime(): number
-        {
-            return this.lastInteractionTime;
-        }
-    
-        public setLastInteractionTime(lastInteractionTime: number): void
-        {
-            if (this.lastInteractionTime == lastInteractionTime)
-                return;
-    
-            this.lastInteractionTime = lastInteractionTime;
-    
-            //fireStateChanged();
-        }
-    
-        public touchInteraction(): void
-        {
-            this.lastInteractionTime = Date.now();
-        }
-    
-        public getLastUpdateTime(): number
-        {
-            return this.lastUpdateTime;
-        }
-    
-        public setLastUpdateTime(lastUpdateTime: number): void
-        {
-            if (this.lastUpdateTime == lastUpdateTime)
-                return;
-    
-            this.lastUpdateTime = lastUpdateTime;
-    
-            //fireStateChanged();
-        }
-    
-        public touchUpdate(): void
-        {
-            this.lastUpdateTime = Date.now();
-        } */
-    //**********************************************************************
     // Public Methods (Events)
     //**********************************************************************
     /**
@@ -1602,17 +1221,6 @@ class ControlProxy {
     removeControlListener(l) {
         this.controlListeners.splice(this.controlListeners.indexOf(l.toString()), 1);
     }
-    /* 	public addStateListener(l: StateListener): void
-        {
-            this.stateListeners.push(l);
-        }
-    
-        public removeStateListener(l: StateListener): void
-        {
-            this.stateListeners.splice(this.stateListeners.indexOf(l.toString()),1);
-            
-        }
-     */
     //**********************************************************************
     // Override Methods (Disposable)
     //**********************************************************************
@@ -1651,6 +1259,16 @@ class ControlProxy {
 //******************************************************************************
 //# sourceMappingURL=ControlProxy.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //Draggable class to make the html div elements draggable
 //source : https://www.w3schools.com/howto/howto_js_draggable.asp
 class Draggable {
@@ -1697,124 +1315,12 @@ class Draggable {
         }
     }
 }
-/*
-window.onload = addListeners;
-
-function addListeners() {
-  //if (window.addEventListener) {
-    //Event listeners for draggable windows
-    document.getElementById("box1header")!.addEventListener('mousedown', dragElement(document.getElementById("box1")), false);
-    document.getElementById("box2header")!.addEventListener('mousedown', dragElement(document.getElementById("box2")), false);
-    document.getElementById("fontvalueheader")!.addEventListener('mousedown', dragElement(document.getElementById("fontvalue")), false);
-    document.getElementById("sentance1header")!.addEventListener('mousedown', dragElement(document.getElementById("sentance1")), false);
-    document.getElementById("Referenceheader")!.addEventListener('mousedown', dragElement(document.getElementById("Reference")), false);
-    document.getElementById("Rectangleheader")!.addEventListener('mousedown', dragElement(document.getElementById("Rectangle")), false);
-    document.getElementById("sliderheader")!.addEventListener('mousedown', dragElement(document.getElementById("slider")), false);
-
-    //update the elements based on new slider value
-    //document.getElementById("myRange").addEventListener('input', sliderControl, false);
-
-    //update the elements based on new pixel value
-    //document.getElementById("fontValue").addEventListener('input', pixelControl, false);
-
-    //update the elements based on new text area1 value
-    document.getElementById("text1")!.addEventListener('input', textAreaControl, false);
-
-    //update the elements based on new text area2 value
-    document.getElementById("text2")!.addEventListener('input', textAreaControl, false);
-
-
-  //}
-  /* else if (window.attachEvent) {
-    //document.getElementById("myRange").attachEvent('oninput', sliderEvent);
-  } */
-//}
-/*
-//print alert for html body
-function PrintAlert() {
-  alert("This document is now being printed");
-}
-
-
-
-
-
-
- //create control
-var sliderCounter = 0;
-var fontvalueCounter = 0;
-
-function createControl(control:string){
-  //console.log("slider in progress");
-  //console.log("pixel class case")
-switch(control){
-
-  case "slider":
-    //console.log("slider in progress");
-    if(sliderCounter==0){
-      //s1= new SliderClass(50);
-      //console.log("new sliderClass Created");
-      new sliderClass(50).createSlider();
-      sliderCounter++;
-    }
-    else
-    {
-    console.log("Existing Class Used");
-    new sliderClass(50).createSlider();
-    }
-    break;
-
-  case "fontvalue":
-    //console.log("pixel class case")
-    if(fontvalueCounter==0){
-      new PixelClass(50).createPixelvalue();
-      //console.log("new sliderClass Created");
-      //p1.createPixelvalue();
-      fontvalueCounter++;
-    }
-    else
-    {
-    console.log("Existing Class Used");
-    new PixelClass(50).createPixelvalue();
-    }
-    break;
-
-
-
-
-  }
-
-} */
-//create variable
-/* createVariable = function(type, value){
-
-  if(v1){
-    v1.update(type,value);
-  }
-  else{
-    v1 = new variable();
-    v1.update(type,value);
-  }
-
-}
-
-
-bind = function(controlname, variable){
-
-
-  document.getElementById(controlname).addEventListener('input', bindVariable(variable), false);
-
-  bindVariable = function(variable){
-
-
-
-  }
-
-
-}
- */
 //# sourceMappingURL=Draggable.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
 class Eventing {
     constructor() {
         this.events = {};
@@ -1840,6 +1346,16 @@ class Eventing {
 }
 //# sourceMappingURL=Eventing.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //inspired from Jslider class
 class SliderClass extends Eventing {
     //**********************************************************************
@@ -1956,13 +1472,8 @@ class SliderClass extends Eventing {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.sliderControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document.getElementById(this.sliderControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
@@ -1973,22 +1484,26 @@ class SliderClass extends Eventing {
 }
 //# sourceMappingURL=slider.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlSlider {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, xPos, yPos) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
         this.CTAG_VALUE = "Value";
         this.TYPE_VALUE = new Prototype(Number.prototype, this.CTAG_VALUE, 0);
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
         this.proxy = new ControlProxy(this);
         //create live property
         this.live_property = this.proxy.add(this.CTAG_VALUE, this.TYPE_VALUE, true);
@@ -2008,7 +1523,6 @@ class ControlSlider {
         });
     }
     notifyslider(e) {
-        //const vary = ;
         if (printClass.printStatus)
             console.log("I am in notifyslider method of controlSlider");
         //if(printClass.printStatus) console.log(this.getsupport());
@@ -2046,28 +1560,17 @@ class ControlSlider {
         var ve = e.getVariableEvent();
         if (printClass.printStatus)
             console.log(ve); //this value should not be null
-        //if(printClass.printStatus) console.log(ve.getType());
         if (printClass.printStatus)
             console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_VALUE) {
-            //if(printClass.printStatus) console.log("hurray ControlSlider")
+            if (printClass.printStatus)
+                console.log("ControlSlider");
             if (printClass.printStatus)
                 console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
             if (printClass.printStatus)
                 console.log(e.getLiveProperty().getVariable().getValue());
             this.slider.setValue(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        this.slider.setValue(value);
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -2082,6 +1585,16 @@ class ControlSlider {
 //******************************************************************************
 //# sourceMappingURL=ControlSlider.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //inspired from Jslider class
 class PixelClass {
     //static control:ControlPixel;
@@ -2123,14 +1636,6 @@ class PixelClass {
         this.name = name;
     }
     updateUI() {
-        /*        if(this.pixels.indexOf(newname)>-1){
-                   throw Error("Name Already Exists");
-               }
-               else{
-                   this.name = newname;
-                   this.pixels.push(newname);
-               }
-                */
         var div1 = document.createElement("div");
         div1.id = this.pixelControlName;
         div1.className = "fontvalue";
@@ -2181,6 +1686,16 @@ class PixelClass {
 }
 //# sourceMappingURL=pixel.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlPixel {
     //**********************************************************************
     // Constructors and Finalizer
@@ -2189,7 +1704,6 @@ class ControlPixel {
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
-        //events:{[key:string]:Callback[]} ={};
         this.CTAG_VALUE = "Value";
         this.TYPE_VALUE = new Prototype(Number.prototype, this.CTAG_VALUE, 0);
         this.proxy = new ControlProxy(this);
@@ -2234,21 +1748,11 @@ class ControlPixel {
         var ve = e.getVariableEvent();
         if (printClass.printStatus)
             console.log(ve);
-        //if ((ve == null) || (ve.getType == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_VALUE) {
             if (printClass.printStatus)
-                console.log("hurray");
-            if (printClass.printStatus)
                 console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //if(printClass.printStatus) console.log(e.getLiveProperty().getVariable().getValue());
             this.Pixel.setValue(e.getLiveProperty().getVariable().getValue());
-            //this.Pixel.setValue(e.getLiveProperty().getVariable().getValue());
         }
-        //}
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -2263,7 +1767,16 @@ class ControlPixel {
 //******************************************************************************
 //# sourceMappingURL=ControlPixel.js.map
 
-//inspired from Jslider class
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class CanvasClass {
     //**********************************************************************
     // Constructor
@@ -2373,11 +1886,8 @@ class CanvasClass {
         //create a slider inside the div element and make it a child
         var canvas_ = document.createElement('canvas');
         canvas_.id = "myCanvas" + this.canvasControlName;
-        //slider.type = 'ca';
         canvas_.height = 400;
         canvas_.width = 400;
-        //var ccanvas = document.g 
-        //var ctx = 
         canvas_.getContext("2d").fillStyle = "green";
         canvas_.getContext("2d").fillRect(0, 0, canvas_.height, canvas_.width);
         div1.appendChild(canvas_);
@@ -2385,8 +1895,6 @@ class CanvasClass {
         document.body.appendChild(div1);
         //call the make draggable function
         this.makeDraggable();
-        //this.attachEventListener(slider.id);
-        //if(printClass.printStatus) console.log(this.value);
         return this;
     }
     getSUpport() {
@@ -2397,13 +1905,8 @@ class CanvasClass {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.canvasControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document.getElementById(this.canvasControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
@@ -2414,15 +1917,22 @@ class CanvasClass {
 }
 //# sourceMappingURL=canvas.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlCanvas {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
+        //Create Control Proxy
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -2430,8 +1940,6 @@ class ControlCanvas {
         this.CTAG_Width = "Width";
         this.TYPE_Height = new Prototype(Number.prototype, this.CTAG_Height, 0);
         this.TYPE_Width = new Prototype(Number.prototype, this.CTAG_Width, 0);
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
         this.proxy = new ControlProxy(this);
         //create live property
         this.live_property1 = this.proxy.add(this.CTAG_Height, this.TYPE_Height, true);
@@ -2444,18 +1952,6 @@ class ControlCanvas {
         this.canvas = new CanvasClass(name);
         if (printClass.printStatus)
             console.log(name);
-        //create the variables pproxy and ttag to be used in add event listener as we cannot use this 
-        //keyword to access the current class i.e control slider inside the add event listener method.
-        var pproxy = this.proxy;
-        var ttagH = this.CTAG_Height;
-        var ttagW = this.CTAG_Width;
-        // document.getElementById("myCanvas" + name).addEventListener("click", function(event)
-        // {
-        //     pproxy.getLiveProperty(ttagH).setValue(event.screenX);
-        //     if(printClass.printStatus) console.log(event.clientX);
-        //     pproxy.getLiveProperty(ttagW).setValue(event.screenY);
-        //     if(printClass.printStatus) console.log(event.clientY);
-        // } );
     }
     //**********************************************************************
     // Public Methods (Properties)
@@ -2475,15 +1971,6 @@ class ControlCanvas {
         //this.canvas.setValue(value);
     }
     //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
     propertyChanged(e) {
@@ -2501,40 +1988,25 @@ class ControlCanvas {
             console.log(ve.getType());
         if (printClass.printStatus)
             console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_Height) {
             if (printClass.printStatus)
-                console.log("hurray ControlCanvas height");
+                console.log("ControlCanvas height");
             if (printClass.printStatus)
                 console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
             if (printClass.printStatus)
                 console.log(e.getLiveProperty().getVariable().getValue());
             this.canvas.setHeight(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Width) {
             if (printClass.printStatus)
-                console.log("hurray ControlCanvas Width");
+                console.log("ControlCanvas Width");
             if (printClass.printStatus)
                 console.log(e.getLiveProperty().variable.getPrototype().value);
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
             //if (this.slider.getValue() != value)
             if (printClass.printStatus)
                 console.log(e.getLiveProperty().getVariable().getValue());
             this.canvas.setWidth(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        console.log(value);
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -21144,8 +20616,16 @@ var d3 = Object.freeze({
 	zoomIdentity: identity$9
 });
 
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ScatterplotClass {
     constructor(control, data, name, xPos, yPos, horizontalAxisIndex, verticalAxisIndex, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1) {
         this.width = 960;
@@ -21268,8 +20748,6 @@ class ScatterplotClass {
         selectAll("circle").attr("fill-opacity", `${temp / 100}`);
     }
     setSelection(value) {
-        //console.log("selection in "+ this.scatterplotControlName)
-        //console.log(value);
         if (this.LocalData == undefined) { }
         else {
             select(`#${this.scatterplotControlName}`).select("svg").selectAll("circle")
@@ -21287,8 +20765,6 @@ class ScatterplotClass {
             select(`#${this.scatterplotControlName}`).select("svg").selectAll("circle")
                 .data(this.LocalData)
                 .style("fill", function (d, index) { return value[index] == true ? "black" : color$$1(item(d, colorIndex));  });
-            //.attr("stroke",function (d,index){return value[index] == true?"black":null; })
-            //.attr("stroke-width", 3);
             this.scatter
                 .selectAll("text")
                 .attr("font-size", function (d, index) { return value[index] == true ? 15 : null; })
@@ -21313,8 +20789,6 @@ class ScatterplotClass {
             var Domain = [yRange[0], yRange[1]];
             yScale.domain(Domain)
                 .range([plotHeight, 0]);
-            //console.log(yScale.domain())
-            //console.log(yScale.range())
             this.yScale = yScale;
             this.yAxis.call(axisLeft(yScale));
             this.scatter
@@ -21368,15 +20842,17 @@ class ScatterplotClass {
         throw new Error("Method not implemented.");
     }
     render(parentControl) {
+        var div0 = document.createElement("div");
+        div0.className = "covid19";
+        div0.id = "covid19";
         var localParentControl = parentControl;
         var div1 = document.createElement("div");
         div1.id = this.scatterplotControlName;
         div1.className = "scatterplot";
-        var numberPattern = /\d+/g;
-        //this.canvasWidth = 360;
-        var offset = 20;
+        console.log(document.getElementsByClassName("content"));
         div1.style.left = this.xPos + "px";
         div1.style.top = this.yPos + "px";
+        div0.appendChild(div1);
         //create a div header for the scatterplot
         var div2 = document.createElement("div");
         div2.id = div1.id + "header";
@@ -21467,23 +20943,6 @@ class ScatterplotClass {
                     .style("font-weight", 1000)
                     .attr("transform", `translate(${-margin.left / 1.3}, ${plotHeight * 0.5}) rotate(-90)`);
             }
-            // create a tooltip
-            var Tooltip = axisGroup
-                .append("div")
-                .style("opacity", 0)
-                .style("position", "absolute")
-                .style("text-align", "center")
-                .attr("class", "tooltip")
-                .style("font", "1.5em sans-serif")
-                .style("background-color", "white")
-                .style("border", "solid")
-                .style("border-width", "2px")
-                .style("border-radius", "5px")
-                .style("padding", "5px");
-            // 
-            //console.log(data[0])
-            //console.log(colorIndex)
-            //console.log(item(data[0],colorIndex))
             let color$$1;
             if (item(data[0], colorIndex).__proto__ == String.prototype) {
                 color$$1 = ordinal(data.map((d) => (item(d, colorIndex))), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
@@ -21492,9 +20951,6 @@ class ScatterplotClass {
                 color$$1 = linear$2(extent(data, (d) => (item(d, colorIndex))), ["red", "black"]).unknown(null);
             }
             this.color = color$$1;
-            // console.log(data[0])
-            // console.log(circleSizeIndex)
-            // console.log(item(data[0],circleSizeIndex))
             if (circleSizeIndex == null) {
                 //var circleSize = d3.scaleLinear().range([2]);   
                 var circleSize = function circleSize(d) {
@@ -21559,7 +21015,6 @@ class ScatterplotClass {
                 var info = "";
                 for (var key in data[i]) {
                     info = info + key + " = " + data[i][key] + "\n";
-                    //info += "<tr><td><b><i>" + key + "</i></b></td><td>" + data[i][key] + "</td></tr>"
                 }
                 return info;
             })
@@ -21603,7 +21058,6 @@ class ScatterplotClass {
                     .style("opacity", 0.7);
                 selectAll(".val").remove();
             }
-            var shiftKey;
             // Set the zoom and Pan features: how much you can zoom, on which part, and what to do when there is a zoom
             var zoom$$1 = zoom()
                 .scaleExtent([.5, 20]) // This control how much you can unzoom (x0.5) and zoom (x20)
@@ -21618,9 +21072,6 @@ class ScatterplotClass {
                 .style("fill", "white")
                 .style("opacity", 0.1)
                 .call(zoom$$1);
-            //var zoomRect = axisGroup
-            //.attr("pointer-events", "all")
-            //.call(zoom);
             // A function that updates the chart when the user zoom and thus new boundaries are available
             function updateChart() {
                 // recover the new scale
@@ -21630,8 +21081,6 @@ class ScatterplotClass {
                 //console.log(d3.event.transform.x);
                 var newX = event$1.transform.rescaleX(xScale);
                 var newY = event$1.transform.rescaleY(yScale);
-                //console.log(newX)
-                //console.log(newY)
                 //console.log(Math.abs(xTranslate));
                 const w = 660 - margin.left - margin.right;
                 localParentControl.getProxy().getLiveProperty("xTranslate").setValue([xTranslate]);
@@ -21667,7 +21116,6 @@ class ScatterplotClass {
                     });
                 }
                 //create an array of all the selection statuses of the data
-                //console.log(data.map(d=> d.Selection));
                 if (printClass.printStatus)
                     console.log("In scatterplot");
                 if (printClass.printStatus)
@@ -21682,10 +21130,7 @@ class ScatterplotClass {
             ])
                 .on(" start brush  ", brushed)
                 .on("end", function () {
-                //console.log(this.querySelector(".selection"));
                 this.querySelector(".selection").setAttribute("fill-opacity", "0.2");
-                //this.querySelector(".selection").setAttribute("stroke","grey"); 
-                //console.log("brush ended");
             });
             // Add the brushing
             axisGroup.append("g").call(brush$$1);
@@ -21697,15 +21142,21 @@ class ScatterplotClass {
 }
 //# sourceMappingURL=scatterplot.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlScatterplot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, data, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -21752,7 +21203,6 @@ class ControlScatterplot {
         this.live_property_brushX = this.proxy.add(this.CTAG_brushX, this.TYPE_brushX, true);
         this.live_property_brushY = this.proxy.add(this.CTAG_brushY, this.TYPE_brushY, true);
         this.ControlName = name;
-        //console.log(data)
         this.scatterplot = new ScatterplotClass(this, data, name, xPos, yPos, horizontal, vertical, inputWidth, inputHeight, showHoriz, showVerti, helper, color, size, text);
         if (printClass.printStatus)
             console.log(name);
@@ -21766,7 +21216,6 @@ class ControlScatterplot {
     setTranslateX(value) {
         console.log("setTranslateX method of ControlScatterplot");
         this.proxy.setValue(this.CTAG_xTranslate, value);
-        //this.canvas.setValue(value);
     }
     getColor() {
         return this.proxy.getValue(this.CTAG_Opacity);
@@ -21778,7 +21227,6 @@ class ControlScatterplot {
         if (printClass.printStatus)
             console.log("setColor method of ControlScatterplot");
         this.proxy.setValue(this.CTAG_Opacity, value);
-        //this.canvas.setValue(value);
     }
     getTranslateY() {
         return this.proxy.getValue(this.CTAG_yTranslate);
@@ -21788,15 +21236,6 @@ class ControlScatterplot {
         this.proxy.setValue(this.CTAG_yTranslate, value);
         //this.canvas.setValue(value);
     }
-    //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
     //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
@@ -21809,11 +21248,6 @@ class ControlScatterplot {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_xTranslate) {
             if (printClass.printStatus)
                 console.log("Property Changed controlScatterPlot height");
@@ -21876,8 +21310,6 @@ class ControlScatterplot {
         }
     }
     propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
         if (printClass.printStatus)
             console.log(value);
     }
@@ -21894,7 +21326,16 @@ class ControlScatterplot {
 //******************************************************************************
 //# sourceMappingURL=ControlScatterplot.js.map
 
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //removed active cases from table- 6/6/2020
 //commented value checks in set value 06/29/2020
 class TableClass {
@@ -21909,14 +21350,9 @@ class TableClass {
         this.yPos = yPos;
         this.inputWidth = inputWidth;
         this.inputHeight = inputHeight;
-        //this.Data = data;
-        //console.log(data)
         this.LocalData = data;
-        //IndicationArray = new Array(data1.length);
-        //IndicationArray.fill(false,0);
         this.SelectionArray = new Array(data[0].length);
         this.SelectionArray.fill(false, 0);
-        //console.log(this.SelectionArray)
         this.IndicationArray = new Array(data[0].length);
         this.IndicationArray.fill(false, 0);
         this.render(control, data);
@@ -21925,13 +21361,8 @@ class TableClass {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.tableControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document
                 .getElementById(this.tableControlName + "header")
                 .addEventListener("mousedown", function () {
@@ -21979,8 +21410,6 @@ class TableClass {
             console.log("set width method of Canvas");
         if (printClass.printStatus)
             console.log(value);
-        //if(value>=this.min && value <=this.min){
-        //this.width = value;
         //**************************need to implement fire property changed method**********************************
         //this.updateUI();
         if (printClass.printStatus)
@@ -22028,10 +21457,7 @@ class TableClass {
             .text(function (d) {
             return d;
         });
-        this.rows
-            .style("color", function (d, index) {
-            // d.SelectStatus = (dataTable[index].SelectStatus);
-            //console.log("background changed");
+        this.rows.style("color", function (d, index) {
             if (PropData[index] == true) {
                 //console.log(this)
                 return "red";
@@ -22042,7 +21468,6 @@ class TableClass {
         });
     }
     setIndication(IndData) {
-        //console.log("Hovering")  
         if (IndData.length == 0) {
             //console.log("inIndication")
             //console.log(IndData);
@@ -22053,8 +21478,6 @@ class TableClass {
         }
     }
     updateTable_Indication(dataTable, PropData, property) {
-        //var tablebody = d3.select("#table1");
-        //console.log(dataTable);
         var tablebody = select(`#${this.tableControlName}`)
             .select("table")
             .select("tbody");
@@ -22068,10 +21491,7 @@ class TableClass {
             .text(function (d) {
             return d;
         });
-        this.rows
-            .attr("class", function (d, index) {
-            // d.SelectStatus = (dataTable[index].SelectStatus);
-            //console.log("background changed");
+        this.rows.attr("class", function (d, index) {
             if (PropData[index] == true) {
                 return "hovered";
             }
@@ -22080,14 +21500,8 @@ class TableClass {
             }
         });
     }
-    setHoverSelection(data) {
-        //console.log("tree");
-        //console.log(data[0]);
-        //this.updateTable(data);
-    }
+    setHoverSelection(data) { }
     updateTable(dataTable, PropData, property) {
-        //var tablebody = d3.select("#table1");
-        //console.log(dataTable);
         var tablebody = select(`#${this.tableControlName}`)
             .select("table")
             .select("tbody");
@@ -22103,8 +21517,6 @@ class TableClass {
         });
         this.rows
             .attr("class", function (d, index) {
-            // d.SelectStatus = (dataTable[index].SelectStatus);
-            //console.log("background changed");
             if (property == "Indication" && PropData[index] == true) {
                 return "hovered";
             }
@@ -22113,19 +21525,14 @@ class TableClass {
             }
         })
             .style("font-family", function (d, index) {
-            // d.SelectStatus = (dataTable[index].SelectStatus);
-            //console.log("font changed");
             if (property == "Selection" && PropData[index] == true) {
                 return "cursive";
             }
             else {
                 return "serif";
             }
-            //return d.Selection == true ? "cursive" : "serif";
         })
             .style("color", function (d, index) {
-            // d.SelectStatus = (dataTable[index].SelectStatus);
-            //console.log("background changed");
             if (property == "Selection" && PropData[index] == true) {
                 //console.log(this)
                 return "red";
@@ -22168,21 +21575,15 @@ class TableClass {
         //make the div header a child to the div element
         div1.appendChild(div2);
         let data1 = Data[0];
-        //console.log(data1.length)
         var IndicationArray = this.IndicationArray;
         var SelectionArray = this.SelectionArray;
-        //console.log("Initial Use")
-        //console.log(SelectionArray);
-        localParentControl.getProxy().getLiveProperty("Selection").setValue(SelectionArray);
+        localParentControl
+            .getProxy()
+            .getLiveProperty("Selection")
+            .setValue(SelectionArray);
         this.LocalData = [];
-        //console.log(this.LocalData);
         this.LocalData = data1;
-        //console.log(this.LocalData);
         const renderTable = (data) => {
-            //console.log(data);
-            var LocalData = data;
-            //TableClass.dataRows = data.length;
-            //TableClass.dataCopy = data;
             var margin = { top: 60, right: 30, bottom: 30, left: 60 };
             var plotWidth = this.inputWidth - margin.left - margin.right;
             var plotHeight = this.inputHeight - margin.top - margin.bottom;
@@ -22213,22 +21614,11 @@ class TableClass {
                 .append("tr")
                 .style("font-family", "serif")
                 .style("font-size", "13px");
-            //var color = d3.scaleOrdinal(data.map(d => d.Continent), d3.schemeSet1)
-            //var color = d3.scaleOrdinal(data.map(d => d.Continent), d3.schemeSet3).unknown("black")
-            var color$$1 = ordinal(data.map((d) => (d.Continent)), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"]).unknown(null);
-            //console.log(data)
-            // let color: any;
-            // if(item(data[0],colorIndex).__proto__ == String.prototype)
-            // {
-            //    color = d3.scaleOrdinal(data.map((d: any) => (item(d,colorIndex))), ["#8dd3c7","#bebada", "#fb8072","#80b1d3","#ffffb3","#fdb462","#b3de69" ]).unknown(null)
-            // }else if(item(data[0],colorIndex).__proto__ == Number.prototype)
-            // {
-            //    color = d3.scaleLinear<string>(d3.extent(data, (d) => (item(d,colorIndex))), ["red", "black"]).unknown(null)
-            // }
+            var color$$1 = ordinal(data.map((d) => d.Continent), ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#ffffb3", "#fdb462", "#b3de69"])
+                .unknown(null);
             var cells = this.rows
                 .selectAll("td") // each row has data associated; we get it and enter it for the cells.
                 .data(function (d) {
-                //console.log(Object.values(d));
                 return Object.values(d);
             })
                 .enter()
@@ -22237,56 +21627,35 @@ class TableClass {
                 return d;
             })
                 .style("background", function (d, index) {
-                //console.log("Hell");
-                //console.log(index);
-                //console.log(d);
                 if (index == 2) {
-                    //console.log( d + " " +color(d));
                     return color$$1(d);
                 }
                 else {
                     return null;
-                } // if(d == "Asia")
-                // {
-                //   //console.log(d )
-                //   console.log(this)
-                //   return "red"
-                // }
-                // else{
-                //   return null
-                // }
+                }
             });
-            
             var mouseoverstatus = false;
             var mousedownstatus = false;
             this.rows
-                .on("mouseover", function (d, index) {
-                //console.log("mouseover")
-                updateMouseOver(d, index);
-            })
-                .on("mouseout", function (d, index) {
-                //console.log("mouseout")
-                updateMouseOut(d, index);
-            })
-                .on("mousedown", function (d, index) {
-                //console.log("mousedown")
-                updateMouseDown(d, index);
-            })
-                .on("mouseup", function (d) {
-                //console.log("mouseup")
-                mousedownstatus = false;
-            });
+                .on("mouseover", function (d, index) { updateMouseOver(d, index); })
+                .on("mouseout", function (d, index) { updateMouseOut(d, index); })
+                .on("mousedown", function (d, index) { updateMouseDown(d, index); })
+                .on("mouseup", function (d) { mousedownstatus = false; });
             function updateMouseOver(d, index) {
                 mouseoverstatus = true;
                 IndicationArray[index] = true;
-                localParentControl.getProxy().getLiveProperty("Indication").setValue(IndicationArray);
-                //localParentControl.getProxy().getLiveProperty("Data").setValue(data);
+                localParentControl
+                    .getProxy()
+                    .getLiveProperty("Indication")
+                    .setValue(IndicationArray);
                 updateDrag(d, index);
             }
             function updateMouseOut(d, index) {
                 IndicationArray[index] = false;
-                localParentControl.getProxy().getLiveProperty("Indication").setValue(IndicationArray);
-                //localParentControl.getProxy().getLiveProperty("Data").setValue(data);
+                localParentControl
+                    .getProxy()
+                    .getLiveProperty("Indication")
+                    .setValue(IndicationArray);
             }
             function updateMouseDown(d, index) {
                 mousedownstatus = true;
@@ -22294,42 +21663,45 @@ class TableClass {
             }
             function updateDrag(d, index) {
                 if (mousedownstatus == true && mouseoverstatus == true) {
-                    //console.log("before before");
-                    // console.log(SelectionArray);
-                    //console.log(d);
-                    SelectionArray = localParentControl.getProxy().getLiveProperty("Selection").getValue();
-                    //console.log("before");
-                    //console.log(SelectionArray);
+                    SelectionArray = localParentControl
+                        .getProxy()
+                        .getLiveProperty("Selection")
+                        .getValue();
                     if (SelectionArray[index] == false) {
                         SelectionArray[index] = true;
                     }
                     else {
                         SelectionArray[index] = false;
                     }
-                    //console.log("after");
-                    //console.log(SelectionArray);
-                    localParentControl.getProxy().getLiveProperty("Selection").setValue(SelectionArray);
-                    //localParentControl.getProxy().getLiveProperty("Data").setValue(data);
+                    localParentControl
+                        .getProxy()
+                        .getLiveProperty("Selection")
+                        .setValue(SelectionArray);
                 }
             }
         };
         renderTable(data1);
-        //this.dataCopy = dat;
         document.body.appendChild(div1);
         this.makeDraggable();
     }
 }
 //# sourceMappingURL=table.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlTable {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, data, xPos, yPos, inputWidth, inputHeight) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -22361,18 +21733,6 @@ class ControlTable {
         this.table = new TableClass(this, name, data, xPos, yPos, inputWidth, inputHeight);
         if (printClass.printStatus)
             console.log(name);
-        //create the variables pproxy and ttag to be used in add event listener as we cannot use this 
-        //keyword to access the current class i.e control slider inside the add event listener method.
-        var pproxy = this.proxy;
-        var ttagH = this.CTAG_Height;
-        var ttagW = this.CTAG_Width;
-        // document.getElementById("myCanvas" + name).addEventListener("click", function(event)
-        // {
-        //     pproxy.getLiveProperty(ttagH).setValue(event.screenX);
-        //     if(printClass.printStatus) console.log(event.clientX);
-        //     pproxy.getLiveProperty(ttagW).setValue(event.screenY);
-        //     if(printClass.printStatus) console.log(event.clientY);
-        // } );
     }
     //**********************************************************************
     // Public Methods (Properties)
@@ -22384,7 +21744,6 @@ class ControlTable {
         if (printClass.printStatus)
             console.log("setHeight method of ControlTable");
         this.proxy.setValue(this.CTAG_Height, value);
-        //this.canvas.setValue(value);
     }
     getColor() {
         return (this.proxy.getValue(this.CTAG_Opacity));
@@ -22393,7 +21752,6 @@ class ControlTable {
         if (printClass.printStatus)
             console.log("setColor method of ControlTable");
         this.proxy.setValue(this.CTAG_Opacity, value);
-        //this.canvas.setValue(value);
     }
     getProxy() {
         //if(printClass.printStatus) 
@@ -22410,15 +21768,6 @@ class ControlTable {
         //this.canvas.setValue(value);
     }
     //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
     propertyChanged(e) {
@@ -22430,85 +21779,36 @@ class ControlTable {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_Height) {
             if (printClass.printStatus)
                 console.log("hurray ControlTable height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.table.setHeight(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Width) {
             if (printClass.printStatus)
                 console.log("hurray ControlTable Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.table.setWidth(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Opacity) {
             if (printClass.printStatus)
                 console.log("hurray ControlTable opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.table.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
                 console.log("hurray ControlTable Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.table.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Indication) {
             if (printClass.printStatus)
                 console.log("hurray ControlTable Hover");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
             this.table.setIndication(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Data) {
             if (printClass.printStatus)
                 console.log("hurray ControlTable Data");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            //console.log("Updating table through live property"); 
             this.table.setHoverSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        if (printClass.printStatus)
-            console.log(value);
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -22523,8 +21823,16 @@ class ControlTable {
 //******************************************************************************
 //# sourceMappingURL=ControlTable.js.map
 
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ParallelCoordinatePlotClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
     constructor(control, data, name, xPos, yPos, inputWidth, inputHeight, helper, color$$1, dims) {
@@ -22555,13 +21863,8 @@ class ParallelCoordinatePlotClass {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.parallelCoordinatePlotName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
         //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document.getElementById(this.parallelCoordinatePlotName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
@@ -22685,13 +21988,10 @@ class ParallelCoordinatePlotClass {
         }
     }
     setOpacity(value) {
-        //console.log("setOpacity of ParallelCoordinatePlot");
         var temp = value;
-        //console.log(temp);
         selectAll("circle").attr("fill-opacity", `${temp / 100}`);
     }
     setIndication(value) {
-        //console.log("Indication in" + this.parallelCoordinatePlotName);
         var color$$1 = this.color;
         if (this.LocalData == undefined) {
         }
@@ -22705,7 +22005,6 @@ class ParallelCoordinatePlotClass {
         }
     }
     setSelection(value) {
-        //console.log("serdddt in" + this.parallelCoordinatePlotName);
         var color$$1 = this.color;
         if (this.LocalData == undefined) {
         }
@@ -22724,38 +22023,9 @@ class ParallelCoordinatePlotClass {
         }
     }
     setZoom(value) {
-        //console.log("Hurray" + this.parallelCoordinatePlotName);
         var horizontal = this.horizontal + 2;
         var vertical = this.vertical + 2;
-        function horiz(d) {
-            //console.log("hh is "+ hh);
-            if (horizontal == 2) {
-                return d.T;
-            }
-            else if (horizontal == 3) {
-                return d.X;
-            }
-            else if (horizontal == 4) {
-                return d.Y;
-            }
-            else if (horizontal == 5) {
-                return d.Z;
-            }
-        }
-        function verti(d) {
-            if (vertical == 2) {
-                return d.T;
-            }
-            else if (vertical == 3) {
-                return d.X;
-            }
-            else if (vertical == 4) {
-                return d.Y;
-            }
-            else if (vertical == 5) {
-                return d.Z;
-            }
-        }
+        var item = this.helper[0];
         var newX = value[0];
         var newY = value[1];
         if (newX == 0 && newY == undefined) {
@@ -22767,8 +22037,8 @@ class ParallelCoordinatePlotClass {
             select(`#${this.parallelCoordinatePlotName}`)
                 .select("svg").select('g')
                 .selectAll("circle")
-                .attr('cx', function (d) { return newX(horiz(d)); })
-                .attr('cy', function (d) { return newY(verti(d)); });
+                .attr('cx', function (d) { return newX(item(d, horizontal)); })
+                .attr('cy', function (d) { return newY(item(d, vertical)); });
         }
     }
     render(parentControl) {
@@ -22799,28 +22069,17 @@ class ParallelCoordinatePlotClass {
         //div2.textContent = div1.id;
         //make the div header a child to the div element
         div1.appendChild(div2);
-        //console.log("I am printing D3 Object in ParallelCoordinatePlotClass");
-        var d3obj = d3;
-        //console.log(d3obj);
-        //console.log("check0")
         var data = this.Data;
         const renderplot = (data) => {
-            //console.log(data);
-            //var dimensions = d3.keys(data[0]).filter(function(d,index) { return (index>0)&&(index<4) })
-            //output (3) ["X", "Y", "Z"]
             var dimensions = this.dims;
             //console.log(dimensions);
             var colArray = keys(data[0]).filter(function (d, index) { return d; });
-            //var colArray = ["d.Index","d.selectionStatus","d.T","d.X","d.Y","d.Z"];
-            //console.log(colArray);
             this.LocalData = data;
             var margin = { top: 50, right: 10, bottom: 30, left: 60 };
             this.plotWidth = this.inputWidth - margin.left - margin.right;
             this.plotHeight = this.inputHeight - margin.top - margin.bottom;
             this.innerWidth = this.plotWidth + margin.left + margin.right;
             this.innerHeight = this.plotHeight + margin.top + margin.bottom;
-            //this.plotWidth = this.plotWidth;
-            //this.plotHeight = this.plotHeight;
             var yScale = {};
             var i;
             var name;
@@ -22854,32 +22113,15 @@ class ParallelCoordinatePlotClass {
                 .append("g")
                 .attr("class", "axisGroupClass")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            //console.log("check3")
-            // Add grey background lines for context.
-            // var background = svg.append("g")
-            // .attr("class", "background")
-            // .selectAll("path")
-            // .data(data)
-            // .enter().append("path")
-            // .attr("d", path);
-            // // Add blue foreground lines for focus.
-            // var foreground = svg.append("g")
-            // .attr("class", "foreground")
-            // .selectAll("path")
-            // .data(data)
-            // .enter().append("path")
-            // .attr("d", path);              
             // Build the X scale -> it find the best position for each Y axis
             var xScale = point$1()
                 .range([0, this.plotWidth])
                 .padding(0.1)
                 .domain(dimensions);
-            //console.log("check3_1")
             // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
             function path$$1(d) {
                 return line()(dimensions.map(function (p) { return [xScale(p), yScale[p](d[p])]; }));
             }
-            //console.log("check3_2")
             var colorIndex = this.colorIndex;
             var item = this.helper[0];
             let color$$1;
@@ -22889,11 +22131,7 @@ class ParallelCoordinatePlotClass {
             else if (item(data[0], colorIndex).__proto__ == Number.prototype) {
                 color$$1 = linear$2(extent(data, (d) => (item(d, colorIndex))), ["red", "black"]).unknown(null);
             }
-            //var color = d3.scaleOrdinal(data.map((d: any) => (d.Continent)), 
-            //["#8dd3c7","#bebada", "#fb8072","#80b1d3","#ffffb3","#fdb462","#b3de69" ]).unknown(null)
-            //console.log("check4")
             this.color = color$$1;
-            // color(d.T);
             // Draw the lines
             axisGroup
                 .selectAll("myPath")
@@ -22926,15 +22164,21 @@ class ParallelCoordinatePlotClass {
 }
 //# sourceMappingURL=parallelCoordinatePlot.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlParallelCoordinatePlot {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, data, xPos, yPos, inputWidth, inputHeight, helper, color, dims) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -22952,8 +22196,6 @@ class ControlParallelCoordinatePlot {
         this.TYPE_Indication = new Prototype(Array.prototype, this.CTAG_Indication, [false]);
         if (printClass.printStatus)
             console.log("I am in constructor of ControlParallelCoordinatePlot");
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
         this.proxy = new ControlProxy(this);
         //create live property
         this.live_property1 = this.proxy.add(this.CTAG_xTranslate, this.TYPE_xTranslate, true);
@@ -22980,7 +22222,6 @@ class ControlParallelCoordinatePlot {
     setTranslateX(value) {
         console.log("setTranslateX method of ControlParallelCoordinatePlot");
         this.proxy.setValue(this.CTAG_xTranslate, value);
-        //this.canvas.setValue(value);
     }
     getColor() {
         return this.proxy.getValue(this.CTAG_Opacity);
@@ -22992,7 +22233,6 @@ class ControlParallelCoordinatePlot {
         if (printClass.printStatus)
             console.log("setColor method of ControlParallelCoordinatePlot");
         this.proxy.setValue(this.CTAG_Opacity, value);
-        //this.canvas.setValue(value);
     }
     getTranslateY() {
         return this.proxy.getValue(this.CTAG_yTranslate);
@@ -23000,17 +22240,7 @@ class ControlParallelCoordinatePlot {
     setTranslateY(value) {
         console.log("setTranslateY method of ControlParallelCoordinatePlot");
         this.proxy.setValue(this.CTAG_yTranslate, value);
-        //this.canvas.setValue(value);
     }
-    //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
     //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
@@ -23023,43 +22253,21 @@ class ControlParallelCoordinatePlot {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        if (tag == this.CTAG_xTranslate) {
-            if (printClass.printStatus)
-                console.log("controlParallelCoordinatePlot height");
-            this.parallelCoordinatePlot.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_yTranslate) {
-            if (printClass.printStatus)
-                console.log(" controlParallelCoordinatePlot Width");
-            this.parallelCoordinatePlot.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Opacity) {
+        if (tag == this.CTAG_Opacity) {
             if (printClass.printStatus)
                 console.log(" controlParallelCoordinatePlot opacity");
             this.parallelCoordinatePlot.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
                 console.log(" ControlParallelCoordinatePlot Selection");
             this.parallelCoordinatePlot.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Indication) {
             if (printClass.printStatus)
                 console.log(" ControlParallelCoordinatePlot Size");
             this.parallelCoordinatePlot.setIndication(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        if (printClass.printStatus)
-            console.log(value);
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -23074,8 +22282,16 @@ class ControlParallelCoordinatePlot {
 //******************************************************************************
 //# sourceMappingURL=ControlParallelCoordinatePlot.js.map
 
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class GradientClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
     constructor(control, name, data, xPos, yPos, horizontalAxisIndex, inputWidth, inputHeight, helper) {
@@ -23188,7 +22404,6 @@ class GradientClass {
             var color$$1 = linear$2()
                 .domain(extent(data, function (d) { return item(d, horizontal); }))
                 .range(["red", "black"]);
-            //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
             var defs = svg$$1.append("defs");
             var gradient = defs
                 .append("linearGradient")
@@ -23238,15 +22453,21 @@ class GradientClass {
 }
 //# sourceMappingURL=gradient.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlGradient {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, data, xPos, yPos, horizontal, inputWidth, inputHeight, helper) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -23314,15 +22535,6 @@ class ControlGradient {
         //this.canvas.setValue(value);
     }
     //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
     propertyChanged(e) {
@@ -23334,23 +22546,12 @@ class ControlGradient {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
-                console.log("hurray ControlGradient Selection");
+                console.log("ControlGradient Selection");
             this.gradient.setSelection(e.getLiveProperty().getVariable().getValue());
             // this.slider.setValue(90);
         }
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        if (printClass.printStatus)
-            console.log(value);
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -23751,8 +22952,16 @@ function reverse$2(array, start, end) {
 // Any feature.{id,properties,bbox} are transferred to the output geometry object.
 // Each output geometry object is a shallow copy of the input (e.g., properties, coordinates)!
 
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class MapClass {
     constructor(control, name, data, xPos, yPos, inputWidth, inputHeight) {
         this.width = 960;
@@ -23780,13 +22989,7 @@ class MapClass {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.mapControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
-        //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document.getElementById(this.mapControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
@@ -23882,9 +23085,6 @@ class MapClass {
         var paths = select(`#${this.mapControlName}`).select("svg").selectAll("path");
         paths
             .style("fill", function (d) {
-            // console.log(d.properties.name)
-            //console.log(map1.get("China"));
-            //console.log(map1.get(  d.properties.name  )) ;
             if (mapHover.get(d.properties.name) == true) {
                 //console.log(data)
                 return "red";
@@ -23897,9 +23097,6 @@ class MapClass {
             }
         })
             .style("stroke", function (d) {
-            // console.log(d.properties.name)
-            //console.log(map1.get("China"));
-            //console.log(map1.get(  d.properties.name  )) ;
             if (mapSelection.get(d.properties.name) == true) {
                 return 5;
             }
@@ -24089,15 +23286,21 @@ class MapClass {
 }
 //# sourceMappingURL=map.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlMap {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, data, xPos, yPos, inputWidth, inputHeight) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -24106,16 +23309,15 @@ class ControlMap {
         this.CTAG_Selection = "Selection";
         this.CTAG_Indication = "Indication";
         this.CTAG_Data = "Data";
-        //public CTAG_Zoom: string = "Zoom"; 
+        this.CTAG_Zoom = "Zoom";
         this.TYPE_Size = new Prototype(Number.prototype, this.CTAG_Size, 0);
         this.TYPE_Opacity = new Prototype(Number.prototype, this.CTAG_Opacity, 0);
         this.TYPE_Selection = new Prototype(Array.prototype, this.CTAG_Selection, [false]);
         this.TYPE_Indication = new Prototype(Array.prototype, this.CTAG_Indication, [false]);
         this.TYPE_Data = new Prototype(Array.prototype, this.CTAG_Data, []);
+        this.TYPE_Zoom = new Prototype(Array.prototype, this.CTAG_Zoom, [null, null]);
         if (printClass.printStatus)
             console.log("I am in constructor of ControlMap");
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
         this.proxy = new ControlProxy(this);
         //create live property
         this.live_property_Opacity = this.proxy.add(this.CTAG_Opacity, this.TYPE_Opacity, true);
@@ -24144,15 +23346,6 @@ class ControlMap {
         //this.canvas.setValue(value);
     }
     //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
     propertyChanged(e) {
@@ -24164,47 +23357,25 @@ class ControlMap {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
         if (tag == this.CTAG_Opacity) {
             if (printClass.printStatus)
-                console.log("hurray controlMap opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("controlMap opacity");
             this.map.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Data) {
             if (printClass.printStatus)
-                console.log("hurray ControlMap Data");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("ControlMap Data");
             this.map.setHoverSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
-                console.log("hurray ControlMap Data");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("ControlMap Data");
             this.map.setSelection(e.getLiveProperty().getVariable().getValue());
             // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Indication) {
             if (printClass.printStatus)
-                console.log("hurray ControlMap Data");
+                console.log("ControlMap Data");
             //console.log(e.getLiveProperty().variable.getPrototype().value)    
             //var	value:typeOfValue = this.getValue();
             //if(printClass.printStatus) console.log(value);
@@ -24245,8 +23416,16 @@ class ControlMap {
 //******************************************************************************
 //# sourceMappingURL=ControlMap.js.map
 
-//https://hstefanski.wordpress.com/2017/08/15/creating-a-chart-with-d3-v4-and-typescript-or-es6/
-//need to create view box
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class BubbleChartClass {
     //margin: { top: number; right: number; bottom: number; left: number; };
     constructor(control, data, name, xPos, yPos, inputWidth, inputHeight, helper, color$$1, size, text$$1) {
@@ -24280,13 +23459,7 @@ class BubbleChartClass {
         //create instance of a Draggable class
         var D1 = new Draggable();
         var temp = this.bubblechartControlName;
-        //const myElement: HTMLElement | null = document.getElementById(this.name);
-        //check if the element that needs to be made draggable exist, else throw error        
         try {
-            //if we remove the function() before D1.dragElement then this keyword refers to the html element that we are adding the 
-            //event listener on , otherwise this keyword refers to the sliderClass object
-            //document.getElementById( SliderClass.sliderControlName + "header")!
-            //    .addEventListener('mousedown', D1.dragElement(document.getElementById( this.sliderControlName)), false);
             document.getElementById(this.bubblechartControlName + "header")
                 .addEventListener('mousedown', function () { D1.dragElement(document.getElementById(temp)); }, false);
         }
@@ -24303,28 +23476,11 @@ class BubbleChartClass {
     getTranslateY() {
         return this.width;
     }
-    setSize(value) {
-        if (printClass.printStatus)
-            console.log(value);
-        var temp = value;
-        select(`#${this.bubblechartControlName}`)
-            .select("svg")
-            .select("g")
-            .selectAll("circle")
-            .attr("r", temp / 10);
-        if (printClass.printStatus)
-            console.log("successfully updated the variable");
-        /*  else{
-             throw Error("Value not in bounds")
-         } */
-    }
     setOpacity(value) {
         var temp = value;
         selectAll("circle").attr("fill-opacity", `${temp / 100}`);
     }
     setSelection(value) {
-        //console.log("selection in "+ this.bubblechartControlName)
-        //console.log(value)
         var color$$1 = this.colorscheme;
         if (this.LocalData == undefined) {
             console.log("undefined");
@@ -24332,14 +23488,11 @@ class BubbleChartClass {
         else {
             select(`#${this.bubblechartControlName}`).select("svg").selectAll("circle")
                 .attr("fill", function (d, index) {
-                //console.log(value[index])
                 return value[index] == true ? "#cccccc" : color$$1(d.Continent);
             });
-            //.attr("stroke-width", 3);
         }
     }
     setIndication(value) {
-        //console.log("indication")
         if (this.LocalData == undefined) { }
         else {
             select(`#${this.bubblechartControlName}`)
@@ -24347,36 +23500,6 @@ class BubbleChartClass {
                 .data(this.LocalData)
                 .attr("stroke", function (d, index) { return value[index] == true ? "white" : null; })
                 .attr("stroke-width", function (d, index) { return value[index] == true ? 6 : 0.5; });
-        }
-    }
-    setHoverSelection(data) {
-        if (this.LocalData == undefined) {
-        }
-        else {
-            var circles = select(`#${this.bubblechartControlName}`)
-                .select("svg").selectAll("circle")
-                .data(data);
-            circles.attr("stroke", function (d) { return d.Selection == true ? "blue" : "black"; })
-                .attr("stroke-width", function (d) { return d.Selection == true ? 4 : 1; })
-                .style("fill", function (d) { return d.Hover == true ? "red" : (d.Selection == true ? null : (null)); });
-        }
-    }
-    setZoom(value) {
-        //console.log("Hurray" + this.bubblechartControlName);
-        var horizontal = this.horizontal;
-        var vertical = this.vertical;
-        var newX = value[0];
-        var newY = value[1];
-        var item = value[2];
-        if (newX == 0 && newY == undefined) {
-        }
-        else {
-            this.xAxis.call(axisBottom(newX));
-            this.yAxis.call(axisLeft(newY));
-            this.bubblechart
-                .selectAll("circle")
-                .attr('cx', function (d) { return newX(item(d, horizontal)); })
-                .attr('cy', function (d) { return newY(item(d, vertical)); });
         }
     }
     render(parentControl) {
@@ -24409,18 +23532,9 @@ class BubbleChartClass {
         div1.appendChild(div2);
         var data = this.Data;
         const renderPlot = (data) => {
-            //console.log(data);
             var colArray = Object.keys(data[0]);
-            //console.log("BubbleChart Render Method");
-            //console.log(colArray);
-            var horizontal = this.horizontal;
-            var vertical = this.vertical;
             var colorIndex = this.colorIndex;
             var circleSizeIndex = this.circleSizeIndex;
-            var textIndex = this.textIndex;
-            //console.log("horizontal is " + horizontal);
-            //console.log("vertical is " + vertical);
-            //console.log(colArray[horizontal]);
             var item = this.helper[0];
             this.LocalData = data;
             var margin = { top: 60, right: 15, bottom: 60, left: 60 };
@@ -24430,8 +23544,6 @@ class BubbleChartClass {
             this.innerHeight = plotHeight + margin.top + margin.bottom;
             var width = this.innerWidth;
             var height = this.innerHeight;
-            //plotWidth = plotWidth;
-            //plotHeight = plotHeight;
             var IndicationArray = this.IndicationArray;
             var SelectionArray = this.SelectionArray;
             // append the svg object to the body of the page
@@ -24455,7 +23567,6 @@ class BubbleChartClass {
                 .text(function (d) { return d.variable; })
                 .attr("value", function (d) { return d.Index; });
             function changed(d) {
-                // console.log("changed");
                 console.log(select(this).property("value"));
                 var index = select(this).property("value");
                 var circleSize1 = sqrt$1()
@@ -24509,21 +23620,15 @@ class BubbleChartClass {
             var mouseoverstatus = false;
             var mousedownstatus = false;
             function onMouseOver(d, index) {
-                //console.log(d.CountryOfInterest)
-                //console.log("Mouse Over")
                 mouseoverstatus = true;
                 IndicationArray[index] = true;
                 localParentControl.getProxy().getLiveProperty("Indication").setValue(IndicationArray);
             }
             function onMouseOut(d, index) {
-                //console.log(d.CountryOfInterest)
-                //console.log("Mouse Out")
                 IndicationArray[index] = false;
                 localParentControl.getProxy().getLiveProperty("Indication").setValue(IndicationArray);
             }
             function onMouseDown(d, index) {
-                //console.log(d.CountryOfInterest)
-                //console.log("Mouse Down")
                 SelectionArray = localParentControl.getProxy().getLiveProperty("Selection").getValue();
                 if (SelectionArray[index] == false) {
                     SelectionArray[index] = true;
@@ -24581,8 +23686,6 @@ class BubbleChartClass {
             select("#selectButton").on("change", function (d) {
                 // recover the option that has been chosen
                 var selectedOption = select(this).property("value");
-                // run the updateChart function with this selected option
-                //update(selectedOption)
             });
         };
         renderPlot(data);
@@ -24592,15 +23695,21 @@ class BubbleChartClass {
 }
 //# sourceMappingURL=bubblechart.js.map
 
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 class ControlBubblechart {
     //**********************************************************************
     // Constructors and Finalizer
     //**********************************************************************
     constructor(name, data, xPos, yPos, inputWidth, inputHeight, helper, color, size, text) {
-        // test(evt: Event): void
-        // {
-        //     throw new Error("Method not implemented.");
-        // }
         //**********************************************************************
         // Public Class Members (Properties)
         //**********************************************************************
@@ -24621,9 +23730,7 @@ class ControlBubblechart {
         this.TYPE_Data = new Prototype(Array.prototype, this.CTAG_Data, []);
         this.TYPE_Zoom = new Prototype(Array.prototype, this.CTAG_Zoom, [null, null]);
         if (printClass.printStatus)
-            console.log("I am in constructor of Controlbubblechart");
-        //Create Control Proxy
-        //if(printClass.printStatus) console.log(this.TYPE_VALUE);
+            console.log("Constructor of Controlbubblechart");
         this.proxy = new ControlProxy(this);
         //create live property
         this.live_property_xTranslate = this.proxy.add(this.CTAG_xTranslate, this.TYPE_xTranslate, true);
@@ -24672,15 +23779,6 @@ class ControlBubblechart {
         //this.canvas.setValue(value);
     }
     //**********************************************************************
-    // Override Methods (ChangeListener)
-    //**********************************************************************
-    // public stateChanged(e: Event): void
-    // {
-    //     var value: typeOfValue = this.canvas.getValue();
-    //     if (value != this.getValue())
-    //         this.setValue(value);
-    // }
-    //**********************************************************************
     // Override Methods (LivePropertyListener)
     //**********************************************************************
     propertyChanged(e) {
@@ -24692,106 +23790,21 @@ class ControlBubblechart {
         if (printClass.printStatus)
             console.log(tag);
         var ve = e.getVariableEvent();
-        //console.log(ve);   //this value should not be null
-        //console.log(ve.getType());
-        //console.log(VariableEvent.VALUE_CHANGED);
-        //if ((ve == null) || (ve.getType() == VariableEvent.VALUE_CHANGED))
-        //{
-        if (tag == this.CTAG_xTranslate) {
+        if (tag == this.CTAG_Opacity) {
             if (printClass.printStatus)
-                console.log("hurray controlbubblechart height");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.bubblechart.translateX(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_yTranslate) {
-            if (printClass.printStatus)
-                console.log("hurray controlbubblechart Width");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.bubblechart.translateY(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Opacity) {
-            if (printClass.printStatus)
-                console.log("hurray controlbubblechart opacity");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("controlbubblechart opacity");
             this.bubblechart.setOpacity(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Selection) {
             if (printClass.printStatus)
-                console.log("hurray Controlbubblechart Selection");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Controlbubblechart Selection");
             this.bubblechart.setSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
         else if (tag == this.CTAG_Indication) {
             if (printClass.printStatus)
-                console.log("hurray Controlbubblechart Indication");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
+                console.log("Controlbubblechart Indication");
             this.bubblechart.setIndication(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
         }
-        else if (tag == this.CTAG_Size) {
-            if (printClass.printStatus)
-                console.log("hurray Controlbubblechart Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.bubblechart.setSize(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Data) {
-            if (printClass.printStatus)
-                console.log("hurray Controlbubblechart Size");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.bubblechart.setHoverSelection(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        else if (tag == this.CTAG_Zoom) {
-            if (printClass.printStatus)
-                console.log("hurray Controlbubblechart Zoom");
-            //console.log(e.getLiveProperty().variable.getPrototype().value)    
-            //var	value:typeOfValue = this.getValue();
-            //if(printClass.printStatus) console.log(value);
-            //if (this.slider.getValue() != value)
-            //console.log(e.getLiveProperty().getVariable().getValue());
-            this.bubblechart.setZoom(e.getLiveProperty().getVariable().getValue());
-            // this.slider.setValue(90);
-        }
-        //} 
-    }
-    propertyChangeToUpdateUI(value) {
-        //if(printClass.printStatus) console.log(e);
-        //this.canvas.setValue(value);
-        if (printClass.printStatus)
-            console.log(value);
     }
     //**********************************************************************
     // Private Methods (Graphics)
@@ -24806,8 +23819,16 @@ class ControlBubblechart {
 //******************************************************************************
 //# sourceMappingURL=ControlBubbleChart.js.map
 
-//console.info('%cThis is implementation of LiveProperties in Javascript','color:blue; font-weight:bold; font-size:15px');
-//console.warn("This may not work in all browsers!.  This is an experemental project ");
+//   C4D3 is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// This file is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 function createControl(controlName, data, name, xPos, yPos, symbol$$1, horizontalAxes, verticalAxes, inputWidth, inputHeight, showHoriz, showVerti, helper, color$$1, size, text$$1, dims) {
     if (printClass.printStatus)
         console.log("Next Step: Control Creation**************(( " + controlName + " ))**************");
@@ -24856,8 +23877,6 @@ function createVariable(variableName, value, classtype) {
         console.log("Next Step:Variable Creation*************(( " + variableName + " ))***********");
     if (printClass.printStatus)
         console.log(value);
-    //if(printClass.printStatus) console.log(typeof(Number.prototype));
-    //if(printClass.printStatus) console.log(typeof(value).__proto__);
     let CUR_TAG = "Value";
     //if you don't want to pass parameters use placeholder undefined
     let CUR_VALUE = new Prototype(classtype, CUR_TAG, undefined, undefined);
@@ -24867,24 +23886,20 @@ function createVariable(variableName, value, classtype) {
     return variable;
 }
 function bindVariable(control, property, variable) {
-    //console.log(property);
-    //console.clear();
     if (printClass.printStatus)
-        console.log(control);
-    //if (printClass.printStatus) console.log("Next step:*************************** Binding (( " + variable.name + " )) to (( " + control.ControlName + " ))******************");
+        console.log("Next step: Binding (( " + variable.name + " )) to (( " + control.ControlName + " ))");
     control.proxy.setVariable(property, variable);
 }
+//Define Control Types
 let Scatterplot_type = "scatterplot";
 let Table_type = "table";
 let Map_type = "map";
 let ParallelCoordinatePlot_type = "parallelCoordinatePlot";
 let Bubblechart_type = "bubblechart";
-//let p =0.1235
-//console.log(p.toPrecision(3));
-//Load Data
+//Load Data sets
 Promise.all([tsv$1("./data/110m.tsv"),
     json("./data/countries-110m.json"),
-    csv$1("./data/CoronaVirus07082020.csv", ({ Index, CountryOfInterest, TotalCases, TotalDeaths, CasesPerMil, DeathsPerMil, TotalTests, TestsPerMil, Population, Continent, RandomX, RandomY }, index) => ({
+    csv$1("./data/covid1907082020.csv", ({ Index, CountryOfInterest, TotalCases, TotalDeaths, CasesPerMil, DeathsPerMil, TotalTests, TestsPerMil, Population, Continent, RandomX, RandomY }, index) => ({
         Index: +index,
         CountryOfInterest: CountryOfInterest,
         Continent: Continent,
@@ -24896,8 +23911,8 @@ Promise.all([tsv$1("./data/110m.tsv"),
         CasesPerMillion: +(CasesPerMil.replace(/,/g, "")),
         DeathsPerMillion: +(DeathsPerMil.replace(/,/g, "")),
     }))
-]).then(([tsvData, worldMapTopoJson, coronaData]) => {
-    let CoronaVariables = { Index: 0,
+]).then(([tsvData, worldMapTopoJson, covid19Data]) => {
+    let covid19Variables = { Index: 0,
         CountryOfInterest: 1,
         Continent: 2,
         TotalCases: 3,
@@ -24910,7 +23925,7 @@ Promise.all([tsv$1("./data/110m.tsv"),
     };
     let IonsVariables = { Index: 0, T: 1, X: 2, Y: 3, Z: 4 };
     //lookup for items
-    function CoronaAxes(d, idx) {
+    function covid19Axes(d, idx) {
         if (idx == 0) {
             return d.Index;
         }
@@ -24942,10 +23957,8 @@ Promise.all([tsv$1("./data/110m.tsv"),
             return d.DeathsPerMillion;
         }
     }
-    var parentDiv = document.createElement("div");
-    parentDiv.id = "Corona";
-    //Corona Example
-    function coronaExample() {
+    //Create covid19 visualization
+    function covid19Example() {
         let Top = 150;
         let Left = 30;
         let ScatterWidth = 300;
@@ -24953,40 +23966,41 @@ Promise.all([tsv$1("./data/110m.tsv"),
         let TableWidth = 325;
         let TableHeight = 2 * ScatterHeight + 5;
         let MapWidth = 2 * ScatterWidth;
-        var parentName = "coronaViz";
+        var parentName = "covid19Viz";
         let Selection_1 = createVariable("Selection_1", [], Array.prototype);
         let Selection_2 = createVariable("Selection_2", [], Array.prototype);
         let Selection_3 = createVariable("Selection_3", [], Array.prototype);
         let Indication_1 = createVariable("Indication_1", [], Array.prototype);
-        let Data_1 = createVariable("Data_1", coronaData, Array.prototype);
+        let Data_1 = createVariable("Data_1", covid19Data, Array.prototype);
         //variables for axis
         let Translation_1 = createVariable("Translation_1", [0], Array.prototype);
         let Translation_2 = createVariable("Translation_2", [0], Array.prototype);
         let Translation_3 = createVariable("Translation_3", [0], Array.prototype);
-        let scatterplot1 = createControl(Scatterplot_type, coronaData, "SP-1", Left, Top, null, CoronaVariables.TestsPerMil, CoronaVariables.CasesPerMil, ScatterWidth, ScatterHeight, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
+        let scatterplot1 = createControl(Scatterplot_type, covid19Data, "SP-1", Left, Top, null, covid19Variables.TestsPerMil, covid19Variables.CasesPerMil, ScatterWidth, ScatterHeight, true, true, [covid19Axes], covid19Variables.Continent, covid19Variables.Population, covid19Variables.CountryOfInterest);
         bindVariable(scatterplot1, "xTranslate", Translation_1);
         bindVariable(scatterplot1, "yTranslate", Translation_3);
         bindVariable(scatterplot1, "Selection", Selection_1);
         bindVariable(scatterplot1, "Indication", Indication_1);
         //bindVariable(scatterplot1, "Zoom", variable9);
-        let scatterplot2 = createControl(Scatterplot_type, coronaData, "SP-2", Left, Top + ScatterHeight, null, CoronaVariables.DeathsPerMil, CoronaVariables.TestsPerMil, ScatterWidth, ScatterHeight, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.Population, CoronaVariables.CountryOfInterest);
+        let scatterplot2 = createControl(Scatterplot_type, covid19Data, "SP-2", Left, Top + ScatterHeight, null, covid19Variables.DeathsPerMil, covid19Variables.TestsPerMil, ScatterWidth, ScatterHeight, true, true, [covid19Axes], covid19Variables.Continent, covid19Variables.Population, covid19Variables.CountryOfInterest);
         bindVariable(scatterplot2, "xTranslate", Translation_2);
         bindVariable(scatterplot2, "yTranslate", Translation_1);
         bindVariable(scatterplot2, "Indication", Indication_1);
         bindVariable(scatterplot2, "Selection", Selection_2);
-        let table10 = createControl(Table_type, [coronaData], "TableView", Left + ScatterWidth + 2, Top, null, null, null, TableWidth, TableHeight, null, null, null, null, null, null);
+        let table10 = createControl(Table_type, [covid19Data], "TableView", Left + ScatterWidth + 2, Top, null, null, null, TableWidth, TableHeight, null, null, null, null, null, null);
         bindVariable(table10, "Selection", Selection_2);
         bindVariable(table10, "Indication", Indication_1);
-        let Map1 = createControl(Map_type, [tsvData, worldMapTopoJson, coronaData], "Map", Left + ScatterWidth + TableWidth - 26, Top, diamond, IonsVariables.Z, IonsVariables.Y, MapWidth, 2 * ScatterHeight, false, false, null, null, null, null);
+        let Map1 = createControl(Map_type, [tsvData, worldMapTopoJson, covid19Data], "Map", Left + ScatterWidth + TableWidth - 26, Top, diamond, IonsVariables.Z, IonsVariables.Y, MapWidth, 2 * ScatterHeight, false, false, null, null, null, null);
         bindVariable(Map1, "Data", Data_1);
         bindVariable(Map1, "Selection", Selection_1);
         bindVariable(Map1, "Indication", Indication_1);
-        let bubblechart1 = createControl(Bubblechart_type, coronaData, "BC-1", Left + ScatterWidth + TableWidth + MapWidth - 25, Top, null, null, null, ScatterWidth * 1.2, TableHeight - 20, true, true, [CoronaAxes], CoronaVariables.Continent, CoronaVariables.CasesPerMil, CoronaVariables.CountryOfInterest);
+        let bubblechart1 = createControl(Bubblechart_type, covid19Data, "BC-1", Left + ScatterWidth + TableWidth + MapWidth - 25, Top, null, null, null, ScatterWidth * 1.2, TableHeight - 20, true, true, [covid19Axes], covid19Variables.Continent, covid19Variables.CasesPerMil, covid19Variables.CountryOfInterest);
         bindVariable(bubblechart1, "Selection", Selection_3);
         bindVariable(bubblechart1, "Indication", Indication_1);
-        let parallelCoordinatePlot1 = createControl(ParallelCoordinatePlot_type, coronaData, "PCP-1", ScatterWidth + TableWidth + 1.6 * MapWidth, Top, null, null, null, TableWidth, 2 * ScatterHeight, null, null, [CoronaAxes], CoronaVariables.Continent, null, null, ["Continent", "DeathsPerMillion", "CasesPerMillion"]);
+        let parallelCoordinatePlot1 = createControl(ParallelCoordinatePlot_type, covid19Data, "PCP-1", ScatterWidth + TableWidth + 1.6 * MapWidth, Top, null, null, null, TableWidth, 2 * ScatterHeight, null, null, [covid19Axes], covid19Variables.Continent, null, null, ["Continent", "DeathsPerMillion", "CasesPerMillion"]);
         bindVariable(parallelCoordinatePlot1, "Selection", Selection_2);
         bindVariable(parallelCoordinatePlot1, "Indication", Indication_1);
     }
-    coronaExample();
+    covid19Example();
 });
+//# sourceMappingURL=index.js.map

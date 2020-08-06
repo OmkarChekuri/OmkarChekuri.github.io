@@ -21,11 +21,11 @@
   <meta name="author" content="Omkar Chekuri" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>C4D3-Ions</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+ 
   <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
   <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
-  <script src="./js/ions.js" defer></script>
+  
   <title>button</title>
   <!-- <script src="./wp/webpack-buncle.js"></script> -->
 </head>
@@ -35,7 +35,7 @@
   <div class="navbar">
     
     <a  href="./C4D3index.html ">C4D3</a>
-    <a href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3" >Home </a>
+  
     <div class="dropdown">
       <button id="selected" class="dropbtn">Examples 
         <i class="fa fa-caret-down"></i>
@@ -47,37 +47,15 @@
     </div> 
     <a href="./contact.html">Contact</a>
     <a href="./download.html">Downloads</a>
+    <a id = "main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3"  >Home </a>
   </div>
 
   <h1>Ions - Visualization</h1>
-  <div id = "buttons">
-    <button id = "hide" onclick="hidetext()">Hide Text </button>
-    <button  id = "show" onclick="showtext()">Display Text </button>
-    </div>
-
-    <script>
-      function hidetext(){
-       document.getElementById("documentText").style.display = "none"
-       document.getElementById("hide").style.background = "red"
-       document.getElementById("show").style.background = "none"
-      }
-      function showtext(){
-       document.getElementById("documentText").style.display = "block"
-       document.getElementById("hide").style.background = "none"
-       document.getElementById("show").style.background = "red"
-      }
-    
-    
-    
-    </script>
-
-  <!-- <img src="media/corona.png" alt="Trulli" width="1000" height="333"> -->
-  <svg height="650">
-    <rect>
-
-    </rect>
-  </svg>
-
+  <div>
+  <a href="./ionsviz.html">
+    <img  src="media/ions.png" width="100%" height="400" alt = "ions Example" > </a>
+    <h3  style="text-align: center; margin-top: 0;"    >Click on the image above to open interactive visualization</h3>
+  </div>
 <div id = "documentText"> 
   <h2>Background</h2>
 

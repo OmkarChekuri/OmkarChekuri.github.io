@@ -24,11 +24,11 @@
     <meta name="author" content="Omkar Chekuri" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>C4D3-Covid19</title>
-    <script src ="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+    
     <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
     <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
-    <script src="./js/corona.js" defer></script>
+    
     <title>button</title>
     <!-- <script src="./wp/webpack-buncle.js"></script> -->
   </head>
@@ -39,7 +39,7 @@
       <div class="navbar">
        
         <a  href="./C4D3index.html ">C4D3</a>
-        <a href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3" >Home </a>
+       
         <div class="dropdown">
           <button id="selected" class="dropbtn">Examples 
             <i class="fa fa-caret-down"></i>
@@ -51,38 +51,17 @@
         </div> 
         <a href="./contact.html">Contact</a>
         <a href="./download.html">Downloads</a>
+        <a id = "main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3"  >Home </a>
       </div>
   
   
   <h1  >Covid19 - Visualization</h1>
 
-  <div id = "buttons">
-  <button id = "hide" onclick="hidetext()">Hide Text </button>
-  <button  id = "show" onclick="showtext()">Display Text </button>
+  <div>
+  <a href="./covid19viz.html">
+    <img  src="media/corona.png" width="100%" height="345" alt = "covid19 Example"> </a>
+  <h3  style="text-align: center; margin-top: 0;"    >Click on the image above to open interactive visualization</h3>
   </div>
-
-  <script>
-    function hidetext(){
-     document.getElementById("documentText").style.display = "none"
-     document.getElementById("hide").style.background = "red"
-     document.getElementById("show").style.background = "none"
-     
-    }
-    function showtext(){
-     document.getElementById("documentText").style.display = "block"
-     document.getElementById("hide").style.background = "none"
-     document.getElementById("show").style.background = "red"
-    }
-  </script>
-  
-
-    <!-- <img src="media/corona.png" alt="Trulli" width="1000" height="333"> -->
-<svg height="550">
-  <rect>
-
-  </rect>
-</svg>
-
 
 
 
@@ -144,7 +123,7 @@
 <h2>Interaction</h2>
 
 
-<h3>Scatter Plot</h3>
+<h3>Scatter plot</h3>
 <p>
     The current implementation supports either zoom or brush functionality on the scatterplot at a time. we decided to implement brushing functionality instead.
     Brushing can be done in the scatterplot view by clicking the mouse anywhere on the scatterplot followed by drag and release to select 
@@ -152,7 +131,7 @@
     are selected. Selected items are shown in the  scatterplot using a black colored stroke.
 </p>   
 
-<h3>Table View</h3>
+<h3>Table </h3>
 <p>
    Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row and drag the mouse 
    to the top or bottom based on the direction in which the selection is to be made. There are performance issues associated with multiple row selection in case 
@@ -162,7 +141,7 @@
 </p>
  
 
-<h3>Choropleth Map</h3>
+<h3>Choropleth map</h3>
 Selection is done on the choropleth map by clicking twice on a country with a small time gap between clicks otherwise the interaction will also 
 trigger zoom along with selection. Selected regions are filled with grey color. Indication is done by hovering the mouse over the country. Indicated regions 
 will be highlighted with a blue border and a reduced opacity.
@@ -170,12 +149,12 @@ will be highlighted with a blue border and a reduced opacity.
 
 </p>
 
-<h3>Bubble Chart</h3>
+<h3>Bubble chart</h3>
 <p>
   Selection is done on the bubble chart by clicking twice on a bubble. Selected items are filled with grey color. Indication is done by hovering the 
   mouse over the bubble. Indicated items will be highlighted with a white border and a reduced opacity.
 </p>
-<h3>Parallel Coordinate Plot</h3>
+<h3>Parallel coordinate plot</h3>
 <p>
    The above parallel coordinate plot does not allow selection or hovering. It will only display selected items when selected in a corresponding coordinated view. 
 </p>

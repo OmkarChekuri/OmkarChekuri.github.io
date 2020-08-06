@@ -16,10 +16,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
   
     float: left;
     display: block;
-      
-  
-
+    
 }
+
+.column {
+  float: left;
+  
+        margin-left: auto;
+        margin-right: auto;
+  
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.column .img
+{
+  margin-bottom: 1px;
+}
+
+
 
 
 #title{
@@ -87,15 +108,7 @@ body {
 }
 
 
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(240, 242, 243);
-  color: black;
-  text-align: center;
-}
+
 
 .navbar {
   overflow: hidden;
@@ -107,6 +120,9 @@ body {
 }
 
 .navbar a {
+
+  display:flex;
+  justify-content: flex-start;
   float: left;
   font-size: 16px;
   color: white;
@@ -114,6 +130,14 @@ body {
   margin-right: 0;
   padding: 14px 16px;
   text-decoration: none;
+}
+
+
+#main{
+
+  margin-left: auto;
+  float: right;
+
 }
 
 .dropdown {
@@ -160,6 +184,34 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(240, 242, 243);
+  color: black;
+  text-align: center;
 }
 
 
