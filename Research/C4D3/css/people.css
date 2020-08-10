@@ -13,25 +13,6 @@ details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-.card {
-    box-shadow: 0 4px 8px 0 rgb(255, 254, 254);
-    max-width: 300px;
-    float: right;
-    margin: 1em;
-    text-align: center;
-    font-family: arial;
-    display: block;
-    border-style: solid;
-    border-color: white;
-    outline-style: groove;
-    border-width: 5px 20px; /* 5px top and bottom, 20px on the sides */
-    background-color: white;
-    
-  }
-
-  .flex-container {
-    display: flex;
-}
   
   .title {
     color: grey;
@@ -71,3 +52,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
     margin-left: 2px;
 
   } */
+
+
+.module_group_div_photo { position: absolute; left:   8px; top:    18px; bottom: 10px;}
+.module_group_div_title { position: absolute; left:  200px; top:    18px; text-align: justify; }
+
+
+.module_group_photo       { width: 160px; border: 30px ;  }
+
+
+.module_group_photo:hover { border-color: #808080; }
+
+.module_group_update { color: #a0a0a0; font-size: 10px; text-align: center; }
+
+.module_group_order { font-size: 20px; margin:5px; margin-bottom: 10px; font-weight: bolder; }
+.module_group_person { font-size: 20px; margin:7px; font-weight: bold; }
+.module_group_degree { color: #050404; font-size: 20px;  margin:7px; }
+.module_group_domain { color: #0f0e0e; font-size: 18px;   margin:7px; }
+.module_group_university { color: #0f0e0e; font-size: 18px;  margin:7px;  }
+.module_group_email{ color: #0f0e0e; font-size: 18px;  margin:7px;  }
+

@@ -38,7 +38,7 @@
     <body id="body" onbeforeprint="PrintAlert()">
       <div class="navbar">
        
-        <a  href="./C4D3index.html ">C4D3</a>
+        <a  href="./index.html ">C4D3</a>
        
         <div class="dropdown">
           <button id="selected" class="dropbtn">Examples 
@@ -79,23 +79,22 @@
 
 <h2> Interface</h2>
  
-<p> Different views are organized column wise. Each view is embedded in a rectanglular region with a <b>thick border</b> on the top. Each view can be independently
+<p> Clicking on the image shown above will open the visualization in a new window. Different views are organized column wise. Each view is embedded in a rectanglular region with a <b>thick border</b> on the top. Each view can be independently
    moved and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.  
-   There are two buttons on the top of the visualization that lets you toggle the visibility of the the detailed explanation of the example to provide
-   space for organizing the views.  </p> 
+     </p> 
 
 <ul>
-    <li> The first column from left  consists of two <b>scatterplots</b>.The top Left scatterplot shows <em> Tests Per Million</em>
-       variable drawn on horizontal axis vs <em>Cases Per Million</em> variable on vertical Axis. The bottom Left scatterplot shows <em>
-          Deaths Per Million</em> variable drawn on horizontal axis vs <em>Tests Per Million</em>variable drawn on vertical axis  </li>
+    <li> The first column from left  consists of two <b>scatter plots</b>.The top left scatter plot shows <b><em> Tests Per Million</em></b>
+       variable drawn on horizontal axis vs <b><em>Cases Per Million</em></b> variable on vertical axis. The bottom left scatter plot shows <b><em>
+          Deaths Per Million</em></b> variable drawn on horizontal axis vs <b><em>Tests Per Million</em></b> variable drawn on vertical axis  </li>
 
-    <li> The second column from left shows a <b>table</b> view that shows all the data set. The continent coloumn of the table view is colored based on
+    <li> The second column from left shows a <b>table view</b>  that shows all the data set. The continent coloumn of the table view is colored based on
        the  categorical color assigned to each continent as per the legend shown in the choropleth map and bubble chart in the third and fourth columns respectively.</li>
     <li> The third column from left  shows a <b>choropleth map</b> using mercator projection of the world map. Each continent is colored based on the categorical color 
         assigned to continent</li>
     <li>The fourth column from left shows a <b>bubble chart</b> and a selection menu with various bubbles drawn using radius of the circle to represent in the drop down menu. </li>
     <li>The fifth column from left  shows a <b>parallel coordinate plot</b> that is drawn using the same data. The color of the paths is drawn using categorical color assigned to 
-        attribute of the continent </li>
+        attribute of the continent. </li>
 </ul>
 <p> All the views use the color encoding from  <a href = "https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3" target= "_blank"> ColorBrewer 2.0 </a>
    website.</p>
@@ -105,16 +104,16 @@
 
   <ul>
     <li>
-      The two scatterplots on the first column from the left are coordinated by the range property.  The horizontal range of the top 
-      scatterplot is coordinated with the vertical range of bottom scatterplot.
+      The two scatter plots on the first column from the left are coordinated by the range property.  The horizontal range of the top 
+      scatter plot is coordinated with the vertical range of bottom scatter plot.
     </li>
-     <li> The top scatterplot in the first column and the choropleth Map are coordinated in selection. Any selection made in either of the above views will reflect in other.</li>
+     <li> The top scatter plot in the first column and the choropleth Map are coordinated in selection. Any selection made in either of the above views will reflect in other.</li>
     <li>
-      The bottom scatterplot in the first column, table view and the parallerl coordinate plot are coordinated in selection. Any selection made in the scatterplot view 
+      The bottom scatter plot in the first column, table view and the parallerl coordinate plot are coordinated in selection. Any selection made in the scatterplot view 
       or table view will reflect the selected items in the three coordinated plots.
     </li>
     <li>
-      The scatterplots, table view, choropleth map and  bubble chart are coordinated in indication. Any item indicated by hovering in table view, choropleth map and  bubble chart will be 
+      The scatter plots, table view, choropleth map and  bubble chart are coordinated in indication. Any item indicated by hovering in table view, choropleth map and  bubble chart will be 
       highlighted in other plots.
     </li>
   </ul>
@@ -125,13 +124,13 @@
 
 <h3>Scatter plot</h3>
 <p>
-    The current implementation supports either zoom or brush functionality on the scatterplot at a time. we decided to implement brushing functionality instead.
-    Brushing can be done in the scatterplot view by clicking the mouse anywhere on the scatterplot followed by drag and release to select 
+    The current implementation supports either zoom or brush functionality on the scatter plot at a time. we decided to implement brushing functionality instead.
+    Brushing can be done in the scatter plot view by clicking the mouse anywhere on the scatter plot followed by drag and release to select 
     a region. Brusing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region 
-    are selected. Selected items are shown in the  scatterplot using a black colored stroke.
+    are selected. Selected items are shown in the  scatter plot using a black colored stroke.
 </p>   
 
-<h3>Table </h3>
+<h3>Table view </h3>
 <p>
    Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row and drag the mouse 
    to the top or bottom based on the direction in which the selection is to be made. There are performance issues associated with multiple row selection in case 

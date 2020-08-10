@@ -34,7 +34,7 @@
 
   <div class="navbar">
     
-    <a  href="./C4D3index.html ">C4D3</a>
+    <a  href="./index.html ">C4D3</a>
   
     <div class="dropdown">
       <button id="selected" class="dropbtn">Examples 
@@ -60,27 +60,26 @@
   <h2>Background</h2>
 
   <p>
-    The above example shows a coordination visualization in D3 using the <b>Live properties</b> architectureof 
-    <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> software. The data for the
-    following visualization is gathered from <a href="https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" target="_blank">Ions Example</a>.
+    The above example shows a coordination visualization in D3 using the <b>Live properties</b> architecture of 
+    <a href="https://www.cs.ou.edu/~weaver/improvise/index.html"> Improvise </a> software. The data for the
+    following visualization is taken from <a href="https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" target="_blank">ions visualization</a>.
 
   </p>
 
   <h2> Interface</h2>
 
-  <p>The visualization displays different spatial and temporal aspects of a simulated ion cloud trajectory organized
+  <p>Clicking on the image shown above will open the visualization in a new window. The visualization displays different spatial and temporal aspects of a simulated ion cloud trajectory organized
     column wise. A highly coordinated set of timeseries plots, table views and other views reveal different characteristics of
     oscillatory motion. The trajectory is displayed in a variety of ways by the views in the visualization. Each view is 
     embedded in a rectanglular region with a <b>thick border</b> on the top. Each view can be independently
     moved and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.
-    There are two buttons on the top of the visualization that lets you toggle the visibility of the the detailed explanation of the example to provide
-    space for organizing the views. </p>
+    </p>
 
   </p>
 
   <ul>
-    <li>The first column from left consists of three time series scatterplots that show ion motion over time relative to X, Y and Z axis.</li>
-    <li>The second, third, fourth and fifth columns consists of scatterplots drawn in a combination of different axis.</li>
+    <li>The first column from left consists of three time series scatter plots that show ion motion over time relative to X, Y and Z axis.</li>
+    <li>The second, third, fourth and fifth columns consists of scatter plots drawn in a combination of different axis.</li>
     <li> The third column and fourth column consists of a parallel coordinate plot  thet shows the data in all the dimensions.   </li>
      <li>The sixth column from the left shows a table view with the actual (T,X,Y,Z) positions of points along the trajectory.</li>
     <li> The sixth column from the left below the table view shows a Perpectiual view with a color gradient mapped on to a rectangular region. </li>
@@ -96,10 +95,10 @@
 <ul>
   <li> The three scatter plots in the first column  and the table view are coordinated in selection. </li>
   <li> The three scatter plots in the first column are  connected in range along horizontal axis.</li>
-  <li> The scatterplots in the second  and third column from left consists of overview scatterplots for the detailed views in the scatterplot in 
-    fourth and fifth columns. The Top scatterplot in the second column and the top scatterplot in the fith column are overview-detail pairs.
-     The bottom scatterplot in the second column and the bottom scatterplot  in the fourth column are overview and detail pairs.The bottom 
-     scatterplot in the third column and the bottom scatterplot  in the fifth column are overview and detail pairs.</li>
+  <li> The scatter plots in the second  and third column from left consists of overview scatter plots for the detailed views in the scatter plot
+    in fourth and fifth columns. The Top scatter plot in the second column and the top scatter plot in the fith column are overview-detail pairs.
+     The bottom scatter plot in the second column and the bottom scatter plot  in the fourth column are overview and detail pairs.The bottom 
+     scatter plot in the third column and the bottom scatter plot  in the fifth column are overview and detail pairs.</li>
     <li> The parallel coordinate plot and the perpectual slider are coordinated in selection.</li>
 
 </ul>
@@ -109,10 +108,10 @@
 
  <h3> Scatter Plot </h3>
   <p>
-    The current implementation supports either zoom or brush on the scatterplot at a time. we decided to implement brush property instead. 
+    The current implementation supports either zoom or brush on the scatter plot at a time. we decided to implement brush property instead. 
     Brushing can be done in the scatterplot view by clicking the mouse anywhere on the scatterplot followed by drag and release to select a brushed region.
     Brusing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region are selected.
-    Selected items are shown in the scatterplot using a black colored stroke.
+    Selected items are shown in the scatter plot using a black colored stroke.
 
     Brushing on the scatter plots in the first column will select items in the coordinated views to the plot on which the brushing is performed.
     Brushing performed on any of the overview plot will draw a detailed plot for the brushed region. Brushing performed on the detailed view will not have any effect 
@@ -121,7 +120,7 @@
 
   <h3> Parallel Coordinate Plot </h3>
   <p>
-    The above parallel coordinate plot does not allow selectioon or hovering. It will only display selected items from a corresponding coordinated view. 
+    The above parallel coordinate plot does not allow selection or hovering. It will only display selected items from a corresponding coordinated view. 
     The selected items are drawn using thick lines.
   </p>
 
@@ -131,7 +130,7 @@
     Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row 
     and drag the mouse to the top or bottom based ont the direction in which the selection is to be made. There are performance issues associated 
     with multi row selection in case of table view in the current implementation which will be addressed later which causes the multiple selection
-    to not perform consistently . The selected rows have a red colored text font. The table view and the scatterplots in the first column 
+    to not perform consistently. The selected rows have a red colored text font. The table view and the scatter plots in the first column 
     are coordinated in selection. 
   </p>
 
