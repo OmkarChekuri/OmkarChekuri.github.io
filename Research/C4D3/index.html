@@ -113,7 +113,7 @@
   To understand how a coordinated visualization works with Html and SVG widgets, we created simple Html and SVG widgets and started coordinating them in a 
   variaty of ways. For example we used sliders to manipulate the DOM and various properties of SVG objects. As a process we gained better 
   understanding of how the program gets complex with increasing number of coordinations between the widgets.
-  Check the <b><em><a style="color: red;" href="./planning.html" target="_blank" > Planning Playground </a></em></b> link  to view the examples. 
+  Check the <b><em><a style="color: red;" href="./planning.html" target="_blank" > Planning Playground </a></em></b> link  to view the example visualization. 
 <h3></h3>
 </p>
 
@@ -121,7 +121,7 @@
 <p>
   The design and analysis started with discussions about the level of abstraction provided for the user. We started to design and sketch  the framework
   and analysed how different aspects need to be implemented. We chose Live properties coordination architecture of the
-  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> visualization system to be the coordination architecture for  C3D4.
+  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> visualization system to be the coordination architecture for  C4D3.
 
 </p>
 
@@ -153,7 +153,7 @@
 
 <p>
     We created multiple coordinated views using the Html and SVG widgets to test the working of C4D3 framework.
-    Check the <b><em><a style="color: red;" href="./testing.html" target="_blank" > Testing Playground </a></em></b> link  to view the examples. 
+    Check the <b><em><a style="color: red;" href="./testing.html" target="_blank" > Testing Playground </a></em></b> link  to view the example visualization. 
 
 
 </p>
@@ -164,8 +164,8 @@
      Once the framework is in place we started to develop view level abstractions for D3 visualizations like scatterplot, table view,
      parallel coordinate plot, choropleth map, bubble chart and bargraph. We started abstracting the appearence and behaviour of the visualizations 
      to support basic selection and navigation patterns. The D3 typings for typescript are essential for building and extending the architecture to
-     D3 library. Lack of typescript typings for other available libraries limited out testing and experimenting on extending the architecture 
-     to support other visualization libraries. Some of the challenges faced in this step include making changes to the view abstractions for updating the
+     D3 library. Lack of typescript typings for other available visualization libraries limited out testing and experimenting on extending the architecture 
+     to support them. Some of the challenges faced in this step include making changes to the view abstractions for updating the
      views in an efficient manner without impacting the performance of the browser although some performance issues may be noticed.  
 </p>
 
@@ -174,7 +174,7 @@
   Once the required view types in D3 are ready, we created two examples of complex coordinated visualizations using the C4D3 framework. One of the them 
   being partial reimplementation of the <b><a href = "https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" > Ions visualization    </a> </b>
   originally created using  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> and the other one being a novel implementation of
-  <b>Covid19 visualization</b> from the Covid19 Dataset. The <b>links</b> to the above <b>examples</b> are provided in the navigation bar on the top of page
+  <b>Covid19 visualization</b> from the Covid19 dataset. The <b>links</b> to the above <b>examples</b> are provided in the navigation bar on the top of page
   under <strong>Examples</strong> section. As and when required to support different interaction behaviour for the visualization examples, we extended 
   the functionality of the view abstractions for the views   to support complex coordinated visualizations. We parameterised essential behaviour and appearence
   of the D3 views to give the designer ability to instantiate the views using the view wrappers provided. These view wrappers does not cover all the possibile 
