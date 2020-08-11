@@ -77,7 +77,7 @@
 
 <p>
    <b>C4D3</b> is a framework that provides view level abstraction and coordination architecture for developing coordinated  multiple 
-   views using <b>D3.js</b> library. The journey to developing the C4D3 framework began when we discovered the potential and need of a coordination architecture 
+   views using <b>D3</b> library. The journey to developing the C4D3 framework began when we discovered the potential and need of a coordination architecture 
    for building coordinated multiple views (CMV) for the visualizations built in browser environment. We chose to adopt Live properties 
    architecture for this purpose after understanding its potential and generalizability. The whole process can be roughly categorized into following steps. 
    
@@ -87,7 +87,7 @@
      <li> Design and analysis phase</li>
      <li> Developing the  <b>coordination </b> architecture and <b>view abstractions</b></li>
      <li> Developing and testing of initial version of <b>C4D3</b> framework</li>
-     <li> Extending the coordination architecture and view abstraction for <b>D3.js</b> library</li>
+     <li> Extending the coordination architecture and view abstraction for <b>D3</b> library</li>
      <li> Building <b>examples</b> of complex coordinated visualizations using <b>C4D3</b> framework</li>
    </ol>
 </p>
@@ -98,7 +98,7 @@
   Our aim of this project was to develop a coordination framework for the web environment where users should be able to build complex coordinated visualizations
   in the browser environment by achieving comparative performance to that of the desktop applications. We creating a rough plan of what the visualization framework
   might work like , design of the user interface of the visualization and how  a visualization designer might use the library to build visualizations using 
-  D3.js library.
+  D3 library.
   
   To understand how a coordinated visualization works with Html and SVG widgets, we created simple Html and SVG widgets and started coordinating them in a 
   variaty of ways. For example we used sliders to manipulate the DOM and various properties of SVG objects. As a process we gained better 
@@ -149,12 +149,12 @@
 </p>
 
 
-<h3> Extending the coordination architecture and view abstraction for D3.js library</h3>
+<h3> Extending the coordination architecture and view abstraction for D3 library</h3>
 <p>
      Once the framework is in place we started to develop view level abstractions for D3 visualizations like scatterplot, table view,
      parallel coordinate plot, choropleth map, bubble chart and bargraph. We started abstracting the appearence and behaviour of the visualizations 
      to support basic selection and navigation patterns. The D3 typings for typescript are essential for building and extending the architecture to
-     D3.js library. Lack of typescript typings for other available libraries limited out testing and experimenting on extending the architecture 
+     D3 library. Lack of typescript typings for other available libraries limited out testing and experimenting on extending the architecture 
      to support other visualization libraries. Some of the challenges faced in this step include making changes to the view abstractions for updating the
      views in an efficient manner without impacting the performance of the browser although some performance issues may be noticed.  
 </p>
@@ -164,11 +164,11 @@
   Once the required view types in D3 are ready, we created two examples of complex coordinated visualizations using the C4D3 framework. One of the them 
   being partial reimplementation of the <b><a href = "https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" > Ions visualization    </a> </b>
   originally created using  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> and the other one being a novel implementation of
-  <b>Covid19 visualization</b> from the Covid19 Dataset. The <b>links</b> to the above <b>examples</b> are provided in the navigation bar. As and when 
-  required to support different interaction behaviour for the visualization examples, we extended the functionality of the view abstractions for the views 
-  to support complex coordinated visualizations. We parameterised essential behaviour and appearence of the D3 views to give the designer ability to 
-  instantiate the views using the view wrappers provided. These view wrappers does not cover all the possibile design choices to be made. Any special 
-  appearence and behaviour that the designer needs and the view does not provide will require minimal work from the designer in modifying the view 
+  <b>Covid19 visualization</b> from the Covid19 Dataset. The <b>links</b> to the above <b>examples</b> are provided in the navigation bar on the top of page
+  under <strong>Examples</strong> section. As and when required to support different interaction behaviour for the visualization examples, we extended 
+  the functionality of the view abstractions for the views   to support complex coordinated visualizations. We parameterised essential behaviour and appearence
+  of the D3 views to give the designer ability to instantiate the views using the view wrappers provided. These view wrappers does not cover all the possibile 
+  design choices to be made. Any special appearence and behaviour that the designer needs and the view does not provide will require minimal work from the designer in modifying the view 
   abstractions. We aim to modify the framework to let the user inherit the view abstraction provided and define their special code in a sub class.  
 
 </p>
