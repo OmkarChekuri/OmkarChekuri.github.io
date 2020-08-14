@@ -51,7 +51,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <a href="./covid19.html">Covid19-Viz</a>
+        <a href="./COVID-19.html">Covid19-Viz</a>
         <a href="./ions.html">Ions-Viz</a>
       </div>
     </div> 
@@ -71,7 +71,7 @@
 
   <p>
     The above example shows a coordination visualization in D3 using the <b>Live properties</b> architecture of 
-    <a href="https://www.cs.ou.edu/~weaver/improvise/index.html"> Improvise </a> software. The data for the
+    <b><a href="https://www.cs.ou.edu/~weaver/improvise/index.html"> Improvise </a></b>software. The data for the
     following visualization is taken from <a href="https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" target="_blank">ions visualization</a>.
 
   </p>
@@ -81,8 +81,8 @@
   <p>Clicking on the image shown above will open the visualization in a new window. The visualization displays different spatial and temporal aspects of a simulated ion cloud trajectory organized
     column wise. A highly coordinated set of timeseries plots, table views and other views reveal different characteristics of
     oscillatory motion. The trajectory is displayed in a variety of ways by the views in the visualization. Each view is 
-    embedded in a rectanglular region with a <b>thick border</b> on the top. Each view can be independently
-    moved and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.
+    embedded in a rectangular region with a <b>thick border</b> on the top. Each view can be independently
+    moved, and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.
     </p>
 
   </p>
@@ -90,9 +90,9 @@
   <ul>
     <li>The first column from left consists of three time series scatter plots that show ion motion over time relative to X, Y and Z axis.</li>
     <li>The second, third, fourth and fifth columns consists of scatter plots drawn in a combination of different axis.</li>
-    <li> The third column and fourth column consists of a parallel coordinate plot  thet shows the data in all the dimensions.   </li>
-     <li>The sixth column from the left shows a table view with the actual (T,X,Y,Z) positions of points along the trajectory.</li>
-    <li> The sixth column from the left below the table view shows a Perpectiual view with a color gradient mapped on to a rectangular region. </li>
+    <li> The third column and fourth column consist of a parallel coordinate plot that shows the data in all the dimensions.   </li>
+     <li>The sixth column from the left shows a table view with the actual (T, X, Y, Z) positions of points along the trajectory.</li>
+    <li> The sixth column from the left below the table view shows a perpetual view with a color gradient mapped on to a rectangular region. </li>
   </ul>
 
   <p>
@@ -106,21 +106,21 @@
   <li> The three scatter plots in the first column  and the table view are coordinated in selection. </li>
   <li> The three scatter plots in the first column are  connected in range along horizontal axis.</li>
   <li> The scatter plots in the second  and third column from left consists of overview scatter plots for the detailed views in the scatter plot
-    in fourth and fifth columns. The Top scatter plot in the second column and the top scatter plot in the fith column are overview-detail pairs.
-     The bottom scatter plot in the second column and the bottom scatter plot  in the fourth column are overview and detail pairs.The bottom 
+    in fourth and fifth columns. The Top scatter plot in the second column and the top scatter plot in the fifth column are overview-detail pairs.
+     The bottom scatter plot in the second column and the bottom scatter plot  in the fourth column are overview and detail pairs. The bottom 
      scatter plot in the third column and the bottom scatter plot  in the fifth column are overview and detail pairs.</li>
-    <li> The parallel coordinate plot and the perpectual slider are coordinated in selection.</li>
+    <li> The parallel coordinate plot and the perpetual slider are coordinated in selection.</li>
 
 </ul>
 
  <h2>Interaction </h2>
 
 
- <h3> Scatter Plot </h3>
+ <h3> Scatter plot </h3>
   <p>
     The current implementation supports either zoom or brush on the scatter plot at a time. we decided to implement brush property instead. 
     Brushing can be done in the scatterplot view by clicking the mouse anywhere on the scatterplot followed by drag and release to select a brushed region.
-    Brusing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region are selected.
+    Brushing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region are selected.
     Selected items are shown in the scatter plot using a black colored stroke.
 
     Brushing on the scatter plots in the first column will select items in the coordinated views to the plot on which the brushing is performed.
@@ -128,25 +128,25 @@
     as no coordination is defined for the brushing action.
   </p>
 
-  <h3> Parallel Coordinate Plot </h3>
+  <h3> Parallel coordinate plot </h3>
   <p>
     The above parallel coordinate plot does not allow selection or hovering. It will only display selected items from a corresponding coordinated view. 
     The selected items are drawn using thick lines.
   </p>
 
 
-  <h3> Table View </h3>
+  <h3> Table view </h3>
   <p>
     Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row 
-    and drag the mouse to the top or bottom based ont the direction in which the selection is to be made. There are performance issues associated 
+    and drag the mouse to the top or bottom based on the direction in which the selection is to be made. There are performance issues associated 
     with multi row selection in case of table view in the current implementation which will be addressed later which causes the multiple selection
     to not perform consistently. The selected rows have a red colored text font. The table view and the scatter plots in the first column 
     are coordinated in selection. 
   </p>
 
-  <h3> Perpectual Slider </h3>
+  <h3> Perpetual slider </h3>
 <p>
-  The perpectual slider and the parallel coordinate plot are coordinated in selection. Selection is performed in the perpectual slider by brushing. 
+  The perpetual slider and the parallel coordinate plot are coordinated in selection. Selection is performed in the perpetual slider by brushing. 
   The slider is filled with a color gradient approximately corresponding to increasing time scale in the data. Any selection performed in the slider
   will select the corresponding data points in the linked parallel coordinate plot. 
 

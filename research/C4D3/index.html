@@ -109,12 +109,12 @@
 <p>
   Our aim of this project was to develop a coordination framework for the web environment where users should be able to build complex coordinated visualizations
   in the browser environment by achieving comparative performance to that of the desktop applications. We creating a rough plan of what the visualization framework
-  might work like , design of the user interface of the visualization and how  a visualization designer might use the library to build visualizations using 
+  might work like, design of the user interface of the visualization and how  a visualization designer might use the library to build visualizations using 
   D3 library.
   
   To understand how a coordinated visualization works with Html and SVG widgets, we created simple Html and SVG widgets and started coordinating them in a 
-  variaty of ways. For example we used sliders to manipulate the DOM and various properties of SVG objects. As a process we gained better 
-  understanding of how the program gets complex with increasing number of coordinations between the widgets.
+  variety of ways. For example, we used sliders to manipulate the DOM and various properties of SVG objects. As a process we gained better 
+  understanding of how the program gets complex with increasing number of ways of coordination between the widgets.
   Check the <b><em><a style="color: red;" href="./planning.html" target="_blank" > Planning Playground </a></em></b> link  to view the example visualization. 
 <h3></h3>
 </p>
@@ -122,15 +122,15 @@
 <h3> Design and analysis </h3>
 <p>
   The design and analysis started with discussions about the level of abstraction provided for the user. We started to design and sketch  the framework
-  and analysed how different aspects need to be implemented. We chose Live properties coordination architecture of the
+  and analyzed how different aspects need to be implemented. We chose Live properties coordination architecture of the
   <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> visualization system to be the coordination architecture for  C4D3.
 
 </p>
 
 <h3> Developing the coordination architecture and view abstractions</h3>
 <p>
-  We started conversion of the Live Properties package which is written in Java into Javascript. Soon we encountered many
-  difficulties associated with the conversion as Javascript is not object oriented. We also faced difficulties due to its limited 
+  We started conversion of the Live Properties package which is written in Java into JavaScript. Soon we encountered many
+  difficulties associated with the conversion as JavaScript is not object oriented. We also faced difficulties due to its limited 
   features like lack of strict typing, support of optional parameters, support during compilation. We moved our code to typescript 
   as it provides the advantages needed for clean one on one conversion of Java Code to Typescript code. We carefully implemented 
   essential functionality of coordination architecture supported by Typescript library.   
@@ -146,10 +146,10 @@
 <p>
     We combined the coordination architecture and view level abstractions to build the initial version of C4D3. The framework was combined 
     in such a way that the user will be able to create the variables, instantiate the views using view abstractions and parameters, define the
-    coordinations between various views in a central location. This gives the user the ability and abstraction required to define the coordinations
-    between different views in a clean and centralized manner. This also gives the user the much needed control to change the coordination between views 
+    ways of coordination between various views in a central location. This gives the user the ability and abstraction required to define the 
+    coordination mechanism between different views in a clean and centralized manner. This also gives the user the much needed control to change the coordination between views 
     without the need to change the D3 code that builds the visualization. Our limited experience in building browser based visualization systems cost us
-    most of our time in the development of the initial version of framework. Our main challenges here include setting up the softwoare environment 
+    most of our time in the development of the initial version of framework. Our main challenges here include setting up the software environment 
     for the testing and debugging of the framework for iterative development of the framework.
 </p>
 
@@ -163,10 +163,10 @@
 
 <h3> Extending the coordination architecture and view abstraction for D3 library</h3>
 <p>
-     Once the framework is in place we started to develop view level abstractions for D3 visualizations like scatterplot, table view,
-     parallel coordinate plot, choropleth map, bubble chart and bargraph. We started abstracting the appearence and behaviour of the visualizations 
-     to support basic selection and navigation patterns. The D3 typings for typescript are essential for building and extending the architecture to
-     D3 library. Lack of typescript typings for other available visualization libraries limited out testing and experimenting on extending the architecture 
+     Once the framework is in place, we started to develop view level abstractions for D3 visualizations like scatterplot, table view,
+     parallel coordinate plot, choropleth map, bubble chart and bar graph. We started abstracting the appearance and behavior of the visualizations 
+     to support basic selection and navigation patterns. The D3 type definitions for typescript are essential for building and extending the architecture to
+     D3 library. Lack of type definitions for other available visualization libraries limited out testing and experimenting on extending the architecture 
      to support them. Some of the challenges faced in this step include making changes to the view abstractions for updating the
      views in an efficient manner without impacting the performance of the browser although some performance issues may be noticed.  
 </p>
@@ -177,10 +177,10 @@
   being partial reimplementation of the <b><a href = "https://www.cs.ou.edu/~weaver/improvise/examples/ions/index.html" > Ions visualization    </a> </b>
   originally created using  <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> and the other one being a novel implementation of
   <b>COVID-19 visualization</b> from the COVID-19 dataset. The <b>links</b> to the above <b>examples</b> are provided in the navigation bar on the top of page
-  under <strong>Examples</strong> section. As and when required to support different interaction behaviour for the visualization examples, we extended 
-  the functionality of the view abstractions for the views   to support complex coordinated visualizations. We parameterised essential behaviour and appearence
-  of the D3 views to give the designer ability to instantiate the views using the view wrappers provided. These view wrappers does not cover all the possibile 
-  design choices to be made. Any special appearence and behaviour that the designer needs and the view does not provide will require minimal work from the designer in modifying the view 
+  under <strong>Examples</strong> section. As and when required to support different interaction behavior for the visualization examples, we extended 
+  the functionality of the view abstractions for the views   to support complex coordinated visualizations. We parameterized the essential behavior and appearance
+  of the D3 views to give the designer ability to instantiate the views using the view wrappers provided. These view wrappers do not cover all the possible 
+  design choices to be made. Any special appearance and behavior that the designer needs and the view does not provide will require minimal work from the designer in modifying the view 
   abstractions. We aim to modify the framework to let the user inherit the view abstraction provided and define their special code in a sub class.  
 
 </p>

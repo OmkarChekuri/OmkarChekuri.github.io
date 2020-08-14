@@ -78,7 +78,7 @@
 
   
 <h3>Disclaimer</h3>
-<p> The data used for the visualization is a snapshot of the data about COVID-19 until July 8th 2020 from the <a href="https://www.worldometers.info/coronavirus/"  target="_blank">worldometer</a> website.
+<p> The data used for the visualization is a snapshot of the data about COVID-19 until July 8th 2020 from the<b><i> <a href="https://www.worldometers.info/coronavirus/"  target="_blank">worldometer</a></i></b> website.
    The visualization is not intended as a resource to learn about the COVID-19. It is merely intended to showcase the capabilities of the C4D3 framework.</p>
 
 
@@ -95,20 +95,20 @@
 
 <h2> Interface</h2>
  
-<p> Clicking on the image shown above will open the visualization in a new window. Different views are organized column wise. Each view is embedded in a rectanglular region with a <b>thick border</b> on the top. Each view can be independently
-   moved and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.  
+<p> Clicking on the image shown above will open the visualization in a new window. Different views are organized column wise. Each view is embedded in a rectangular region with a <b>thick border</b> on the top. Each view can be independently
+   moved, and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.  
      </p> 
 
 <ul>
-    <li> The first column from left  consists of two <b>scatter plots</b>.The top left scatter plot shows <b><em> Tests Per Million</em></b>
-       variable drawn on horizontal axis vs <b><em>Cases Per Million</em></b> variable on vertical axis. The bottom left scatter plot shows <b><em>
-          Deaths Per Million</em></b> variable drawn on horizontal axis vs <b><em>Tests Per Million</em></b> variable drawn on vertical axis  </li>
+    <li> The first column from left  consists of two <b>scatter plots</b>. The top left scatter plot shows <b><em> tests per million</em></b>
+       variable drawn on horizontal axis vs <b><em>cases per million</em></b> variable on vertical axis. The bottom left scatter plot shows <b><em>
+          deaths per million</em></b> variable drawn on horizontal axis vs <b><em>tests per million</em></b> variable drawn on vertical axis  </li>
 
-    <li> The second column from left shows a <b>table view</b>  that shows all the data set. The continent coloumn of the table view is colored based on
-       the  categorical color assigned to each continent as per the legend shown in the choropleth map and bubble chart in the third and fourth columns respectively.</li>
-    <li> The third column from left  shows a <b>choropleth map</b> using mercator projection of the world map. Each continent is colored based on the categorical color 
+    <li> The second column from left shows a <b>table view</b>  that shows all the data set. The continent column of the table view is colored based on
+       the  categorical color assigned to each continent as per the legend shown in the choropleth map and bubble chart in the third and fourth columns, respectively.</li>
+    <li> The third column from left  shows a <b>choropleth map</b> using Mercator projection of the world map. Each continent is colored based on the categorical color 
         assigned to continent</li>
-    <li>The fourth column from left shows a <b>bubble chart</b> and a selection menu with various bubbles drawn using radius of the circle to represent in the drop down menu. </li>
+    <li>The fourth column from left shows a <b>bubble chart</b> and a selection menu with various bubbles drawn using radius of the circle to represent in the drop-down menu. </li>
     <li>The fifth column from left  shows a <b>parallel coordinate plot</b> that is drawn using the same data. The color of the paths is drawn using categorical color assigned to 
         attribute of the continent. </li>
 </ul>
@@ -125,7 +125,7 @@
     </li>
      <li> The top scatter plot in the first column and the choropleth Map are coordinated in selection. Any selection made in either of the above views will reflect in other.</li>
     <li>
-      The bottom scatter plot in the first column, table view and the parallerl coordinate plot are coordinated in selection. Any selection made in the scatterplot view 
+      The bottom scatter plot in the first column, table view and the parallel coordinate plot are coordinated in selection. Any selection made in the scatterplot view 
       or table view will reflect the selected items in the three coordinated plots.
     </li>
     <li>
@@ -142,7 +142,7 @@
 <p>
     The current implementation supports either zoom or brush functionality on the scatter plot at a time. we decided to implement brushing functionality instead.
     Brushing can be done in the scatter plot view by clicking the mouse anywhere on the scatter plot followed by drag and release to select 
-    a region. Brusing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region 
+    a region. Brushing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region 
     are selected. Selected items are shown in the  scatter plot using a black colored stroke.
 </p>   
 
@@ -157,7 +157,7 @@
  
 
 <h3>Choropleth map</h3>
-Selection is done on the choropleth map by clicking twice on a country with a small time gap between clicks otherwise the interaction will also 
+Selection is done on the choropleth map by clicking twice on a country with a small-time gap between clicks otherwise the interaction will also 
 trigger zoom along with selection. Selected regions are filled with grey color. Indication is done by hovering the mouse over the country. Indicated regions 
 will be highlighted with a blue border and a reduced opacity.
 <p>

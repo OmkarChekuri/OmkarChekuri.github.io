@@ -225,7 +225,7 @@ display: block;
 
    a {
     text-decoration: none;
-   
+    text-decoration: underline;
     color: rgb(0, 0, 0);
   }
   
