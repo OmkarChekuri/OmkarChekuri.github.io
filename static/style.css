@@ -13,8 +13,8 @@ body {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+    text-decoration:dotted;
+    font-size: 20px;
   }
   
   .topnav a:hover {
@@ -39,7 +39,7 @@ body {
     color: white;
     padding: 5px;
     width: 100%;
-    height: 500px;
+    height: 468px;
     overflow: auto ;
     border: 1px solid #ccc;
   }
