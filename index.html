@@ -21,28 +21,37 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./static/style.css" />
-<link rel="stylesheet" type="text/css" href="./static/background.css" />
+<!-- <link rel="stylesheet" type="text/css" href="./static/background.css" /> -->
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
-
+<script async src="./static/scriptback.js"></script>
 </head>
 
-<body >
+<body  >
+  <!-- https://codepen.io/mladen___/pen/gbvqBo -->
+  <canvas id="canvas" ></canvas>
+
+
+
     <!-- <p>Hello Omkar</p> -->
     
     
     <div class="topnav">
       <a class="active fa fa-home  " href="#home"> Home</a>
       <a class=" fa fa-file-pdf-o " href="./static/OmkarChekuri-Resume.pdf"> Resume</a>
-      <h2 style="color:rgb(0, 0, 0); margin: 0%; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Omkar Chekuri</h2>
+      <h2 style="color:rgb(0, 0, 0); margin: 0%; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center; ;">Omkar Chekuri</h2>
+      
+
+
+
     </div>
     <div style="padding-left:16px">
     </div>
     <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
       <!-- The Grid -->
-      <div class="w3-row-padding">
+      <div class="w3-row-padding" >
       
         <!-- Left Column -->
         <div class="w3-third" style=" border-radius:25px">
@@ -63,7 +72,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
               <hr>
               <i class="fas fa-laptop-code"></i>
-              <p class="w3-large w3-text-theme"><b><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-black"></i>Education</b></p>
+              <p class="w3-large w3-text-black"><b><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-text-black"></i>Education</b></p>
               <h6 >PhD : Computer Science </h6>
               <h6 class="w3-text-black"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2018 - <span class="w3-tag w3-black w3-round">Present</span></h6>
               <h6 >M.S : Data Science and Analytics</h6>
@@ -72,36 +81,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               <!-- <h6 class="w3-text-black"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2008 - 2012</h6> -->
 
               <hr>
-<!--               <i class="fas fa-laptop-code"></i>
-              <p class="w3-large"><b><i class="fas fa-laptop-code fa-fw w3-margin-right w3-text-black"></i> Programming Skills</b></p>
               
-              <ul class="no-bullets" >
-                <li>R</li>
-                <li>Java</li>
-                <li>Python</li>
-                <li>JavaScript</li>
-                
-              </ul>
-              <hr>
-              <p class="w3-large w3-text-theme"><b><i class="fas fa-book-open fa-fw w3-margin-right w3-text-black"></i>Libraries</b></p>
-              <ul class="no-bullets">
-                <li>D3.js</li>
-                <li>React.js</li>
-                <li>Improvise</li>
-              </ul>
-              <hr>
-              <i class="fas fa-laptop-code"></i>
-              <p class="w3-large"><b><i class="fas fa-drafting-compass  fa-fw w3-margin-right w3-text-black"></i> Design Tools</b></p>
-              
-              <ul class="no-bullets">
-                <li>Catia</li>
-                <li>Autocad</li>
-                
-
-              </ul>
-              <hr> -->
-              
-              <p class="w3-large w3-text-theme"><b><i class="fa fa-futbol-o fa-fw w3-margin-right w3-text-deep-orange"></i>Hobbies</b></p>
+              <p class="w3-large w3-text-black"><b><i class="fa fa-futbol-o fa-fw w3-margin-right w3-text-deep-orange"></i>Hobbies</b></p>
               
               <ul class="no-bullets">
                 <li>Running</li>
@@ -112,7 +93,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               </ul>
               <hr>
               
-              <p class="w3-large w3-text-theme"><b><i class="fa fa-industry fa-fw w3-margin-right w3-text-brown"></i>Industrial Experience</b></p>
+              <p class="w3-large w3-text-black"><b><i class="fa fa-industry fa-fw w3-margin-right w3-text-brown"></i>Industrial Experience</b></p>
               
               <ul class="no-bullets">
                 <li>Oil and Gas</li>
@@ -122,7 +103,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               </ul>
               <hr>
               
-              <p class="w3-large w3-text-theme"><b><i class="fa fa-heartbeat fa-fw w3-margin-right w3-text-pink"></i>Causes I Care About</b></p>
+              <p class="w3-large w3-text-black"><b><i class="fa fa-heartbeat fa-fw w3-margin-right w3-text-pink"></i>Causes I Care About</b></p>
               
               <ul class="no-bullets">
                 <li>Human Rights</li>
@@ -144,10 +125,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <div class="w3-twothird">
           <div class="w3-container w3-card w3-white w3-margin-bottom" style=" border-radius:25px">
             
-            <h2 class="w3-text-grey w3-padding-8"><i class="fa fa-info-circle fa-fw  w3-xxlarge w3-text-black"></i>About</h2>
+            <h2 class="w3-text-black w3-padding-8"><i class="fa fa-info-circle fa-fw  w3-xxlarge w3-text-black"></i>About</h2>
             <div class="w3-container">
-              <p> I am Omkar Chekuri. I am a 3rd year PhD candidate in computer science at the University of Oklahoma advised by Dr.Chris Weaver. My research interests are 
-                in the areas of interaction, coordination and hierarchical visualizations. </p><p>The activities that I enjoy doing other than research are <em><b>Teaching</b></em> , <em><b>Meditation</b></em> and <em><b>Triple Jump</b></em> .
+              <p> I am Omkar Chekuri. I am a 3rd year PhD candidate in the school of computer science at the University of Oklahoma advised by 
+                <a style="text-decoration:none" href="https://www.cs.ou.edu/~weaver/academic/">Dr.Chris Weaver</a>. My research interests are 
+                in the areas of interaction, coordination and hierarchical visualizations. </p><p>The activities that I enjoy doing other than 
+                  research are <em><b>Teaching</b></em> , <em><b>Meditation</b></em> and <em><b>Triple Jump</b></em> .
               </p>
              
             </div>
@@ -156,7 +139,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
          
           <div  class="w3-container w3-card w3-white w3-margin-bottom" id="overflowTest" style=" border-radius:10px">
             
-            <h2 class="w3-text-grey w3-padding-12"><i class="fa fa-solid fa-flask fa-fw w3-margin-right w3-xxlarge w3-text-black"></i>Projects</h2>
+            <h2 class="w3-text-black w3-padding-12"><i class="fa fa-solid fa-flask fa-fw w3-margin-right w3-xxlarge w3-text-black"></i>Projects</h2>
             <div class="w3-container">
               <h5 class="w3-opacity"><b><a href = https://www.cs.ou.edu/~weaver/nsf-career/page-08-gesture-gallery.html >
                 Interactive Gesture-Based Data Manipulation and Visualization for Exploratory Learning and Research</a></b></h5>
@@ -206,7 +189,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
              
           <div class="w3-container w3-card w3-white w3-margin-bottom" id="overflowTest" style=" border-radius:10px">
             
-            <h2 class="w3-text-grey w3-padding-12"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-black"></i>Work Experience</h2>
+            <h2 class="w3-text-black w3-padding-12"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-black"></i>Work Experience</h2>
             <div class="w3-container">
               <h5 class="w3-opacity"><b>Graduate Teaching Assistant : The University of Oklahoma, Norman, Oklahoma</b></h5>
               <h6 class="w3-text-black"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Aug 2020 - <span class="w3-tag w3-black w3-round">Present</span></h6>
@@ -262,6 +245,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
     
         <!-- End Right Column -->
+
+
+        
         </div>
         
       <!-- End Grid -->
@@ -273,5 +259,5 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <footer class="w3-container w3-black w3-center w3-margin-top">
 <p>Courage is a love affair with the unknown - Osho </p>
     </footer>
-    
+  
 </body>
