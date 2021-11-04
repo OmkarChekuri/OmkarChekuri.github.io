@@ -12,7 +12,19 @@ var light = {
     y: 600
 }
 
-var colors = ["#f5c156", "#e6616b", "#5cd3ad"];
+function myFunction(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+
+    light.x = x,
+    light.y = y
+    // var coor = "Coordinates: (" + x + "," + y + ")";
+    // console.log(coor);
+  }
+
+//var colors = ["#f5c156", "#e6616b", "#5cd3ad"];
+
+var colors =["#a6cee3","#1f78b4","#b2df8a", "#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"]
 
 function drawLight() {
     ctx.beginPath();
@@ -23,13 +35,13 @@ function drawLight() {
     ctx.fillStyle = gradient;
     ctx.fill();
 
-    ctx.beginPath();
+/*     ctx.beginPath();
     ctx.arc(light.x, light.y, 20, 0, 2 * Math.PI);
     gradient = ctx.createRadialGradient(light.x, light.y, 0, light.x, light.y, 5);
     gradient.addColorStop(0, "#fff");
     gradient.addColorStop(1, "#3b4654");
     ctx.fillStyle = gradient;
-    ctx.fill();
+    ctx.fill(); */
 }
 
 function Box() {
@@ -71,7 +83,7 @@ function Box() {
     }
     this.rotate = function() {
         var speed = (60 - this.half_size) / 20;
-        this.r += speed * 0.002;
+        this.r += speed * 0.02;
         this.x += speed;
         this.y += speed;
     }
@@ -149,11 +161,11 @@ while (boxes.length < 14) {
 }
 
 window.onresize = resize;
-c.onmousemove = function(e) {
+/* c.onmousemove = function(e) {
     light.x = e.offsetX == undefined ? e.layerX : e.offsetX;
     light.y = e.offsetY == undefined ? e.layerY : e.offsetY;
 }
-
+ */
 
 function collisionDetection(b){
 	for (var i = boxes.length - 1; i >= 0; i--) {
