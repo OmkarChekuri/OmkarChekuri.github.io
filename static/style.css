@@ -6,6 +6,7 @@ body {
 
   }
   
+  html { scroll-behavior: smooth; } 
 
   .topnav {
     overflow: hidden;
@@ -198,3 +199,5 @@ body {
   height: 100%;
   
 }
+
+

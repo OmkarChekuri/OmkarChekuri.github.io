@@ -1,0 +1,1 @@
+An example of multiple coordinated views specified in a natural language sentence using Nebula, a visualization grammar. Users can (1) select points in any scatterplot, and (2) the corresponding points in the other scatterplots will be highlighted.

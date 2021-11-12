@@ -48,17 +48,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <div class="w3-display-container">
         <h1>Resources</h1>
         <ul>
-          <li> <a href="https://pythontutor.com/", target = "_blank">Python Tutor</a>  for visualizing python code</li>
-          <li>Practice problems in functions and list comprehension in <a href="https://colab.research.google.com/drive/1nRNV1neEunDjWbNiVh6xLeacyUJuWK_F?usp=sharing" target="_blank"> Google Colab</a></li>
-          <li> <a href ="https://www.w3schools.com/python/", target ="_blank">W3 Schools</a> python tutorial for quick reference</li>
-          <li><a href="https://www.youtube.com/playlist?list=PLpSPYc7_WPvRbWXTaCCEue64E9Tmfhxxe" target ="_blank">Youtube</a> videos explaining the assignments</li>
-          <li><a href ="https://docs.python.org/3/reference/index.html#reference-index" target ="_blank">Python</a> language reference</li>
-          <li><a href ="https://leetcode.com/" target ="_blank">Leetcode</a> for practicing advance programming problems</li>
+          <li> <button onclick = 'document.getElementById("frame").src = "https://pythontutor.com/"'>Python Tutor</button>  for visualizing python code</li>
+          <li> <button onclick = 'document.getElementById("frame").src = "https://docs.python.org/3/reference/index.html#reference-index"'>Python</button>  Language reference</li>
+          <li> <button onclick = 'document.getElementById("frame").src = "https://docs.python.org/3/tutorial/index.html#tutorial-index"'>Python</button> Complete Tutorial</li>
+          <li><a href ="https://colab.research.google.com/drive/1nRNV1neEunDjWbNiVh6xLeacyUJuWK_F?usp=sharing" target="_blank"> Google Colab</a> practice problems in functions and list comprehension </li>
+          <li><a href ="https://www.w3schools.com/python/", target ="_blank">W3 Schools</a> python tutorial for quick reference</li>
+          <li><a href ="https://www.youtube.com/playlist?list=PLpSPYc7_WPvRbWXTaCCEue64E9Tmfhxxe" target ="_blank">Youtube</a> videos explaining the assignments</li>
+          <!-- <li><a href ="https://leetcode.com/" target ="_blank">Leetcode</a> for practicing advance programming problems</li> -->
 
         </ul>
-    
-        <h4>Shoutout to python tutor website developers</h4>
-        <iframe src="https://pythontutor.com/" width="100%" height="1000px" title = "Python Tutor" ></iframe>
+        <iframe id = "frame" src="https://docs.python.org/3/tutorial/index.html#tutorial-index" width="100%" height="1000px" title = "" ></iframe>
     
         
           
