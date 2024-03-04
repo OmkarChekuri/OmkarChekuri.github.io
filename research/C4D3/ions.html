@@ -33,41 +33,93 @@
   <title>C4D3-Ions</title>
  
   <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
-  <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
-  <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
-  
-  <title>button</title>
-  <!-- <script src="./wp/webpack-buncle.js"></script> -->
+ <link href="./css0/vendor/bootstrap.min.css" rel="stylesheet">
+
+  <link href="./css0/style.css" rel="stylesheet">
+  <link href="./css0/styleold.css" rel="stylesheet">
+  <!-- <link href="../css/vendor/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link href="./css0/vendor/academicons.min.css" rel="stylesheet">
+
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+
+
+
 </head>
 
-<body id="body" onbeforeprint="PrintAlert()" class = "content">
+<body class="content">
 
-  <div class="navbar">
-    
-    <a  href="./index.html ">C4D3</a>
-  
-    <div class="dropdown">
-      <button id="selected" class="dropbtn">Examples 
+
+
+  <div class="navbar1" style="background-color: gray;">
+    <a href="./index.html ">C4D3</a>
+
+    <div class="dropdown1">
+      <button id="selected" class="dropbtn1">Examples
         <i class="fa fa-caret-down"></i>
       </button>
-      <div class="dropdown-content">
-        <a href="./COVID-19.html">Covid19-Viz</a>
+      <div class="dropdown-content1">
+        <a href="./COVID-19.html">COVID-19-Viz</a>
         <a href="./ions.html">Ions-Viz</a>
       </div>
-    </div> 
+    </div>
     <a href="./contact.html">Contact</a>
     <a href="./download.html">Downloads</a>
-    <a id = "main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3"  >Home </a>
+    <a id="main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3">Home </a>
   </div>
 
-  <h1>Ions Visualization</h1>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#0c0b0afd;">
+    <div class="container">
+      <a class="navbar-brand" href="../../index.html">
+        <h3>Omkar Chekuri</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#about">About</a>
+                  </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="../../#projects"><i class="fa fa-cube" aria-hidden="true"></i> Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../#publications"><i class="fa fa-scroll" aria-hidden="true"></i>
+              Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../#awards"><i class="fa fa-award" aria-hidden="true"></i> Awards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../static/OmkarChekuri-Resume.pdf"><i class="fa fa-file"
+                aria-hidden="true"></i>
+              Resume</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="container" style="margin-top: 2.5%;">
+    <h3 align="center">Ions Visualization</h3>
+    <hr>
+
+
   <div>
   <a href="./ionsviz.html">
     <img  src="media/ions.png" width="100%" height="400" alt = "ions Example" > </a>
-    <h3  style="text-align: center; margin-top: 0;"    >Click on the image above to open interactive visualization</h3>
+    <h4  style="text-align: center; margin-top: 0;"    >Click on the image above to open interactive visualization</h4>
   </div>
 <div id = "documentText"> 
-  <h2>Background</h2>
+  <h3>Background</h3>
 
   <p>
     The above example shows a coordination visualization in D3 using the <b>Live properties</b> architecture of 
@@ -76,7 +128,7 @@
 
   </p>
 
-  <h2> Interface</h2>
+  <h3> Interface</h3>
 
   <p>Clicking on the image shown above will open the visualization in a new window. The visualization displays different spatial and temporal aspects of a simulated ion cloud trajectory organized
     column wise. A highly coordinated set of timeseries plots, table views and other views reveal different characteristics of
@@ -100,7 +152,7 @@
     decreasing energy of the ion cloud over time.
   </p>
 
-<h2>Coordination</h2>
+<h3>Coordination</h3>
    
 <ul>
   <li> The three scatter plots in the first column  and the table view are coordinated in selection. </li>
@@ -113,10 +165,10 @@
 
 </ul>
 
- <h2>Interaction </h2>
+ <h3>Interaction </h3>
 
 
- <h3> Scatter plot </h3>
+ <h4> Scatter plot </h4>
   <p>
     The current implementation supports either zoom or brush on the scatter plot at a time. we decided to implement brush property instead. 
     Brushing can be done in the scatterplot view by clicking the mouse anywhere on the scatterplot followed by drag and release to select a brushed region.
@@ -128,14 +180,14 @@
     as no coordination is defined for the brushing action.
   </p>
 
-  <h3> Parallel coordinate plot </h3>
+  <h4> Parallel coordinate plot </h4>
   <p>
     The above parallel coordinate plot does not allow selection or hovering. It will only display selected items from a corresponding coordinated view. 
     The selected items are drawn using thick lines.
   </p>
 
 
-  <h3> Table view </h3>
+  <h4> Table view </h4>
   <p>
     Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row 
     and drag the mouse to the top or bottom based on the direction in which the selection is to be made. There are performance issues associated 
@@ -144,7 +196,7 @@
     are coordinated in selection. 
   </p>
 
-  <h3> Perpetual slider </h3>
+  <h4> Perpetual slider </h4>
 <p>
   The perpetual slider and the parallel coordinate plot are coordinated in selection. Selection is performed in the perpetual slider by brushing. 
   The slider is filled with a color gradient approximately corresponding to increasing time scale in the data. Any selection performed in the slider

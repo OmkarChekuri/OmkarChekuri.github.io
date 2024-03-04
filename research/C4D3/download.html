@@ -30,31 +30,84 @@
      <title>C4D3</title>
      <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
      <meta name="description" content="C4D3L is a visualization framework for creating coordinated multiple views using D3 and Live Properties Architecture.">
-     <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" type="text/css" href="./css/people.css" />
-     
- </head>
- 
- <body class = "content">
-   <div class="navbar">
-    
-    <a  href="./index.html ">C4D3</a>
-    
-     <div class="dropdown">
-       <button class="dropbtn">Examples 
-         <i class="fa fa-caret-down"></i>
-       </button>
-       <div class="dropdown-content">
-         <a href="./COVID-19.html">COVID-19-Viz</a>
-         <a href="./ions.html">Ions-Viz</a>
-       </div>
-     </div> 
-     <a href="./contact.html">Contact</a>
-     <a id="selected" href="./download.html">Downloads</a>
-     <a id = "main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3"  >Home </a>
-   </div>
- 
+     <link href="./css0/vendor/bootstrap.min.css" rel="stylesheet">
+
+  <link href="./css0/style.css" rel="stylesheet">
+  <link href="./css0/styleold.css" rel="stylesheet">
+  <link href="./css/people.css" rel="stylesheet">
+  <!-- <link href="../css/vendor/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link href="./css0/vendor/academicons.min.css" rel="stylesheet">
+
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+
+
+
+</head>
+
+<body class="content">
+
+
+
+  <div class="navbar1" style="background-color: gray;">
+    <a href="./index.html ">C4D3</a>
+
+    <div class="dropdown1">
+      <button class="dropbtn1">Examples
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content1">
+        <a href="./COVID-19.html">COVID-19-Viz</a>
+        <a href="./ions.html">Ions-Viz</a>
+      </div>
+    </div>
+    <a  href="./contact.html">Contact</a>
+    <a id="selected" href="./download.html">Downloads</a>
+    <a id="main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3">Home </a>
+  </div>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#0c0b0afd;">
+    <div class="container">
+      <a class="navbar-brand" href="../../index.html">
+        <h3>Omkar Chekuri</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#about">About</a>
+                  </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="../../#projects"><i class="fa fa-cube" aria-hidden="true"></i> Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../#publications"><i class="fa fa-scroll" aria-hidden="true"></i>
+              Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../#awards"><i class="fa fa-award" aria-hidden="true"></i> Awards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../static/OmkarChekuri-Resume.pdf"><i class="fa fa-file"
+                aria-hidden="true"></i>
+              Resume</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container" style="margin-top: 2.5%;">
+
+
  
  <h2 style="text-align:center"></h2>
  
@@ -63,7 +116,7 @@
 
 
 
- <h2>License</h2>
+ <h3>License</h3>
 
  <p>
  C4D3 is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -72,7 +125,7 @@
 
 
 
- <h2>Requirements</h2>
+ <h3>Requirements</h3>
  
 <p>C4D3  Is JavaScript program built using node package manager. It is only tested to work on windows platform. It was supposed to work just like any node.js
    application on other platforms. It requires visual studio code, TypeScript 2.4.2 or later, D3.js v5.  Although visual studio code is not a necessity for
@@ -80,7 +133,7 @@
    It is in active development. It is research-grade software with known bugs and should be considered a prototype.</p>
 
  
- <h2>Running examples built in C4D3</h2>
+ <h3>Running examples built in C4D3</h3>
  
  <P>The current version of C4D3 is 0.1.0. To run the examples built using C4D3</P> 
  <ol>
@@ -117,11 +170,11 @@
 </p>
 
 
-<h2>Building examples using C4D3 </h2>
+<h3>Building examples using C4D3 </h3>
 <p> For building examples using C4D3 please follow the documentation provided in the readme file for the examples above. </p> 
 
 
-<h2>Posters/Talks </h2>
+<h3>Posters/Talks </h3>
 
 <p> This below video a recorded talk on C4D3 for the GCoE Virtual Poster Fair conducted at the University of Oklahoma on November 13th, 2020.
    <video width="360" height="240" controls>
@@ -130,7 +183,7 @@
 </video> </p> 
 
 
-<h2> Support</h2>
+<h3> Support</h3>
  <p>
   C4D3 is a software framework intended to explore and build coordinated multiple visualizations using D3.js library. You might encounter 
   D3 code that may not be perfect or incorrect sometimes. The current version of the software is only intended to showcase the coordination capabilities 

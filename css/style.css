@@ -1,0 +1,182 @@
+/*!
+ * Start Bootstrap - Logo Nav (https://startbootstrap.com/template-overviews/logo-nav)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logo-nav/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+/*.publicationContainer{
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+}
+
+.publicationTitle{
+	font-weight: bold;
+	font-size: large;
+}
+
+.publicationAuthors{	
+}*/
+
+.publication.citation_title a{
+	color: black;
+}
+
+.publication.citation_title a:hover{
+	color:#007bff;
+}
+
+.contentDiv{
+	margin-top: 4%;
+	margin-bottom: 2.5%;
+}
+
+.ontheweb{
+	margin-top: .75%;
+}
+
+.contact{
+	margin-top: 2%;
+	margin-left: .2%;
+}
+
+.contact a{
+	color: black;
+}
+
+.ontheweb a{
+	/*margin-left: 0.2%;*/
+	/*margin-right: 0.8%;*/
+	color: #515151;
+}
+
+.ontheweb a:hover {
+	/*margin-left: 0.2%;*/
+	/*margin-right: 0.8%;*/
+	color: #007bff;
+}
+
+.ontheweb i{
+	font-size: x-large;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+.projectPageTeaser{
+	width: 100%;
+	margin: 1% 0% 1% 0%;
+}
+
+.projectPageTeaserDescription{
+	font-size: 11px;	
+}
+
+.projectAbstract{
+	font-size: 12px;
+}
+
+.projectMaterials{
+	font-size: 14px;
+	padding: 0% .5% 0% .5%;
+	margin-bottom: 2.5%;
+}
+
+.projectMaterials a {
+    text-decoration: none;
+    color: black;
+}
+
+.projectMaterials a:hover {
+    color: #007bff;
+}
+
+.projectContainer{
+	/*border: 1px solid darkgray;*/
+}
+
+.projectThumbnailDiv{
+	border: 1px solid lightgray;
+	margin: 1.5%;
+	height: 200px;
+	border-radius: 5px;
+	/*background-color: #f6f6f6;*/
+}
+
+.projectThumbnailDiv:hover{
+	cursor: pointer;
+	border: 1px solid rgb(86, 180, 239);
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 16px rgba(82, 168, 236, 0.6);
+	/*background-color: rgb(86, 180, 239);*/
+}
+
+.projectThumbnail{
+	height: 50%;
+	overflow: hidden;
+}
+
+.projectThumbnailText{
+	height: 25%;
+	border-top: 1px solid lightgray;
+	/*font-size: large;*/
+	font-weight: bold;
+	text-align: center;
+	color: black;
+	/*padding: 12.5px;*/
+	padding: 6.5% 12.5% 6.5% 12.5%;
+	line-height: 1.25em;
+	font-family: Calibri, sans-serif;
+}
+
+/*.projectThumbnailImage{*/
+	/*display: none;*/
+/*}*/
+
+/*.projectThumbnailImage.hidden{*/
+	/*display: none;*/
+/*}*/
+
+#other-projects-table{
+	width: 100%;
+}
+
+#other-projects-table td{
+	padding: 1%;
+}
+
+#other-projects-table tr{
+	border-top: 1px solid lightgray;
+	border-top: 1px solid lightgray;
+}
+
+#other-projects-table td.project-image{
+	width: 25%;
+	overflow: hidden;
+}
+
+#other-projects-table td.project-description{
+	width: 65%;
+	text-align: justify;
+	font-size: small;
+}
+
+td.year-col{
+	text-align: right;
+}
+
+.award{
+	/*color: #007bff;*/
+	color: orangered;
+	font-weight: bold;
+	margin-left: 5px;
+}

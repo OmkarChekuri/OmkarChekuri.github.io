@@ -14,198 +14,275 @@
  along with this program. If not, see <http://www.gnu.org/licenses/>. -->
 
 
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175196055-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175196055-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'UA-175196055-1');
-  gtag('set', {'user_id': 'USER_ID'}); // Set the user ID using signed-in user_id.
-</script>
-    <meta charset="UTF-8" />
-    <meta name="description" content="This is a COVID-19 visualization example created using C4D3"/>
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
-    <meta name="author" content="Omkar Chekuri" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>C4D3-COVID-19</title>
-    
-    <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="./css/visualization.css" />
-    <link rel="stylesheet" type="text/css" href="./css/webpage.css" />
-    
-    <title>button</title>
-    <!-- <script src="./wp/webpack-buncle.js"></script> -->
-  </head>
+    gtag('config', 'UA-175196055-1');
+    gtag('set', { 'user_id': 'USER_ID' }); // Set the user ID using signed-in user_id.
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="description" content="This is a COVID-19 visualization example created using C4D3" />
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
+  <meta name="author" content="Omkar Chekuri" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C4D3-COVID-19</title>
 
-  <body id="body" onbeforeprint="PrintAlert()" class = "content">
+  <link rel="icon" href="./media/LogoNano-transperant.png" type="image/x-icon" />
+  <!-- <link rel="stylesheet" type="text/css" href="./css/visualization.css" /> -->
+  <link href="./css0/vendor/bootstrap.min.css" rel="stylesheet">
 
-    <body id="body" onbeforeprint="PrintAlert()">
-      <div class="navbar">
-       
-        <a  href="./index.html ">C4D3</a>
-       
-        <div class="dropdown">
-          <button id="selected" class="dropbtn">Examples 
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="./COVID-19.html">COVID-19-Viz</a>
-            <a href="./ions.html">Ions-Viz</a>
-          </div>
-        </div> 
-        <a href="./contact.html">Contact</a>
-        <a href="./download.html">Downloads</a>
-        <a id = "main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3"  >Home </a>
+  <link href="./css0/style.css" rel="stylesheet">
+  <link href="./css0/styleold.css" rel="stylesheet">
+  <!-- <link href="../css/vendor/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link href="./css0/vendor/academicons.min.css" rel="stylesheet">
+
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+
+
+
+</head>
+
+<body class="content">
+
+
+
+  <div class="navbar1" style="background-color: gray;">
+    <a href="./index.html ">C4D3</a>
+
+    <div class="dropdown1">
+      <button id="selected" class="dropbtn1">Examples
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content1">
+        <a href="./COVID-19.html">COVID-19-Viz</a>
+        <a href="./ions.html">Ions-Viz</a>
       </div>
-  
-  
-  <h1  >COVID-19 Visualization</h1>
-
-  <div>
-  <a href="./COVID-19viz.html">
-    <img  src="media/COVID-19.png" width="100%" height="345" alt = "COVID-19 Example"> </a>
-  <h3  style="text-align: center; margin-top: 0;"    >Click on the image above to open interactive visualization</h3>
+    </div>
+    <a href="./contact.html">Contact</a>
+    <a href="./download.html">Downloads</a>
+    <a id="main" href="https://www.cs.ou.edu/~weaver/nsf-career#C4D3">Home </a>
   </div>
 
 
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#0c0b0afd;">
+    <div class="container">
+      <a class="navbar-brand" href="../../index.html">
+        <h3>Omkar Chekuri</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#about">About</a>
+                  </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="../../#projects"><i class="fa fa-cube" aria-hidden="true"></i> Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../#publications"><i class="fa fa-scroll" aria-hidden="true"></i>
+              Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../#awards"><i class="fa fa-award" aria-hidden="true"></i> Awards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../static/OmkarChekuri-Resume.pdf"><i class="fa fa-file"
+                aria-hidden="true"></i>
+              Resume</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 
-<div id = "documentText">
 
+  <div class="container" style="margin-top: 2.5%;">
+    <h3 align="center">COVID-19 Visualization</h3>
+    <hr>
 
-  
-<h3>Disclaimer</h3>
-<p> The data used for the visualization is a snapshot of the data about COVID-19 until July 8th 2020 from the<b><i> <a href="https://www.worldometers.info/coronavirus/"  target="_blank">worldometer</a></i></b> website.
-   The visualization is not intended as a resource to learn about the COVID-19. It is merely intended to showcase the capabilities of the C4D3 framework.</p>
-
-
-
-
-<h2>Background</h2>
-<p>
-    The above example shows a coordination visualization in D3 using the Live properties architecture of 
-    <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> software. 
-</p>
+    <div>
+      <a href="./COVID-19viz.html">
+        <img src="media/COVID-19.png" width="100%" height="345" alt="COVID-19 Example"> </a>
+      <h4 style="text-align: center; margin-top: 0;">Click on the image above to open interactive visualization</h4>
+    </div>
 
 
 
 
-<h2> Interface</h2>
- 
-<p> Clicking on the image shown above will open the visualization in a new window. Different views are organized column wise. Each view is embedded in a rectangular region with a <b>thick border</b> on the top. Each view can be independently
-   moved, and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on the top of each view.  
-     </p> 
-
-<ul>
-    <li> The first column from left  consists of two <b>scatter plots</b>. The top left scatter plot shows <b><em> tests per million</em></b>
-       variable drawn on horizontal axis vs <b><em>cases per million</em></b> variable on vertical axis. The bottom left scatter plot shows <b><em>
-          deaths per million</em></b> variable drawn on horizontal axis vs <b><em>tests per million</em></b> variable drawn on vertical axis  </li>
-
-    <li> The second column from left shows a <b>table view</b>  that shows all the data set. The continent column of the table view is colored based on
-       the  categorical color assigned to each continent as per the legend shown in the choropleth map and bubble chart in the third and fourth columns, respectively.</li>
-    <li> The third column from left  shows a <b>choropleth map</b> using Mercator projection of the world map. Each continent is colored based on the categorical color 
-        assigned to continent</li>
-    <li>The fourth column from left shows a <b>bubble chart</b> and a selection menu with various bubbles drawn using radius of the circle to represent in the drop-down menu. </li>
-    <li>The fifth column from left  shows a <b>parallel coordinate plot</b> that is drawn using the same data. The color of the paths is drawn using categorical color assigned to 
-        attribute of the continent. </li>
-</ul>
-<p> All the views use the color encoding from  <a href = "https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3" target= "_blank"> ColorBrewer 2.0 </a>
-   website.</p>
-
-<h2>Coordination</h2>
-<p>
-
-  <ul>
-    <li>
-      The two scatter plots on the first column from the left are coordinated by the range property.  The horizontal range of the top 
-      scatter plot is coordinated with the vertical range of bottom scatter plot.
-    </li>
-     <li> The top scatter plot in the first column and the choropleth Map are coordinated in selection. Any selection made in either of the above views will reflect in other.</li>
-    <li>
-      The bottom scatter plot in the first column, table view and the parallel coordinate plot are coordinated in selection. Any selection made in the scatterplot view 
-      or table view will reflect the selected items in the three coordinated plots.
-    </li>
-    <li>
-      The scatter plots, table view, choropleth map and  bubble chart are coordinated in indication. Any item indicated by hovering in table view, choropleth map and  bubble chart will be 
-      highlighted in other coordinated plots.
-    </li>
-  </ul>
-</p>
-
-<h2>Interaction</h2>
+    <div id="documentText">
 
 
-<h3>Scatter plot</h3>
-<p>
-    The current implementation supports either zoom or brush functionality on the scatter plot at a time. we decided to implement brushing functionality instead.
-    Brushing can be done in the scatter plot view by clicking the mouse anywhere on the scatter plot followed by drag and release to select 
-    a region. Brushing in the above implementation is performed using rectangular brushed regions. Any items that fall in the brushed region 
-    are selected. Selected items are shown in the  scatter plot using a black colored stroke.
-</p>   
 
-<h3>Table view </h3>
-<p>
-   Selection in table view is done by double clicking on the row for selecting a single element. For selecting multiple rows click on a row and drag the mouse 
-   to the top or bottom based on the direction in which the selection is to be made. There are performance issues associated with multiple row selection in case 
-   of table view in the current implementation which will be addressed later which causes the multi row selection to not perform consistently always. The selected
-   rows have a red colored text font. Indication is done in table view by hovering the mouse over the row. The indicated row is shown using a "teal" background color. 
-
-</p>
- 
-
-<h3>Choropleth map</h3>
-Selection is done on the choropleth map by clicking twice on a country with a small-time gap between clicks otherwise the interaction will also 
-trigger zoom along with selection. Selected regions are filled with grey color. Indication is done by hovering the mouse over the country. Indicated regions 
-will be highlighted with a blue border and a reduced opacity.
-<p>
-
-</p>
-
-<h3>Bubble chart</h3>
-<p>
-  Selection is done on the bubble chart by clicking twice on a bubble. Selected items are filled with grey color. Indication is done by hovering the 
-  mouse over the bubble. Indicated items will be highlighted with a white border and a reduced opacity.
-</p>
-<h3>Parallel coordinate plot</h3>
-<p>
-   The above parallel coordinate plot does not allow selection or hovering. It will only display selected items when selected in a corresponding coordinated view. 
-</p>
+      <h3>Disclaimer</h3>
+      <p> The data used for the visualization is a snapshot of the data about COVID-19 until July 8th 2020 from
+        the<b><i> <a href="https://www.worldometers.info/coronavirus/" target="_blank">worldometer</a></i></b> website.
+        The visualization is not intended as a resource to learn about the COVID-19. It is merely intended to showcase
+        the capabilities of the C4D3 framework.</p>
 
 
-</div>
 
-<!-- <h2>Download Source Code</h2>
-<div>
- <a href="" > <img src="media/download-button.png" alt="SourceCode" width="104" height="42"> 
-   </a> <br></br> -->
 
-   <svg height="150">
-    <rect>
-  
-    </rect>
-  </svg>
-</div>
+      <h3>Background</h3>
+      <p>
+        The above example shows a coordination visualization in D3 using the Live properties architecture of
+        <a href="https://www.cs.ou.edu/~weaver/improvise/index.html">Improvise </a> software.
+      </p>
+
+
+
+
+      <h3> Interface</h3>
+
+      <p> Clicking on the image shown above will open the visualization in a new window. Different views are organized
+        column wise. Each view is embedded in a rectangular region with a <b>thick border</b> on the top. Each view can
+        be independently
+        moved, and the <b>interface</b> can be <b>reorganized</b> by clicking and dragging the <b>thick border</b> on
+        the top of each view.
+      </p>
+
+      <ul>
+        <li> The first column from left consists of two <b>scatter plots</b>. The top left scatter plot shows <b><em>
+              tests per million</em></b>
+          variable drawn on horizontal axis vs <b><em>cases per million</em></b> variable on vertical axis. The bottom
+          left scatter plot shows <b><em>
+              deaths per million</em></b> variable drawn on horizontal axis vs <b><em>tests per million</em></b>
+          variable drawn on vertical axis </li>
+
+        <li> The second column from left shows a <b>table view</b> that shows all the data set. The continent column of
+          the table view is colored based on
+          the categorical color assigned to each continent as per the legend shown in the choropleth map and bubble
+          chart in the third and fourth columns, respectively.</li>
+        <li> The third column from left shows a <b>choropleth map</b> using Mercator projection of the world map. Each
+          continent is colored based on the categorical color
+          assigned to continent</li>
+        <li>The fourth column from left shows a <b>bubble chart</b> and a selection menu with various bubbles drawn
+          using radius of the circle to represent in the drop-down menu. </li>
+        <li>The fifth column from left shows a <b>parallel coordinate plot</b> that is drawn using the same data. The
+          color of the paths is drawn using categorical color assigned to
+          attribute of the continent. </li>
+      </ul>
+      <p> All the views use the color encoding from <a href="https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3"
+          target="_blank"> ColorBrewer 2.0 </a>
+        website.</p>
+
+      <h3>Coordination</h3>
+      <p>
+
+      <ul>
+        <li>
+          The two scatter plots on the first column from the left are coordinated by the range property. The horizontal
+          range of the top
+          scatter plot is coordinated with the vertical range of bottom scatter plot.
+        </li>
+        <li> The top scatter plot in the first column and the choropleth Map are coordinated in selection. Any selection
+          made in either of the above views will reflect in other.</li>
+        <li>
+          The bottom scatter plot in the first column, table view and the parallel coordinate plot are coordinated in
+          selection. Any selection made in the scatterplot view
+          or table view will reflect the selected items in the three coordinated plots.
+        </li>
+        <li>
+          The scatter plots, table view, choropleth map and bubble chart are coordinated in indication. Any item
+          indicated by hovering in table view, choropleth map and bubble chart will be
+          highlighted in other coordinated plots.
+        </li>
+      </ul>
+      </p>
+
+      <h3>Interaction</h3>
+
+
+      <h4>Scatter plot</h4>
+      <p>
+        The current implementation supports either zoom or brush functionality on the scatter plot at a time. we decided
+        to implement brushing functionality instead.
+        Brushing can be done in the scatter plot view by clicking the mouse anywhere on the scatter plot followed by
+        drag and release to select
+        a region. Brushing in the above implementation is performed using rectangular brushed regions. Any items that
+        fall in the brushed region
+        are selected. Selected items are shown in the scatter plot using a black colored stroke.
+      </p>
+
+      <h4>Table view </h4>
+      <p>
+        Selection in table view is done by double clicking on the row for selecting a single element. For selecting
+        multiple rows click on a row and drag the mouse
+        to the top or bottom based on the direction in which the selection is to be made. There are performance issues
+        associated with multiple row selection in case
+        of table view in the current implementation which will be addressed later which causes the multi row selection
+        to not perform consistently always. The selected
+        rows have a red colored text font. Indication is done in table view by hovering the mouse over the row. The
+        indicated row is shown using a "teal" background color.
+
+      </p>
+
+
+      <h4>Choropleth map</h4>
+      Selection is done on the choropleth map by clicking twice on a country with a small-time gap between clicks
+      otherwise the interaction will also
+      trigger zoom along with selection. Selected regions are filled with grey color. Indication is done by hovering the
+      mouse over the country. Indicated regions
+      will be highlighted with a blue border and a reduced opacity.
+      <p>
+
+      </p>
+
+      <h4>Bubble chart</h4>
+      <p>
+        Selection is done on the bubble chart by clicking twice on a bubble. Selected items are filled with grey color.
+        Indication is done by hovering the
+        mouse over the bubble. Indicated items will be highlighted with a white border and a reduced opacity.
+      </p>
+      <h4>Parallel coordinate plot</h4>
+      <p>
+        The above parallel coordinate plot does not allow selection or hovering. It will only display selected items
+        when selected in a corresponding coordinated view.
+      </p>
+
+
+    </div>
+
+
+
+    <svg height="150">
+      <rect>
+
+      </rect>
+    </svg>
+  </div>
 
 
 
   <div class="footer">
     <div class="footer_item">
-     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-       
-       <img alt="Creative Commons License" style="border-width:0" src="media/creativecommons.png">
-     </a><br>
-   
-     Except where otherwise noted, content on this site is licensed under a<br>
-     <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-     </div>
- </div>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+
+        <img alt="Creative Commons License" style="border-width:0" src="media/creativecommons.png">
+      </a><br>
+
+      Except where otherwise noted, content on this site is licensed under a<br>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+        International License</a>.
+    </div>
+  </div>
 
 
 
-  
 
-  </body>
+
+</body>
+
 </html>
