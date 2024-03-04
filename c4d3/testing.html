@@ -1,4 +1,3 @@
-
 <!--  C4D3 is free software: you can redistribute it and/or modify it under
  the terms of the GNU Affero General Public License as published by the Free
  Software Foundation, either version 3 of the License, or (at your option) any
@@ -15,16 +14,8 @@
 <!DOCTYPE html>
 <html>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175196055-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-175196055-1');
-  gtag('set', {'user_id': 'USER_ID'}); // Set the user ID using signed-in user_id.
-</script>
-    <head>
+  <head>
     <meta charset="UTF-8" />
     <meta
       name="description"
@@ -37,26 +28,31 @@
     <link rel="icon" href="./media/Logo-transperant.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="./css/testing.css" />
     <script src="./js/testing.js" defer></script>
-    
   </head>
 
   <body id="body" onbeforeprint="PrintAlert()">
     <p id="demo"></p>
     <h1>Testing of C4D3 framework</h1>
 
-<svg  height ="800px"></svg>
+    <svg height="800px"></svg>
 
-<p>
-  The above example visualization is used to test the coordination architecture of the initial version of C4D3 using the view abstractions built for the SVG and Html elements.
-  In the above example, the code for the sliders, rectangles and numerical input elements is modularized such that these views can be instantiated any number of times.   
-</p>
-<p>
-  In the above example, the different sliders, numerical input elements and rectangles are coordinated in many combinations. 
-  The numerical input from widget named pixel1 is coordinated in width and height of the rectangles in canvas1 and canvas3, slider input of widget named slider1.
-  The numerical input from widget named pixel2 is coordinated in width and height of the rectangles in canvas2 , slider input of widget named slider2.
-  The numerical input from widget named pixel3 is coordinated with numerical input from widget named pixel4, in width  of the rectangles in canvas3 , slider inputs of widgets named slider3 and slider4.
-
-</p>
-
+    <p>
+      The above example visualization is used to test the coordination
+      architecture of the initial version of C4D3 using the view abstractions
+      built for the SVG and Html elements. In the above example, the code for
+      the sliders, rectangles and numerical input elements is modularized such
+      that these views can be instantiated any number of times.
+    </p>
+    <p>
+      In the above example, the different sliders, numerical input elements and
+      rectangles are coordinated in many combinations. The numerical input from
+      widget named pixel1 is coordinated in width and height of the rectangles
+      in canvas1 and canvas3, slider input of widget named slider1. The
+      numerical input from widget named pixel2 is coordinated in width and
+      height of the rectangles in canvas2 , slider input of widget named
+      slider2. The numerical input from widget named pixel3 is coordinated with
+      numerical input from widget named pixel4, in width of the rectangles in
+      canvas3 , slider inputs of widgets named slider3 and slider4.
+    </p>
   </body>
 </html>
