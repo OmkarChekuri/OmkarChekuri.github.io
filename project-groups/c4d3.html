@@ -1,97 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>Coordination for Data Driven Documents(C4D3)</title>
+    <link rel="icon" href="../static/images/marko.png" type="image/x-icon" />
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/vendor/bootstrap.min.css" rel="stylesheet" />
 
-  <title>Coordination for Data Driven Documents(C4D3)</title>
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- <link href="../css/vendor/font-awesome.min.css" rel="stylesheet"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Bootstrap core CSS -->
-  <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/vendor/academicons.min.css" rel="stylesheet" />
 
-  <link href="../css/style.css" rel="stylesheet">
-  <!-- <link href="../css/vendor/font-awesome.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-      crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
 
-  <link href="../css/vendor/academicons.min.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="../js/vendor/jquery.min.js"></script>
+    <script src="../js/vendor/bootstrap.bundle.min.js"></script>
 
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <!-- google-analytics -->
+  </head>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="../js/vendor/jquery.min.js"></script>
-  <script src="../js/vendor/bootstrap.bundle.min.js"></script>
-
-  <!-- google-analytics -->
-  
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#0c0b0afd;">
-    <div class="container">
-      <a class="navbar-brand" href="../">
-        <h3>Omkar Chekuri</h3>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <!-- <li class="nav-item active">
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top"
+      style="background-color: #0c0b0afd"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../">
+          <h3>Omkar Chekuri</h3>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <!-- <li class="nav-item active">
                   <a class="nav-link" href="#about">About</a>
                 </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="../#projects"><i class="fa fa-cube" aria-hidden="true"></i> Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../#publications"><i class="fa fa-scroll" aria-hidden="true"></i> Publications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../#awards"><i class="fa fa-award" aria-hidden="true"></i> Awards</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../static/OmkarChekuri-Resume.pdf"><i class="fa fa-file"
-                aria-hidden="true"></i> Resume</a>
-          </li>
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="../#projects"
+                ><i class="fa fa-cube" aria-hidden="true"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#publications"
+                ><i class="fa fa-scroll" aria-hidden="true"></i> Publications</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#awards"
+                ><i class="fa fa-award" aria-hidden="true"></i> Awards</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../static/OmkarChekuri-Resume.pdf"
+                ><i class="fa fa-file" aria-hidden="true"></i> Resume</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Page Content -->
-  <div class="container" style="margin-top: 2.5%;">
-    <h3 align="center">Coordination for Data Driven Documents(C4D3)</h3>
-    <hr>
-    <p></p>
-    <div align="center">
-      <img src="../static/images/project-images/ions.png" class="" width="100%" height="auto">
-    </div>
-    <p align="justify" class="projectPageTeaserDescription"></p>
-    <h5>Abstract</h5>
-    <hr>
-    <p align="justify" class="">
-C4D3 is a framework that provides view level abstraction and coordination architecture for developing coordinated
-multiple views using D3 library. The journey to developing the C4D3 framework began when we discovered the potential and
-need of a coordination architecture for building coordinated multiple views (CMV) for the visualizations built in
-browser environment. We chose to adopt Live properties architecture for this purpose after understanding its potential
-and generalizability.
-    </p>
-    <h5>More Info</h5>
-    
-    <a href="https://www.cs.ou.edu/~weaver/nsf-career/page-10-C4D3.html" target="_blank"><i
-        class="fa fa-link" title="Paper" style="cursor: pointer;"></i> Link to the detailed project website</a>
-    <hr>
+    <!-- Page Content -->
+    <div class="container" style="margin-top: 2.5%">
+      <h3 align="center">Coordination for Data Driven Documents(C4D3)</h3>
+      <hr />
+      <p></p>
+      <div align="center">
+        <img
+          src="../static/images/project-images/ions.png"
+          class=""
+          width="100%"
+          height="auto"
+        />
+      </div>
+      <p align="justify" class="projectPageTeaserDescription"></p>
+      <h5>Abstract</h5>
+      <hr />
+      <p align="justify" class="">
+        C4D3 is a framework that provides view level abstraction and
+        coordination architecture for developing coordinated multiple views
+        using D3 library. The journey to developing the C4D3 framework began
+        when we discovered the potential and need of a coordination architecture
+        for building coordinated multiple views (CMV) for the visualizations
+        built in browser environment. We chose to adopt Live properties
+        architecture for this purpose after understanding its potential and
+        generalizability.
+      </p>
+      <h5>More Info</h5>
 
-    <!-- <div style="font-size: small">
+      <a
+        href="https://www.cs.ou.edu/~weaver/nsf-career/page-10-C4D3.html"
+        target="_blank"
+        ><i class="fa fa-link" title="Paper" style="cursor: pointer"></i> Link
+        to the detailed project website</a
+      >
+      <hr />
+
+      <!-- <div style="font-size: small">
       <div>
         <b class="publication citation_title"><a href="../individual-projects/voder.html">Augmenting Visualizations with
             Interactive Data Facts to Facilitate Interpretation and Communication</a></b>
@@ -138,8 +170,7 @@ and generalizability.
         </p>
       </div>
     </div> -->
-  </div>
-</body>
-<script type="text/javascript" src="js/main.js"></script>
-
+    </div>
+  </body>
+  <script type="text/javascript" src="js/main.js"></script>
 </html>

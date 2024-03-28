@@ -1,114 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>
+      An Investigation into the Representational Suitability of Tree
+      Visualizations
+    </title>
+    <link rel="icon" href="../static/images/marko.png" type="image/x-icon" />
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/vendor/bootstrap.min.css" rel="stylesheet" />
 
-  <title>An Investigation into the Representational
-  Suitability of Tree Visualizations</title>
+    <link href="../css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Bootstrap core CSS -->
-  <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/vendor/academicons.min.css" rel="stylesheet" />
 
-  <link href="../css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-      crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
 
-  <link href="../css/vendor/academicons.min.css" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script src="../js/vendor/jquery.min.js"></script>
+    <script src="../js/vendor/bootstrap.bundle.min.js"></script>
 
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <!-- google-analytics -->
+  </head>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="../js/vendor/jquery.min.js"></script>
-  <script src="../js/vendor/bootstrap.bundle.min.js"></script>
-
-  <!-- google-analytics -->
-
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#0c0b0afd;">
-    <div class="container">
-      <a class="navbar-brand" href="../">
-        <h3>Omkar Chekuri</h3>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <!-- <li class="nav-item active">
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top"
+      style="background-color: #0c0b0afd"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../">
+          <h3>Omkar Chekuri</h3>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <!-- <li class="nav-item active">
                   <a class="nav-link" href="#about">About</a>
                 </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="../#projects"><i class="fa fa-cube" aria-hidden="true"></i> Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../#publications"><i class="fa fa-scroll" aria-hidden="true"></i> Publications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../#awards"><i class="fa fa-award" aria-hidden="true"></i> Awards</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../static/ArjunSrinivasan-Resume.pdf"><i class="fa fa-file"
-                aria-hidden="true"></i> Resume</a>
-          </li>
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="../#projects"
+                ><i class="fa fa-cube" aria-hidden="true"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#publications"
+                ><i class="fa fa-scroll" aria-hidden="true"></i> Publications</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#awards"
+                ><i class="fa fa-award" aria-hidden="true"></i> Awards</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../static/ArjunSrinivasan-Resume.pdf"
+                ><i class="fa fa-file" aria-hidden="true"></i> Resume</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Page Content -->
-  <div class="container" style="margin-top: 2.5%;">
-    <h3 align="center">An Investigation into the Representational
-    Suitability of Tree Visualizations</h3>
-    <hr>
-    <p></p>
-    <div align="center">
-      <img src="../static/images/project-images/representationalsuitability.PNG" class="" width="75%" height="auto">
-    </div>
-    <p align="justify" class="projectPageTeaserDescription"></p>
-    <h5>Abstract</h5>
-    <hr>
-    <p align="justify" class="">
-      With a constant need for dashboards and visual analytic systems to efficiently explore and monitor
-      business-related data, business Intelligence (BI) remains one of the most prevalent application domains for data
-      visualization.
-      In this series of projects, I explored effectiveness of visual representations to track changes in dashboards and
-      also developed end-to-end visual analytic systems that allow exploring alliances and enterprise ecosystems to make
-      critical business decisions (e.g. helping venture capitals decide which startups to invest in).
-      These systems have hundreds of monthly users including both decision makers at industrial firms and researchers at
-      business schools (including Stanford Graduate School of Business, Darden School of Business, Fisher College of
-      Business, and Babson College, among others).
-    </p>
-    <h5>Publications</h5>
-    <hr>
+    <!-- Page Content -->
+    <div class="container" style="margin-top: 2.5%">
+      <h3 align="center">
+        An Investigation into the Representational Suitability of Tree
+        Visualizations
+      </h3>
+      <hr />
+      <p></p>
+      <div align="center">
+        <img
+          src="../static/images/project-images/representationalsuitability.PNG"
+          class=""
+          width="75%"
+          height="auto"
+        />
+      </div>
+      <p align="justify" class="projectPageTeaserDescription"></p>
+      <h5>Abstract</h5>
+      <hr />
+      <p align="justify" class="">
+        With a constant need for dashboards and visual analytic systems to
+        efficiently explore and monitor business-related data, business
+        Intelligence (BI) remains one of the most prevalent application domains
+        for data visualization. In this series of projects, I explored
+        effectiveness of visual representations to track changes in dashboards
+        and also developed end-to-end visual analytic systems that allow
+        exploring alliances and enterprise ecosystems to make critical business
+        decisions (e.g. helping venture capitals decide which startups to invest
+        in). These systems have hundreds of monthly users including both
+        decision makers at industrial firms and researchers at business schools
+        (including Stanford Graduate School of Business, Darden School of
+        Business, Fisher College of Business, and Babson College, among others).
+      </p>
+      <h5>Publications</h5>
+      <hr />
 
-    <div style="font-size: small">
-
-
-          <div>
-            <b class="publication citation_title">An Investigation into the Representational Suitability of Tree
-              Visualizations</b>
-            <p>
-              <span class="citation_author"><i>Omkar Chekuri</i>, and Chris Weaver</span><br>
-              IEEE VIS 2017<br>
-              <a href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056-summary.pdf" target="_blank"><i
-                  class="fa fa-file-text-o" title="Paper" style="cursor: pointer;"></i> Write-up</a> | <a
-                href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056.pdf" target="_blank"><i
-                  class="fa fa-file-text-o" title="Paper" style="cursor: pointer;"></i> Poster</a>
-            </p>
-          </div>
-<!--       <div>
+      <div style="font-size: small">
+        <div>
+          <b class="publication citation_title"
+            >An Investigation into the Representational Suitability of Tree
+            Visualizations</b
+          >
+          <p>
+            <span class="citation_author"
+              ><i>Omkar Chekuri</i>, and Chris Weaver</span
+            ><br />
+            IEEE VIS 2017<br />
+            <a
+              href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056-summary.pdf"
+              target="_blank"
+              ><i
+                class="fa fa-file-text-o"
+                title="Paper"
+                style="cursor: pointer"
+              ></i>
+              Write-up</a
+            >
+            |
+            <a
+              href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056.pdf"
+              target="_blank"
+              ><i
+                class="fa fa-file-text-o"
+                title="Paper"
+                style="cursor: pointer"
+              ></i>
+              Poster</a
+            >
+          </p>
+        </div>
+        <!--       <div>
         <b class="publication citation_title"><a href="../individual-projects/bardiff.html">What’s the Difference?:
             Evaluating Variants of Multi-Series Bar Charts for Visual Comparison Tasks</a></b>
         <p>
@@ -155,10 +206,8 @@
         </p>
       </div>
  -->
-
+      </div>
     </div>
-  </div>
-</body>
-<!-- <script type="text/javascript" src="js/main.js"></script> -->
-
+  </body>
+  <!-- <script type="text/javascript" src="js/main.js"></script> -->
 </html>
