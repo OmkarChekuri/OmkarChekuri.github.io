@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>National Animal Population by Country</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        text-align: center; /* Simplified centering */
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 1rem;
+        font-size: 1.7rem;
+      }
+
+      #intro,
+      #chart-area1,
+      #chart-area2 {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 1000px;
+      }
+
+      p {
+        max-width: 800px;
+        margin: 0 auto 20px;
+        text-align: justify;
+      }
+
+      h1,
+      h3 {
+        color: #333;
+      }
+
+      footer {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 0.9rem;
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>Animal and Human Population Visualizations by Country</header>
+
+    <div id="intro">
+      <h1>Welcome to the Global Population Visualization</h1>
+      <p>
+        This webpage presents two distinct visualizations that shed light on the
+        populations of national animals and humans across various countries. The
+        visualizations provide an engaging way to explore both animal and human
+        data side-by-side.
+      </p>
+    </div>
+
+    <div id="chart-area1">
+      <h3>Chart 1: Animal Population Bar Chart</h3>
+      <p>
+        The <b>Animal Population Bar Chart</b> focuses on the national animals
+        of each country. For example, you'll see the <em>Kangaroo</em> for
+        Australia, the <em>panda</em> for China, and so on. These animals are
+        symbols of national pride and are represented with their corresponding
+        population for each year. Each bar is accompanied by the respective
+        national <em>flag</em> and <em>animal icon</em> to make the chart
+        visually intuitive.
+      </p>
+      <p>
+        The chart uses a <b>logarithmic scale</b> to accommodate the wide range
+        of animal populations, from the thousands to the millions. The
+        population of each national animal evolves over time, and you can track
+        these changes dynamically.
+      </p>
+    </div>
+
+    <div id="chart-area2">
+      <h3>Chart 2: Grouped Bar Chart (Animals and Humans)</h3>
+      <p>
+        The <b>Grouped Bar Chart</b> allows for a comparison between
+        <em>human populations</em> and <em>animal populations</em> for each
+        country. This chart highlights the relationship between the human
+        population and their national animal population, allowing you to see
+        which countries have a higher animal-to-human ratio or vice versa.
+      </p>
+      <p>
+        For instance, you may notice that in some countries, the animal
+        population is relatively small compared to the human population, while
+        in others, the animal population might be surprisingly high. The bars
+        are grouped by country, with different colors representing the human and
+        animal data.
+      </p>
+      <p>
+        The chart uses a <b>logarithmic scale</b> to accommodate the wide range
+        of animal populations and human populaion, from the thousands to the
+        billions. The population of each national animal and people evolves over
+        time, and you can track these changes dynamically.
+      </p>
+      <p>
+        The chart updates over time, showing how populations change from year to
+        year. Keep an eye on the transitions as the data shifts, and feel free
+        to explore the relationship between human and animal populations.
+      </p>
+    </div>
+
+    <footer>Data Visualized with D3.js</footer>
+
+    <!-- Include the national animal population bar chart -->
+    <script src="animalBarChart.js"></script>
+
+    <!-- Include the grouped bar chart for human and animal population -->
+    <script src="groupedBarChart.js"></script>
+  </body>
+</html>

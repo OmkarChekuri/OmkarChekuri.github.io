@@ -180,3 +180,9 @@ td.year-col{
 	font-weight: bold;
 	margin-left: 5px;
 }
+
+
+.card:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease-in-out;
+}

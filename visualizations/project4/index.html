@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grouped Bar Chart using HTML5 Canvas</title>
+    <style>
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="barChart" width="900" height="500"></canvas>
+    <br />
+    <input
+      type="range"
+      id="yearSlider"
+      min="2000"
+      max="2020"
+      step="5"
+      value="2000"
+    />
+    <label id="yearLabel">Year: 2000</label>
+    <script src="groupedBarChartCanvas.js"></script>
+  </body>
+</html>

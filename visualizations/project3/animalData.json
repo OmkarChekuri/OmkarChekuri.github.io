@@ -1,0 +1,108 @@
+{
+  "countries": [
+    {
+      "name": "Brazil",
+      "animal": "Jaguar",
+      "icon": "🐆",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+      "populationByYear": {
+        "2000": 15000,
+        "2005": 13000,
+        "2010": 12000,
+        "2015": 10000,
+        "2020": 8000
+      }
+    },
+    {
+      "name": "USA",
+      "animal": "Bald Eagle",
+      "icon": "🦅",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+      "populationByYear": {
+        "2000": 70000,
+        "2005": 80000,
+        "2010": 100000,
+        "2015": 140000,
+        "2020": 200000
+      }
+    },
+    {
+      "name": "China",
+      "animal": "Giant Panda",
+      "icon": "🐼",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+      "populationByYear": {
+        "2000": 1100,
+        "2005": 1200,
+        "2010": 1600,
+        "2015": 1800,
+        "2020": 1864
+      }
+    },
+    {
+      "name": "Australia",
+      "animal": "Kangaroo",
+      "icon": "🦘",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
+      "populationByYear": {
+        "2000": 30000000,
+        "2005": 33000000,
+        "2010": 34000000,
+        "2015": 44000000,
+        "2020": 50000000
+      }
+    },
+    {
+      "name": "South Africa",
+      "animal": "African Elephant",
+      "icon": "🐘",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
+      "populationByYear": {
+        "2000": 30000,
+        "2005": 25000,
+        "2010": 25000,
+        "2015": 27000,
+        "2020": 30000
+      }
+    },
+    {
+      "name": "India",
+      "animal": "Bengal Tiger",
+      "icon": "🐅",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+      "populationByYear": {
+        "2000": 3200,
+        "2005": 3000,
+        "2010": 1706,
+        "2015": 2226,
+        "2020": 2967
+      }
+    },
+    {
+      "name": "Russia",
+      "animal": "Siberian Tiger",
+      "icon": "🐅",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
+      "populationByYear": {
+        "2000": 500,
+        "2005": 500,
+        "2010": 540,
+        "2015": 560,
+        "2020": 600
+      }
+    },
+    {
+      "name": "Canada",
+      "animal": "Beaver",
+      "icon": "🐻",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
+      "populationByYear": {
+        "2000": 6000000,
+        "2005": 6100000,
+        "2010": 6200000,
+        "2015": 6300000,
+        "2020": 6500000
+      }
+    }
+  ]
+}

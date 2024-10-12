@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Market Trends Visualization</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link href="project1.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.5rem;
+      }
+
+      #intro,
+      #chart-area {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 1000px;
+      }
+
+      footer {
+        margin-top: 20px;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Real-Time Stock Market Visualization</header>
+
+    <section id="intro">
+      <h2>Welcome to the Stock Market Overview</h2>
+      <p>
+        The financial markets are constantly evolving, and it's crucial to stay
+        on top of the trends. In this visualization, you can observe the
+        real-time movements of three simulated stocks: <strong>KNGX</strong>,
+        <strong>PNNL</strong>, and <strong>MNPL</strong>.
+      </p>
+      <p>
+        Each stock is represented by a candlestick chart, which provides
+        valuable insight into the stock's performance over time. The open, high,
+        low, and close prices are visualized for each second, allowing you to
+        track even the smallest fluctuations in the market. Below, you’ll also
+        see line charts that summarize the closing prices, making it easy to
+        spot trends at a glance.
+      </p>
+      <p>
+        Hover over any part of the chart to get detailed information about that
+        moment in time. The colors and styles are carefully chosen to
+        distinguish each stock and give you a clear overview of the data. Watch
+        as the data updates every second, reflecting the dynamic nature of the
+        stock market.
+      </p>
+    </section>
+
+    <div id="chart-area"></div>
+
+    <footer>
+      Built with D3.js for simulated real-time stock visualizations
+    </footer>
+
+    <script src="mockSocketService.js"></script>
+    <script src="project1.js"></script>
+  </body>
+</html>

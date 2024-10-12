@@ -1,0 +1,124 @@
+{
+  "countries": [
+    {
+      "name": "Brazil",
+      "animal": "Jaguar",
+      "icon": "🐆",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+      "animalPopulationByYear": {
+        "2000": 15000,
+        "2005": 130000,
+        "2010": 12000,
+        "2015": 10000,
+        "2020": 8000
+      },
+      "humanPopulationByYear": {
+        "2000": 174790000,
+        "2005": 186770000,
+        "2010": 195710000,
+        "2015": 204470000,
+        "2020": 212560000
+      }
+    },
+    {
+      "name": "USA",
+      "animal": "Bald Eagle",
+      "icon": "🦅",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+      "animalPopulationByYear": {
+        "2000": 70000,
+        "2005": 80000,
+        "2010": 100000,
+        "2015": 140000,
+        "2020": 200000
+      },
+      "humanPopulationByYear": {
+        "2000": 282200000,
+        "2005": 295500000,
+        "2010": 309300000,
+        "2015": 320700000,
+        "2020": 331000000
+      }
+    },
+    {
+      "name": "China",
+      "animal": "Giant Panda",
+      "icon": "🐼",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+      "animalPopulationByYear": {
+        "2000": 1100,
+        "2005": 1200,
+        "2010": 1600,
+        "2015": 1800,
+        "2020": 1864
+      },
+      "humanPopulationByYear": {
+        "2000": 1267430000,
+        "2005": 1303720000,
+        "2010": 1337700000,
+        "2015": 1371220000,
+        "2020": 1402112000
+      }
+    },
+    {
+      "name": "Australia",
+      "animal": "Kangaroo",
+      "icon": "🦘",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
+      "animalPopulationByYear": {
+        "2000": 30000000,
+        "2005": 33000000,
+        "2010": 34000000,
+        "2015": 44000000,
+        "2020": 50000000
+      },
+      "humanPopulationByYear": {
+        "2000": 19053000,
+        "2005": 20264000,
+        "2010": 22031750,
+        "2015": 23920000,
+        "2020": 25687041
+      }
+    },
+    {
+      "name": "South Africa",
+      "animal": "African Elephant",
+      "icon": "🐘",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
+      "animalPopulationByYear": {
+        "2000": 30000,
+        "2005": 25000,
+        "2010": 25000,
+        "2015": 27000,
+        "2020": 30000
+      },
+      "humanPopulationByYear": {
+        "2000": 44839000,
+        "2005": 48360000,
+        "2010": 50360000,
+        "2015": 54359000,
+        "2020": 59308690
+      }
+    },
+    {
+      "name": "India",
+      "animal": "Bengal Tiger",
+      "icon": "🐅",
+      "flag": "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+      "animalPopulationByYear": {
+        "2000": 3200,
+        "2005": 3000,
+        "2010": 1706,
+        "2015": 2226,
+        "2020": 2967
+      },
+      "humanPopulationByYear": {
+        "2000": 1056570000,
+        "2005": 1138370000,
+        "2010": 1234281170,
+        "2015": 1310150000,
+        "2020": 1380004385
+      }
+    }
+  ]
+}

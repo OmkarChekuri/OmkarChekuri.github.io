@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plane Animation on Top of Content</title>
+    <style>
+      /* Styling for the page content */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        position: relative;
+      }
+
+      /* Page content styling */
+      .content {
+        padding: 20px;
+        background-color: #fafafa;
+        z-index: 0;
+        position: relative;
+      }
+
+      .content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .content p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      /* Animation container that sits on top of the content */
+      #animation-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100; /* Higher z-index to ensure the animation is on top */
+        pointer-events: none; /* Ensure it doesn't interfere with clicks */
+      }
+
+      /* Style for the plane */
+      .plane {
+        position: absolute;
+        font-size: 30px; /* Increase the size of the plane */
+        pointer-events: none; /* Make sure plane doesn't interfere with interaction */
+        z-index: 99; /* Ensure plane is visible on top */
+      }
+
+      /* Style for the smoke bubbles */
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        width: 1px;
+        height: 1px;
+        background-color: transparent;
+        border: 0px solid #999;
+        z-index: 90; /* Smoke should be behind the plane */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Regular page content -->
+    <div class="content">
+      <h1>Welcome to the Plane Animation Demo</h1>
+      <p>
+        This is a simple demonstration of a plane animation flying over the
+        webpage while leaving behind trails of smoke. The content you see here
+        is part of the normal page flow, and the animation happens on a separate
+        layer that sits on top of the page. You can scroll through this content
+        while the animation runs above it.
+      </p>
+      <p>
+        Feel free to interact with the elements below. The animation won't
+        interfere with any actions on the page, thanks to the `pointer-events:
+        none` applied to the animation layer.
+      </p>
+      <p>
+        Scroll down to see more text or simply enjoy the animation flying across
+        the top of the page.
+      </p>
+      <p>
+        More content here... More content here... More content here... More
+        content here... More content here... More content here...
+      </p>
+    </div>
+
+    <!-- Animation container (on top of everything) -->
+    <div id="animation-container">
+      <!-- SVG container to define the path -->
+      <svg id="svg-container" width="100%" height="100%">
+        <path
+          id="plane-path"
+          d="M100,100 C300,50 500,150 700,200 S1100,300 1200,400"
+          stroke="none"
+          fill="none"
+        ></path>
+      </svg>
+
+      <!-- The plane element -->
+      <div class="plane" id="plane">🛸</div>
+    </div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+      const plane = document.getElementById("plane");
+      const path = document.getElementById("plane-path");
+
+      // Array of ocean-like colors for smoke bubbles
+      const oceanColors = [
+        "#00509E", // Deep Blue
+        "#0077BE", // Ocean Blue
+        "#00B4D8", // Sky Blue
+        "#90E0EF", // Light Blue
+        "#CAF0F8", // Foam White
+      ];
+
+      // Function to get a random smoke-like color
+      function getRandomSmokeColor() {
+        const smokeColors = [
+          "#A9A9A9", // DarkGray
+          "#C0C0C0", // Silver
+          "#D3D3D3", // LightGray
+          "#DCDCDC", // Gainsboro
+          "#F5F5F5", // WhiteSmoke
+          "#F8F8FF", // GhostWhite
+          "#808080", // Gray
+        ];
+        return smokeColors[Math.floor(Math.random() * smokeColors.length)];
+      }
+
+      // Function to get a random ocean color
+      function getRandomOceanColor() {
+        return oceanColors[Math.floor(Math.random() * oceanColors.length)];
+      }
+
+      // Function to create sparkles near the bubble
+      function createSparkle(x, y) {
+        // Create a new sparkle div
+        const sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        document.body.appendChild(sparkle);
+
+        // Randomize sparkle size and position near the bubble
+        const sparkleSize = Math.random() * 5 + 2; // Random size between 2px and 7px
+        const offsetX = (Math.random() - 0.5) * 40; // Random X offset
+        const offsetY = (Math.random() - 0.5) * 40; // Random Y offset
+
+        // Set the initial position and size of the sparkle
+        sparkle.style.left = `${x + offsetX}px`;
+        sparkle.style.top = `${y + offsetY}px`;
+        sparkle.style.width = `${sparkleSize}px`;
+        sparkle.style.height = `${sparkleSize}px`;
+        sparkle.style.backgroundColor = "yellow"; // Set spark color to yellow or white
+
+        // Animate the sparkle (quickly fade out)
+        sparkle.animate(
+          [
+            { opacity: 1, transform: "scale(1)" },
+            { opacity: 0, transform: "scale(2)" }, // Spark grows slightly and fades out
+          ],
+          {
+            duration: 1000, // 1-second animation for the sparkle
+            easing: "ease-out",
+          }
+        );
+
+        // Remove the sparkle after the animation
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1000);
+      }
+      // Function to create smoke bubbles at a given position
+      function createBubble(x, y) {
+        // Create a new bubble div
+        const bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+        document.body.appendChild(bubble);
+
+        // Set the initial position of the bubble
+        bubble.style.left = `${x}px`;
+        bubble.style.top = `${y}px`;
+
+        // Animate the bubble's size and opacity
+        bubble.animate(
+          [
+            {
+              width: "1px",
+              height: "1px",
+              opacity: 0.5, // Start with a higher opacity
+              borderWidth: "2px",
+              transform: "translate(-50%, -50%)",
+            },
+            {
+              width: "10px", // Grows larger
+              height: "10px", // Grows larger
+              opacity: 0, // Fade out completely as it grows
+              borderWidth: "0px", // Optionally, make the border disappear as it fades
+              backgroundColor: "#DCDCDC",
+              //backgroundColor: getRandomSmokeColor(),
+              transform: "translate(-50%, -50%)",
+            },
+          ],
+          {
+            duration: 3000, // 3-second animation
+            easing: "ease-out",
+          }
+        );
+
+        // Remove the bubble after animation ends
+        setTimeout(() => {
+          bubble.remove();
+        }, 3000); // Keep it for the duration of the animation
+      }
+
+      // Function to generate a random path for the plane
+      function generateRandomPath() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Random starting point (anywhere on the edges of the viewport)
+        const startX = Math.random() < 0.5 ? 0 : width; // Start either on the left or right
+        const startY = Math.random() * height; // Random Y on the edges
+
+        // Random ending point (on opposite side of the viewport)
+        const endX = startX === 0 ? width : 0; // End on the opposite side
+        const endY = Math.random() * height; // Random Y for the end
+
+        // Random control points to create a curvy path
+        const controlPoint1X = Math.random() * width;
+        const controlPoint1Y = (Math.random() * height) / 2;
+
+        const controlPoint2X = Math.random() * width;
+        const controlPoint2Y = Math.random() * (height / 2) + height / 2; // Below midline
+
+        // Construct the path with starting point, control points, and end point
+        return `M${startX},${startY} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${endX},${endY}`;
+      }
+
+      // Function to animate the plane along the path with random direction
+      function animatePlane() {
+        // Generate a new random path for each animation
+        const newPath = generateRandomPath();
+        path.setAttribute("d", newPath); // Update the 'd' attribute of the path
+
+        const pathLength = path.getTotalLength(); // Get the total length of the path
+
+        // Start D3 transition to animate the plane along the path
+        d3.transition()
+          .duration(10000) // Set the total duration for the animation
+          .ease(d3.easeLinear) // Linear easing for constant speed
+          .tween("plane-motion", function () {
+            return function (t) {
+              // Get the current point along the path based on the time (t)
+              const point = path.getPointAtLength(t * pathLength);
+
+              // Adjust the plane's position relative to the point on the path
+              plane.style.left = `${point.x - 40}px`; // Offset plane's center
+              plane.style.top = `${point.y - 10}px`; // Offset plane's center
+
+              // Create smoke trails behind the plane
+              createBubble(point.x - 15, point.y + 25); // smoke trail
+            };
+          })
+          .on("end", animatePlane); // Loop the animation when it ends
+      }
+
+      // Start the plane animation
+      animatePlane();
+    </script>
+  </body>
+</html>

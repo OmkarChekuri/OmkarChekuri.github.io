@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Added by HTTrack --><meta
-    http-equiv="content-type"
-    content="text/html;charset=utf-8"
-  /><!-- /Added by HTTrack -->
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,17 +17,16 @@
     <link href="css/vendor/bootstrap.min.css" rel="stylesheet" />
 
     <link href="css/style.css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <!-- Updated to the latest Font Awesome version -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
     <link href="css/vendor/academicons.min.css" rel="stylesheet" />
-
-    <!-- <script src="https://www.w3schools.com/lib/w3.js"></script> -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="js/vendor/jquery.min.js"></script>
@@ -62,27 +57,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item active">
-          <a class="nav-link" href="#about">About</a>
-        </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#projects"
-                ><i class="fa fa-cube" aria-hidden="true"></i> Projects</a
+                ><i class="fas fa-cube"></i> Projects</a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#publications"
-                ><i class="fa fa-scroll" aria-hidden="true"></i> Publications</a
+                ><i class="fas fa-scroll"></i> Publications</a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#awards"
-                ><i class="fa fa-award" aria-hidden="true"></i> Awards</a
+                ><i class="fas fa-award"></i> Awards</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="./visualizations/visualizationPortfolio.html"
+                ><i class="fas fa-chart-area"></i> Visualizations</a
               >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="static/OmkarChekuri-Resume.pdf"
-                ><i class="fa fa-file" aria-hidden="true"></i> Resume</a
+                ><i class="fas fa-file-alt"></i> Resume</a
               >
             </li>
           </ul>
@@ -94,7 +93,7 @@
     <div class="container">
       <div id="about" class="contentDiv">
         <div class="row">
-          <div class="col-lg-3" align="middle">
+          <div class="col-lg-3 text-center">
             <img
               src="static/images/OmkarCasual.png"
               style="margin-top: 2.5%"
@@ -105,16 +104,15 @@
           </div>
           <div class="col-lg-9">
             <div style="margin-top: 2.5%" align="justify">
-              I am a PhD candidate in the school of computer science at the
-              University of Oklahoma advised by Dr. Chris Weaver. My research
-              interests are in the areas of interaction, coordination and
-              information visualizations. My current research focuses on
-              <b>developing user interactions</b> and
-              <b>architecting data pipelines</b> for supporting interactive data
-              exploration of <b>hierarchical data structures</b>.
-              <!-- My research is at the intersection of Human-Computer Interaction and Information Visualization. Specifically, drawing upon techniques from multimodal and mixed-initiative user interfaces, <b>I design expressive and intelligent visualization tools</b> for human-data interaction. -->
-              <!-- to support different aspects of the data science process including data cleaning and transformation, exploratory data analysis, and interpreting machine learning models. -->
-              <!-- My current research focuses on designing natural user interfaces (particularly, natural language and touch-based interfaces) and mixed-initiative systems for data analysis with visualization. -->
+              <p>
+                I am a PhD candidate in the school of computer science at the
+                University of Oklahoma advised by Dr. Chris Weaver. My research
+                interests are in the areas of interaction, coordination, and
+                information visualizations. My current research focuses on
+                <b>developing user interactions</b> and
+                <b>architecting data pipelines</b> for supporting interactive
+                data exploration of <b>hierarchical data structures</b>.
+              </p>
             </div>
             <div class="d-flex contact">
               <p
@@ -123,93 +121,71 @@
                   padding: 0.25% 0.6% 0.25% 0.6%;
                 "
               >
-                <i
-                  class="fa fa-envelope"
-                  style="font-size: medium; margin-top: 0.5%"
-                ></i
-                >&nbsp;<a href="mailto:omkar.chekuri@gmail.com"
+                <i class="fas fa-envelope"></i>&nbsp;<a
+                  href="mailto:omkar.chekuri@gmail.com"
                   >omkar.chekuri@gmail.com</a
                 >
               </p>
             </div>
             <div class="d-flex ontheweb">
-              <p style="padding: 0.25% 0.5% 0.25% 0.5%">
-                <!-- <a href="https://scholar.google.com/citations?user=dfsdf;hl=en" target="blank" title="Google Scholar Profile"><i class="ai ai-google-scholar ai-3x"></i></a>
-            &nbsp; -->
-                <!-- <a href="https://twitter.com/omkar" target="blank" title="Twitter Profile"><i class="fab fa-twitter"></i></a>
-            &nbsp; -->
-                <!-- <a href="https://github.com/omkar" target="blank" title="Github Profile"><i class="fa fa-github"></i></a>
-            &nbsp; -->
+              <p>
+                <a
+                  href="https://scholar.google.com/citations?user=NUGlsRUAAAAJ&hl=en&oi=ao"
+                  target="_blank"
+                  title="Google Scholar Profile"
+                >
+                  <i class="ai ai-google-scholar"></i> Google Scholar
+                </a>
+                &nbsp;
                 <a
                   href="https://www.linkedin.com/in/omkarchekuri"
                   target="blank"
                   title="Linkedin Profile"
-                  ><i class="fab fa-linkedin"></i> linkedin.com/omkarchekuri</a
                 >
-                &nbsp;
-                <!--                 <a
-                  href="https://medium.com/@omkar.chekuri"
-                  target="blank"
-                  title="Medium Profile"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 512"
-                    width="30px"
-                    height="40px"
-                    transform="translate(0 12)"
-                  >
-                    <path
-                      d="M180.5 74.3C80.8 74.3 0 155.6 0 256S80.8 437.7 180.5 437.7 361 356.4 361 256 280.2 74.3 180.5 74.3zm288.3 10.6c-49.8 0-90.2 76.6-90.2 171.1s40.4 171.1 90.3 171.1 90.3-76.6 90.3-171.1H559C559 161.5 518.6 84.9 468.8 84.9zm139.5 17.8c-17.5 0-31.7 68.6-31.7 153.3s14.2 153.3 31.7 153.3S640 340.6 640 256C640 171.4 625.8 102.7 608.3 102.7z"
-                    />
-                  </svg>
-                  medium.com/@omkar.chekuri</a> -->
+                  <i class="fab fa-linkedin"></i> linkedin.com/omkarchekuri
+                </a>
               </p>
-              <!-- <a href="https://www.facebook.com/arjun.srinivasan.336" target="blank"><i class="fa fa-facebook-official" style="font-size:20px;"></i></a> -->
             </div>
           </div>
         </div>
       </div>
+
       <div id="projects" class="contentDiv">
         <hr style="border: 1px solid" />
-        <h3 align="left">
-          <i class="fa fa-cube" aria-hidden="true"></i> Projects
-        </h3>
+        <h3 align="left"><i class="fas fa-cube"></i> Projects</h3>
         <hr style="border: 1px solid" />
         <div w3-include-html="sections/projects.html"></div>
       </div>
+
       <div id="publications" class="contentDiv">
         <hr style="border: 1px solid" />
-        <h3 align="left">
-          <i class="fa fa-scroll" aria-hidden="true"></i> Publications
-        </h3>
+        <h3 align="left"><i class="fas fa-scroll"></i> Publications</h3>
         <hr style="border: 1px solid" />
         <div w3-include-html="sections/publications.html"></div>
       </div>
-      <div id="awards" class="contnetDiv">
+
+      <div id="awards" class="contentDiv">
         <hr style="border: 1px solid" />
-        <h3 align="left">
-          <i class="fa fa-award" aria-hidden="true"></i> Awards
-        </h3>
+        <h3 align="left"><i class="fas fa-award"></i> Awards</h3>
         <hr style="border: 1px solid" />
         <div w3-include-html="sections/awards.html"></div>
       </div>
-      <div id="service" class="contnetDiv">
+
+      <div id="service" class="contentDiv">
         <hr style="border: 1px solid" />
-        <h3 align="left">
-          <i class="fa fa-handshake" aria-hidden="true"></i> Service
-        </h3>
+        <h3 align="left"><i class="fas fa-handshake"></i> Service</h3>
         <hr style="border: 1px solid" />
         <div w3-include-html="sections/service.html"></div>
       </div>
-      <div id="Leadership" class="contnetDiv">
+
+      <div id="Leadership" class="contentDiv">
         <hr style="border: 1px solid" />
-        <h3 align="left">
-          <i class="fa fa-bullhorn" aria-hidden="true"></i> Leadership
-        </h3>
+        <h3 align="left"><i class="fas fa-bullhorn"></i> Leadership</h3>
         <hr style="border: 1px solid" />
         <div w3-include-html="sections/leadership.html"></div>
       </div>
     </div>
   </body>
+
   <script type="text/javascript" src="js/main.js"></script>
 </html>
