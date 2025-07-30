@@ -16,6 +16,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Darker gray for text */
         }
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
@@ -182,83 +183,111 @@
                 left: 0%;
             }
         }
+
+        /* Enhancements for stylish look */
+        .section-heading-underline {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        .section-heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 70%; /* Shorter underline */
+            height: 4px;
+            background-color: #4f46e5; /* Indigo-600 */
+            border-radius: 2px;
+            transform: translateX(15%); /* Center the shorter line */
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.18); /* Stronger shadow */
+        }
+        .skill-icon {
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); /* Subtle shadow for icons */
+        }
+        .timeline-dot {
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3); /* Glow effect for dots */
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md p-4 sticky top-0 z-50 rounded-b-lg">
+    <nav class="bg-white shadow-lg p-4 sticky top-0 z-50 rounded-b-xl">
         <div class="container mx-auto flex justify-between items-center flex-wrap">
             <!-- Logo/Name -->
-            <a href="#home" class="text-2xl font-bold text-indigo-600 hover:text-indigo-700 transition-colors duration-300">Omkar Chekuri</a>
+            <a href="#home" class="text-3xl font-extrabold text-indigo-700 hover:text-indigo-800 transition-all duration-300 transform hover:scale-105">Omkar Chekuri</a>
 
             <!-- Mobile Menu Button -->
-            <button id="menu-button" class="lg:hidden text-gray-600 hover:text-gray-900 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <button id="menu-button" class="lg:hidden text-gray-600 hover:text-gray-900 focus:outline-none p-2 rounded-md">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
 
             <!-- Navigation Links -->
-            <div id="nav-links" class="hidden lg:flex flex-col lg:flex-row lg:items-center lg:space-x-6 mt-4 lg:mt-0 w-full lg:w-auto">
-                <a href="#home" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Home</a>
-                <a href="#about" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">About</a>
-                <a href="projects.html" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Projects</a>
-                <a href="#publications" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Publications</a>
-                <a href="#awards" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Awards</a>
-                <a href="#certifications" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Certifications</a>
-                <a href="#service" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Service & Leadership</a>
-                <a href="static/OmkarChekuri-Resume.pdf" target="_blank" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Resume</a>
+            <div id="nav-links" class="hidden lg:flex flex-col lg:flex-row lg:items-center lg:space-x-8 mt-4 lg:mt-0 w-full lg:w-auto">
+                <a href="#home" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Home</a>
+                <a href="#about" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">About</a>
+                <a href="projects.html" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Projects</a>
+                <a href="#publications" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Publications</a>
+                <a href="#awards" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Awards</a>
+                <a href="#certifications" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Certifications</a>
+                <a href="#service" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Service & Leadership</a>
+                <a href="static/OmkarChekuri-Resume.pdf" target="_blank" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300 font-medium">Resume</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 px-4 text-center rounded-b-lg shadow-lg">
+    <header id="home" class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-24 px-4 text-center rounded-b-3xl shadow-xl">
         <div class="container mx-auto">
             <!-- Profile Image -->
-            <img src="./static/images/OmkarCasual.png" alt="Omkar Chekuri" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg w-40 h-40 object-cover">
-            <h1 class="text-5xl font-extrabold mb-4 animate-fade-in">Hi, I'm Omkar Chekuri!</h1>
-            <p class="text-xl mb-8 leading-relaxed animate-slide-up">
+            <img src="./static/images/OmkarCasual.png" alt="Omkar Chekuri" class="rounded-full mx-auto mb-8 border-6 border-indigo-300 shadow-2xl w-48 h-48 object-cover transform transition-all duration-500 hover:scale-105">
+            <h1 class="text-6xl font-extrabold mb-4 animate-fade-in drop-shadow-lg">Hi, I'm Omkar Chekuri!</h1>
+            <p class="text-2xl mb-10 leading-relaxed animate-slide-up font-light">
                 PhD Graduate | Visual Analytics Researcher | Human-Computer Interaction | Applied AI/ML
             </p>
-            <a href="#about" class="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">Learn More About My Research</a>
+            <a href="#about" class="bg-white text-indigo-700 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">Learn More About My Research</a>
         </div>
     </header>
 
     <!-- About Section -->
-    <section id="about" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="about" class="py-20 px-4 bg-white rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">About Me</h2>
-            <div class="flex flex-col lg:flex-row items-center lg:space-x-8">
-                <div class="lg:w-1/3 mb-8 lg:mb-0">
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">About Me</h2>
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-12">
+                <div class="lg:w-1/3 mb-10 lg:mb-0">
                     <!-- Using the same profile image for consistency -->
-                    <img src="./static/images/OmkarCasual.png" alt="Omkar Chekuri" class="rounded-lg shadow-lg w-full h-auto">
+                    <img src="./static/images/OmkarCasual.png" alt="Omkar Chekuri" class="rounded-xl shadow-2xl w-full h-auto transform transition-all duration-500 hover:scale-102">
                 </div>
-                <div class="lg:w-2/3 text-lg leading-relaxed text-gray-700">
-                    <p class="mb-4">
+                <div class="lg:w-2/3 text-xl leading-relaxed text-gray-700">
+                    <p class="mb-6">
                         I am a recent PhD graduate from the School of Computer Science at the University of Oklahoma, advised by Dr. Chris Weaver. My core research interests lie at the intersection of human-computer interaction, coordination, and information visualization.
                     </p>
-                    <p class="mb-4">
+                    <p class="mb-6">
                         My work focuses on <b>developing user interactions</b> and <b>architecting data pipelines</b> to support interactive exploration of <b>hierarchical data structures</b>. More broadly, I am passionate about advancing the frontiers of <b>machine learning</b>, <b>artificial intelligence</b>, and <b>deep learning</b>, especially in how these technologies can be harnessed to enhance data-driven decision-making and user experience.
                     </p>
                     <p>
                         I am also increasingly interested in the applications and design of <b>generative AI systems</b>, including multimodal interfaces that integrate visualization, language, and model-driven insights for more effective human-AI collaboration. My goal is to contribute to innovative solutions that bridge the gap between complex data and intuitive user understanding.
                     </p>
-                    <div class="mt-6">
-                        <p class="mb-2">
-                            <i class="fas fa-envelope text-indigo-600 mr-2"></i>
-                            <a href="mailto:omkar.chekuri@gmail.com" class="text-indigo-600 hover:underline">omkar.chekuri@gmail.com</a>
-                        </p>
-                        <div class="flex flex-wrap gap-4 text-lg">
+                    <div class="mt-8">
+                        <p class="mb-4 text-2xl font-semibold text-indigo-700">Connect with me:</p>
+                        <div class="flex flex-wrap gap-6 text-xl">
+                            <a href="mailto:omkar.chekuri@gmail.com" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-envelope text-indigo-600 mr-2"></i> omkar.chekuri@gmail.com
+                            </a>
                             <a href="https://github.com/OmkarChekuri" target="_blank" title="GitHub Profile" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 flex items-center">
-                                <i class="fab fa-github mr-1"></i> GitHub
+                                <i class="fab fa-github mr-2"></i> GitHub
                             </a>
                             <a href="https://scholar.google.com/citations?user=NUGlsRUAAAAJ&hl=en&oi=ao" target="_blank" title="Google Scholar Profile" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 flex items-center">
-                                <i class="ai ai-google-scholar mr-1"></i> Google Scholar
+                                <i class="ai ai-google-scholar mr-2"></i> Google Scholar
                             </a>
-                            <a href="https://www.linkedin.com/in/omkarchekuri" target="_blank" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 flex items-center">
-                                <i class="fab fa-linkedin mr-1"></i> linkedin.com/omkarchekuri
+                            <a href="https://www.linkedin.com/in/omkarchekuri" target="_blank" title="LinkedIn Profile" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 flex items-center">
+                                <i class="fab fa-linkedin mr-2"></i> linkedin.com/omkarchekuri
                             </a>
                         </div>
                     </div>
@@ -268,68 +297,68 @@
     </section>
 
     <!-- Skills Infographic Section -->
-    <section id="skills-infographic" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="skills-infographic" class="py-20 px-4 bg-gray-100 rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">My Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
                 <!-- Skill Category: Languages / Tools -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <i class="fas fa-code text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Languages & Tools</h3>
-                    <p class="text-gray-700">Python, R, SQL, NoSQL, Java, TypeScript, JavaScript, C#, Git, Linux, SAS, .Net</p>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
+                    <i class="fas fa-code text-6xl text-indigo-600 mb-6 skill-icon"></i>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-4">Languages & Tools</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">Python, R, SQL, NoSQL, Java, TypeScript, JavaScript, C#, Git, Linux, SAS, .Net</p>
                 </div>
                 <!-- Skill Category: Visualization & Frontend -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <i class="fas fa-chart-area text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Visualization & Frontend</h3>
-                    <p class="text-gray-700">Tableau, Power BI, D3.js, Web-GL, Streamlit, React, Figma, Adobe XD, OpenGL, Virtual Reality</p>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
+                    <i class="fas fa-chart-area text-6xl text-indigo-600 mb-6 skill-icon"></i>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-4">Visualization & Frontend</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">Tableau, Power BI, D3.js, Web-GL, Streamlit, React, Figma, Adobe XD, OpenGL, Virtual Reality</p>
                 </div>
                 <!-- Skill Category: Cloud & Big Data -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <i class="fas fa-cloud text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Cloud & Big Data</h3>
-                    <p class="text-gray-700">AWS (S3, EC2, RDS, DynamoDB, Sagemaker), Apache Spark, Hadoop, Distributed Systems, Snowflake</p>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
+                    <i class="fas fa-cloud text-6xl text-indigo-600 mb-6 skill-icon"></i>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-4">Cloud & Big Data</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">AWS (S3, EC2, RDS, DynamoDB, Sagemaker), Apache Spark, Hadoop, Distributed Systems, Snowflake</p>
                 </div>
                 <!-- Skill Category: Machine Learning -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <i class="fas fa-brain text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Machine Learning & AI</h3>
-                    <p class="text-gray-700">Pandas, NumPy, Scikit-learn, PyTorch, SparkML, Transformers, NLTK, LangChain, Generative AI, LLMs, Prompt Engineering, NLP, Deep Learning, Reinforcement Learning</p>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
+                    <i class="fas fa-brain text-6xl text-indigo-600 mb-6 skill-icon"></i>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-4">Machine Learning & AI</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">Pandas, NumPy, Scikit-learn, PyTorch, SparkML, Transformers, NLTK, LangChain, Generative AI, LLMs, Prompt Engineering, NLP, Deep Learning, Reinforcement Learning</p>
                 </div>
                  <!-- Skill Category: Technical Skills -->
-                 <div class="bg-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <i class="fas fa-tools text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Technical Skills</h3>
-                    <p class="text-gray-700">Visualization, Visual Analytics, UI/UX Design, Prototyping, User Evaluation, Genetic Algorithms, Virtual Reality, Computer Graphics, Database Management, EEG Data Analysis, FullStack Development, High Performance Computing</p>
+                 <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
+                    <i class="fas fa-tools text-6xl text-indigo-600 mb-6 skill-icon"></i>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-4">Technical Skills</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">Visualization, Visual Analytics, UI/UX Design, Prototyping, User Evaluation, Genetic Algorithms, Virtual Reality, Computer Graphics, Database Management, EEG Data Analysis, FullStack Development, High Performance Computing</p>
                 </div>
                 <!-- Skill Category: Soft Skills -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    <i class="fas fa-users text-5xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Soft Skills</h3>
-                    <p class="text-gray-700">Project Management, Team Management, Client Communication & Stakeholder Management</p>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
+                    <i class="fas fa-users text-6xl text-indigo-600 mb-6 skill-icon"></i>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-4">Soft Skills</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">Project Management, Team Management, Client Communication & Stakeholder Management</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Journey/Experience Timeline Section (Vertical & Collapsible) -->
-    <section id="journey-timeline" class="py-16 px-4 bg-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="journey-timeline" class="py-20 px-4 bg-gray-200 rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">My Journey & Experience</h2>
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">My Journey & Experience</h2>
             <div class="timeline">
 
                 <!-- Timeline Item: PhD in Computer Science -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>PhD in Computer Science</h3>
-                                <p class="text-gray-600 text-sm">University of Oklahoma (Aug 2019 - May 2025)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-graduation-cap mr-3 text-indigo-500"></i>PhD in Computer Science</h3>
+                                <p class="text-gray-600 text-base mt-1">University of Oklahoma (Aug 2019 - May 2025)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Dissertation: "Augmenting Hierarchical Visualizations with Topology-Centric Representations and Interactions". Focused on HCI, Information Visualization, and AI/ML applications.
                             </p>
                         </div>
@@ -338,16 +367,16 @@
 
                 <!-- Timeline Item: Graduate Research Assistant -->
                 <div class="timeline-container right">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-flask mr-2"></i>Graduate Research Assistant</h3>
-                                <p class="text-gray-600 text-sm">University of Oklahoma (Jun 2017 - May 2025)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-flask mr-3 text-indigo-500"></i>Graduate Research Assistant</h3>
+                                <p class="text-gray-600 text-base mt-1">University of Oklahoma (Jun 2017 - May 2025)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <ul class="list-disc list-inside text-gray-700 pt-2">
+                            <ul class="list-disc list-inside text-gray-700 pt-4 space-y-2">
                                 <li>Built multi-user VR learning environments, integrating biometric sensors.</li>
                                 <li>Designed gesture-based interaction techniques for data exploration.</li>
                                 <li>Developed a high-performance TypeScript coordination library for D3.js.</li>
@@ -359,16 +388,16 @@
 
                 <!-- Timeline Item: Power Apps Developer -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-cogs mr-2"></i>Power Apps Developer</h3>
-                                <p class="text-gray-600 text-sm">University of Oklahoma (May 2023 - Aug 2023)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-cogs mr-3 text-indigo-500"></i>Power Apps Developer</h3>
+                                <p class="text-gray-600 text-base mt-1">University of Oklahoma (May 2023 - Aug 2023)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Led end-to-end design and development of a replacement Effort Reporting System using Microsoft 365 tools, automating workflows and saving significant labor hours.
                             </p>
                         </div>
@@ -377,16 +406,16 @@
 
                 <!-- Timeline Item: Python Course and Lab Instructor -->
                 <div class="timeline-container right">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-chalkboard-teacher mr-2"></i>Python Course and Lab Instructor</h3>
-                                <p class="text-gray-600 text-sm">University of Oklahoma (Aug 2021 - May 2025)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-chalkboard-teacher mr-3 text-indigo-500"></i>Python Course and Lab Instructor</h3>
+                                <p class="text-gray-600 text-base mt-1">University of Oklahoma (Aug 2021 - May 2025)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Instructed Python to 75+ students per semester, developed lab materials, and supervised teaching assistants.
                             </p>
                         </div>
@@ -395,16 +424,16 @@
 
                 <!-- Timeline Item: Data Analytics Intern -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-chart-line mr-2"></i>Data Analytics Intern</h3>
-                                <p class="text-gray-600 text-sm">Cloud Nine Development LLC (Jan 2018 - May 2018)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-chart-line mr-3 text-indigo-500"></i>Data Analytics Intern</h3>
+                                <p class="text-gray-600 text-base mt-1">Cloud Nine Development LLC (Jan 2018 - May 2018)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Developed Google Analytics dashboards, trained ML models for forecasting, and optimized UI based on user behavior analysis.
                             </p>
                         </div>
@@ -413,16 +442,16 @@
 
                 <!-- Timeline Item: M.S. in Data Science and Analytics -->
                 <div class="timeline-container right">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>M.S. in Data Science and Analytics</h3>
-                                <p class="text-gray-600 text-sm">University of Oklahoma (Jan 2016 - May 2018)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-graduation-cap mr-3 text-indigo-500"></i>M.S. in Data Science and Analytics</h3>
+                                <p class="text-gray-600 text-base mt-1">University of Oklahoma (Jan 2016 - May 2018)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Completed Master's degree with a focus on data science and analytics.
                             </p>
                         </div>
@@ -431,16 +460,16 @@
 
                 <!-- Timeline Item: SAP CMMS Engineer - Python & SAS -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-industry mr-2"></i>SAP CMMS Engineer - Python & SAS</h3>
-                                <p class="text-gray-600 text-sm">Construction Development Company LLC (Feb 2013 - Aug 2015)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-industry mr-3 text-indigo-500"></i>SAP CMMS Engineer - Python & SAS</h3>
+                                <p class="text-gray-600 text-base mt-1">Construction Development Company LLC (Feb 2013 - Aug 2015)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Automated SAP CMMS workflows with Python, SQL, and SASPY; built modular ETL systems and created visual dashboards.
                             </p>
                         </div>
@@ -449,16 +478,16 @@
 
                 <!-- Timeline Item: Engineer - Reporting & Resource Analytics -->
                 <div class="timeline-container right">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-chart-bar mr-2"></i>Engineer - Reporting & Resource Analytics</h3>
-                                <p class="text-gray-600 text-sm mb-2">Aker Solutions (Jun 2012 - Dec 2012)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-chart-bar mr-3 text-indigo-500"></i>Engineer - Reporting & Resource Analytics</h3>
+                                <p class="text-gray-600 text-base mt-1">Aker Solutions (Jun 2012 - Dec 2012)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Automated logistics reporting using Python and Excel macros, digitized legacy operational logs, and supported data extraction for senior analysts.
                             </p>
                         </div>
@@ -467,16 +496,16 @@
 
                 <!-- Timeline Item: Bachelor of Technology -->
                 <div class="timeline-container left">
-                    <div class="timeline-content">
+                    <div class="timeline-content rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <div class="collapsible-header" onclick="toggleCollapsible(this)">
                             <div>
-                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-wrench mr-2"></i>Bachelor of Technology in Mechanical Engineering</h3>
-                                <p class="text-gray-600 text-sm">JNTU, Kakinada, India (July 2008 - May 2012)</p>
+                                <h3 class="text-2xl font-semibold text-indigo-600"><i class="fas fa-wrench mr-3 text-indigo-500"></i>Bachelor of Technology in Mechanical Engineering</h3>
+                                <p class="text-gray-600 text-base mt-1">JNTU, Kakinada, India (July 2008 - May 2012)</p>
                             </div>
-                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                            <i class="fas fa-chevron-right collapsible-icon text-indigo-500 text-xl"></i>
                         </div>
                         <div class="collapsible-content">
-                            <p class="text-gray-700 text-sm pt-2">
+                            <p class="text-gray-700 text-base pt-4">
                                 Completed undergraduate studies in Mechanical Engineering.
                             </p>
                         </div>
@@ -488,86 +517,86 @@
     </section>
 
     <!-- Selected Projects Section -->
-    <section id="selected-projects" class="py-16 px-4 bg-gray-100 rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="selected-projects" class="py-20 px-4 bg-gray-100 rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Selected Information Visualization / HCI Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">Selected Information Visualization / HCI Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
                 <!-- Project Card 1: Coordination for Data Driven Documents(C4D3) -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
                     <img src="./static/images/project-images/ions.png" alt="C4D3" class="project-card-image">
                     <h3 class="text-xl font-semibold text-indigo-600 mb-2">Coordination for Data Driven Documents (C4D3)</h3>
                     <p class="text-gray-700 text-sm mb-4">
                         A framework providing view level abstraction and coordination architecture for developing coordinated multiple views using D3 library.
                     </p>
-                    <a href="https://omkarchekuri.github.io/c4d3/index.html" target="_blank" class="text-indigo-600 hover:underline text-sm font-medium flex items-center">
+                    <a href="https://omkarchekuri.github.io/c4d3/index.html" target="_blank" class="text-indigo-600 hover:underline text-sm font-medium flex items-center mt-auto">
                         Learn More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                     </a>
                 </div>
 
                 <!-- Project Card 2: An Investigation into the Representational Suitability of Tree Visualizations -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
                     <img src="./static/images/project-images/representationalsuitability.PNG" alt="Tree Visualizations" class="project-card-image">
                     <h3 class="text-xl font-semibold text-indigo-600 mb-2">An Investigation into the Representational Suitability of Tree Visualizations</h3>
                     <p class="text-gray-700 text-sm mb-4">
                         Investigates the effectiveness of different tree visualizations in conveying hierarchical data and their impact on user understanding.
                     </p>
-                    <a href="projects.html#info-vis-hci-projects" class="text-indigo-600 hover:underline text-sm font-medium flex items-center">
+                    <a href="projects.html#info-vis-hci-projects" class="text-indigo-600 hover:underline text-sm font-medium flex items-center mt-auto">
                         Learn More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                     </a>
                 </div>
 
                 <!-- Project Card 3: Interactive Gesture-Based Data Manipulation and Visualization -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform card-hover-effect">
                     <img src="./static/images/project-images/gestures.jpeg" alt="Gestures" class="project-card-image">
                     <h3 class="text-xl font-semibold text-indigo-600 mb-2">Interactive Gesture-Based Data Manipulation and Visualization</h3>
                     <p class="text-gray-700 text-sm mb-4">
                         Developed a suite of gestures to support variety of data editing procedures by treating gesture handling as pattern matching.
                     </p>
-                    <a href="projects.html#info-vis-hci-projects" class="text-indigo-600 hover:underline text-sm font-medium flex items-center">
+                    <a href="projects.html#info-vis-hci-projects" class="text-indigo-600 hover:underline text-sm font-medium flex items-center mt-auto">
                         Learn More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                     </a>
                 </div>
 
             </div>
-            <div class="text-center mt-10">
-                <a href="projects.html" class="bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">View All Projects</a>
+            <div class="text-center mt-12">
+                <a href="projects.html" class="bg-indigo-700 text-white hover:bg-indigo-800 px-10 py-4 rounded-full text-lg font-semibold shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">View All Projects</a>
             </div>
         </div>
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="publications" class="py-20 px-4 bg-white rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Publications</h2>
-            <div class="space-y-8">
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">Publications</h2>
+            <div class="space-y-10">
                 <div>
-                    <h5 class="text-2xl font-semibold text-gray-800 mb-4">Journal/Conference Papers (Published)</h5>
-                    <hr class="border-gray-300 mb-4" />
-                    <h6 class="text-xl font-medium text-gray-700 mb-3"><u>2024</u></h6>
-                    <div class="mb-6">
-                        <b class="publication citation_title text-lg"
+                    <h5 class="text-3xl font-semibold text-gray-800 mb-5">Journal/Conference Papers (Published)</h5>
+                    <hr class="border-gray-300 mb-5" />
+                    <h6 class="text-2xl font-medium text-gray-700 mb-4"><u>2024</u></h6>
+                    <div class="mb-8 p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <b class="publication citation_title text-xl"
                             ><a href="https://doi.org/10.1117/12.3007054" target="_blank">
                                 David vs. Goliath: large foundation models are not outperforming small
                                 models in multi-view mammogram breast cancer prediction</a
                             ></b
-                        ><br /><span class="award text-indigo-600"
-                            >[<i class="fas fa-award mr-1"></i>The Computer-Aided Diagnosis Best Paper
+                        ><br /><span class="award text-indigo-600 text-base"
+                            >[<i class="fas fa-award mr-2"></i>The Computer-Aided Diagnosis Best Paper
                             Award Second Place winner]</span
                         >
-                        <p class="text-gray-700 mt-1">
+                        <p class="text-gray-700 mt-2 text-lg">
                             <span class="citation_author"><i>Xuxin Chen</i>, et al</span><br />
                             SPIE Medical Imaging, 2024.
                         </p>
                     </div>
-                    <div class="mb-6">
-                        <b class="publication citation_title text-lg"
+                    <div class="mb-8 p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <b class="publication citation_title text-xl"
                             ><a target="_blank">
                                 C4D3: A View-level Abstraction and Coordination Library
                                 for Building Coordinated Multiple Views with D3</a
                             ></b
                         ><br />
-                        <p class="text-gray-700 mt-1">
+                        <p class="text-gray-700 mt-2 text-lg">
                             <span class="citation_author"><i>Omkar Chekuri</i>, and Chris Weaver</span><br />
                             Accepted for publication in VISIGRAPP (IVAPP) 2024.
                         </p>
@@ -575,13 +604,13 @@
                 </div>
 
                 <div>
-                    <h5 class="text-2xl font-semibold text-gray-800 mb-4">Journal/Conference Papers - (In Revision)</h5>
-                    <hr class="border-gray-300 mb-4" />
-                    <div class="mb-6">
-                        <b class="publication citation_title text-lg">
+                    <h5 class="text-3xl font-semibold text-gray-800 mb-5">Journal/Conference Papers - (In Revision)</h5>
+                    <hr class="border-gray-300 mb-5" />
+                    <div class="mb-8 p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <b class="publication citation_title text-xl">
                             A Model of the Representational Suitability of Tree Visualizations</b
                         ><br />
-                        <p class="text-gray-700 mt-1">
+                        <p class="text-gray-700 mt-2 text-lg">
                             <span class="citation_author"><i>Omkar Chekuri</i>, and Chris Weaver</span
                             ><br />
                         </p>
@@ -589,30 +618,29 @@
                 </div>
 
                 <div>
-                    <h5 class="text-2xl font-semibold text-gray-800 mb-4">Posters</h5>
-                    <hr class="border-gray-300 mb-4" />
-                    <div class="mb-6">
-                        <b class="publication citation_title text-lg"
+                    <h5 class="text-3xl font-semibold text-gray-800 mb-5">Posters</h5>
+                    <hr class="border-gray-300 mb-5" />
+                    <div class="mb-8 p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <b class="publication citation_title text-xl"
                             >An Investigation into the Representational Suitability of Tree
                             Visualizations</b
                         >
-                        <p class="text-gray-700 mt-1">
+                        <p class="text-gray-700 mt-2 text-lg">
                             <span class="citation_author"><i>Omkar Chekuri</i>, and Chris Weaver</span
                             ><br />
                             IEEE VIS 2022<br />
                             <a
                                 href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056-summary.pdf"
                                 target="_blank"
-                                class="text-indigo-600 hover:underline inline-flex items-center mr-2"
-                                ><i class="fa fa-file-text-o mr-1" title="Paper"></i>
+                                class="text-indigo-600 hover:underline inline-flex items-center mr-4"
+                                ><i class="fa fa-file-text-o mr-2" title="Paper"></i>
                                 Write-up</a
                             >
-                            |
                             <a
                                 href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056.pdf"
                                 target="_blank"
                                 class="text-indigo-600 hover:underline inline-flex items-center"
-                                ><i class="fa fa-file-text-o mr-1" title="Paper"></i>
+                                ><i class="fa fa-file-text-o mr-2" title="Paper"></i>
                                 Poster</a
                             >
                         </p>
@@ -620,19 +648,19 @@
                 </div>
 
                 <div>
-                    <h5 class="text-2xl font-semibold text-gray-800 mb-4">Thesis</h5>
-                    <hr class="border-gray-300 mb-4" />
-                    <div class="mb-6">
-                        <b class="publication citation_title text-lg">
+                    <h5 class="text-3xl font-semibold text-gray-800 mb-5">Thesis</h5>
+                    <hr class="border-gray-300 mb-5" />
+                    <div class="mb-8 p-4 bg-gray-50 rounded-lg shadow-sm">
+                        <b class="publication citation_title text-xl">
                             <a href="https://www.proquest.com/docview/3047271816" target="_blank">
                                 Augmenting Hierarchical Visualizations With Topology-Centric Representations and Interactions
                             </a>
                         </b><br />
-                        <p class="text-gray-700 mt-1">
+                        <p class="text-gray-700 mt-2 text-lg">
                             <span class="citation_author"><i>Omkar Chekuri</i></span><br />
                             University of Oklahoma--Graduate College, 2025
-                            <a href="https://www.proquest.com/docview/3047271816" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
-                                <i class="fa fa-link mr-1" title="ProQuest Link"></i> ProQuest Link
+                            <a href="https://www.proquest.com/docview/3047271816" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-4">
+                                <i class="fa fa-link mr-2" title="ProQuest Link"></i> ProQuest Link
                             </a>
                         </p>
                     </div>
@@ -643,156 +671,173 @@
     </section>
 
     <!-- Awards Section -->
-    <section id="awards" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="awards" class="py-20 px-4 bg-white rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Awards</h2>
-            <table class="w-full text-lg text-gray-700 borderless">
-                <tbody>
-                    <tr>
-                        <td class="py-2">College of Continuing Education 2024 State of Outreach Innovation Award</td>
-                        <td class="year-col py-2">2024</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Recipient of CS Alumni Grad Fellowship</td>
-                        <td class="year-col py-2">2024</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Recipient of Richard L. O'Shields Engineering Scholarship</td>
-                        <td class="year-col py-2">2023</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Recipient of CS Alumni Grad Fellowship</td>
-                        <td class="year-col py-2">2022</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">PhD Recruitment Excellence Fellowship - College of Engineering, University of Oklahoma</td>
-                        <td class="year-col py-2">2018</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Academic Excellence Award - Army ROTC, University of Oklahoma</td>
-                        <td class="year-col py-2">2017</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">Awards</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-lg text-gray-700 border-separate border-spacing-y-3">
+                    <tbody class="bg-white rounded-xl shadow-md divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">College of Continuing Education 2024 State of Outreach Innovation Award</td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2024</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">Recipient of CS Alumni Grad Fellowship</td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2024</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">Recipient of Richard L. O'Shields Engineering Scholarship</td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2023</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">Recipient of CS Alumni Grad Fellowship</td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2022</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">PhD Recruitment Excellence Fellowship - College of Engineering, University of Oklahoma</td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2018</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">Academic Excellence Award - Army ROTC, University of Oklahoma</td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2017</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-16 px-4 bg-gray-100 rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="certifications" class="py-20 px-4 bg-gray-100 rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Certifications</h2>
-            <table class="w-full text-lg text-gray-700 borderless">
-                <tbody>
-                    <tr>
-                        <td class="py-2">
-                            <b>Tableau Certified Professional</b>
-                            <a href="https://www.coursera.org/account/accomplishments/verify/NLLP272B22MV" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
-                                <i class="fas fa-external-link-alt mr-1"></i> Verify
-                            </a>
-                        </td>
-                        <td class="year-col py-2">2020</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">
-                            <b>Advanced Google Analytics</b>
-                            <a href="https://www.coursera.org/account/accomplishments/verify/G758S6FZMJCS" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
-                                <i class="fas fa-external-link-alt mr-1"></i> Verify
-                            </a>
-                        </td>
-                        <td class="year-col py-2">2020</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">
-                            <b>Neo4j Certified</b>
-                            <a href="https://graphacademy.neo4j.com/c/f80f7c69-68ae-41cb-a252-a564958ab273/" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
-                                <i class="fas fa-external-link-alt mr-1"></i> Verify
-                            </a>
-                        </td>
-                        <td class="year-col py-2">N/A</td> <!-- Year not explicitly provided, using N/A -->
-                    </tr>
-                </tbody>
-            </table>
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">Certifications</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-lg text-gray-700 border-separate border-spacing-y-3">
+                    <tbody class="bg-white rounded-xl shadow-md divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">
+                                <b>Generative AI and LLMs: Architecture and Data Preparation</b>
+                                <a href="https://www.coursera.org/account/accomplishments/verify/NLLP272B22MV" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-4">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Verify
+                                </a>
+                            </td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2025</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">
+                                <b>Machine Learning with Apache Spark</b>
+                                <a href="https://www.coursera.org/account/accomplishments/verify/G758S6FZMJCS" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-4">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Verify
+                                </a>
+                            </td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2025</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                            <td class="py-4 px-6 rounded-l-lg">
+                                <b>Neo4j Certified Professional</b>
+                                <a href="https://graphacademy.neo4j.com/c/f80f7c69-68ae-41cb-a252-a564958ab273/" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-4">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Verify
+                                </a>
+                            </td>
+                            <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
     <!-- Service & Leadership Section -->
-    <section id="service" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+    <section id="service" class="py-20 px-4 bg-white rounded-xl shadow-xl mx-auto my-12 max-w-7xl">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Service & Leadership</h2>
-            <div class="space-y-6 text-lg text-gray-700">
+            <h2 class="text-5xl font-bold text-center text-indigo-800 mb-12 section-heading-underline">Service & Leadership</h2>
+            <div class="space-y-10 text-lg text-gray-700">
                 <!-- Service -->
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Service</h3>
-                <table class="w-full borderless">
-                    <tbody>
-                        <tr>
-                            <td class="py-2"><b>Student Volunteer</b> (IEEE Vis 2022 )</td>
-                            <td class="year-col py-2">2022</td>
-                        </tr>
-                        <tr>
-                            <td class="py-2"><b>Reviewer</b> (IEEE Vis, EuroVis)</td>
-                            <td class="year-col py-2">2023</td>
-                        </tr>
-                        <tr>
-                            <td class="py-2"><b>Instructor</b> (CS1213 - Intro to Python)</td>
-                            <td class="year-col py-2">2020 - Till Date</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3 class="text-3xl font-semibold text-gray-800 mb-5">Service</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-separate border-spacing-y-3">
+                        <tbody class="bg-white rounded-xl shadow-md divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="py-4 px-6 rounded-l-lg"><b>Student Volunteer</b> (IEEE Vis 2022 )</td>
+                                <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2022</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="py-4 px-6 rounded-l-lg"><b>Reviewer</b> (IEEE Vis, EuroVis)</td>
+                                <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2023</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="py-4 px-6 rounded-l-lg"><b>Instructor</b> (CS1213 - Intro to Python)</td>
+                                <td class="year-col py-4 px-6 rounded-r-lg font-semibold text-gray-600">2020 - Till Date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <!-- Leadership -->
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Leadership</h3>
-                <table class="w-full borderless">
-                    <tbody>
-                        <tr>
-                            <td class="py-2">
-                                <b>Member, Graduate Student Community at University of Oklahoma:</b>
-                                Proactively participate in regular meetings to tackle the diverse
-                                challenges faced by graduate students across departments. Contribute to
-                                initiatives focused on fostering inclusivity within the graduate student
-                                community by advocating for increased representation. Strive to secure
-                                funding from diverse resources to support graduate students.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2">
-                                <b>Member, Data Science and Analytics Association at University of Oklahoma:</b>
-                                Collaborate in organizing and participating in presentations in data
-                                science and analytics community.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2">
-                                <b>Former Cadet, University of Oklahoma ARMY ROTC:</b> Organize and
-                                actively participate in community events such as blood donation drives and
-                                charity marathons. Dedicate efforts to raising awareness and funds for
-                                various causes, including those supporting veterans within the ARMY ROTC
-                                community.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3 class="text-3xl font-semibold text-gray-800 mt-10 mb-5">Leadership</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-separate border-spacing-y-3">
+                        <tbody class="bg-white rounded-xl shadow-md divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="py-4 px-6 rounded-xl">
+                                    <b>Member, Graduate Student Community at University of Oklahoma:</b>
+                                    Proactively participate in regular meetings to tackle the diverse
+                                    challenges faced by graduate students across departments. Contribute to
+                                    initiatives focused on fostering inclusivity within the graduate student
+                                    community by advocating for increased representation. Strive to secure
+                                    funding from diverse resources to support graduate students.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="py-4 px-6 rounded-xl">
+                                    <b>Member, Data Science and Analytics Association at University of Oklahoma:</b>
+                                    Collaborate in organizing and participating in presentations in data
+                                    science and analytics community.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="py-4 px-6 rounded-xl">
+                                    <b>Former Cadet, University of Oklahoma ARMY ROTC:</b> Organize and
+                                    actively participate in community events such as blood donation drives and
+                                    charity marathons. Dedicate efforts to raising awareness and funds for
+                                    various causes, including those supporting veterans within the ARMY ROTC
+                                    community.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-4 text-center rounded-t-lg shadow-inner">
+    <footer class="bg-gray-800 text-white py-10 px-4 text-center rounded-t-3xl shadow-inner">
         <div class="container mx-auto">
-            <p class="mb-4">&copy; 2025 Omkar Chekuri. All rights reserved.</p>
-            <div class="flex justify-center space-x-6">
-                <!-- Social Media Links (replace with your actual links) -->
-                <a href="https://www.linkedin.com/in/omkarchekuri" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
-                    <i class="fab fa-linkedin text-2xl"></i>
+            <p class="mb-6 text-lg">&copy; 2025 Omkar Chekuri. All rights reserved.</p>
+            <div class="flex justify-center space-x-8 mb-6">
+                <!-- Social Media Links -->
+                <a href="https://www.linkedin.com/in/omkarchekuri" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110">
+                    <i class="fab fa-linkedin text-3xl"></i>
                 </a>
-                <a href="https://github.com/OmkarChekuri" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
-                    <i class="fab fa-github text-2xl"></i>
+                <a href="https://github.com/OmkarChekuri" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110">
+                    <i class="fab fa-github text-3xl"></i>
                 </a>
-                <a href="https://scholar.google.com/citations?user=NUGlsRUAAAAJ&hl=en&oi=ao" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
-                    <i class="ai ai-google-scholar text-2xl"></i>
+                <a href="https://scholar.google.com/citations?user=NUGlsRUAAAAJ&hl=en&oi=ao" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110">
+                    <i class="ai ai-google-scholar text-3xl"></i>
                 </a>
             </div>
+            <!-- Creative Commons License -->
+            <div class="text-sm text-gray-400">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" class="inline-block mb-2">
+                    <img alt="Creative Commons License" style="border-width:0" src="media/creativecommons.png" class="inline-block h-8 w-auto filter grayscale hover:grayscale-0 transition-all duration-300"/>
+                </a><br>
+                Except where otherwise noted, content on this site is licensed under a<br>
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" class="text-blue-300 hover:underline">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </div>
         </div>
-    </footer
+    </footer>
+
     <!-- JavaScript for Mobile Navigation Toggle and Collapsible Timeline -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {

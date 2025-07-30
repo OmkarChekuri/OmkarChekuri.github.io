@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omkar Chekuri - Projects</title>
+    <link rel="icon" href="./static/images/marko.png" type="image/x-icon" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for a modern look -->
@@ -84,8 +85,8 @@
             transition: transform 0.2s, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%; /* Ensure cards fill height in grid */
+            justify-content: flex-start; /* Align content to the top */
+            height: auto; /* Allow height to adjust based on content */
         }
         .project-card:hover {
             transform: translateY(-5px);
@@ -100,8 +101,43 @@
             margin-bottom: 0; /* Remove bottom margin from last paragraph */
         }
         .project-card-links {
-            margin-top: auto; /* Push links to the bottom of the card */
-            padding-top: 1rem; /* Add some space above links */
+            margin-top: 1rem; /* Add some space below skills and before collapsible header */
+            margin-bottom: 1rem; /* Add space between links and collapsible header */
+        }
+
+        /* Collapsible content styles for projects */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px; /* Add padding to separate from links */
+            padding-bottom: 10px;
+            border-top: 1px solid #e5e7eb; /* Light gray border above "Read More" */
+            width: 100%; /* Ensure header takes full width */
+        }
+        .collapsible-header h6, .collapsible-header h7 {
+            margin-bottom: 0.25rem; /* Reduce spacing within header */
+        }
+        .collapsible-header h6 {
+            font-size: 1.25rem; /* Slightly smaller title inside card header */
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            width: 100%; /* Ensure content takes full width */
+        }
+        .collapsible-content.expanded {
+            max-height: 600px; /* Adjust as needed for content height, larger for project descriptions */
+            transition: max-height 0.5s ease-in;
+        }
+        .collapsible-icon {
+            transition: transform 0.3s ease-out;
+            margin-left: auto; /* Push icon to the right */
+        }
+        .collapsible-icon.rotated {
+            transform: rotate(90deg);
         }
     </style>
 </head>
@@ -149,13 +185,19 @@
                         <div class="project-description">
                             <h6>Dynamic Langgraph Agent with Streamlit UI</h6>
                             <h7><b>Skills:</b> Langgraph, Streamlit, Ollama, Large Language Models (LLMs), Multimodal AI, Python, UI/UX Design, API Integration (HTTPX)</h7>
-                            <p>Developed a sophisticated AI agent leveraging Langgraph for stateful orchestration of specialized Ollama LLMs, enabling dynamic routing of text, code, and image queries. This project creates a highly interactive and user-friendly multimodal AI experience, providing real-time feedback on active LLMs and visualizing the Langgraph workflow for transparency. The modular and extensible architecture aims to bridge the gap between complex AI and intuitive user interaction, showcasing advanced prompt engineering and multimodal capabilities.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials and Demo:</p>
-                            <a href="https://github.com/OmkarChekuri/AgenticAI_Langgraph" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials and Demo:</p>
+                                <a href="https://github.com/OmkarChekuri/AgenticAI_Langgraph" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Developed a sophisticated AI agent leveraging Langgraph for stateful orchestration of specialized Ollama LLMs, enabling dynamic routing of text, code, and image queries. This project creates a highly interactive and user-friendly multimodal AI experience, providing real-time feedback on active LLMs and visualizing the Langgraph workflow for transparency. The modular and extensible architecture aims to bridge the gap between complex AI and intuitive user interaction, showcasing advanced prompt engineering and multimodal capabilities.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -165,13 +207,19 @@
                         <div class="project-description">
                             <h6>Multimodal RAG Chatbot for Document Q&A</h6>
                             <h7><b>Skills:</b> LangChain, Ollama, Retrieval-Augmented Generation (RAG), Vector Databases (Chroma), Ollama Embeddings, Streamlit, Python, Data Processing (CSV, PDF)</h7>
-                            <p>Engineered a Retrieval-Augmented Generation (RAG) chatbot capable of answering questions from diverse document types, including CSV and PDF files. This system utilizes Ollama LLMs for intelligent responses and Ollama Embeddings with Chroma for efficient, context-aware information retrieval. The intuitive Streamlit web interface allows users to seamlessly switch between data sources, providing dynamic and precise answers. This project demonstrates a practical application of RAG to extract insights from both structured and unstructured data, significantly improving information accessibility.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="https://github.com/OmkarChekuri/LocalRag" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="https://github.com/OmkarChekuri/LocalRag" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Engineered a Retrieval-Augmented Generation (RAG) chatbot capable of answering questions from diverse document types, including CSV and PDF files. This system utilizes Ollama LLMs for intelligent responses and Ollama Embeddings with Chroma for efficient, context-aware information retrieval. The intuitive Streamlit web interface allows users to seamlessly switch between data sources, providing dynamic and precise answers. This project demonstrates a practical application of RAG to extract insights from both structured and unstructured data, significantly improving information accessibility.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -181,17 +229,23 @@
                         <div class="project-description">
                             <h6>Solving Dynamic Perfect Mazes Using Reinforcement Learning</h6>
                             <h7><b>Skills:</b> Reinforcement Learning, Q-Learning</h7>
-                            <p>Omkar Chekuri and Yonathan Hendrawan</p>
-                            <p>Designed and developed a game environment for generating and solving dynamic perfect mazes from scratch. We implemented and compared Q-learning and a novel Multi-agent Sarsa algorithm against traditional maze-solving methods. Our reinforcement learning algorithms significantly outperformed the Wall Follower algorithm in terms of steps taken and successfully solved mazes even with projectiles. This project showcases the effectiveness of RL in dynamic environments, though performance scales inversely with maze size.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="./sections/static/papers/mazeSolving.pdf" target="_blank" class="project-link">
-                                <i class="fa fa-link mr-1" title="Report"></i> Link to report
-                            </a>
-                            <a href="https://github.com/OmkarChekuri/ReinforcementLearning" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="./sections/static/papers/mazeSolving.pdf" target="_blank" class="project-link">
+                                    <i class="fa fa-link mr-1" title="Report"></i> Link to report
+                                </a>
+                                <a href="https://github.com/OmkarChekuri/ReinforcementLearning" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Omkar Chekuri and Yonathan Hendrawan</p>
+                                <p>Designed and developed a game environment for generating and solving dynamic perfect mazes from scratch. We implemented and compared Q-learning and a novel Multi-agent Sarsa algorithm against traditional maze-solving methods. Our reinforcement learning algorithms significantly outperformed the Wall Follower algorithm in terms of steps taken and successfully solved mazes even with projectiles. This project showcases the effectiveness of RL in dynamic environments, though performance scales inversely with maze size.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -201,14 +255,20 @@
                         <div class="project-description">
                             <h6>Skin Condition Image Search Application</h6>
                             <h7><b>Skills:</b> Streamlit, Software Development, Prototyping</h7>
-                            <p>Omkar Chekuri</p>
-                            <p>Developed a Streamlit application to address the prevalent issue of underrepresentation of diverse skin tones in medical imagery. This tool provides users access to sample images across various races for specified skin conditions, directly counteracting existing digital bias. It also scrapes relevant information from WebMD, enhancing flexibility and usability for health research. By offering a more inclusive range of visuals and data, this application significantly mitigates the representation gap in online medical information.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="https://github.com/OmkarChekuri/SkinConditionSearch-Streamlit" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="https://github.com/OmkarChekuri/SkinConditionSearch-Streamlit" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Omkar Chekuri</p>
+                                <p>Developed a Streamlit application to address the prevalent issue of underrepresentation of diverse skin tones in medical imagery. This tool provides users access to sample images across various races for specified skin conditions, directly counteracting existing digital bias. It also scrapes relevant information from WebMD, enhancing flexibility and usability for health research. By offering a more inclusive range of visuals and data, this application significantly mitigates the representation gap in online medical information.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -222,13 +282,19 @@
                         <div class="project-description">
                             <h6>Coordination for Data Driven Documents (C4D3)</h6>
                             <h7><b>Skills:</b> D3.js, Information Visualization, Coordination Architecture</h7>
-                            <p>Developed C4D3, a novel framework that provides view-level abstraction and a robust coordination architecture for building sophisticated coordinated multiple views using the D3 library. This project was motivated by the critical need for improved coordination mechanisms in browser-based visualizations, a challenge we addressed by adopting the highly generalizable Live Properties architecture. C4D3 significantly enhances the development of interactive and synchronized data visualizations, streamlining complex data exploration and analysis workflows for users.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">More Info:</p>
-                            <a href="https://omkarchekuri.github.io/c4d3/index.html" target="_blank" class="project-link">
-                                <i class="fa fa-link mr-1" title="Detailed Project Website"></i> Link to the detailed project website
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">More Info:</p>
+                                <a href="./c4d3/index.html" target="_blank" class="project-link">
+                                    <i class="fa fa-link mr-1" title="Detailed Project Website"></i> Link to the detailed project website
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Developed C4D3, a novel framework that provides view-level abstraction and a robust coordination architecture for building sophisticated coordinated multiple views using the D3 library. This project was motivated by the critical need for improved coordination mechanisms in browser-based visualizations, a challenge we addressed by adopting the highly generalizable Live Properties architecture. C4D3 significantly enhances the development of interactive and synchronized data visualizations, streamlining complex data exploration and analysis workflows for users.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -238,16 +304,22 @@
                         <div class="project-description">
                             <h6>An Investigation into the Representational Suitability of Tree Visualizations</h6>
                             <h7><b>Skills:</b> Information Visualization, User Studies, Data Representation</h7>
-                            <p>This comprehensive project rigorously investigated the effectiveness of various tree visualizations in conveying complex hierarchical data. Through a series of carefully designed user studies, we analyzed how different visual encodings and layout strategies impact user understanding, task performance, and overall usability. The findings provide valuable insights into optimizing tree visualizations for diverse analytical needs, contributing to the field's understanding of effective data representation.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056-summary.pdf" target="_blank" class="project-link">
-                                <i class="fa fa-file-text-o mr-1" title="Write-up"></i> Write-up
-                            </a>
-                            <a href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056.pdf" target="_blank" class="project-link">
-                                <i class="fa fa-file-text-o mr-1" title="Poster"></i> Poster
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056-summary.pdf" target="_blank" class="project-link">
+                                    <i class="fa fa-file-text-o mr-1" title="Write-up"></i> Write-up
+                                </a>
+                                <a href="https://ieeevis.b-cdn.net/vis_2022/posters/v-vis-posters-1056.pdf" target="_blank" class="project-link">
+                                    <i class="fa fa-file-text-o mr-1" title="Poster"></i> Poster
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>This comprehensive project rigorously investigated the effectiveness of various tree visualizations in conveying complex hierarchical data. Through a series of carefully designed user studies, we analyzed how different visual encodings and layout strategies impact user understanding, task performance, and overall usability. The findings provide valuable insights into optimizing tree visualizations for diverse analytical needs, contributing to the field's understanding of effective data representation.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -257,13 +329,19 @@
                         <div class="project-description">
                             <h6>Interactive Gesture-Based Data Manipulation and Visualization</h6>
                             <h7><b>Skills:</b> Human-Computer Interaction, Gesture Recognition, Data Manipulation</h7>
-                            <p>This project innovatively diverged from traditional state machine models for gesture implementation, instead treating gesture handling as a problem of pattern matching against interleaved event streams. This novel approach enabled the development of a versatile suite of gestures, significantly enhancing the efficiency and intuitiveness of data editing and manipulation procedures in interactive systems. The research demonstrates a more flexible and powerful method for designing natural user interfaces, improving overall human-computer interaction for complex data tasks.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">More Info:</p>
-                            <a href="https://www.cs.ou.edu/~weaver/nsf-career/page-08-gesture-gallery.html" target="_blank" class="project-link">
-                                <i class="fa fa-link mr-1" title="Detailed Project Website"></i> Link to the detailed project website
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">More Info:</p>
+                                <a href="https://www.cs.ou.edu/~weaver/nsf-career/page-08-gesture-gallery.html" target="_blank" class="project-link">
+                                    <i class="fa fa-link mr-1" title="Detailed Project Website"></i> Link to the detailed project website
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>This project innovatively diverged from traditional state machine models for gesture implementation, instead treating gesture handling as a problem of pattern matching against interleaved event streams. This novel approach enabled the development of a versatile suite of gestures, significantly enhancing the efficiency and intuitiveness of data editing and manipulation procedures in interactive systems. The research demonstrates a more flexible and powerful method for designing natural user interfaces, improving overall human-computer interaction for complex data tasks.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -277,13 +355,19 @@
                         <div class="project-description">
                             <h6>Distributed Sudoku Solver</h6>
                             <h7><b>Skills:</b> Docker, Distributed Computing, Containerization, Software Engineering</h7>
-                            <p>Developed a robust distributed Sudoku solver leveraging Docker containers to create scalable, independent services. This innovative approach implemented secure inter-process communication with encrypted channels and a Round Robin load balancing algorithm across worker nodes. The system ensures high availability and efficient task distribution, effectively tackling complex computational problems. This project demonstrates strong expertise in distributed systems architecture and containerization technologies.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="https://github.com/OmkarChekuri/DistributedSudokuSolver" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="https://github.com/OmkarChekuri/DistributedSudokuSolver" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Developed a robust distributed Sudoku solver leveraging Docker containers to create scalable, independent services. This innovative approach implemented secure inter-process communication with encrypted channels and a Round Robin load balancing algorithm across worker nodes. The system ensures high availability and efficient task distribution, effectively tackling complex computational problems. This project demonstrates strong expertise in distributed systems architecture and containerization technologies.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -293,13 +377,19 @@
                         <div class="project-description">
                             <h6>Development of VR environments for capturing of Multi-person VR interactions such as eye movements, brain activities, and haptic interactions</h6>
                             <h7><b>Skills:</b> Eye Tracking, fNIRS, Vizard, Software Development, Virtual Reality, Game Development</h7>
-                            <p>Contributed significantly to the "Smart Learning in Multi-person VR" project by developing immersive virtual reality environments. My responsibilities included integrating advanced biometric sensors such as fNIRs, eye-tracking, and haptic feedback to capture detailed user engagement data. I designed interactive user interface elements and complex semantic network models for learning scenarios, aiming to understand and personalize educational experiences. This work provided crucial data for research into human-computer interaction within VR.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="https://doi.org/10.1177/21695067231196245" target="_blank" class="project-link">
-                                <i class="fa fa-link mr-1" title="Paper"></i> Link to Paper
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="https://doi.org/10.1177/21695067231196245" target="_blank" class="project-link">
+                                    <i class="fa fa-link mr-1" title="Paper"></i> Link to Paper
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Contributed significantly to the "Smart Learning in Multi-person VR" project by developing immersive virtual reality environments. My responsibilities included integrating advanced biometric sensors such as fNIRs, eye-tracking, and haptic feedback to capture detailed user engagement data. I designed interactive user interface elements and complex semantic network models for learning scenarios, aiming to understand and personalize educational experiences. This work provided crucial data for research into human-computer interaction within VR.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -309,14 +399,20 @@
                         <div class="project-description">
                             <h6>YouTube Commercial: Exploring human’s perspective of commercials</h6>
                             <h7><b>Skills:</b> Eye Tracking, Statistical Analysis, Online Commercial, Cognitive Behavior, Survey</h7>
-                            <p>Omkar Saiswaroop Varma Chekuri, Farah Al Saif and Ivan Calderoni</p>
-                            <p>Designed and conducted an eye-tracking experiment to analyze audience perception of online commercials, specifically investigating the impact of "skip" functionality on YouTube advertisements. Through quantitative statistical analysis, including normality tests and hypothesis testing (e.g., T-tests, Mann-Whitney-Wilcoxon tests) on eye fixation metrics, we derived insights into user cognitive behavior. The study revealed interesting qualitative differences in cognitive responses between groups, providing valuable data to inform more effective digital marketing strategies.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="./static/YouTubeCommercialEyetrackingAnalysis.pdf" target="_blank" class="project-link">
-                                <i class="fa fa-link mr-1" title="Report"></i> Link to report
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="./static/YouTubeCommercialEyetrackingAnalysis.pdf" target="_blank" class="project-link">
+                                    <i class="fa fa-link mr-1" title="Report"></i> Link to report
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Omkar Saiswaroop Varma Chekuri, Farah Al Saif and Ivan Calderoni</p>
+                                <p>Designed and conducted an eye-tracking experiment to analyze audience perception of online commercials, specifically investigating the impact of "skip" functionality on YouTube advertisements. Through quantitative statistical analysis, including normality tests and hypothesis testing (e.g., T-tests, Mann-Whitney-Wilcoxon tests) on eye fixation metrics, we derived insights into user cognitive behavior. The study revealed interesting qualitative differences in cognitive responses between groups, providing valuable data to inform more effective digital marketing strategies.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -326,14 +422,20 @@
                         <div class="project-description">
                             <h6>Game Development (Platformer - Escape to Space)</h6>
                             <h7><b>Skills:</b> Computer Graphics, Game Development, Software Engineering</h7>
-                            <p>Aaron Morris, Omkar Chekuri, and Yonathan Hendrawan</p>
-                            <p>Designed and developed a comprehensive 2.5D platformer game, incorporating essential elements such as advanced animation, precise collision detection, custom shaders, dynamic particle systems, and realistic basic physics. We meticulously applied rigorous software engineering processes, including a milestone-driven approach and Test-Driven Development (TDD), to ensure robust and high-quality development. This project significantly enhanced our proficiency in advanced computer graphics techniques and practical game development methodologies.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="https://github.com/OmkarChekuri/cs-5053-project" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="https://github.com/OmkarChekuri/cs-5053-project" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Aaron Morris, Omkar Chekuri, and Yonathan Hendrawan</p>
+                                <p>Designed and developed a comprehensive 2.5D platformer game, incorporating essential elements such as advanced animation, precise collision detection, custom shaders, dynamic particle systems, and realistic basic physics. We meticulously applied rigorous software engineering processes, including a milestone-driven approach and Test-Driven Development (TDD), to ensure robust and high-quality development. This project significantly enhanced our proficiency in advanced computer graphics techniques and practical game development methodologies.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -343,17 +445,23 @@
                         <div class="project-description">
                             <h6>Artful Abstraction</h6>
                             <h7><b>Skills:</b> WebGL, Computer Graphics</h7>
-                            <p>Omkar Chekuri</p>
-                            <p>This project explored artistic rendering in computer graphics, a field less focused on photorealism and more on expressive visual styles. I aimed to replicate abstract image representation techniques inspired by [Haeberli 1990], focusing on controlling color, shape, and size of brush strokes. While not an exact replication, my implementation of these techniques achieved reasonable results with distinct artistic elements, showcasing the potential for non-photorealistic rendering in digital art.</p>
-                        </div>
-                        <div class="project-card-links">
-                            <p class="font-semibold mt-4">Related Materials:</p>
-                            <a href="./sections/static/papers/ArtfulAbstractionProjectReport.pdf" target="_blank" class="project-link">
-                                <i class="fa fa-link mr-1" title="Report"></i> Link to report
-                            </a>
-                            <a href="https://github.com/OmkarChekuri/ArtfulAbstraction" target="_blank" class="project-link">
-                                <i class="fab fa-github-alt mr-1"></i> Code
-                            </a>
+                            <div class="project-card-links">
+                                <p class="font-semibold mt-4">Related Materials:</p>
+                                <a href="./sections/static/papers/ArtfulAbstractionProjectReport.pdf" target="_blank" class="project-link">
+                                    <i class="fa fa-link mr-1" title="Report"></i> Link to report
+                                </a>
+                                <a href="https://github.com/OmkarChekuri/ArtfulAbstraction" target="_blank" class="project-link">
+                                    <i class="fab fa-github-alt mr-1"></i> Code
+                                </a>
+                            </div>
+                            <div class="collapsible-header" onclick="toggleCollapsibleProject(this)">
+                                <span class="text-indigo-600 text-sm font-medium">Read More</span>
+                                <i class="fas fa-chevron-right collapsible-icon"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p>Omkar Chekuri</p>
+                                <p>This project explored artistic rendering in computer graphics, a field less focused on photorealism and more on expressive visual styles. I aimed to replicate abstract image representation techniques inspired by [Haeberli 1990], focusing on controlling color, shape, and size of brush strokes. While not an exact replication, my implementation of these techniques achieved reasonable results with distinct artistic elements, showcasing the potential for non-photorealistic rendering in digital art.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -381,7 +489,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Navigation Toggle -->
+    <!-- JavaScript for Mobile Navigation Toggle and Collapsible Projects -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuButton = document.getElementById('menu-button');
@@ -404,6 +512,20 @@
                     }
                 });
             });
+
+            // Collapsible project functionality
+            window.toggleCollapsibleProject = (header) => {
+                const content = header.nextElementSibling; // The collapsible-content div
+                const icon = header.querySelector('.collapsible-icon');
+
+                if (content.classList.contains('expanded')) {
+                    content.classList.remove('expanded');
+                    icon.classList.remove('rotated');
+                } else {
+                    content.classList.add('expanded');
+                    icon.classList.add('rotated');
+                }
+            };
         });
     </script>
 
