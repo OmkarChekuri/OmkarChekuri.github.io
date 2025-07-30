@@ -58,7 +58,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Timeline specific styles */
+        /* Vertical Timeline specific styles */
         .timeline {
             position: relative;
             max-width: 1200px;
@@ -133,6 +133,33 @@
             border-radius: 6px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        /* Collapsible content styles */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb; /* Light gray border */
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .collapsible-content.expanded {
+            max-height: 500px; /* Adjust as needed for content height */
+            transition: max-height 0.5s ease-in;
+        }
+        .collapsible-icon {
+            transition: transform 0.3s ease-out;
+        }
+        .collapsible-icon.rotated {
+            transform: rotate(90deg);
+        }
+
+        /* Responsive adjustments for smaller screens */
         @media screen and (max-width: 768px) {
             .timeline::after {
                 left: 31px;
@@ -179,6 +206,7 @@
                 <a href="projects.html" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Projects</a>
                 <a href="#publications" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Publications</a>
                 <a href="#awards" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Awards</a>
+                <a href="#certifications" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Certifications</a>
                 <a href="#service" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Service & Leadership</a>
                 <a href="static/OmkarChekuri-Resume.pdf" target="_blank" class="block py-2 px-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent rounded-md transition-colors duration-300">Resume</a>
             </div>
@@ -199,7 +227,7 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-4xl">
+    <section id="about" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">About Me</h2>
             <div class="flex flex-col lg:flex-row items-center lg:space-x-8">
@@ -240,7 +268,7 @@
     </section>
 
     <!-- Skills Infographic Section -->
-    <section id="skills-infographic" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-4xl">
+    <section id="skills-infographic" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">My Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
@@ -284,111 +312,174 @@
         </div>
     </section>
 
-    <!-- Journey/Experience Timeline Section -->
-    <section id="journey-timeline" class="py-16 px-4 bg-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-5xl">
+    <!-- Journey/Experience Timeline Section (Vertical & Collapsible) -->
+    <section id="journey-timeline" class="py-16 px-4 bg-gray-200 rounded-lg shadow-md mx-auto my-8 max-w-6xl">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">My Journey & Experience</h2>
             <div class="timeline">
 
                 <!-- Timeline Item: PhD in Computer Science -->
                 <div class="timeline-container left">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">PhD in Computer Science</h3>
-                        <p class="text-gray-600 text-sm mb-2">University of Oklahoma, Norman, OK, USA (Aug 2019 - May 2025)</p>
-                        <p class="text-gray-700">
-                            Dissertation: "Augmenting Hierarchical Visualizations with Topology-Centric Representations and Interactions". Focused on HCI, Information Visualization, and AI/ML applications.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>PhD in Computer Science</h3>
+                                <p class="text-gray-600 text-sm">University of Oklahoma (Aug 2019 - May 2025)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Dissertation: "Augmenting Hierarchical Visualizations with Topology-Centric Representations and Interactions". Focused on HCI, Information Visualization, and AI/ML applications.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: Graduate Research Assistant -->
                 <div class="timeline-container right">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">Graduate Research Assistant</h3>
-                        <p class="text-gray-600 text-sm mb-2">University of Oklahoma, Norman, OK, USA (Jun 2017 - May 2025)</p>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Built multi-user VR learning environments, integrating biometric sensors.</li>
-                            <li>Designed gesture-based interaction techniques for data exploration.</li>
-                            <li>Developed a high-performance TypeScript coordination library for D3.js.</li>
-                            <li>Analyzed severe weather forecasting discussions for NOAA.</li>
-                        </ul>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-flask mr-2"></i>Graduate Research Assistant</h3>
+                                <p class="text-gray-600 text-sm">University of Oklahoma (Jun 2017 - May 2025)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <ul class="list-disc list-inside text-gray-700 pt-2">
+                                <li>Built multi-user VR learning environments, integrating biometric sensors.</li>
+                                <li>Designed gesture-based interaction techniques for data exploration.</li>
+                                <li>Developed a high-performance TypeScript coordination library for D3.js.</li>
+                                <li>Analyzed severe weather forecasting discussions for NOAA.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: Power Apps Developer -->
                 <div class="timeline-container left">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">Power Apps Developer</h3>
-                        <p class="text-gray-600 text-sm mb-2">University of Oklahoma, Norman, OK (May 2023 - Aug 2023)</p>
-                        <p class="text-gray-700">
-                            Led end-to-end design and development of a replacement Effort Reporting System using Microsoft 365 tools, automating workflows and saving significant labor hours.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-cogs mr-2"></i>Power Apps Developer</h3>
+                                <p class="text-gray-600 text-sm">University of Oklahoma (May 2023 - Aug 2023)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Led end-to-end design and development of a replacement Effort Reporting System using Microsoft 365 tools, automating workflows and saving significant labor hours.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: Python Course and Lab Instructor -->
                 <div class="timeline-container right">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">Python Course and Lab Instructor</h3>
-                        <p class="text-gray-600 text-sm mb-2">University of Oklahoma, Norman, OK (Aug 2021 - May 2025)</p>
-                        <p class="text-gray-700">
-                            Instructed Python to 75+ students per semester, developed lab materials, and supervised teaching assistants.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-chalkboard-teacher mr-2"></i>Python Course and Lab Instructor</h3>
+                                <p class="text-gray-600 text-sm">University of Oklahoma (Aug 2021 - May 2025)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Instructed Python to 75+ students per semester, developed lab materials, and supervised teaching assistants.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: Data Analytics Intern -->
                 <div class="timeline-container left">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">Data Analytics Intern</h3>
-                        <p class="text-gray-600 text-sm mb-2">Cloud Nine Development LLC, Norman, OK (Jan 2018 - May 2018)</p>
-                        <p class="text-gray-700">
-                            Developed Google Analytics dashboards, trained ML models (ARIMA, SARIMA) for forecasting, and optimized UI based on user behavior analysis.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-chart-line mr-2"></i>Data Analytics Intern</h3>
+                                <p class="text-gray-600 text-sm">Cloud Nine Development LLC (Jan 2018 - May 2018)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Developed Google Analytics dashboards, trained ML models for forecasting, and optimized UI based on user behavior analysis.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: M.S. in Data Science and Analytics -->
                 <div class="timeline-container right">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">M.S. in Data Science and Analytics</h3>
-                        <p class="text-gray-600 text-sm mb-2">University of Oklahoma, Norman, OK, USA (Jan 2016 - May 2018)</p>
-                        <p class="text-gray-700">
-                            Completed Master's degree with a focus on data science and analytics.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-graduation-cap mr-2"></i>M.S. in Data Science and Analytics</h3>
+                                <p class="text-gray-600 text-sm">University of Oklahoma (Jan 2016 - May 2018)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Completed Master's degree with a focus on data science and analytics.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: SAP CMMS Engineer - Python & SAS -->
                 <div class="timeline-container left">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">SAP CMMS Engineer - Python & SAS</h3>
-                        <p class="text-gray-600 text-sm mb-2">Construction Development Company LLC, Doha, Qatar (Feb 2013 - Aug 2015)</p>
-                        <p class="text-gray-700">
-                            Automated SAP CMMS workflows with Python, SQL, and SASPY; built modular ETL systems and created visual dashboards.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-industry mr-2"></i>SAP CMMS Engineer - Python & SAS</h3>
+                                <p class="text-gray-600 text-sm">Construction Development Company LLC (Feb 2013 - Aug 2015)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Automated SAP CMMS workflows with Python, SQL, and SASPY; built modular ETL systems and created visual dashboards.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: Engineer - Reporting & Resource Analytics -->
                 <div class="timeline-container right">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">Engineer - Reporting & Resource Analytics</h3>
-                        <p class="text-gray-600 text-sm mb-2">Aker Solutions, Kakinada, India (Jun 2012 - Dec 2012)</p>
-                        <p class="text-gray-700">
-                            Automated logistics reporting using Python and Excel macros, digitized legacy operational logs, and supported data extraction for senior analysts.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-chart-bar mr-2"></i>Engineer - Reporting & Resource Analytics</h3>
+                                <p class="text-gray-600 text-sm mb-2">Aker Solutions (Jun 2012 - Dec 2012)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Automated logistics reporting using Python and Excel macros, digitized legacy operational logs, and supported data extraction for senior analysts.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item: Bachelor of Technology -->
                 <div class="timeline-container left">
-                    <div class="timeline-content p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-semibold text-indigo-600">Bachelor of Technology in Mechanical Engineering</h3>
-                        <p class="text-gray-600 text-sm mb-2">JNTU, Kakinada, India (July 2008 - May 2012)</p>
-                        <p class="text-gray-700">
-                            Completed undergraduate studies in Mechanical Engineering.
-                        </p>
+                    <div class="timeline-content">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <div>
+                                <h3 class="text-xl font-semibold text-indigo-600"><i class="fas fa-wrench mr-2"></i>Bachelor of Technology in Mechanical Engineering</h3>
+                                <p class="text-gray-600 text-sm">JNTU, Kakinada, India (July 2008 - May 2012)</p>
+                            </div>
+                            <i class="fas fa-chevron-right collapsible-icon"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="text-gray-700 text-sm pt-2">
+                                Completed undergraduate studies in Mechanical Engineering.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -396,8 +487,57 @@
         </div>
     </section>
 
+    <!-- Selected Projects Section -->
+    <section id="selected-projects" class="py-16 px-4 bg-gray-100 rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Selected Information Visualization / HCI Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project Card 1: Coordination for Data Driven Documents(C4D3) -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <img src="./static/images/project-images/ions.png" alt="C4D3" class="project-card-image">
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-2">Coordination for Data Driven Documents (C4D3)</h3>
+                    <p class="text-gray-700 text-sm mb-4">
+                        A framework providing view level abstraction and coordination architecture for developing coordinated multiple views using D3 library.
+                    </p>
+                    <a href="https://omkarchekuri.github.io/c4d3/index.html" target="_blank" class="text-indigo-600 hover:underline text-sm font-medium flex items-center">
+                        Learn More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 2: An Investigation into the Representational Suitability of Tree Visualizations -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <img src="./static/images/project-images/representationalsuitability.PNG" alt="Tree Visualizations" class="project-card-image">
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-2">An Investigation into the Representational Suitability of Tree Visualizations</h3>
+                    <p class="text-gray-700 text-sm mb-4">
+                        Investigates the effectiveness of different tree visualizations in conveying hierarchical data and their impact on user understanding.
+                    </p>
+                    <a href="projects.html#info-vis-hci-projects" class="text-indigo-600 hover:underline text-sm font-medium flex items-center">
+                        Learn More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 3: Interactive Gesture-Based Data Manipulation and Visualization -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <img src="./static/images/project-images/gestures.jpeg" alt="Gestures" class="project-card-image">
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-2">Interactive Gesture-Based Data Manipulation and Visualization</h3>
+                    <p class="text-gray-700 text-sm mb-4">
+                        Developed a suite of gestures to support variety of data editing procedures by treating gesture handling as pattern matching.
+                    </p>
+                    <a href="projects.html#info-vis-hci-projects" class="text-indigo-600 hover:underline text-sm font-medium flex items-center">
+                        Learn More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="text-center mt-10">
+                <a href="projects.html" class="bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Publications Section -->
-    <section id="publications" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-4xl">
+    <section id="publications" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Publications</h2>
             <div class="space-y-8">
@@ -503,7 +643,7 @@
     </section>
 
     <!-- Awards Section -->
-    <section id="awards" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-4xl">
+    <section id="awards" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Awards</h2>
             <table class="w-full text-lg text-gray-700 borderless">
@@ -537,8 +677,46 @@
         </div>
     </section>
 
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-16 px-4 bg-gray-100 rounded-lg shadow-md mx-auto my-8 max-w-6xl">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Certifications</h2>
+            <table class="w-full text-lg text-gray-700 borderless">
+                <tbody>
+                    <tr>
+                        <td class="py-2">
+                            <b>Tableau Certified Professional</b>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/NLLP272B22MV" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
+                                <i class="fas fa-external-link-alt mr-1"></i> Verify
+                            </a>
+                        </td>
+                        <td class="year-col py-2">2020</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">
+                            <b>Advanced Google Analytics</b>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/G758S6FZMJCS" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
+                                <i class="fas fa-external-link-alt mr-1"></i> Verify
+                            </a>
+                        </td>
+                        <td class="year-col py-2">2020</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">
+                            <b>Neo4j Certified</b>
+                            <a href="https://graphacademy.neo4j.com/c/f80f7c69-68ae-41cb-a252-a564958ab273/" target="_blank" class="text-indigo-600 hover:underline inline-flex items-center ml-2">
+                                <i class="fas fa-external-link-alt mr-1"></i> Verify
+                            </a>
+                        </td>
+                        <td class="year-col py-2">N/A</td> <!-- Year not explicitly provided, using N/A -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <!-- Service & Leadership Section -->
-    <section id="service" class="py-16 px-4 bg-gray-100 rounded-lg shadow-md mx-auto my-8 max-w-4xl">
+    <section id="service" class="py-16 px-4 bg-white rounded-lg shadow-md mx-auto my-8 max-w-6xl">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-indigo-700 mb-10">Service & Leadership</h2>
             <div class="space-y-6 text-lg text-gray-700">
@@ -614,9 +792,8 @@
                 </a>
             </div>
         </div>
-    </footer>
-
-    <!-- JavaScript for Mobile Navigation Toggle -->
+    </footer
+    <!-- JavaScript for Mobile Navigation Toggle and Collapsible Timeline -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuButton = document.getElementById('menu-button');
@@ -639,6 +816,25 @@
                     }
                 });
             });
+
+            // Collapsible timeline functionality
+            window.toggleCollapsible = (header) => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.collapsible-icon');
+
+                if (content.classList.contains('expanded')) {
+                    content.classList.remove('expanded');
+                    icon.classList.remove('rotated');
+                } else {
+                    // Collapse all other expanded items before expanding the new one
+                    document.querySelectorAll('.collapsible-content.expanded').forEach(item => {
+                        item.classList.remove('expanded');
+                        item.previousElementSibling.querySelector('.collapsible-icon').classList.remove('rotated');
+                    });
+                    content.classList.add('expanded');
+                    icon.classList.add('rotated');
+                }
+            };
         });
     </script>
 
